@@ -4,7 +4,7 @@
 #
 #   ./install.sh                 run every component
 #   ./install.sh 30 60           run only those components
-#   ./install.sh --list          show what there is
+#   ./install.sh --list          list the components
 #
 # Each component is idempotent: running it twice changes nothing the second
 # time. Originals are copied to ~/.local/share/linux-xp/backups before any
@@ -31,12 +31,12 @@ for a in "$@"; do
     case "$a" in
         -h|--help) usage ;;
         -l|--list) list_components; exit 0 ;;
-        -*) die "ukjent flagg: $a" ;;
+        -*) die "unknown flag: $a" ;;
         *) wanted+=("$a") ;;
     esac
 done
 
-need_cinnamon
+is_cinnamon || warn "Cinnamon not found - the shell components will skip themselves"
 mkdir -p "$BACKUP"
 
 ran=0
@@ -47,10 +47,10 @@ for f in "$REPO"/components/*.sh; do
     fi
     log "$(sed -n '1s/^# \{0,1\}//p' "$f")"
     # shellcheck disable=SC1090
-    ( source "$f" ) || warn "komponent $num feilet - fortsetter"
+    ( source "$f" ) || warn "component $num failed - continuing"
     ran=$((ran+1))
 done
 
-[ "$ran" -gt 0 ] || die "ingen komponenter kjørte (sjekk tallene med --list)"
+[ "$ran" -gt 0 ] || die "no components ran (check the numbers with --list)"
 
-log "Ferdig. Logg ut og inn igjen for at alt skal slå inn."
+log "Done. Log out and back in for everything to take effect."

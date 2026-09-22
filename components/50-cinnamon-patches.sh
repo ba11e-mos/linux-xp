@@ -1,21 +1,23 @@
-# Cinnamon-kildefiler: UAC-dialog, lydapplet, volum-OSD, menyer med tittellinje
+# Cinnamon source files: UAC dialog, sound applet, volume OSD, captioned menus
 #
-# Disse redigerer /usr/share/cinnamon/js/... og trenger sudo. Hvert skript tar
-# sin egen .orig-xp-kopi og hopper over hvis det allerede er kjørt.
+# These edit /usr/share/cinnamon/js/... and need sudo. Each script keeps its
+# own .orig-xp copy and skips if it has already run.
 
-[ -d /usr/share/cinnamon/js ] || { warn "fant ikke /usr/share/cinnamon/js"; return 0; }
+require_cinnamon || return 0
+
+[ -d /usr/share/cinnamon/js ] || { warn "/usr/share/cinnamon/js not found"; return 0; }
 
 if [ "${XP_SKIP_SUDO:-0}" = "1" ]; then
-    skip "hoppet over (XP_SKIP_SUDO=1)"
+    skip "skipped (XP_SKIP_SUDO=1)"
     return 0
 fi
 
 for p in uac-dialog sound-applet volume-osd applet-menus menu-titlebars; do
     f="$PATCHES/$p.sh"
     [ -f "$f" ] || continue
-    info "kjører $p.sh"
-    sudo bash "$f" || warn "$p.sh feilet"
+    info "running $p.sh"
+    sudo bash "$f" || warn "$p.sh failed"
 done
 
-info "fingeravtrykk før passord i innloggingen: sudo bash $PATCHES/pam-fingerprint-first.sh"
+info "fingerprint before password at login: sudo bash $PATCHES/pam-fingerprint-first.sh"
 restart_cinnamon

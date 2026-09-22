@@ -1,6 +1,8 @@
-# Cinnamon-skallet: UAC-dialog, volum-OSD, WMP8-lydapplet, XP-menyer, varsler
+# Cinnamon shell: UAC dialog, volume OSD, WMP8 sound applet, XP menus, notifications
 
-css_dir="$(theme_dir cinnamon)" || die "fant ikke $THEME_NAME/cinnamon - kjør komponent 10 først"
+require_cinnamon || return 0
+
+css_dir="$(theme_dir cinnamon)" || die "no $THEME_NAME/cinnamon - run component 10 first"
 css="$css_dir/cinnamon.css"
 marker="/* --- linux-xp extras --- */"
 
@@ -8,20 +10,20 @@ for f in "$ASSETS"/cinnamon/*.svg "$ASSETS"/cinnamon/*.png; do
     [ -e "$f" ] || continue
     cp "$f" "$css_dir/"
 done
-info "kopierte $(ls "$ASSETS"/cinnamon/*.svg "$ASSETS"/cinnamon/*.png 2>/dev/null | wc -l) bilder"
+info "copied $(ls "$ASSETS"/cinnamon/*.svg "$ASSETS"/cinnamon/*.png 2>/dev/null | wc -l) images"
 
 if marker_present "$css" "$marker"; then
-    # skriv seksjonen på nytt i stedet for å legge til enda en kopi
+    # rewrite the section instead of appending another copy
     backup_file "$css"
     tmp="$(mktemp)"
     sed "/$(printf '%s' "$marker" | sed 's/[][\.*^$/]/\\&/g')/,\$d" "$css" > "$tmp"
-    # dropp etterfølgende tomme linjer, ellers vokser filen med én per kjøring
+    # drop trailing blank lines, or the file grows by one per run
     printf '%s\n' "$(cat "$tmp")" > "$css"
     rm -f "$tmp"
-    info "erstatter tidligere linux-xp-seksjon"
+    info "replacing the previous linux-xp section"
 else
     backup_file "$css"
 fi
 
 { printf '\n%s\n' "$marker"; cat "$ASSETS/cinnamon/xp-extras.css"; } >> "$css"
-log "la til $(wc -l < "$ASSETS/cinnamon/xp-extras.css") linjer i cinnamon.css"
+log "appended $(wc -l < "$ASSETS/cinnamon/xp-extras.css") lines to cinnamon.css"

@@ -1,15 +1,22 @@
-# Firefox som Internet Explorer 6
+# Firefox as Internet Explorer 6
 
-prof_root="$HOME/.mozilla/firefox"
-[ -d "$prof_root" ] || { warn "fant ingen Firefox-profil"; return 0; }
+# Deb, snap and flatpak Firefox keep their profiles in different places.
+roots=(
+    "$HOME/.mozilla/firefox"
+    "$HOME/snap/firefox/common/.mozilla/firefox"
+    "$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox"
+)
 
 profiles=()
-while IFS= read -r d; do profiles+=("$d"); done < <(
-    find "$prof_root" -maxdepth 1 -type d -name "*.default*" 2>/dev/null)
-[ ${#profiles[@]} -gt 0 ] || { warn "fant ingen standardprofil under $prof_root"; return 0; }
+for r in "${roots[@]}"; do
+    [ -d "$r" ] || continue
+    while IFS= read -r d; do profiles+=("$d"); done < <(
+        find "$r" -maxdepth 1 -type d -name "*.default*" 2>/dev/null)
+done
+[ ${#profiles[@]} -gt 0 ] || { warn "no Firefox profile found"; return 0; }
 
 for prof in "${profiles[@]}"; do
-    info "profil: $(basename "$prof")"
+    info "profile: $(basename "$prof")"
     mkdir -p "$prof/chrome/xp"
     backup_file "$prof/chrome/userChrome.css"
     backup_file "$prof/user.js"
@@ -18,10 +25,10 @@ for prof in "${profiles[@]}"; do
     cp "$ASSETS/firefox/user.js"        "$prof/"
 done
 
-# Menylinja og Links-linja ligger i xulstore.json, og Home/Favorites i prefs.js.
-# Firefox skriver begge når det avslutter, så dette må skje mens det er lukket.
+# The menu bar and Links bar live in xulstore.json, Home/Favorites in prefs.js.
+# Firefox rewrites both when it exits, so this has to run while it is closed.
 if pgrep -x firefox >/dev/null; then
-    warn "Firefox kjører - lukk det og kjør: $REPO/install.sh 60"
+    warn "Firefox is running - close it and run: $REPO/install.sh 60"
     return 0
 fi
 
@@ -39,7 +46,7 @@ json.dump(store, open(xs, "w"))
 
 prefs = os.path.join(prof, "prefs.js")
 if not os.path.exists(prefs):
-    print("  ingen prefs.js enda - start Firefox en gang og kjør komponent 60 på nytt")
+    print("  no prefs.js yet - start Firefox once and run component 60 again")
     raise SystemExit(0)
 if not os.path.exists(prefs + ".bak-xp"):
     shutil.copy2(prefs, prefs + ".bak-xp")
@@ -60,8 +67,8 @@ for i, line in enumerate(lines):
     if changed:
         lines[i] = key + json.dumps(json.dumps(state)) + ");\n"
         open(prefs, "w").writelines(lines)
-        print("  Home- og Favorites-knapper lagt til")
+        print("  Home and Favorites buttons added")
     break
-print("  menylinje og Links-linje på")
+print("  menu bar and Links bar on")
 PY
 done

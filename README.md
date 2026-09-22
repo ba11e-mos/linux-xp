@@ -1,27 +1,27 @@
 # linux-xp
 
-Gjør Linux Mint Cinnamon om til Windows XP.
+Turn Linux Mint Cinnamon into Windows XP.
 
-Testet på Linux Mint 22 med Cinnamon 6.4 og Firefox 152.
+Built and tested on Linux Mint 22, Cinnamon 6.4, Firefox 152.
 
-## Hva det gjør
+## What it does
 
-| Del | Resultat |
+| Part | Result |
 |---|---|
-| Skrivebord | Luna-tema, XP-ikoner, XP-musepeker, Tahoma |
-| Tittellinjer | Ekte Luna-knapper med hel hvit kant |
-| Admin-passord | Polkit-dialogen tegnet om som Windows 7 UAC |
-| Volum | XP sin trekant-og-skinne-OSD |
-| Lydapplet | Windows Media Player 8 |
-| Panelmenyer | XP-dialoger med blå tittellinje og rødt kryss |
-| Startmeny | XP-hodet med brukernavn og kontobilde |
-| Varsler | XP-ballongtips |
+| Desktop | Luna theme, XP icons, XP cursors, Tahoma |
+| Title bars | The real Luna buttons, with their full white outline |
+| Admin password | The polkit dialog redrawn as the Windows 7 UAC prompt |
+| Volume | XP's wedge-and-track OSD |
+| Sound applet | Windows Media Player 8 |
+| Panel menus | XP dialogs with a blue caption bar and a red X |
+| Start menu | The XP header with your name and account picture |
+| Notifications | XP balloon tips |
 | Firefox | Internet Explorer 6 |
-| VS Code | Innebygd tittellinje, lesbare farger i mørkt XP-tema |
+| VS Code | Native title bar, readable colours in the dark XP theme |
 | Terminal | cmd.exe |
-| Teams | MSN-ikon |
+| Teams | The MSN icon |
 
-## Installering
+## Install
 
 ```bash
 git clone git@github.com:ba11e-mos/linux-xp.git
@@ -29,90 +29,141 @@ cd linux-xp
 ./install.sh
 ```
 
-Komponentene kan kjøres hver for seg:
+Components can be run on their own:
 
 ```bash
-./install.sh --list      # se hva som finnes
-./install.sh 60          # bare Firefox
-./install.sh 30 40       # Cinnamon-skallet og tittellinjeknappene
+./install.sh --list      # see what there is
+./install.sh 60          # just Firefox
+./install.sh 30 40       # the Cinnamon shell and the title bar buttons
 ```
 
-Logg ut og inn når det er ferdig.
+Log out and back in when it finishes.
 
-### Kunst som ikke ligger her
+### Artwork that is not in here
 
-Temaet, ikonene, bakgrunnen og MSN-ikonet er andres arbeid, så de følger ikke
-med i repoet. Last dem ned og pek på dem:
+The theme, the icons, the cursors, the wallpaper and the MSN icon are other
+people's work, so they are not bundled. Download them and point at them:
 
 ```bash
-# Tema- og ikonpakke: søk opp "Windows XP" av B00merang på gnome-look.org,
-# legg zip-en i ~/Downloads, eller:
+# Theme and icon pack - drop the zip in ~/Downloads, or:
 XP_PACK=~/Downloads/Windows-XP-3.1.zip ./install.sh 10
 
 XP_WALLPAPER=~/Pictures/bliss.jpg ./install.sh 20
 XP_MSN_ICON=~/Pictures/msn.png    ./install.sh 90
 ```
 
-### Valgfritt
+| What | Where |
+|---|---|
+| Luna GTK/Cinnamon/metacity theme | [B00merang-Project/Windows-XP](https://github.com/B00merang-Project/Windows-XP) |
+| XP icon pack | [B00merang-Artwork/Windows-XP](https://github.com/B00merang-Artwork/Windows-XP) |
+| XP cursors | "ModernXP" cursor theme, on gnome-look.org |
+| Bliss wallpaper | [en.wikipedia.org/wiki/Bliss_(image)](https://en.wikipedia.org/wiki/Bliss_(image)) |
+| MSN butterfly icon | [icon-icons.com](https://images.icon-icons.com/5/PNG/256/msn_146.png) - needs a browser User-Agent, `curl` alone gets a Cloudflare page |
+| VS Code theme | [sinedied.vscode-windows-xp-theme](https://marketplace.visualstudio.com/items?itemName=sinedied.vscode-windows-xp-theme) |
+| VGA raster fonts (`Bm437`) | [The Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/) |
+| Tahoma | `sudo apt install fonts-wine` |
+| Login screen greeter | [JezerM/nody-greeter](https://github.com/JezerM/nody-greeter) |
+| Login screen theme | [mshernandez5/WelcomeXP](https://github.com/mshernandez5/WelcomeXP) |
+| Teams client | [teams-for-linux on Flathub](https://flathub.org/apps/com.github.IsmaelMartinez.teams_for_linux) |
+
+### Optional
 
 ```bash
-XP_TERMINAL_FONT=1 ./install.sh 80     # ekte VGA-rasterfont i terminalen
-XP_SKIP_SUDO=1     ./install.sh        # hopp over alt som redigerer systemfiler
+XP_TERMINAL_FONT=1 ./install.sh 80     # the real VGA raster font
+XP_SKIP_SUDO=1     ./install.sh        # skip everything that edits system files
 ```
 
-VS Code-temaet kommer fra utvidelsen `vscode-windows-xp-theme`.
-Innloggingsskjermen er et eget oppsett, se [docs/login-screen.md](docs/login-screen.md).
+The login screen is a separate setup - see [docs/login-screen.md](docs/login-screen.md).
 
-## Avinstallering
+## Will it work on GNOME? On other distros?
+
+Partly on GNOME, mostly yes on other distros that run Cinnamon.
+
+Nothing hard-fails on the wrong desktop. Components that need Cinnamon check
+for it and skip themselves, so on GNOME you still get Firefox, VS Code, the
+icons and the terminal.
+
+| # | Component | Cinnamon | GNOME | KDE / XFCE |
+|---|---|---|---|---|
+| 10 | Theme and icon packs | yes | GTK apps yes, shell no | GTK apps only |
+| 20 | Themes, font, cursor | yes | yes¹ | no² |
+| 30 | Cinnamon shell CSS | yes | no³ | no |
+| 40 | Title bar buttons | yes | likely⁴ | no⁵ |
+| 50 | Cinnamon source patches | yes⁶ | no | no |
+| 60 | Firefox | yes | yes | yes |
+| 70 | VS Code | yes | yes | yes |
+| 80 | Terminal | yes⁷ | yes⁷ | no⁷ |
+| 90 | Teams icon | yes | yes | yes |
+| 95 | Symbolic icon names | yes | yes | yes |
+
+1. Writes `org.gnome.desktop.*` instead of `org.cinnamon.desktop.*`. GNOME
+   also needs the User Themes extension before a shell theme applies at all.
+2. KDE and XFCE keep appearance settings outside gsettings entirely.
+3. This is ~1800 lines of Cinnamon-specific St CSS. GNOME Shell uses different
+   widget class names throughout, so it would have to be rewritten, not ported.
+4. It patches `gtk-3.20/gtk.css`, which any GTK3 desktop reads. GNOME draws
+   headerbar buttons from the same rules, so it should apply - untested.
+5. KWin and xfwm4 use their own decoration themes, not GTK CSS.
+6. Version-sensitive. The patches anchor on exact strings in
+   `/usr/share/cinnamon/js/ui/*.js` as they are in Cinnamon 6.4. On a different
+   version they will not find their anchors and will refuse rather than
+   corrupt the file.
+7. Only `gnome-terminal`, whichever desktop it runs on.
+
+**Other distros.** Anything shipping Cinnamon should work: Fedora's Cinnamon
+spin, Debian, Arch, Ubuntu Cinnamon. Two caveats. The Cinnamon version has to
+be close to 6.4 for component 50, per note 6 above. And a few messages suggest
+`apt` packages by name - the packages exist elsewhere under other names.
+
+Snap and flatpak Firefox are handled; component 60 looks in all three profile
+locations.
+
+## Uninstall
 
 ```bash
-./uninstall.sh --dry     # se hva som ville blitt lagt tilbake
+./uninstall.sh --dry     # see what would be put back
 ./uninstall.sh
 ```
 
-Alt som endres sikkerhetskopieres først til `~/.local/share/linux-xp/backups`,
-og skriptene som redigerer Cinnamons kildefiler legger igjen en `.orig-xp` ved
-siden av hver fil de rører. `uninstall.sh` bruker begge deler.
+Everything that gets changed is copied to `~/.local/share/linux-xp/backups`
+first, and the scripts that edit Cinnamon's source files leave an `.orig-xp`
+next to every file they touch. `uninstall.sh` uses both.
 
-## Hvordan det henger sammen
+## Layout
 
 ```
-install.sh              kjører components/ i rekkefølge
-lib/common.sh           logging, sikkerhetskopier, temaoppslag
-components/NN-*.sh      ett steg hver, kan kjøres alene, idempotente
-patches/*.sh            redigerer /usr/share/cinnamon/js/... (krever sudo)
-assets/cinnamon/        tilleggene til cinnamon.css og bildene de bruker
-assets/firefox/         userChrome.css, user.js og IE-ikonene
-assets/icons/           ikoner tegnet om, og en liste over symbolske aliaser
+install.sh              runs components/ in order
+lib/common.sh           logging, backups, theme lookup, desktop detection
+components/NN-*.sh      one step each, runnable alone, idempotent
+patches/*.sh            edit /usr/share/cinnamon/js/... (the only sudo)
+assets/cinnamon/        the cinnamon.css additions and the images they use
+assets/firefox/         userChrome.css, user.js and the IE icons
+assets/icons/           redrawn icons, plus a list of symbolic aliases
 ```
 
-Ingenting i `components/` skriver til systemet uten `sudo`, og `patches/` er
-det eneste som gjør det i det hele tatt.
+## Traps worth knowing
 
-## Kjente fallgruver
+Notes from building this. Each one cost time to find.
 
-Dette er notater fra da oppsettet ble laget, samlet her fordi hver av dem tok
-tid å finne.
+**`@namespace` in userChrome.css kills the address bar.** Every guide starts
+with `@namespace url(...there.is.only.xul)`. In Firefox 152 the address bar is
+HTML, not XUL, so every rule targeting `#urlbar` matches nothing - silently.
+The file here has no `@namespace`.
 
-**`@namespace` i userChrome.css dreper adressefeltet.** Standardoppskriften
-starter med `@namespace url(...there.is.only.xul)`. I Firefox 152 er adresse-
-feltet HTML, ikke XUL, så hver regel mot `#urlbar` treffer ingenting — uten
-feilmelding. Filen her har ingen `@namespace`.
+**Negative margins crash Cinnamon.** St computes sizes unsigned, so
+`margin-top: -6px` becomes an enormous number and the shell dies with
+`GLib-ERROR: failed to allocate ... bytes`. Use `translation_y` on the actor.
 
-**Negative marginer krasjer Cinnamon.** St regner størrelser som unsigned, så
-`margin-top: -6px` blir et gigantisk tall og hele skallet dør med
-`GLib-ERROR: failed to allocate ... bytes`. Bruk `translation_y` på skuespilleren
-i stedet.
+**`background-gradient-*` suppresses `background-image`.** If a St element has
+a gradient set, even `transparent`, the image is never painted.
 
-**`background-gradient-*` slår av `background-image`.** Har et St-element en
-gradient satt, også `transparent`, males bildet aldri.
+**St has its own child properties.** `St.BoxLayout` honours `y-fill`, not
+`Clutter.ActorAlign`, and `St.Bin` wants `St.Align`, not
+`Clutter.ActorAlign` - the wrong enum throws
+`Error: 3 is not a valid value for enumeration StAlign`.
 
-**St har sine egne barne-egenskaper.** `St.BoxLayout` bryr seg om `y-fill`, ikke
-`Clutter.ActorAlign`, og `St.Bin` vil ha `St.Align`, ikke `Clutter.ActorAlign` —
-feil enum gir `Error: 3 is not a valid value for enumeration StAlign`.
+**Title bars are GTK, not metacity.** Cinnamon draws window frames from
+`gtk-3.20/gtk.css`, in the section marked `/* CSD */`. Editing `metacity-1/`
+does nothing.
 
-**Tittellinjene er GTK, ikke metacity.** Cinnamon tegner rammene med
-`gtk-3.20/gtk.css` (seksjonen merket `/* CSD */`). Å endre `metacity-1/` gjør
-ingenting.
-
-**GTK leser `gtk-3.20/`, ikke `gtk-3.0/`**, når begge finnes.
+**GTK reads `gtk-3.20/`, not `gtk-3.0/`**, when a theme ships both.

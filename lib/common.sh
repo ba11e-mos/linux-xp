@@ -46,21 +46,35 @@ backup_file() {
     [ -e "$dest" ] && return 0
     mkdir -p "$(dirname "$dest")"
     cp -a "$f" "$dest"
-    info "sikkerhetskopi: $dest"
+    info "backup: $dest"
 }
 
 # marker_present <file> <marker>  - lets components stay idempotent
 marker_present() { [ -e "$1" ] && grep -qF "$2" "$1"; }
 
-need_cinnamon() {
-    have cinnamon || die "Cinnamon ble ikke funnet. Dette oppsettet er laget for Linux Mint Cinnamon."
+# Desktop detection. Only some components are Cinnamon-specific; the rest
+# (Firefox, VS Code, icons, terminal) work on any desktop.
+is_cinnamon() {
+    have cinnamon && [ -d /usr/share/cinnamon ]
+}
+
+require_cinnamon() {
+    is_cinnamon && return 0
+    skip "needs Cinnamon - skipped on this desktop"
+    return 1
+}
+
+# Schema prefix for the desktop settings that exist under both org.cinnamon
+# and org.gnome with the same keys.
+desktop_schema() {
+    if is_cinnamon; then printf 'org.cinnamon.desktop'; else printf 'org.gnome.desktop'; fi
 }
 
 restart_cinnamon() {
     if have dbus-send; then
         dbus-send --session --dest=org.Cinnamon --type=method_call \
             /org/Cinnamon org.Cinnamon.Eval string:'global.reexec_self()' >/dev/null 2>&1 \
-            && { info "Cinnamon startet på nytt"; return 0; }
+            && { info "Cinnamon restarted"; return 0; }
     fi
-    warn "Kunne ikke starte Cinnamon automatisk - trykk Ctrl+Alt+Esc."
+    warn "Could not restart Cinnamon automatically - press Ctrl+Alt+Esc."
 }

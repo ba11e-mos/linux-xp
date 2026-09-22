@@ -1,11 +1,11 @@
-# Tittellinjeknappene: hel hvit kant i stedet for avklipt topp og venstre
+# Title bar buttons: the full white outline instead of a clipped top and left
 
-gtk="$(theme_dir gtk-3.20)" || { warn "fant ingen gtk-3.20 i $THEME_NAME"; return 0; }
+gtk="$(theme_dir gtk-3.20)" || { warn "no gtk-3.20 in $THEME_NAME"; return 0; }
 css="$gtk/gtk.css"
-[ -f "$css" ] || { warn "fant ikke $css"; return 0; }
+[ -f "$css" ] || { warn "$css not found"; return 0; }
 
 if marker_present "$css" "min-width: 21px"; then
-    skip "knappene er allerede fikset"
+    skip "buttons already fixed"
     return 0
 fi
 backup_file "$css"
@@ -15,7 +15,7 @@ import re, sys
 p = sys.argv[1]; s = open(p).read()
 anchor = "  .titlebar .titlebutton.close, .titlebar .titlebutton.maximize, .titlebar .titlebutton.minimize, .titlebar .titlebutton:not(separator) {"
 if anchor not in s:
-    print("  fant ikke knappereglene - hoppet over"); raise SystemExit(0)
+    print("  button rules not found - skipped"); raise SystemExit(0)
 i = s.index(anchor)
 j = s.index("\n  .", s.index("maximize-active.png", i))
 b = s[i:j]
@@ -27,7 +27,7 @@ b = b.replace("padding: 2px 2px;", "padding: 0;\n    min-width: 21px;\n    min-h
 # tile inside the bigger box; set only the image.
 b = re.sub(r'background: (url\("assets/[a-z-]+\.png"\))\s+100% 100%;', r'background-image: \1;', b)
 open(p, "w").write(s[:i] + b + s[j:])
-print("  knappereglene skrevet om")
+print("  button rules rewritten")
 PY
 
-info "logg ut og inn, eller bytt tema fram og tilbake, for at GTK skal lese den på nytt"
+info "log out and in, or toggle the theme, so GTK reads it again"

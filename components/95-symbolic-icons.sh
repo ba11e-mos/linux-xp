@@ -1,6 +1,6 @@
-# Manglende symbolske ikonnavn som appletene i panelet spør etter
+# The symbolic icon names the panel applets ask for and the pack lacks
 
-icons="$(icon_dir)" || { warn "fant ikke ikontemaet"; return 0; }
+icons="$(icon_dir)" || { warn "icon theme not found"; return 0; }
 man="$ASSETS/icons/symbolic-aliases.tsv"
 [ -f "$man" ] || return 0
 
@@ -14,11 +14,11 @@ while IFS=$'\t' read -r alias src; do
     made=$((made+1))
 done < "$man"
 
-# Ikoner jeg tegnet om (mediaknappene, VS Code) ligger som filer.
+# Icons that were redrawn (the media buttons, VS Code) ship as files.
 ( cd "$ASSETS/icons" && find . -name "*.png" -printf '%P\n' ) | while read -r rel; do
     mkdir -p "$icons/$(dirname "$rel")"
     cp "$ASSETS/icons/$rel" "$icons/$rel"
 done
 
 gtk-update-icon-cache -f -t "$icons" >/dev/null 2>&1 || true
-log "$made aliaser laget, $miss kilder manglet"
+log "$made aliases created, $miss sources missing"

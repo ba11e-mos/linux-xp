@@ -1,7 +1,7 @@
-# VS Code: innebygd tittellinje og lesbare farger i det mørke XP-temaet
+# VS Code: native title bar, and readable colours in the dark XP theme
 
 sett="$HOME/.config/Code/User/settings.json"
-[ -d "$(dirname "$sett")" ] || { skip "VS Code er ikke installert"; return 0; }
+[ -d "$(dirname "$sett")" ] || { skip "VS Code is not installed"; return 0; }
 backup_file "$sett"
 
 python3 - "$sett" "$ASSETS/vscode/settings-fragment.json" <<'PY'
@@ -27,8 +27,8 @@ for k, v in add.items():
         cur[k] = v
 
 json.dump(cur, open(path, "w"), indent=2)
-print("  la inn", sum(len(v) for v in add.get("workbench.colorCustomizations", {}).values()),
-      "fargeoverstyringer")
+print("  wrote", sum(len(v) for v in add.get("workbench.colorCustomizations", {}).values()),
+      "colour overrides")
 PY
 
-info "temaet 'Windows Xp Dark Luna' må installeres fra utvidelsen 'vscode-windows-xp-theme'"
+info "the theme itself comes from the 'vscode-windows-xp-theme' extension"
