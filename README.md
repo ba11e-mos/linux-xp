@@ -18,6 +18,7 @@ Built and tested on Linux Mint 22, Cinnamon 6.4, Firefox 152.
 | Notifications | XP balloon tips |
 | Firefox | Internet Explorer 6 |
 | VS Code | Native title bar, and a bundled Luna theme with readable colours |
+| Lock screen | Idle and suspend both go to the XP greeter |
 | Terminal | cmd.exe |
 | Teams | The MSN icon |
 
@@ -88,6 +89,7 @@ icons and the terminal.
 | 30 | Cinnamon shell CSS | yes | no³ | no |
 | 40 | Title bar buttons | yes | likely⁴ | no⁵ |
 | 50 | Cinnamon source patches | yes⁶ | no | no |
+| 55 | Idle and suspend lock | yes⁸ | no | no |
 | 60 | Firefox | yes | yes | yes |
 | 70 | VS Code | yes | yes | yes |
 | 80 | Terminal | yes⁷ | yes⁷ | no⁷ |
@@ -107,6 +109,8 @@ icons and the terminal.
    version they will not find their anchors and will refuse rather than
    corrupt the file.
 7. Only `gnome-terminal`, whichever desktop it runs on.
+8. Needs lightdm and `xss-lock`. It also switches off Cinnamon's own locker,
+   which is Cinnamon-specific.
 
 **Other distros.** Anything shipping Cinnamon should work: Fedora's Cinnamon
 spin, Debian, Arch, Ubuntu Cinnamon. Two caveats. The Cinnamon version has to
@@ -138,6 +142,7 @@ assets/cinnamon/        the cinnamon.css additions and the images they use
 assets/firefox/         userChrome.css, user.js and the IE icons
 assets/icons/           redrawn icons, plus a list of symbolic aliases
 assets/vscode/theme/    the VS Code theme, installed as a folder extension
+assets/idle-lock/       the script that hands idle and suspend to lightdm
 ```
 
 The VS Code theme is bundled rather than pulled from the marketplace. It is
@@ -172,3 +177,11 @@ a gradient set, even `transparent`, the image is never painted.
 does nothing.
 
 **GTK reads `gtk-3.20/`, not `gtk-3.0/`**, when a theme ships both.
+
+**Two lockers stack.** `lock-on-suspend` makes cinnamon-screensaver lock on
+resume while `xss-lock` is already showing the greeter, so you get both
+screens. Component 55 turns Cinnamon's side off.
+
+**cinnamon-settings-daemon zeroes `xset s`** whenever it decides it is
+managing idle itself, which kills the idle path without any error. Setting
+the timer once at login is not enough; the script re-asserts it.
