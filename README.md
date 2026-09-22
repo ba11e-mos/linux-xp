@@ -17,7 +17,7 @@ Built and tested on Linux Mint 22, Cinnamon 6.4, Firefox 152.
 | Start menu | The XP header with your name and account picture |
 | Notifications | XP balloon tips |
 | Firefox | Internet Explorer 6 |
-| VS Code | Native title bar, readable colours in the dark XP theme |
+| VS Code | Native title bar, and a bundled Luna theme with readable colours |
 | Terminal | cmd.exe |
 | Teams | The MSN icon |
 
@@ -59,12 +59,10 @@ XP_MSN_ICON=~/Pictures/msn.png    ./install.sh 90
 | XP cursors | [na0miluv/modernXP-cursor-theme](https://github.com/na0miluv/modernXP-cursor-theme) |
 | Bliss wallpaper | [en.wikipedia.org/wiki/Bliss_(image)](https://en.wikipedia.org/wiki/Bliss_(image)) |
 | MSN butterfly icon | [icon-icons.com](https://images.icon-icons.com/5/PNG/256/msn_146.png) - needs a browser User-Agent, `curl` alone gets a Cloudflare page |
-| VS Code theme | [sinedied.vscode-windows-xp-theme](https://marketplace.visualstudio.com/items?itemName=sinedied.vscode-windows-xp-theme) |
 | VGA raster fonts (`Bm437`) | [The Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/) |
 | Tahoma | `sudo apt install fonts-wine` |
 | Login screen greeter | [JezerM/nody-greeter](https://github.com/JezerM/nody-greeter) |
 | Login screen theme | [mshernandez5/WelcomeXP](https://github.com/mshernandez5/WelcomeXP) |
-| Teams client | [teams-for-linux on Flathub](https://flathub.org/apps/com.github.IsmaelMartinez.teams_for_linux) |
 
 ### Optional
 
@@ -139,7 +137,14 @@ patches/*.sh            edit /usr/share/cinnamon/js/... (the only sudo)
 assets/cinnamon/        the cinnamon.css additions and the images they use
 assets/firefox/         userChrome.css, user.js and the IE icons
 assets/icons/           redrawn icons, plus a list of symbolic aliases
+assets/vscode/theme/    the VS Code theme, installed as a folder extension
 ```
+
+The VS Code theme is bundled rather than pulled from the marketplace. It is
+[Mssjim's Windows XP Dark](https://github.com/Mssjim) (MIT) with twenty-eight
+colour values changed - surfaces the original left light while the text on
+them stayed white, which made hover cards, the suggestion list, the command
+palette and the peek view unreadable.
 
 ## Traps worth knowing
 

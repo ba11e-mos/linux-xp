@@ -41,4 +41,11 @@ for prof in "$HOME"/.mozilla/firefox/*.default*/; do
     [ -f "$prof/prefs.js.bak-xp" ] && run cp -a "$prof/prefs.js.bak-xp" "$prof/prefs.js"
 done
 
+# --- VS Code theme (a folder extension, not a backed-up file) ---
+ext="$HOME/.vscode/extensions/linux-xp.linux-xp-theme-1.0.0"
+if [ -d "$ext" ]; then
+    log "removing the bundled VS Code theme"
+    run rm -rf "$ext"
+fi
+
 log "Done. Pick your theme again in Settings > Themes, then log out and in."

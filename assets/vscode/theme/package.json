@@ -1,0 +1,19 @@
+{
+  "name": "linux-xp-theme",
+  "displayName": "Windows XP Luna (linux-xp)",
+  "description": "The Luna dark theme with the low-contrast surfaces fixed.",
+  "version": "1.0.0",
+  "publisher": "linux-xp",
+  "license": "MIT",
+  "engines": { "vscode": "^1.60.0" },
+  "categories": ["Themes"],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Windows XP Luna (linux-xp)",
+        "uiTheme": "vs-dark",
+        "path": "./themes/linux-xp-dark.json"
+      }
+    ]
+  }
+}
