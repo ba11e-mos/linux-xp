@@ -56,7 +56,7 @@ XP_MSN_ICON=~/Pictures/msn.png    ./install.sh 90
 |---|---|
 | Luna GTK/Cinnamon/metacity theme | [B00merang-Project/Windows-XP](https://github.com/B00merang-Project/Windows-XP) |
 | XP icon pack | [B00merang-Artwork/Windows-XP](https://github.com/B00merang-Artwork/Windows-XP) |
-| XP cursors | "ModernXP" cursor theme, on gnome-look.org |
+| XP cursors | [na0miluv/modernXP-cursor-theme](https://github.com/na0miluv/modernXP-cursor-theme) |
 | Bliss wallpaper | [en.wikipedia.org/wiki/Bliss_(image)](https://en.wikipedia.org/wiki/Bliss_(image)) |
 | MSN butterfly icon | [icon-icons.com](https://images.icon-icons.com/5/PNG/256/msn_146.png) - needs a browser User-Agent, `curl` alone gets a Cloudflare page |
 | VS Code theme | [sinedied.vscode-windows-xp-theme](https://marketplace.visualstudio.com/items?itemName=sinedied.vscode-windows-xp-theme) |
