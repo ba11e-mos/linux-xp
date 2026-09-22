@@ -1,0 +1,1801 @@
+
+/* ===================================================================
+* Authentication dialog, styled as the Windows 7 UAC Credential UI
+*
+* Cinnamon 6 renamed the dialog classes: the container is now .dialog
+* (not .modal-dialog), the polkit prompt is .prompt-dialog, and the
+* title/description moved into .message-dialog-*. This theme predates
+* that, so dialogs fell through to the default dark Cinnamon sheet,
+* which is always loaded underneath the theme. Every default rule is
+* restated here so nothing is left half-styled, and the selectors
+* mirror the default ones so specificity matches.
+*
+* Colors sampled from the reference shot in Microsoft's UAC design
+* guide (winenv-uac-image2.png):
+*   banner   horizontal gradient #084371 -> #137798, 52px tall
+*   body     #ffffff
+*   footer   #f0f0f0 above a #dfdfdf rule
+*   fields   #dbecff panel, #84acdd border
+*   frame    #616e7b
+*
+* St refuses to paint background-image on a node that also carries
+* background-gradient-*, so the shield lives on the question label.
+*
+* The account picture, the strings and the button placement come from
+* polkitAuthenticationAgent.js; see ~/xp-uac/apply.sh.
+* ===================================================================*/
+
+.dialog {
+  background-color: #ece9d8;
+  color: black;
+  border: 3px solid #0831d9;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  padding: 0px;
+}
+
+/* No horizontal padding here, or the banner cannot reach the edges.
+ * Each child carries its own instead. */
+.dialog .dialog-content-box {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  spacing: 0px;
+  max-width: 558px;
+  padding: 0px;
+}
+
+.dialog .confirm-dialog-title {
+  text-align: center;
+  color: black;
+}
+
+.prompt-dialog {
+  width: 560px;
+}
+
+.prompt-dialog .dialog-content-box {
+  spacing: 0px;
+  margin-bottom: 0px;
+}
+
+/* --- Title strip --- */
+
+.message-dialog-content {
+  spacing: 0px;
+  background-color: #ece9d8;
+}
+
+.message-dialog-content .message-dialog-title {
+  text-align: left;
+  color: white;
+  font-weight: normal;
+  font-size: 10.5pt;
+  padding: 0px;
+}
+
+.uac-title-bar {
+  background-gradient-start: #0054e3;
+  background-gradient-end: #0065fd;
+  background-gradient-direction: vertical;
+  background-color: #0058ee;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 3px 3px 4px 5px;
+  spacing: 5px;
+}
+
+.uac-title-icon {
+  icon-size: 16px;
+}
+
+.uac-title-label {
+  color: white;
+  font-weight: bold;
+  font-size: 10pt;
+}
+
+.uac-close-button {
+  width: 21px;
+  height: 21px;
+  background-image: url('uac-close.svg');
+}
+
+.uac-close-button:hover,
+.uac-close-button:focus {
+  background-image: url('uac-close-hover.svg');
+}
+
+.uac-close-button:active {
+  background-image: url('uac-close-active.svg');
+}
+
+/* --- The question, carrying the shield --- */
+
+.message-dialog-content .message-dialog-description {
+  text-align: left;
+  color: white;
+  font-size: 11pt;
+  background-color: #2d75ad;
+  border-bottom: 1px solid #003c74;
+  background-image: url('uac-warning.png');
+  background-position: 18px 10px;
+  padding: 14px 18px 16px 76px;
+  min-height: 56px;
+}
+
+/* --- Program name, on the white body --- */
+
+.uac-program-box {
+  background-color: #ece9d8;
+  spacing: 12px;
+  padding: 16px 18px 16px 24px;
+}
+
+.uac-program-icon {
+  icon-size: 32px;
+}
+
+.uac-detail-box {
+  spacing: 3px;
+}
+
+/* The line above the field panel, as in the Windows prompt. */
+.uac-continue-label {
+  color: #1a1a1a;
+  font-size: 10pt;
+  background-color: #ece9d8;
+  padding: 2px 18px 10px 24px;
+}
+
+.message-dialog-content .message-dialog-caption {
+  text-align: left;
+  color: #1a1a1a;
+  font-size: 10pt;
+  background-color: transparent;
+  padding: 0px;
+}
+
+/* --- Account picture and fields --- */
+
+.polkit-dialog-user-layout {
+  text-align: left;
+  spacing: 12px;
+  background-color: #f1f0e9;
+  border: 1px solid #d0d0bf;
+  border-radius: 0px;
+  margin: 4px 18px 14px 18px;
+  padding: 12px;
+}
+
+.uac-user-fields {
+  spacing: 8px;
+  padding-left: 4px;
+}
+
+/* Avatar.vfunc_style_changed reads icon-size from the theme node and
+ * resizes itself, so this is the reliable way to pin the picture size. */
+.polkit-dialog-user-layout .user-icon {
+  icon-size: 72px;
+  border: 1px solid #4a7ab5;
+  border-radius: 2px;
+}
+
+.polkit-dialog-user-combo {
+  border-radius: 3px;
+  padding: 3px 12px 4px;
+  font-size: 9.5pt;
+  font-weight: normal;
+  color: black;
+  border: 1px solid #707070;
+  background-gradient-start: #fdfdfd;
+  background-gradient-end: #d9d9d9;
+  background-gradient-direction: vertical;
+  background-color: #eeeeee;
+}
+
+.polkit-dialog-user-combo:hover,
+.polkit-dialog-user-combo:focus {
+  color: black;
+  border: none;
+  border-image: url('buttons/button-hover.png') 5;
+  background-color: transparent;
+}
+
+.polkit-dialog-user-combo:selected,
+.polkit-dialog-user-combo:active,
+.polkit-dialog-user-combo:checked {
+  color: black;
+  border: none;
+  border-image: url('buttons/button-focused-pressed.png') 5;
+  background-color: transparent;
+}
+
+/* Sole admin: the combo is inert, so show plain text, not a button. */
+.polkit-dialog-user-combo:insensitive {
+  color: #1a1a1a;
+  font-size: 10pt;
+  border: none;
+  background-gradient-start: transparent;
+  background-gradient-end: transparent;
+  background-color: transparent;
+  padding: 2px 0;
+}
+
+/* Read-only box holding the account name, as Windows shows it.
+ * The combo is only visible when there are several administrators. */
+.uac-user-entry {
+  width: 20em;
+  font-size: 10pt;
+  background-color: #f4f4f4;
+  color: #303030;
+  border-radius: 2px;
+  border: 1px solid #b6c5d3;
+  padding: 4px 7px;
+}
+
+/* --- Password field --- */
+
+.prompt-dialog-password-layout {
+  spacing: 6px;
+  padding: 0px;
+}
+
+.prompt-dialog-password-entry {
+  width: 20em;
+  font-size: 10pt;
+  background-gradient-start: white;
+  background-gradient-end: white;
+  background-gradient-direction: vertical;
+  background-color: white;
+  color: black;
+  caret-color: black;
+  selection-background-color: #316ac5;
+  selected-color: white;
+  border-radius: 2px;
+  border: 1px solid #7f9db9;
+  padding: 4px 7px;
+}
+
+/* Hint text, e.g. the fingerprint prompt, sits greyed inside the box. */
+.prompt-dialog-password-entry StLabel.hint-text {
+  color: #7a7a7a;
+}
+
+.prompt-dialog-password-entry:focus {
+  background-color: white;
+  color: black;
+  border: 1px solid #316ac5;
+}
+
+.prompt-dialog-password-entry .capslock-warning {
+  icon-size: 16px;
+  warning-color: #a07000;
+  padding: 0 4px;
+}
+
+.prompt-dialog-error-label,
+.prompt-dialog-info-label,
+.prompt-dialog-null-label {
+  text-align: left;
+  font-size: 9pt;
+}
+
+.prompt-dialog-error-label {
+  color: #c00000;
+}
+
+.prompt-dialog-info-label {
+  color: #444444;
+}
+
+/* --- Buttons, bottom right on the grey footer --- */
+
+.dialog-button-box {
+  background-color: #ece9d8;
+  border-top: 1px solid #aca899;
+  padding: 10px 14px;
+  spacing: 8px;
+}
+
+.dialog .dialog-button,
+.dialog .dialog-button:destructive-action,
+.dialog .dialog-button:default {
+  font-weight: normal;
+  font-size: 9.5pt;
+  padding: 4px 14px 5px;
+  min-width: 6em;
+  border-radius: 0px;
+  color: black;
+  border: none;
+  border-image: url('buttons/button.png') 5;
+  background-color: transparent;
+}
+
+.dialog .dialog-button:hover,
+.dialog .dialog-button:hover:default,
+.dialog .dialog-button:hover:destructive-action {
+  color: black;
+  border: none;
+  border-image: url('buttons/button-hover.png') 5;
+  background-color: transparent;
+}
+
+.dialog .dialog-button:focus,
+.dialog .dialog-button:default {
+  color: black;
+  border: none;
+  border-image: url('buttons/button-focused.png') 5;
+  background-color: transparent;
+}
+
+.dialog .dialog-button:active,
+.dialog .dialog-button:checked,
+.dialog .dialog-button:active:default,
+.dialog .dialog-button:checked:default,
+.dialog .dialog-button:active:destructive-action,
+.dialog .dialog-button:checked:destructive-action {
+  color: black;
+  border: none;
+  border-image: url('buttons/button-focused-pressed.png') 5;
+  background-color: transparent;
+}
+
+.dialog .dialog-button:insensitive,
+.dialog .dialog-button:insensitive:default,
+.dialog .dialog-button:insensitive:destructive-action {
+  color: #8a8a8a;
+  border: none;
+  border-image: url('buttons/button-insensitive.png') 5;
+  background-color: transparent;
+}
+
+/* No secure-desktop dimming behind the prompt. */
+.lightbox {
+  background-color: transparent;
+}
+
+/* ===================================================================
+* Volume / media key OSD
+*
+* This theme predates the class, so the OSD fell through to the default
+* dark pill. Both default blocks are restated: the grouped rule that
+* gives every OSD its dark background (line 175 of the default sheet)
+* and the .media-keys-osd block itself.
+*
+* BarLevel paints itself in cairo with
+* barLevelBorderRadius = min(width, height) / 2, so the bar is always a
+* capsule. Square XP progress blocks would need barLevel.js patched.
+* ===================================================================*/
+
+.media-keys-osd {
+  color: black;
+  background-color: #ece9d8;
+  border: 1px solid #0a246a;
+  border-radius: 3px;
+  font-weight: normal;
+  font-size: 10pt;
+  text-align: center;
+  margin-bottom: 1em;
+  spacing: 12px;
+  padding: 12px 16px;
+}
+
+.media-keys-osd StIcon {
+  icon-size: 32px;
+}
+
+.media-keys-osd StLabel {
+  color: black;
+}
+
+/* -barlevel-height is what BarLevel reports as its preferred height,
+ * so it sets the drawing area the trackbar is painted into. The frame
+ * and fill are drawn in cairo now, so no background or border here. */
+.media-keys-osd .level {
+  min-width: 190px;
+  -barlevel-height: 38px;
+  -barlevel-background-color: #ffffff;
+  -barlevel-active-background-color: #3cbf00;
+  -barlevel-amplify-color: #e8a200;
+  -barlevel-amplify-separator-width: 3px;
+}
+
+.media-keys-osd .level-bar {
+  border-radius: 0px;
+  background-color: #3cbf00;
+}
+
+/* Room for the trackbar wedge in the sound applet. The rule earlier in
+ * this file gives the row 1em, which leaves only the track itself.
+ * See ~/xp-uac/sound-slider.sh */
+.popup-slider-menu-item {
+  height: 28px;
+  min-width: 15em;
+}
+
+/* ===================================================================
+* Sound applet player buttons
+*
+* This theme styles .sound-button, which Cinnamon 6 no longer uses; the
+* buttons are .sound-player .wmp-btn now, so they fell through to the
+* default dark pills. Both default blocks are restated: the grouped
+* rule that paints them dark and the sizing block.
+* ===================================================================*/
+
+.sound-player .wmp-btn {
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+  border-radius: 3px;
+  font-weight: normal;
+  color: black;
+  border: 1px solid #7a96b8;
+  background-color: #ece9d8;
+  box-shadow: none;
+}
+
+.sound-player .wmp-btn StIcon {
+  icon-size: 1em;
+}
+
+.sound-player .wmp-btn:hover {
+  color: black;
+  border: 1px solid #e09c1f;
+  background-color: #faf2d4;
+}
+
+.sound-player .wmp-btn:focus {
+  color: black;
+  border: 1px solid #3f6cd0;
+  background-color: #ece9d8;
+  box-shadow: none;
+}
+
+.sound-player .wmp-btn:active,
+.sound-player .wmp-btn:checked {
+  color: black;
+  border: 1px solid #2c5490;
+  background-color: #dfdbc8;
+}
+
+.sound-player .wmp-btn:insensitive {
+  color: #9a9a90;
+  border: 1px solid #b8b8ac;
+  background-color: #eeebe0;
+}
+
+.sound-player .wmp-btn:small {
+  width: 18px;
+  height: 18px;
+}
+
+.sound-player .wmp-btn:small StIcon {
+  icon-size: 1.2em;
+}
+
+/* ===================================================================
+* Sound applet player panel
+*
+* .sound-player-overlay, .sound-player-generic-coverart and the seek
+* bar are not in this theme, so they came from the default sheet:
+* a near-black overlay with a white progress line.
+* ===================================================================*/
+
+.sound-player-overlay {
+  width: 290px;
+  padding: 12px;
+  spacing: 4px;
+  color: black;
+  background-color: #ece9d8;
+  border: 1px solid #7a96b8;
+  border-radius: 3px;
+}
+
+.sound-player-overlay StBoxLayout {
+  padding-top: 2px;
+}
+
+.sound-player-overlay > StBoxLayout {
+  spacing: 6px;
+}
+
+.sound-player-overlay StBin > StBoxLayout {
+  spacing: 6px;
+}
+
+.sound-player-overlay StLabel {
+  color: black;
+}
+
+/* Placeholder behind missing album art. */
+.sound-player-generic-coverart {
+  background-color: #dcd9c8;
+  border: 1px solid #b6b2a0;
+}
+
+/* Seek bar. Seeker extends Slider.Slider, which is a different class
+ * from the volume sliders, so it keeps the stock capsule shape and is
+ * only recoloured here. */
+.sound-player .slider {
+  height: 8px;
+  -slider-height: 8px;
+  -slider-background-color: #ffffff;
+  -slider-active-background-color: #3cbf00;
+  -slider-border-color: #7f9db9;
+  -slider-active-border-color: #4a8c1e;
+  -slider-border-width: 1px;
+  -slider-handle-radius: 0px;
+}
+
+/* ===================================================================
+* Sound applet player, as Windows Media Player 8
+*
+* Supersedes the beige panel further up. Colours sampled from the WMP8
+* screenshot: blue-silver chrome around a black content area, green
+* readouts, round silver transport buttons.
+*
+* The applet gives the track labels no style class of their own, so
+* they are reached through .sound-player-overlay StLabel.
+* ===================================================================*/
+
+.sound-player {
+  background-gradient-start: #aec4e4;
+  background-gradient-end: #6b8ac4;
+  background-gradient-direction: vertical;
+  border: 1px solid #2c3f7a;
+  border-radius: 4px;
+  padding: 6px;
+}
+
+/* The content area. WMP keeps this pure black whatever is playing. */
+.sound-player-generic-coverart {
+  background-color: #000000;
+  border: 1px solid #2c3f7a;
+}
+
+.sound-player-overlay {
+  width: 290px;
+  padding: 10px 12px;
+  spacing: 4px;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.78);
+  border: none;
+  border-radius: 0px;
+}
+
+.sound-player-overlay StLabel {
+  color: #ffffff;
+}
+
+/* WMP prints the time and album line in green. */
+.sound-player-overlay > StBoxLayout:last-child StLabel {
+  color: #35e04a;
+}
+
+/* Seek bar: green fill on a dark track. */
+.sound-player .slider {
+  height: 8px;
+  -slider-height: 8px;
+  -slider-background-color: #14203a;
+  -slider-active-background-color: #35e04a;
+  -slider-border-color: #2c3f7a;
+  -slider-active-border-color: #1d7a2c;
+  -slider-border-width: 1px;
+  -slider-handle-radius: 4px;
+}
+
+/* Round silver transport buttons. */
+.sound-player .wmp-btn {
+  width: 22px;
+  height: 22px;
+  padding: 4px;
+  border-radius: 11px;
+  color: #10203a;
+  border: 1px solid #44608f;
+  background-color: #c3d2e6;
+  box-shadow: none;
+}
+
+.sound-player .wmp-btn:hover {
+  color: #10203a;
+  border: 1px solid #2c4a80;
+  background-color: #d6e4f6;
+}
+
+.sound-player .wmp-btn:focus {
+  border: 1px solid #2c4a80;
+  box-shadow: none;
+}
+
+.sound-player .wmp-btn:active,
+.sound-player .wmp-btn:checked {
+  color: #10203a;
+  border: 1px solid #22396b;
+  background-color: #a9bcd8;
+}
+
+.sound-player .wmp-btn:insensitive {
+  color: #7d8ca4;
+  border: 1px solid #7e8ea8;
+  background-color: #cbd5e4;
+}
+
+.sound-player .wmp-btn:small {
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
+}
+
+/* Track text now sits above the art instead of floating on it, and the
+ * transport controls have their own bar. See ~/xp-uac/sound-slider.sh */
+
+.sound-player-overlay {
+  width: 290px;
+  padding: 8px 10px 6px 10px;
+  spacing: 2px;
+  color: #ffffff;
+  background-color: #000000;
+  border: 1px solid #2c3f7a;
+  border-bottom-width: 0px;
+  border-radius: 0px;
+}
+
+.wmp-control-bar {
+  background-gradient-start: #9fb8dd;
+  background-gradient-end: #5470ae;
+  background-gradient-direction: vertical;
+  background-color: #7a95c8;
+  border: 1px solid #2c3f7a;
+  border-radius: 4px;
+  padding: 6px 10px;
+  margin-top: 4px;
+}
+
+/* ===================================================================
+* Sound applet menu, as Windows Media Player 8
+*
+* The applet tags its own menu with .wmp-menu (see sound-slider.sh),
+* so this does not touch the panel menus of any other applet. The
+* theme's .popup-menu rule uses a border-image, which has to be reset
+* explicitly before a plain border will show.
+* ===================================================================*/
+
+.wmp-menu {
+  border: 1px solid #2c3f7a;
+  border-image: none;
+  border-radius: 4px;
+  background-gradient-start: #c3d5ee;
+  background-gradient-end: #7e9bcc;
+  background-gradient-direction: vertical;
+  background-color: #a5bcdf;
+  color: #10203a;
+  font-size: 9pt;
+}
+
+/* Only bottom padding: anything on the top or the sides would inset
+ * the caption bar and leave the menu colour showing around it. */
+.wmp-menu .popup-menu-content {
+  padding: 0px 0px 6px 0px;
+}
+
+.wmp-menu .popup-menu-item {
+  padding: 0.35em 1.2em;
+  spacing: 0.8em;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #10203a;
+}
+
+.wmp-menu .popup-menu-item:active {
+  background-color: #1c4f9c;
+  color: #ffffff;
+  border: 1px solid #14376e;
+}
+
+.wmp-menu .popup-menu-item:insensitive {
+  color: #5f708c;
+}
+
+.wmp-menu .popup-separator-menu-item {
+  -gradient-height: 1px;
+  -gradient-start: rgba(20, 40, 80, 0.35);
+  -gradient-end: rgba(255, 255, 255, 0.55);
+  height: 1px;
+}
+
+.wmp-menu .popup-menu-icon {
+  icon-size: 16px;
+}
+
+/* Volume rows sit in a sunken well, the way the player frames its own
+ * controls. */
+.wmp-menu .popup-slider-menu-item {
+  height: 28px;
+  min-width: 15em;
+  background-color: rgba(20, 32, 58, 0.18);
+  border: 1px solid #2c3f7a;
+  border-radius: 3px;
+  padding: 0 6px;
+  margin: 2px 8px;
+}
+
+/* Control bar and seek slider, sampled from the Media Player 8 shot:
+ * bar #81a8f7 -> #404890, rail #4ad546, thumb #c7c9f1. */
+
+.wmp-control-bar {
+  background-gradient-start: #81a8f7;
+  background-gradient-end: #404890;
+  background-gradient-direction: vertical;
+  background-color: #5a73b5;
+  border: 1px solid #2c3568;
+  border-radius: 6px;
+  padding: 7px 12px;
+  margin-top: 4px;
+  spacing: 6px;
+}
+
+/* The seek bar is drawn by Seeker._sliderRepaint now; these only set
+ * the size of the area it paints into. */
+.sound-player .slider {
+  height: 20px;
+  -slider-height: 20px;
+  -slider-handle-radius: 0px;
+  -slider-border-width: 0;
+}
+
+/* Media Player's transport: one large play button, the rest small. */
+.sound-player .wmp-btn.wmp-play {
+  width: 34px;
+  height: 34px;
+  border-radius: 17px;
+  padding: 6px;
+}
+
+.sound-player .wmp-btn.wmp-play StIcon {
+  icon-size: 20px;
+}
+
+/* Media Player's transport buttons are ovals, wider than they are tall,
+ * with one round play button. The seek rail now lives inside the bar. */
+
+.sound-player .wmp-btn {
+  width: 30px;
+  height: 20px;
+  border-radius: 10px;
+  padding: 2px 4px;
+}
+
+.sound-player .wmp-btn StIcon {
+  icon-size: 14px;
+}
+
+.sound-player .wmp-btn:small {
+  width: 24px;
+  height: 18px;
+  border-radius: 9px;
+}
+
+.sound-player .wmp-btn.wmp-play {
+  width: 34px;
+  height: 34px;
+  border-radius: 17px;
+  padding: 6px;
+}
+
+.sound-player .wmp-btn.wmp-play StIcon {
+  icon-size: 20px;
+}
+
+.wmp-control-bar {
+  spacing: 4px;
+  padding: 6px 10px 8px 10px;
+}
+
+.wmp-control-bar .slider {
+  height: 20px;
+  -slider-height: 20px;
+  margin: 0 4px 2px 4px;
+}
+
+/* Taller volume rows so the wedge has room to read. The drawing scales
+ * to whatever height the row gets. */
+.wmp-menu .popup-slider-menu-item {
+  height: 36px;
+  min-width: 15em;
+  border-radius: 4px;
+  margin: 3px 8px;
+  padding: 0 8px;
+}
+
+/* A short seek rail, sitting at the right of the control bar. */
+.wmp-control-bar .slider {
+  width: 150px;
+  min-width: 150px;
+  height: 20px;
+  -slider-height: 20px;
+  margin: 0 2px 3px 4px;
+}
+
+/* Two fixes for the transport buttons:
+ *
+ * 1. The selector was .sound-player .wmp-btn.wmp-play. St does not match
+ *    a compound element-plus-class selector, so the large play button
+ *    never got its rule. .sound-player .wmp-play works and outranks
+ *    .sound-player .wmp-btn.
+ * 2. The radius was set to exactly half the intended height, but the
+ *    icon and padding make the box taller than that, so the corners came
+ *    out square. An oversized radius is clamped to a true pill whatever
+ *    the final size turns out to be.
+ */
+
+.sound-player .wmp-btn {
+  width: 30px;
+  height: 20px;
+  border-radius: 40px;
+  padding: 1px 4px;
+}
+
+.sound-player .wmp-btn StIcon {
+  icon-size: 13px;
+}
+
+.sound-player .wmp-btn:small {
+  width: 24px;
+  height: 18px;
+  border-radius: 40px;
+}
+
+.sound-player .wmp-play {
+  width: 34px;
+  height: 34px;
+  border-radius: 40px;
+  padding: 4px;
+}
+
+.sound-player .wmp-play StIcon {
+  icon-size: 18px;
+}
+
+/* An oversized radius is not clamped to a circle here the way it is for
+ * the shorter buttons, so the play button gets exactly half its box,
+ * with the padding zeroed so the box really is the size asked for. */
+.sound-player .wmp-play {
+  width: 38px;
+  height: 38px;
+  padding: 0px;
+  border-radius: 19px;
+}
+
+.sound-player .wmp-play StIcon {
+  icon-size: 18px;
+}
+
+/* St caps the corner radius well below half of a 38px box, so the play
+ * button can never be a circle through border-radius. Drawing it as a
+ * background image sidesteps that, and gets Media Player's gloss too. */
+.sound-player .wmp-play {
+  width: 38px;
+  height: 38px;
+  padding: 0px;
+  border: none;
+  border-radius: 0px;
+  background-color: transparent;
+  background-gradient-start: transparent;
+  background-gradient-end: transparent;
+  background-image: url('wmp-play.svg');
+}
+
+.sound-player .wmp-play:hover,
+.sound-player .wmp-play:focus {
+  border: none;
+  background-color: transparent;
+  background-gradient-start: transparent;
+  background-gradient-end: transparent;
+  background-image: url('wmp-play-hover.svg');
+}
+
+.sound-player .wmp-play:active,
+.sound-player .wmp-play:checked {
+  border: none;
+  background-color: transparent;
+  background-gradient-start: transparent;
+  background-gradient-end: transparent;
+  background-image: url('wmp-play-active.svg');
+}
+
+/* ===================================================================
+* Transport buttons, final shape
+*
+* .wmp-btn carries the silver gradient; .wmp-play carries none, so its
+* background-image is actually painted. Anything matching both would
+* lose the image, which is why the patch removes .wmp-btn from the play
+* button rather than just adding a class.
+* ===================================================================*/
+
+.sound-player .wmp-btn {
+  width: 30px;
+  height: 20px;
+  padding: 1px 4px;
+  border-radius: 40px;
+  color: #10203a;
+  border: 1px solid #44608f;
+  background-color: #c3d2e6;
+}
+
+.sound-player .wmp-btn StIcon {
+  icon-size: 13px;
+}
+
+.sound-player .wmp-btn:hover {
+  border: 1px solid #2c4a80;
+  background-color: #d6e4f6;
+}
+
+.sound-player .wmp-btn:active,
+.sound-player .wmp-btn:checked {
+  border: 1px solid #22396b;
+  background-color: #a9bcd8;
+}
+
+.sound-player .wmp-btn:insensitive {
+  color: #7d8ca4;
+  border: 1px solid #7e8ea8;
+  background-color: #cbd5e4;
+}
+
+.sound-player .wmp-btn:small {
+  width: 24px;
+  height: 18px;
+  border-radius: 40px;
+}
+
+.sound-player .wmp-play {
+  width: 38px;
+  height: 38px;
+  padding: 0px;
+  border: none;
+  border-radius: 0px;
+  background-image: url('wmp-play.svg');
+}
+
+.sound-player .wmp-play StIcon {
+  icon-size: 16px;
+}
+
+.sound-player .wmp-play:hover,
+.sound-player .wmp-play:focus {
+  border: none;
+  background-image: url('wmp-play-hover.svg');
+}
+
+.sound-player .wmp-play:active,
+.sound-player .wmp-play:checked {
+  border: none;
+  background-image: url('wmp-play-active.svg');
+}
+
+/* Larger glyphs now that they are plain shapes rather than icons with
+ * their own ring drawn in. */
+.sound-player .wmp-btn StIcon {
+  icon-size: 16px;
+}
+
+.sound-player .wmp-play StIcon {
+  icon-size: 20px;
+}
+
+/* ===================================================================
+* Transport buttons drawn from images
+*
+* The gradient declarations were stripped from every .wmp-btn rule
+* above, because St skips background-image on any node that carries
+* background-gradient-*. The gloss comes from the SVGs instead.
+* ===================================================================*/
+
+.sound-player .wmp-btn {
+  width: 30px;
+  height: 20px;
+  padding: 0px;
+  border: none;
+  border-radius: 0px;
+  background-color: transparent;
+  background-image: url('wmp-btn.svg');
+}
+
+.sound-player .wmp-btn StIcon {
+  icon-size: 14px;
+}
+
+.sound-player .wmp-btn:hover,
+.sound-player .wmp-btn:focus {
+  border: none;
+  background-image: url('wmp-btn-hover.svg');
+}
+
+.sound-player .wmp-btn:active,
+.sound-player .wmp-btn:checked {
+  border: none;
+  background-image: url('wmp-btn-active.svg');
+}
+
+/* Stop is tilted in Media Player. */
+.sound-player .wmp-stop {
+  background-image: url('wmp-stop.svg');
+}
+
+.sound-player .wmp-stop:hover,
+.sound-player .wmp-stop:focus {
+  background-image: url('wmp-stop-hover.svg');
+}
+
+.sound-player .wmp-stop:active,
+.sound-player .wmp-stop:checked {
+  background-image: url('wmp-stop-active.svg');
+}
+
+.sound-player .wmp-play {
+  width: 44px;
+  height: 44px;
+  padding: 0px;
+  border: none;
+  border-radius: 0px;
+  background-image: url('wmp-play.svg');
+}
+
+.sound-player .wmp-play StIcon {
+  icon-size: 22px;
+}
+
+/* Media Player draws a black frame around its content area, and the
+ * track text is the same width as the art. */
+.wmp-cover-frame {
+  background-color: #000000;
+  border: 2px solid #1a1a1a;
+  border-radius: 2px;
+  padding: 3px;
+}
+
+.sound-player-overlay {
+  width: 300px;
+  padding: 8px 10px 6px 10px;
+  spacing: 2px;
+  color: #ffffff;
+  background-color: #000000;
+  border: 2px solid #1a1a1a;
+  border-bottom-width: 0px;
+  border-radius: 2px;
+}
+
+/* The play button is lifted with a Clutter translation in the patch,
+ * not a negative margin. A negative margin here made St compute a
+ * nonsense size and Cinnamon aborted on a 5.8 TB allocation. */
+
+.wmp-control-bar .slider {
+  width: 232px;
+  min-width: 232px;
+  height: 20px;
+  -slider-height: 20px;
+  margin: 0 2px 2px 4px;
+}
+
+/* The stop button in Media Player is a tall ellipse leaning right, not
+ * a wide oval on its side. The tilt is inside the image, and the box is
+ * taller than wide so the rotated shape is not clipped. */
+.sound-player .wmp-stop {
+  width: 28px;
+  height: 36px;
+  background-image: url('wmp-stop.svg');
+}
+
+.sound-player .wmp-stop:hover,
+.sound-player .wmp-stop:focus {
+  background-image: url('wmp-stop-hover.svg');
+}
+
+.sound-player .wmp-stop:active,
+.sound-player .wmp-stop:checked {
+  background-image: url('wmp-stop-active.svg');
+}
+
+/* Larger transport, and the stop ellipse measured off the reference:
+ * a 21x28 shape leaning top-left, scaled up here to 32x44. */
+
+.sound-player .wmp-btn {
+  width: 36px;
+  height: 24px;
+  padding: 0px;
+  border: none;
+  border-radius: 0px;
+  background-color: transparent;
+  background-image: url('wmp-btn.svg');
+}
+
+.sound-player .wmp-btn StIcon {
+  icon-size: 16px;
+}
+
+.sound-player .wmp-stop {
+  width: 32px;
+  height: 44px;
+  background-image: url('wmp-stop.svg');
+}
+
+.sound-player .wmp-stop:hover,
+.sound-player .wmp-stop:focus {
+  background-image: url('wmp-stop-hover.svg');
+}
+
+.sound-player .wmp-stop:active,
+.sound-player .wmp-stop:checked {
+  background-image: url('wmp-stop-active.svg');
+}
+
+.sound-player .wmp-play {
+  width: 50px;
+  height: 50px;
+  background-image: url('wmp-play.svg');
+}
+
+.sound-player .wmp-play StIcon {
+  icon-size: 24px;
+}
+
+/* Room for the taller stop button. */
+.wmp-control-bar {
+  padding: 8px 12px 10px 12px;
+}
+
+.wmp-control-bar .slider {
+  width: 232px;
+  min-width: 232px;
+  height: 24px;
+  -slider-height: 24px;
+  margin: 0 2px 2px 4px;
+}
+
+/* Recessed buttons: each image now carries a dark rim above the face,
+ * so the button reads as sunk into the bar. The boxes grew by 4px to
+ * hold that rim, and the stop ellipse is longer. */
+
+.sound-player .wmp-btn {
+  width: 40px;
+  height: 28px;
+  background-image: url('wmp-btn.svg');
+}
+
+.sound-player .wmp-btn StIcon {
+  icon-size: 16px;
+}
+
+.sound-player .wmp-stop {
+  width: 36px;
+  height: 54px;
+  background-image: url('wmp-stop.svg');
+}
+
+.sound-player .wmp-play {
+  width: 54px;
+  height: 54px;
+  background-image: url('wmp-play.svg');
+}
+
+.sound-player .wmp-play StIcon {
+  icon-size: 24px;
+}
+
+.wmp-control-bar {
+  padding: 8px 12px 8px 12px;
+}
+
+/* The default sheet still matches these through .sound-player StButton
+ * and paints an inset white glow on focus plus a grey fill on hover.
+ * Both have to be cancelled explicitly; the images carry every state. */
+
+.sound-player .wmp-btn,
+.sound-player .wmp-btn:hover,
+.sound-player .wmp-btn:focus,
+.sound-player .wmp-btn:active,
+.sound-player .wmp-btn:checked,
+.sound-player .wmp-btn:insensitive,
+.sound-player .wmp-stop,
+.sound-player .wmp-stop:hover,
+.sound-player .wmp-stop:focus,
+.sound-player .wmp-stop:active,
+.sound-player .wmp-stop:checked,
+.sound-player .wmp-stop:insensitive,
+.sound-player .wmp-play,
+.sound-player .wmp-play:hover,
+.sound-player .wmp-play:focus,
+.sound-player .wmp-play:active,
+.sound-player .wmp-play:checked,
+.sound-player .wmp-play:insensitive {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+/* The rail starts just past the stop button and runs to the end of the
+ * bar, sitting closer to the buttons than before. */
+.wmp-control-bar .slider {
+  width: 196px;
+  min-width: 196px;
+  height: 24px;
+  -slider-height: 24px;
+  margin: 10px 2px 0px 4px;
+}
+
+/* Rail lower still: the bar gives up its top padding and the rail takes
+ * the space as margin, so it drops without the bar growing much. */
+.wmp-control-bar {
+  padding: 2px 12px 8px 12px;
+}
+
+.wmp-control-bar .slider {
+  width: 196px;
+  min-width: 196px;
+  height: 24px;
+  -slider-height: 24px;
+  margin: 24px 2px 0px 4px;
+}
+
+/* The rail shares the row with the transport now, so it takes whatever
+ * width is left instead of a fixed one, and its own margins are gone so
+ * its top meets the top of the play button. */
+.wmp-control-bar {
+  padding: 8px 12px;
+  spacing: 8px;
+}
+
+.wmp-control-bar .slider {
+  min-width: 140px;
+  height: 24px;
+  -slider-height: 24px;
+  margin: 0px 2px 0px 6px;
+}
+
+/* Left: play and stop. Right: the rail above the small buttons. */
+.wmp-big-buttons {
+  spacing: 2px;
+}
+
+.wmp-right-side {
+  spacing: 0px;
+  padding-left: 4px;
+}
+
+.wmp-control-bar {
+  padding: 8px 12px;
+  spacing: 4px;
+}
+
+.wmp-control-bar .slider {
+  min-width: 120px;
+  height: 24px;
+  -slider-height: 24px;
+  margin: 0px 2px 0px 0px;
+}
+
+/* ===================================================================
+* Player header and the two submenu rows above it
+*
+* The row naming the player is the closest thing the applet has to a
+* Media Player title bar, so it gets the Luna caption gradient. The
+* open and quit buttons in it are ControlButtons, so they already carry
+* .wmp-btn; only their size is trimmed here.
+* ===================================================================*/
+
+.wmp-player-head {
+  background-gradient-start: #0054e3;
+  background-gradient-end: #0065fd;
+  background-gradient-direction: vertical;
+  background-color: #0058ee;
+  border: 1px solid #2c3f7a;
+  border-radius: 3px 3px 0px 0px;
+  padding: 3px 4px 3px 8px;
+  spacing: 6px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.wmp-player-head StLabel {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.wmp-player-head .popup-menu-icon {
+  icon-size: 14px;
+}
+
+.wmp-player-head .wmp-btn {
+  width: 26px;
+  height: 18px;
+}
+
+.wmp-player-head .wmp-btn StIcon {
+  icon-size: 12px;
+}
+
+/* The two submenu rows read as a menu strip above the player. */
+.wmp-menu .popup-submenu-menu-item {
+  padding: 0.3em 1.2em;
+  font-weight: normal;
+}
+
+.wmp-menu .popup-submenu-menu-item:open {
+  background-color: #1c4f9c;
+  color: #ffffff;
+}
+
+/* ===================================================================
+* Notification balloon
+*
+* The XP balloon was already here: #ffffe1 face, black outline, bold
+* title. These are the two details the reference has that it did not.
+*
+* The close button is built with no style class of its own
+* (messageTray.js:317), so it has to be reached as a plain StButton
+* inside the notification. Action buttons are restated under the same
+* id afterwards, or the id selector would outrank their own class.
+* ===================================================================*/
+
+#notification {
+  border-radius: 8px;
+}
+
+#notification StButton {
+  border: 1px solid #9a9384;
+  border-radius: 2px;
+  background-color: #ece9d8;
+  padding: 1px;
+}
+
+#notification StButton:hover {
+  border: 1px solid #e09c1f;
+  background-color: #faf2d4;
+}
+
+#notification .notification-button {
+  border: none;
+  border-image: url('buttons/button.png') 5;
+  background-color: transparent;
+  border-radius: 0px;
+  font-size: 9.5pt;
+  padding: 4px 16px 5px;
+}
+
+#notification .notification-button:hover {
+  border: none;
+  border-image: url('buttons/button-hover.png') 5;
+  background-color: transparent;
+}
+
+#notification .notification-button:focus {
+  border: none;
+  border-image: url('buttons/button-focused.png') 5;
+  background-color: transparent;
+  padding: 4px 16px 5px;
+}
+
+/* ===================================================================
+* Network and printer menus, as an XP dialog
+*
+* Both applets tag their menu with .xp-dialog-menu (see xp-menus.sh),
+* so no other panel menu is affected. Colours sampled from the XP
+* Customize Notifications dialog: #ece9d8 face, #0145d0 frame, a white
+* list well with a sunken #7f9db9 border.
+*
+* The theme's .popup-menu rule paints its border with a border-image,
+* which has to be reset before a plain border shows.
+* ===================================================================*/
+
+.xp-dialog-menu {
+  border: 2px solid #0145d0;
+  border-image: none;
+  border-radius: 3px;
+  background-gradient-start: transparent;
+  background-gradient-end: transparent;
+  background-color: #ece9d8;
+  color: #000000;
+  font-size: 9pt;
+}
+
+.xp-dialog-menu .popup-menu-content {
+  padding: 0px 0px 6px 0px;
+}
+
+/* Each row is a line in the list well. */
+.xp-dialog-menu .popup-menu-item {
+  padding: 0.3em 0.9em;
+  spacing: 0.7em;
+  border: 1px solid transparent;
+  border-radius: 0px;
+  color: #000000;
+}
+
+.xp-dialog-menu .popup-menu-item:active {
+  background-color: #316ac5;
+  color: #ffffff;
+  border: 1px solid #2a5bab;
+}
+
+.xp-dialog-menu .popup-menu-item:insensitive {
+  color: #84827e;
+}
+
+/* Section headings read as the bold "Past Items" line in the dialog. */
+.xp-dialog-menu .popup-inactive-menu-item {
+  color: #003c74;
+  font-weight: bold;
+  padding: 0.35em 0.9em;
+}
+
+.xp-dialog-menu .popup-separator-menu-item {
+  -gradient-height: 1px;
+  -gradient-start: #aca899;
+  -gradient-end: #ffffff;
+  height: 1px;
+  margin: 2px 6px;
+}
+
+.xp-dialog-menu .popup-submenu-menu-item:open {
+  background-color: #316ac5;
+  color: #ffffff;
+}
+
+/* The submenu is the sunken white list. */
+.xp-dialog-menu .popup-sub-menu {
+  background-color: #ffffff;
+  border: 1px solid #7f9db9;
+  margin: 2px 6px;
+}
+
+.xp-dialog-menu .popup-sub-menu .popup-menu-item {
+  color: #000000;
+}
+
+.xp-dialog-menu .popup-menu-icon {
+  icon-size: 16px;
+}
+
+.xp-dialog-menu .popup-menu-item:hover {
+  background-color: #d8e6f8;
+  border: 1px solid #b6cbe4;
+  color: #000000;
+}
+
+/* ===================================================================
+* Calendar, as the XP Date and Time grid
+*
+* The default sheet rounds the day cells and greys the text, so the
+* squares, the blue weekday band and the blue selection are restated
+* here. Cell spacing goes to zero or the band shows gaps between the
+* day headings.
+* ===================================================================*/
+
+.calendar-background .calendar {
+  margin-top: 6px;
+  spacing-rows: 0px;
+  spacing-columns: 0px;
+  background-color: #ffffff;
+  border: 1px solid #7f9db9;
+  padding: 0px;
+}
+
+.calendar-background .calendar-main-box {
+  margin: 8px;
+}
+
+.calendar-background .calendar-month-label {
+  color: #000000;
+  font-weight: bold;
+  padding: 3px 0;
+}
+
+.calendar-background .calendar-day-base {
+  font-size: 8pt;
+  text-align: center;
+  width: 2.2em;
+  height: 1.9em;
+  border-radius: 0px;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.calendar-background .calendar-day-base:hover {
+  background-color: #d8e6f8;
+  color: #000000;
+}
+
+/* The weekday row is one continuous blue band. */
+.calendar-background .calendar-day-heading {
+  color: #ffffff;
+  font-weight: normal;
+  background-color: #7e95db;
+  border-radius: 0px;
+  margin-top: 0px;
+  padding: 2px 0;
+  height: 1.7em;
+}
+
+.calendar-background .calendar-work-day,
+.calendar-background .calendar-nonwork-day {
+  color: #000000;
+}
+
+.calendar-background .calendar-today {
+  color: #ffffff;
+  font-weight: normal;
+  background-color: #316ac5;
+  border-radius: 0px;
+  box-shadow: none;
+}
+
+.calendar-background .calendar-today:hover {
+  background-color: #2a5bab;
+  color: #ffffff;
+}
+
+.calendar-background .calendar-other-month-day {
+  color: #b5b2a8;
+  background-color: #ffffff;
+}
+
+.calendar-background .calendar-not-today:selected {
+  background-color: #316ac5;
+  color: #ffffff;
+}
+
+.calendar-background .calendar-week-number {
+  color: #6b6b6b;
+  background-color: #ece9d8;
+}
+
+.calendar-background .calendar-day-with-events {
+  font-weight: bold;
+  color: #003c74;
+}
+
+/* The event list beside the grid sits on the dialog face, not on white. */
+
+
+/* The events pane names the selected date, and the today button above
+ * the grid repeats it. Both were white on a dark menu and so invisible
+ * before; the repeat only showed once they were made readable. The one
+ * over the grid is collapsed, since the month and year row underneath
+ * already says which month is shown, as the XP dialog does. */
+/* The label is wider than the pane it sits in, so it ran under the
+ * grid. A little less type and a little more room fixes it. */
+.calendar-background .calendar-events-date-label {
+  color: #000000;
+  font-size: 8.5pt;
+  padding: 2px 10px 4px 6px;
+}
+
+.calendar-background .calendar-events-main-box {
+  border-color: #aca899;
+  min-width: 250px;
+  margin-right: 12px;
+}
+
+.calendar-background .calendar-today-day-label,
+.calendar-background .calendar-today-date-label {
+  color: transparent;
+  font-size: 0pt;
+  height: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.calendar-background .calendar-today-home-button,
+.calendar-background .calendar-today-home-button-enabled {
+  height: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* The calendar applet already labels its own menu with
+ * setCustomStyleClass('calendar-background') (applet.js:32), which
+ * replaces anything added afterwards. So the dialog frame is hung on
+ * that class instead of patching the applet. */
+.calendar-background {
+  border: 2px solid #0145d0;
+  border-image: none;
+  border-radius: 3px;
+  background-gradient-start: transparent;
+  background-gradient-end: transparent;
+  background-color: #ece9d8;
+  color: #000000;
+  font-size: 9pt;
+}
+
+/* ===================================================================
+* Calendar event rows
+*
+* The default sheet colours these for a dark menu: summaries #b2b2b2,
+* times white. On the beige dialog face that is barely legible, so the
+* whole set is restated in dark ink with the XP list colours.
+* ===================================================================*/
+
+.calendar-background .calendar-event-button {
+  margin: 2px 0;
+  border-radius: 0px;
+  border: 1px solid transparent;
+}
+
+.calendar-background .calendar-event-button:hover {
+  background-color: #d8e6f8;
+  border-color: #b6cbe4;
+}
+
+.calendar-background .calendar-event-color-strip {
+  width: 3px;
+}
+
+.calendar-background .calendar-event-row-content {
+  margin: 5px 7px;
+}
+
+.calendar-background .calendar-event-summary {
+  color: #1a1a1a;
+}
+
+.calendar-background .calendar-event-time-past {
+  color: #6b6b6b;
+}
+
+.calendar-background .calendar-event-time-present,
+.calendar-background .calendar-event-time-future {
+  color: #003c74;
+  font-weight: bold;
+}
+
+.calendar-background .calendar-event-time-present:all-day {
+  color: #003c74;
+}
+
+.calendar-background .calendar-event-countdown {
+  color: #55534d;
+}
+
+.calendar-background .calendar-event-countdown:soon {
+  color: #a06800;
+}
+
+.calendar-background .calendar-event-countdown:imminent {
+  color: #c00000;
+}
+
+.calendar-background .calendar-event-countdown:current {
+  color: #1a7a24;
+}
+
+.calendar-background .calendar-events-no-events-label {
+  color: #55534d;
+}
+
+.calendar-background .calendar-events-main-box .separator {
+  color: #aca899;
+}
+
+/* ===================================================================
+* Caption bar on applet menus
+*
+* Added by ~/xp-uac/menu-titlebars.sh, which puts one bar at the top of
+* every AppletPopupMenu. Same Luna gradient as the window title bars,
+* so a menu reads as a small window.
+* ===================================================================*/
+
+/* The real Luna caption is a five-stop gradient: a dark top line, a
+ * bright band under it, a dark trough, a slow lift to the bottom and a
+ * dark closing edge. St only takes two stops, so the whole column is
+ * carried in an image sliced left and right. With no top or bottom
+ * slice the middle stretches horizontally, and the height is pinned to
+ * the image's own 29px so the gradient is never squashed. */
+.xp-menu-caption {
+  height: 29px;
+  border-image: url('xp-caption.png') 0 3 0 3;
+  background-color: transparent;
+  padding: 0px 4px 0px 9px;
+  spacing: 6px;
+  margin-bottom: 6px;
+}
+
+/* Same close button as the UAC prompt, so the menus match the windows. */
+.xp-menu-close {
+  width: 21px;
+  height: 21px;
+  border: none;
+  background-color: transparent;
+  background-image: url('xp-close.png');
+}
+
+.xp-menu-close:hover,
+.xp-menu-close:focus {
+  border: none;
+  background-color: transparent;
+  background-image: url('xp-close-hover.png');
+}
+
+.xp-menu-close:active {
+  border: none;
+  background-color: transparent;
+  background-image: url('xp-close-active.png');
+}
+
+.xp-menu-caption-label {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 9.5pt;
+}
+
+/* The menus already styled as dialogs keep their own frame; the caption
+ * just sits inside it. No negative margins: St computes sizes unsigned,
+ * so a negative value overflows into an enormous allocation. */
+
+
+/* Frame and padding for any applet menu that has a caption bar. Set as
+ * classes, not inline style: Cinnamon overwrites actor.style to cap the
+ * size of tall menus, which wiped an inline border on the power menu. */
+.xp-captioned-menu {
+  border: 2px solid #0145d0;
+  border-image: none;
+  border-radius: 4px;
+  padding: 0px;
+  /* popupmenu.png supplied the menu's fill as well as its frame, so
+   * dropping the border-image left the menu transparent. No gradient
+   * keys here: St paints a gradient instead of the flat colour, and a
+   * transparent one leaves the menu see-through. */
+  background-color: #ece9d8;
+  color: #000000;
+}
+
+.xp-captioned-box {
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+/* ===================================================================
+* Start menu header
+*
+* Same trick as the caption bar: the full gradient column lives in an
+* image sliced left and right, so it stretches only across. The column
+* was read out of the reference, ending in the tan rule XP draws under
+* the header. Height is pinned to the image's own 67px.
+* ===================================================================*/
+
+.xp-start-header {
+  height: 67px;
+  border-image: url('xp-start-header.png') 0 3 0 3;
+  background-color: transparent;
+  padding: 0px 12px 4px 10px;
+  spacing: 10px;
+  margin-bottom: 0px;
+}
+
+.xp-start-header .xp-menu-caption-label {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+/* The account picture, framed the way XP frames it. */
+.xp-start-avatar {
+  width: 48px;
+  height: 48px;
+  border: 2px solid #eaf2ff;
+  border-radius: 3px;
+  background-color: #14306b;
+}
+
+/* The theme already draws the XP start menu header: menu-bg.png has a
+ * 67px top slice for it, and .menu-background reserves 55px of padding
+ * above the content so it shows. That left our own header stacked
+ * underneath it. The padding goes, and our header takes over, since it
+ * is the one carrying the account picture and the user's name.
+ * Only the start menu has .menu-background, so nothing else moves. */
+.menu-background {
+  padding-top: 0px;
+}

@@ -1,0 +1,37 @@
+{
+  "window.titleBarStyle": "native",
+  "window.dialogStyle": "native",
+  "workbench.colorTheme": "Windows Xp Dark Luna",
+  "workbench.colorCustomizations": {
+    "[Windows Xp Dark Luna]": {
+      "editorWidget.foreground": "#e8e8e8",
+      "editorHoverWidget.foreground": "#e8e8e8",
+      "editorSuggestWidget.foreground": "#e8e8e8",
+      "editorSuggestWidget.highlightForeground": "#6ea8ff",
+      "editorSuggestWidget.selectedForeground": "#ffffff",
+      "debugToolBar.background": "#212122",
+      "quickInput.foreground": "#e8e8e8",
+      "quickInputList.focusForeground": "#ffffff",
+      "pickerGroup.foreground": "#0a3f8c",
+      "button.secondaryForeground": "#e8e8e8",
+      "textLink.foreground": "#6ea8ff",
+      "textLink.activeForeground": "#9cc4ff",
+      "notificationLink.foreground": "#6ea8ff",
+      "notificationsInfoIcon.foreground": "#6ea8ff",
+      "editorLineNumber.foreground": "#8a8a8a",
+      "editorLineNumber.activeForeground": "#ffffff",
+      "sideBarSectionHeader.foreground": "#ffffff",
+      "sideBarSectionHeader.background": "#137a2c",
+      "activityBarBadge.background": "#137a2c",
+      "editorMarkerNavigationWarning.background": "#8a6508",
+      "editorWidget.background": "#212122",
+      "editorWidget.border": "#3a3a3a",
+      "listFilterWidget.background": "#212122",
+      "quickInput.background": "#212122",
+      "descriptionForeground": "#b0b0b0",
+      "button.secondaryBackground": "#2f3b52",
+      "button.secondaryHoverBackground": "#3c4a66",
+      "inputOption.activeBackground": "#2b4a7d"
+    }
+  }
+}
