@@ -20,5 +20,23 @@ done < "$man"
     cp "$ASSETS/icons/$rel" "$icons/$rel"
 done
 
+# The XP pack draws Windows Update, but only at 128px, so the tray falls back
+# to hicolor's shield at 16-24px. Scale the pack's own art down to the status
+# names the Update Manager asks for.
+mu="$icons/128x128/apps/mintupdate.png"
+if [ -f "$mu" ] && have convert; then
+    n=0
+    for sz in 16 22 24 32 48; do
+        d="$icons/${sz}x${sz}/apps"; [ -d "$d" ] || continue
+        convert "$mu" -filter Lanczos -resize ${sz}x${sz} -strip "$d/mintupdate.png"
+        for st in updates-available up-to-date error checking installing; do
+            cp "$d/mintupdate.png" "$d/mintupdate-$st.png"
+            cp "$d/mintupdate.png" "$d/mintupdate-$st-symbolic.png"
+            n=$((n+2))
+        done
+    done
+    log "$n Update Manager status icons generated"
+fi
+
 gtk-update-icon-cache -f -t "$icons" >/dev/null 2>&1 || true
 log "$made aliases created, $miss sources missing"

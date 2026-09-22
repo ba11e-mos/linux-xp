@@ -21,6 +21,7 @@ Built and tested on Linux Mint 22, Cinnamon 6.4, Firefox 152.
 | Lock screen | Idle and suspend both go to the XP greeter |
 | Terminal | cmd.exe |
 | Teams | The MSN icon |
+| Update Manager | The XP Windows Update icon, in the tray too |
 
 ## Install
 
