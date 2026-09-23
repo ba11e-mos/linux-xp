@@ -124,10 +124,10 @@ stage {
 .uac-title-label {
   color: white;
   /* No font-family here on purpose: St drops the bold weight as soon as one
-     is set, and the family is inherited from the desktop font, which this
-     setup points at Tahoma anyway. XP draws captions with a soft shadow. */
+     is set, and the family comes from the stage rule at the top. */
   font-weight: bold;
   font-size: 10pt;
+  padding-top: 2px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.55);
 }
 
@@ -1705,6 +1705,7 @@ stage {
   color: #ffffff;
   font-weight: bold;
   font-size: 9.5pt;
+  padding-top: 2px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.55);
 }
 
@@ -1716,23 +1717,24 @@ stage {
 /* Frame and padding for any applet menu that has a caption bar. Set as
  * classes, not inline style: Cinnamon overwrites actor.style to cap the
  * size of tall menus, which wiped an inline border on the power menu. */
+/* The frame sits on the item box now, not out here - the caption is a
+ * sibling above it, so it can reach the outer edge the way an XP title
+ * bar does. */
 .xp-captioned-menu {
-  border: 2px solid #0145d0;
+  border: none;
   border-image: none;
-  border-radius: 4px;
+  border-radius: 0px;
   padding: 0px;
-  /* popupmenu.png supplied the menu's fill as well as its frame, so
-   * dropping the border-image left the menu transparent. No gradient
-   * keys here: St paints a gradient instead of the flat colour, and a
-   * transparent one leaves the menu see-through. */
-  background-color: #ece9d8;
+  background-color: transparent;
   color: #000000;
 }
 
 .xp-captioned-box {
-  padding-top: 0px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding: 0px 0px 6px 0px;
+  border: 4px solid transparent;
+  border-top-width: 0px;
+  border-image: url('xp-frame.png') 4;
+  background-color: #ece9d8;
 }
 
 /* ===================================================================

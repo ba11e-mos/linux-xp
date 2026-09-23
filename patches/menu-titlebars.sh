@@ -74,6 +74,25 @@ new = """        Main.uiGroup.add_actor(this.actor);
         this.box.add_style_class_name('xp-captioned-box');
         this.actor.add_style_class_name('xp-captioned-menu');
 
+        // The frame belongs around the items, not around the caption: in XP
+        // the title bar is the top edge of the window. The caption cannot
+        // reach that edge while it sits inside the bordered box, so it is
+        // lifted out and made a sibling. The BoxPointer's bin takes one
+        // child, so a vertical wrapper holds both.
+        //
+        // this.box stays the menu's item container, which matters: applets
+        // call addMenuItem() long after this runs, and those items have to
+        // keep landing inside the frame.
+        let bp = this._boxPointer;
+        if (bp && bp.bin) {
+            this.box.remove_child(this._captionBar);
+            bp.bin.remove_actor(this.box);
+            let wrapper = new St.BoxLayout({ vertical: true });
+            wrapper.add_child(this._captionBar);
+            wrapper.add_child(this.box);
+            bp.bin.set_child(wrapper);
+        }
+
         // The start menu gets the XP header instead of a title bar:
         // account picture, the user's real name, and no close button,
         // since the original has none.
