@@ -1704,12 +1704,18 @@
  * the outer edge. The fill stays here, or the menu goes see-through:
  * popupmenu.png supplied both the frame and the fill, so dropping the
  * border-image takes the background with it. */
+/* The theme gives .menu a 4px border and paints both the frame and the
+ * fill with popupmenu.png. Dropping the image takes the fill with it, so
+ * the colour is set explicitly; the width has to be zeroed by name,
+ * because St leaves it reserved when a shorthand says `none`. */
 .xp-captioned-menu {
   border: none;
+  border-width: 0px;
   border-image: none;
   border-radius: 0px;
   padding: 0px;
   background-color: #ece9d8;
+  background-image: none;
   color: #000000;
 }
 

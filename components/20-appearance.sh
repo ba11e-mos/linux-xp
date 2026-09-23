@@ -1,4 +1,4 @@
-# Apply the themes, the XP font and the cursor
+# Apply the themes and the cursor
 #
 # Cinnamon and GNOME keep these under different schema prefixes but the same
 # key names, so the only difference is which prefix we write to.
@@ -9,9 +9,7 @@ set_if() { gsettings set "$1" "$2" "$3" 2>/dev/null || warn "could not set $1 $2
 set_if "$D.interface"      gtk-theme    "$THEME_NAME"
 set_if "$D.interface"      icon-theme   "$ICON_NAME"
 set_if "$D.interface"      cursor-theme "$CURSOR_NAME"
-set_if "$D.interface"      font-name    'Tahoma 9'
 set_if "$D.wm.preferences" theme         "$THEME_NAME"
-set_if "$D.wm.preferences" titlebar-font 'Tahoma Bold 9'
 
 if is_cinnamon; then
     set_if org.cinnamon.theme name "$THEME_NAME"
@@ -20,19 +18,10 @@ else
     set_if org.gnome.shell.extensions.user-theme name "$THEME_NAME"
 fi
 
-# Tahoma is not in Mint, but wine ships it - and fontconfig does not look in
-# wine's font directory, so the file being on disk is not enough.
-if ! fc-list 2>/dev/null | grep -qi tahoma; then
-    if [ -f /usr/share/wine/fonts/tahoma.ttf ]; then
-        mkdir -p "$HOME/.local/share/fonts"
-        ln -sf /usr/share/wine/fonts/tahoma.ttf   "$HOME/.local/share/fonts/tahoma.ttf"
-        ln -sf /usr/share/wine/fonts/tahomabd.ttf "$HOME/.local/share/fonts/tahomabd.ttf"
-        fc-cache -f "$HOME/.local/share/fonts" >/dev/null 2>&1
-        log "Tahoma picked up from wine"
-    else
-        info "Tahoma missing - 'sudo apt install fonts-wine' installs the real one"
-    fi
-fi
+# Deliberately no font here. Wine ships a Tahoma, but it carries embedded
+# bitmaps and renders as a pixel font in title bars at small sizes, so the
+# desktop keeps whatever face the distribution set.
+
 
 if [ -n "${XP_WALLPAPER:-}" ] && [ -f "$XP_WALLPAPER" ]; then
     set_if "$D.background" picture-uri "file://$XP_WALLPAPER"

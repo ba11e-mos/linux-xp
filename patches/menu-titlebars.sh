@@ -75,22 +75,22 @@ new = """        Main.uiGroup.add_actor(this.actor);
         this.actor.add_style_class_name('xp-captioned-menu');
 
         // The frame belongs around the items, not around the caption: in XP
-        // the title bar is the top edge of the window. The caption cannot
-        // reach that edge while it sits inside the bordered box, so it is
-        // lifted out and made a sibling. The BoxPointer's bin takes one
-        // child, so a vertical wrapper holds both.
+        // the title bar is the top edge of the window, and a child cannot
+        // reach that edge while its parent carries the border.
         //
-        // this.box stays the menu's item container, which matters: applets
-        // call addMenuItem() long after this runs, and those items have to
-        // keep landing inside the frame.
-        let bp = this._boxPointer;
-        if (bp && bp.bin) {
+        // Cinnamon's PopupMenu is actor (St.Bin, .menu) -> _boxWrapper
+        // (GenericContainer with its own allocate handlers) -> box. The
+        // caption goes in a vertical box between the Bin and _boxWrapper,
+        // so it is a sibling of the items rather than one of them, and
+        // this.box stays the item container - applets call addMenuItem()
+        // long after this runs.
+        if (this._boxWrapper && this.actor instanceof St.Bin) {
             this.box.remove_child(this._captionBar);
-            bp.bin.remove_actor(this.box);
-            let wrapper = new St.BoxLayout({ vertical: true });
-            wrapper.add_child(this._captionBar);
-            wrapper.add_child(this.box);
-            bp.bin.set_child(wrapper);
+            this.actor.set_child(null);
+            let stack = new St.BoxLayout({ vertical: true });
+            stack.add_child(this._captionBar);
+            stack.add_child(this._boxWrapper);
+            this.actor.set_child(stack);
         }
 
         // The start menu gets the XP header instead of a title bar:
