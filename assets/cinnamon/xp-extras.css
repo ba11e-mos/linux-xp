@@ -41,12 +41,13 @@
 }
 
 /* Everything below the caption, including the button row, which the patch
- * reparents in here so the frame wraps it too. */
+ * reparents in here so the frame wraps it too. A plain border rather than
+ * the bevelled border-image: St paints that image as a gradient fading
+ * inward and washes the contents blue. */
 .uac-body {
   background-color: #ece9d8;
-  border: 4px solid transparent;
+  border: 4px solid #0a44dd;
   border-top-width: 0px;
-  border-image: url('xp-frame.png') 4;
   padding: 0px;
 }
 
@@ -1657,7 +1658,6 @@
   background-color: transparent;
   padding: 0px 4px 0px 9px;
   spacing: 6px;
-  margin-bottom: 6px;
 }
 
 /* The window manager's own Luna close button. */
@@ -1719,11 +1719,13 @@
   color: #000000;
 }
 
+/* A plain border, not the bevelled border-image: on this element St
+ * paints the image as a gradient fading inward from each edge, which
+ * washed the menu contents blue. */
 .xp-captioned-box {
   padding: 0px 0px 6px 0px;
-  border: 4px solid transparent;
+  border: 4px solid #0a44dd;
   border-top-width: 0px;
-  border-image: url('xp-frame.png') 4;
   background-color: #ece9d8;
 }
 
