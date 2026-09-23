@@ -11,6 +11,7 @@ Built and tested on Linux Mint 22, Cinnamon 6.4, Firefox 152.
 | Desktop | Luna theme, XP icons, XP cursors, Tahoma |
 | Title bars | The real Luna buttons, with their full white outline |
 | Admin password | The polkit dialog redrawn as the Windows 7 UAC prompt |
+| Keyring unlock | The same prompt, same caption bar |
 | Volume | XP's wedge-and-track OSD |
 | Sound applet | Windows Media Player 8 |
 | Panel menus | XP dialogs with a blue caption bar and a red X |
@@ -178,6 +179,11 @@ a gradient set, even `transparent`, the image is never painted.
 does nothing.
 
 **GTK reads `gtk-3.20/`, not `gtk-3.0/`**, when a theme ships both.
+
+**The keyring prompt is Cinnamon's, not gcr-prompter's.** `gcr` ships a GTK
+prompter, but Cinnamon registers its own `KeyringDialog` on the same DBus
+name, and that one is a St dialog carrying `.prompt-dialog` - so it can be
+patched exactly like the polkit prompt.
 
 **Two lockers stack.** `lock-on-suspend` makes cinnamon-screensaver lock on
 resume while `xss-lock` is already showing the greeter, so you get both

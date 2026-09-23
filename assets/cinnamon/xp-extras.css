@@ -25,14 +25,15 @@
 * polkitAuthenticationAgent.js; see ~/xp-uac/apply.sh.
 * ===================================================================*/
 
+/* No top border: the caption strip is the top edge of the frame, the way
+ * a real XP window is drawn. A border above it just puts a navy band
+ * across the title bar and clips the caption's rounded ends. */
 .dialog {
   background-color: #ece9d8;
   color: black;
   border: 3px solid #0831d9;
-  border-top-left-radius: 7px;
-  border-top-right-radius: 7px;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
+  border-top: 0px solid transparent;
+  border-radius: 0px;
   padding: 0px;
 }
 

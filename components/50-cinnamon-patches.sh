@@ -12,7 +12,7 @@ if [ "${XP_SKIP_SUDO:-0}" = "1" ]; then
     return 0
 fi
 
-for p in uac-dialog sound-applet volume-osd applet-menus menu-titlebars; do
+for p in uac-dialog keyring-dialog sound-applet volume-osd applet-menus menu-titlebars; do
     f="$PATCHES/$p.sh"
     [ -f "$f" ] || continue
     info "running $p.sh"
