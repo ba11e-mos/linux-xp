@@ -309,6 +309,25 @@ reps.append(("""        super._init({ styleClass: 'prompt-dialog' });""",
 # The prompt is a Clutter actor, not a window, so the window manager
 # cannot move it. Dragging the title bar shifts the dialog's translation
 # instead, which moves it without disturbing the layout.
+# The frame has to sit below the caption, not around it, so everything
+# except the title bar is reparented into one box that carries it - the
+# button row included, which normally lives outside contentLayout.
+reps.append(("""        this.contentLayout.add_child(bodyContent);""",
+"""        let bodyBox = new St.BoxLayout({
+            style_class: 'uac-body',
+            vertical: true,
+        });
+        this.contentLayout.remove_child(headerContent);
+        bodyBox.add_child(headerContent);
+        bodyBox.add_child(bodyContent);
+
+        let blParent = buttonLayout.get_parent();
+        if (blParent)
+            blParent.remove_child(buttonLayout);
+        bodyBox.add_child(buttonLayout);
+
+        this.contentLayout.add_child(bodyBox);"""))
+
 reps.append(("""        this.contentLayout.add_child(titleBar);""",
 """        titleBar.reactive = true;
         titleBar.connect('button-press-event', (actor, event) => {

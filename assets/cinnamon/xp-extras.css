@@ -28,20 +28,26 @@
 /* No top border: the caption strip is the top edge of the frame, the way
  * a real XP window is drawn. A border above it just puts a navy band
  * across the title bar and clips the caption's rounded ends. */
+/* The frame is not on the dialog any more. In XP the title bar IS the top
+ * edge of the window, so it has to reach the outer corners - which a child
+ * can never do if its parent carries a border. The frame lives on
+ * .uac-body instead, and the caption's own art carries the rounded top
+ * corners and the frame colours at its ends. */
 .dialog {
-  background-color: #ece9d8;
+  background-color: transparent;
   color: black;
-  /* St only takes one border colour for the whole box, but XP bevels the
-     frame - lighter on the left, darker on the right and bottom. A
-     border-image carries the real pixels instead; see xp-frame.png. */
-  /* Measured at title-bar height in a real XP window, the frame there is a
-     continuation of the caption gradient (#0038d8 -> #0051e5), not the darker
-     blue it is further down. St takes one colour for the whole border, so
-     this is the caption end of that range - the seam shows least where it is
-     most visible. */
-  border: 4px solid #0a44dd;
+  border: none;
+  border-radius: 0px;
+  padding: 0px;
+}
+
+/* Everything below the caption, including the button row, which the patch
+ * reparents in here so the frame wraps it too. */
+.uac-body {
+  background-color: #ece9d8;
+  border: 4px solid transparent;
   border-top-width: 0px;
-  border-radius: 5px 5px 0px 0px;
+  border-image: url('xp-frame.png') 4;
   padding: 0px;
 }
 
@@ -87,10 +93,10 @@
 /* The same caption strip the applet menus use, so the prompt matches the
  * window title bars instead of being a flat blue band. */
 .uac-title-bar {
-  height: 29px;
-  border-image: url('xp-caption.png') 0 3 0 3;
+  height: 30px;
+  border-image: url('xp-caption.png') 6;
   background-color: transparent;
-  padding: 0px 4px 0px 9px;
+  padding: 0px 7px 0px 9px;
   spacing: 6px;
 }
 
