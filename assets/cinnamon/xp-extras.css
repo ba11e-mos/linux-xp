@@ -75,15 +75,14 @@
   padding: 0px;
 }
 
+/* The same caption strip the applet menus use, so the prompt matches the
+ * window title bars instead of being a flat blue band. */
 .uac-title-bar {
-  background-gradient-start: #0054e3;
-  background-gradient-end: #0065fd;
-  background-gradient-direction: vertical;
-  background-color: #0058ee;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  padding: 3px 3px 4px 5px;
-  spacing: 5px;
+  height: 29px;
+  border-image: url('xp-caption.png') 0 3 0 3;
+  background-color: transparent;
+  padding: 0px 4px 0px 9px;
+  spacing: 6px;
 }
 
 .uac-title-icon {
@@ -96,19 +95,20 @@
   font-size: 10pt;
 }
 
+/* The window manager's own Luna close button, same as the menus. */
 .uac-close-button {
   width: 21px;
   height: 21px;
-  background-image: url('uac-close.svg');
+  background-image: url('xp-close.png');
 }
 
 .uac-close-button:hover,
 .uac-close-button:focus {
-  background-image: url('uac-close-hover.svg');
+  background-image: url('xp-close-hover.png');
 }
 
 .uac-close-button:active {
-  background-image: url('uac-close-active.svg');
+  background-image: url('xp-close-active.png');
 }
 
 /* --- The question, carrying the shield --- */
@@ -1641,7 +1641,7 @@
   margin-bottom: 6px;
 }
 
-/* Same close button as the UAC prompt, so the menus match the windows. */
+/* The window manager's own Luna close button. */
 .xp-menu-close {
   width: 21px;
   height: 21px;
