@@ -34,7 +34,12 @@
   /* St only takes one border colour for the whole box, but XP bevels the
      frame - lighter on the left, darker on the right and bottom. A
      border-image carries the real pixels instead; see xp-frame.png. */
-  border: 4px solid #0534cf;
+  /* Measured at title-bar height in a real XP window, the frame there is a
+     continuation of the caption gradient (#0038d8 -> #0051e5), not the darker
+     blue it is further down. St takes one colour for the whole border, so
+     this is the caption end of that range - the seam shows least where it is
+     most visible. */
+  border: 4px solid #0a44dd;
   border-top-width: 0px;
   border-radius: 5px 5px 0px 0px;
   padding: 0px;
