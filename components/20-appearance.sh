@@ -20,10 +20,18 @@ else
     set_if org.gnome.shell.extensions.user-theme name "$THEME_NAME"
 fi
 
-# Tahoma is not in Mint. Without it everything falls back to Noto Sans, which
-# is close enough, but the real font ships with wine.
+# Tahoma is not in Mint, but wine ships it - and fontconfig does not look in
+# wine's font directory, so the file being on disk is not enough.
 if ! fc-list 2>/dev/null | grep -qi tahoma; then
-    info "Tahoma missing - 'sudo apt install fonts-wine' installs the real one"
+    if [ -f /usr/share/wine/fonts/tahoma.ttf ]; then
+        mkdir -p "$HOME/.local/share/fonts"
+        ln -sf /usr/share/wine/fonts/tahoma.ttf   "$HOME/.local/share/fonts/tahoma.ttf"
+        ln -sf /usr/share/wine/fonts/tahomabd.ttf "$HOME/.local/share/fonts/tahomabd.ttf"
+        fc-cache -f "$HOME/.local/share/fonts" >/dev/null 2>&1
+        log "Tahoma picked up from wine"
+    else
+        info "Tahoma missing - 'sudo apt install fonts-wine' installs the real one"
+    fi
 fi
 
 if [ -n "${XP_WALLPAPER:-}" ] && [ -f "$XP_WALLPAPER" ]; then
