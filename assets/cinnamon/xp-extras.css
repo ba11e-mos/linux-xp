@@ -109,9 +109,11 @@ stage {
  * window title bars instead of being a flat blue band. */
 .uac-title-bar {
   height: 30px;
-  border-image: url('xp-caption.png') 6;
+  /* Four-pixel side slices, the same width as the frame on .uac-body, or the
+     frame steps in by two where the caption meets the body. */
+  border-image: url('xp-caption.png') 4;
   background-color: transparent;
-  padding: 0px 7px 0px 9px;
+  padding: 0px 6px 0px 8px;
   spacing: 6px;
 }
 
@@ -1667,8 +1669,10 @@ stage {
  * slice the middle stretches horizontally, and the height is pinned to
  * the image's own 29px so the gradient is never squashed. */
 .xp-menu-caption {
-  height: 29px;
-  border-image: url('xp-caption.png') 0 3 0 3;
+  height: 30px;
+  /* Single-value slice: St mis-slices the four-value form and paints the
+     whole side in the outermost colour. */
+  border-image: url('xp-caption.png') 4;
   background-color: transparent;
   padding: 0px 4px 0px 9px;
   spacing: 6px;
