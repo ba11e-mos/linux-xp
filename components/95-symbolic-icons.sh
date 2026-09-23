@@ -20,6 +20,32 @@ done < "$man"
     cp "$ASSETS/icons/$rel" "$icons/$rel"
 done
 
+# The pack draws two different batteries: a flat one for discharging and the
+# XP cell for charging. Use the charging artwork for every state.
+#
+# Most battery names in the pack are symlinks into gpm-primary-*, so writing
+# to them would clobber the pack's own files. Remove the link first and write
+# a real file in its place.
+if have convert; then
+    n=0
+    for lvl in caution empty full good low missing; do
+        src="$icons/22x22/apps/battery-$lvl-charging-symbolic.png"
+        [ -f "$src" ] || continue
+        for sz in 16 22 24 32 48; do
+            for ctx in status apps; do
+                d="$icons/${sz}x${sz}/$ctx"
+                [ -d "$d" ] || continue
+                for name in "battery-$lvl-symbolic" "battery-$lvl"; do
+                    rm -f "$d/$name.png"
+                    convert "$src" -filter Lanczos -resize ${sz}x${sz} -strip "$d/$name.png"
+                    n=$((n+1))
+                done
+            done
+        done
+    done
+    log "$n battery icons set to the charging artwork"
+fi
+
 # The XP pack draws Windows Update, but only at 128px, so the tray falls back
 # to hicolor's shield at 16-24px. Scale the pack's own art down to the status
 # names the Update Manager asks for.
