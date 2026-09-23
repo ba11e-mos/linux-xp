@@ -1685,7 +1685,7 @@
 .xp-menu-caption-label {
   color: #ffffff;
   font-weight: bold;
-  font-size: 10pt;
+  font-size: 9.5pt;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.55);
 }
 
@@ -1700,12 +1700,16 @@
 /* The frame sits on the item box now, not out here - the caption is a
  * sibling above it, so it can reach the outer edge the way an XP title
  * bar does. */
+/* The frame sits on the item box; the caption is its sibling and reaches
+ * the outer edge. The fill stays here, or the menu goes see-through:
+ * popupmenu.png supplied both the frame and the fill, so dropping the
+ * border-image takes the background with it. */
 .xp-captioned-menu {
   border: none;
   border-image: none;
   border-radius: 0px;
   padding: 0px;
-  background-color: transparent;
+  background-color: #ece9d8;
   color: #000000;
 }
 
