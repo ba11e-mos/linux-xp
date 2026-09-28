@@ -25,7 +25,9 @@ done
 #
 # Most battery names in the pack are symlinks into gpm-primary-*, so writing
 # to them would clobber the pack's own files. Remove the link first and write
-# a real file in its place.
+# a real file in its place. The source sheets are not all the same width, so
+# center them on a 22px canvas first; otherwise the empty/low states render
+# much wider than the others after resizing.
 if have convert; then
     n=0
     for lvl in caution empty full good low missing; do
@@ -37,7 +39,8 @@ if have convert; then
                 [ -d "$d" ] || continue
                 for name in "battery-$lvl-symbolic" "battery-$lvl"; do
                     rm -f "$d/$name.png"
-                    convert "$src" -filter Lanczos -resize ${sz}x${sz} -strip "$d/$name.png"
+                    convert "$src" -background none -gravity center -extent 22x22 \
+                        -filter Lanczos -resize ${sz}x${sz} -strip "$d/$name.png"
                     n=$((n+1))
                 done
             done

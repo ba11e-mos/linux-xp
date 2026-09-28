@@ -343,7 +343,30 @@
 }
 
 /* strip the modern clutter from inside the field */
-#page-action-buttons > *:not(.urlbar-go-button) { display: none !important; }
+#page-action-buttons > *:not(.urlbar-go-button, #urlbar-zoom-button) { display: none !important; }
+
+/* Firefox only shows this once the zoom is off 100%. It cannot be moved to
+   the status bar - it lives inside the address bar and CSS cannot reparent
+   it - so it is styled as a small XP button where it stands. */
+#urlbar-zoom-button {
+  display: flex !important;
+  align-items: center !important;
+  background: linear-gradient(to bottom, var(--xp-tb-top), var(--xp-tb-bot)) !important;
+  border: 1px solid !important;
+  border-color: var(--xp-light) var(--xp-dark) var(--xp-dark) var(--xp-light) !important;
+  border-radius: 0 !important;
+  margin: 1px 2px !important;
+  padding: 0 4px !important;
+}
+#urlbar-zoom-button .urlbar-zoom-button-label,
+#urlbar-zoom-button label {
+  color: #000 !important;
+  font-family: var(--xp-font) !important;
+  font-size: 11px !important;
+}
+#urlbar-zoom-button:hover {
+  background: linear-gradient(to bottom, #ffffff, #efede2) !important;
+}
 #urlbar-label-box { display: none !important; }
 
 /* --------------------------------------------------------------- *
@@ -469,6 +492,18 @@ menuseparator { border-top: 1px solid var(--xp-shadow) !important; margin-block:
   background-repeat: no-repeat;
   background-position: 4px center;
   background-size: 14px 14px;
+}
+
+/* A page in fullscreen owns the screen; the status bar is chrome. */
+:root[inFullscreen] #browser,
+:root[inDOMFullscreen] #browser {
+  padding-bottom: 0 !important;
+}
+:root[inFullscreen] #browser::before,
+:root[inFullscreen] #browser::after,
+:root[inDOMFullscreen] #browser::before,
+:root[inDOMFullscreen] #browser::after {
+  display: none !important;
 }
 
 /* the floating link-preview tooltip, docked like IE's status text */
