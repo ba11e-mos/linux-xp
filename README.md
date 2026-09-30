@@ -122,6 +122,39 @@ be close to 6.4 for component 50, per note 6 above. And a few messages suggest
 Snap and flatpak Firefox are handled; component 60 looks in all three profile
 locations.
 
+## After a Mint update
+
+Almost all of this lives in your home directory and survives updates: the
+theme, the icons, the Firefox chrome, the VS Code theme, the gsettings.
+
+Seven files do not. They are Cinnamon's own, under `/usr/share/cinnamon`,
+and a `cinnamon` package update replaces them:
+
+```
+js/ui/applet.js                    captioned applet menus
+js/ui/osdWindow.js                 the volume OSD
+js/ui/polkitAuthenticationAgent.js the UAC dialog
+applets/{calendar,network,printers,sound}@cinnamon.org/applet.js
+```
+
+```bash
+./after-update.sh --dry    # list what it would refresh
+./after-update.sh
+```
+
+Do not just re-run the patch scripts by hand. Each one restores its
+`.orig-xp` copy before patching, so after an update that would put the
+pre-update file back over the new one. `after-update.sh` deletes the stale
+copies first, then re-runs component 50.
+
+`/etc/pam.d/lightdm` is a conffile: apt will ask before replacing it. Keep
+your version, or run `patches/pam-fingerprint-first.sh` again afterwards.
+
+A Firefox major version can break the IE skin on its own - it is CSS
+against Firefox's internal markup, which moves. Nothing is lost; the rules
+just stop matching, and `./install.sh --list` shows which component to look
+at.
+
 ## Uninstall
 
 ```bash
