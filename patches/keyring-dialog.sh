@@ -89,7 +89,40 @@ reps.append(('''        let content = new Dialog.MessageDialogContent();''',
 
         this.contentLayout.add_child(titleBar);
 
-        let content = new Dialog.MessageDialogContent();'''))
+        let content = new Dialog.MessageDialogContent();
+
+        // The prompt's short form is bound to the title and its long form
+        // to the description. Both say the same thing, and the title lands
+        // on the beige in a colour meant for the blue banner.
+        content._title.hide();'''))
+
+# Everything below the caption goes in one box so the frame wraps it, the
+# button row included - it normally lives outside contentLayout.
+reps.append(("""        this.prompt.bind_property('continue-label', this._continueButton,
+            'label', GObject.BindingFlags.SYNC_CREATE);""",
+"""        this.prompt.bind_property('continue-label', this._continueButton,
+            'label', GObject.BindingFlags.SYNC_CREATE);
+
+        let bodyBox = new St.BoxLayout({
+            style_class: 'uac-body',
+            vertical: true,
+        });
+        this.contentLayout.remove_child(content);
+        bodyBox.add_child(content);
+
+        let buttonLayout = this.dialogLayout.buttonLayout;
+        buttonLayout.layout_manager.homogeneous = false;
+        buttonLayout.layout_manager.spacing = 8;
+        buttonLayout.insert_child_at_index(new St.Widget({ x_expand: true }), 0);
+        this._cancelButton.x_expand = false;
+        this._continueButton.x_expand = false;
+
+        let blParent = buttonLayout.get_parent();
+        if (blParent)
+            blParent.remove_child(buttonLayout);
+        bodyBox.add_child(buttonLayout);
+
+        this.contentLayout.add_child(bodyBox);"""))
 
 for old, new in reps:
     if old not in s:
