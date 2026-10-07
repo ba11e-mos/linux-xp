@@ -94,7 +94,11 @@ reps.append(('''        let content = new Dialog.MessageDialogContent();''',
         // The prompt's short form is bound to the title and its long form
         // to the description. Both say the same thing, and the title lands
         // on the beige in a colour meant for the blue banner.
-        content._title.hide();'''))
+        //
+        // hide() does not hold: the title setter flips visible back on
+        // every time the binding fires. A style class the binding never
+        // touches does, and the stylesheet collapses it.
+        content._title.add_style_class_name('xp-collapsed');'''))
 
 # Everything below the caption goes in one box so the frame wraps it, the
 # button row included - it normally lives outside contentLayout.

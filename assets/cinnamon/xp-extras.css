@@ -1,3 +1,15 @@
+/* A label that has to stay in the tree because a GObject binding owns its
+ * visibility, but must take no room. */
+.xp-collapsed {
+  height: 0px;
+  min-height: 0px;
+  font-size: 0px;
+  padding: 0px;
+  margin: 0px;
+  color: transparent;
+  background-color: transparent;
+}
+
 /* ===================================================================
 * Authentication dialog, styled as the Windows 7 UAC Credential UI
 *
