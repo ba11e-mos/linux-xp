@@ -189,8 +189,41 @@ reps.append(("""        passwordBox.add_style_class_name('polkit-dialog-user-lay
         content.remove_child(passwordBox);
         userFields.add(passwordBox, { expand: true, x_fill: true });
 
-        content.insert_child_at_index(continueLabel, 0);
-        content.add_child(userBox);
+        // Same three-line block the UAC shows for a program. There is no
+        // program here, so it names the keyring being unlocked instead.
+        let programBox = new St.BoxLayout({
+            style_class: 'uac-program-box',
+            vertical: false,
+            x_align: Clutter.ActorAlign.CENTER,
+        });
+        programBox.add(new St.Icon({
+            style_class: 'uac-program-icon',
+            icon_name: 'dialog-password',
+            icon_size: 32,
+        }), { x_fill: false, y_fill: false, y_align: St.Align.START });
+
+        let detailBox = new St.BoxLayout({
+            style_class: 'uac-detail-box',
+            vertical: true,
+        });
+        [
+            [_("Keyring:"), _("Login")],
+            [_("Type:"), _("Secret Service")],
+            [_("Location:"), GLib.get_home_dir() + '/.local/share/keyrings'],
+        ].forEach(([name, value]) => {
+            let row = new St.Label({ style_class: 'message-dialog-caption' });
+            row.clutter_text.line_wrap = true;
+            row.clutter_text.set_markup(
+                '<b>' + GLib.markup_escape_text(name, -1) + '</b>  ' +
+                GLib.markup_escape_text(String(value), -1));
+            detailBox.add_child(row);
+        });
+        programBox.add(detailBox, { x_fill: false, y_align: St.Align.MIDDLE });
+
+        // index 0 and 1 are the collapsed title and the banner.
+        content.insert_child_at_index(programBox, 2);
+        content.insert_child_at_index(continueLabel, 3);
+        content.insert_child_at_index(userBox, 4);
 """))
 
 for old, new in reps:
