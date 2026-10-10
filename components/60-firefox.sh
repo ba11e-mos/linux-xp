@@ -23,6 +23,14 @@ for prof in "${profiles[@]}"; do
     cp "$ASSETS/firefox/userChrome.css" "$prof/chrome/"
     cp "$ASSETS/firefox/xp/"*.svg       "$prof/chrome/xp/"
     cp "$ASSETS/firefox/user.js"        "$prof/"
+
+    # An IE-era start page, served from the profile so the pref can point at it.
+    mkdir -p "$prof/chrome/home"
+    cp "$ASSETS/firefox/home/index.html" "$prof/chrome/home/"
+    cat >> "$prof/user.js" <<EOF
+// IE-era start page, shipped with this repo
+user_pref("browser.startup.homepage", "file://$prof/chrome/home/index.html");
+EOF
 done
 
 # The menu bar and Links bar live in xulstore.json, Home/Favorites in prefs.js.

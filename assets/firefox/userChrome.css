@@ -327,11 +327,36 @@
 }
 #identity-icon-label, #identity-icon-labels { display: none !important; }
 
-/* FF 136+ puts a "unified search button" (the current engine's favicon plus a
-   dropmarker) at the very left of the field. IE had nothing there. */
-#urlbar .searchmode-switcher,
-#urlbar .searchmode-switcher-panel-list,
-#urlbar .searchmode-switcher-close { display: none !important; }
+/* The unified search button. It is a moz-button, so its surface lives in
+   shadow DOM and only the design tokens it inherits can reach it: flat and
+   transparent inside the field, with an XP highlight on hover. */
+#urlbar .searchmode-switcher {
+  /* The button is type="muted", so moz-button.css reads the -muted variants;
+     the plain --button-* tokens are never consulted. */
+  --button-background-color-muted: transparent;
+  --button-background-color-muted-hover: #D8E4F8;
+  --button-background-color-muted-active: #B6C7E8;
+  --button-background-color-muted-selected: #B6C7E8;
+  --button-border-color-muted: transparent;
+  --button-border-color-muted-hover: var(--xp-sel);
+  --button-border-color-muted-active: var(--xp-sel);
+  --button-border-color-muted-selected: var(--xp-sel);
+  --button-text-color-muted: #000000;
+  --button-text-color-muted-hover: #000000;
+  --button-border-radius: 0;
+  --button-padding: 0 3px;
+  --button-font-size: 11px;
+  --button-font-weight: normal;
+  --focus-outline: 1px solid var(--xp-sel);
+  --focus-outline-offset: 0;
+  margin-inline: 1px 2px !important;
+}
+#urlbar .searchmode-switcher-title {
+  font-family: var(--xp-font) !important;
+  font-size: 11px !important;
+  color: #000 !important;
+}
+#urlbar .searchmode-switcher-close { border-radius: 0 !important; }
 #tracking-protection-icon-container { display: none !important; }
 
 /* IE always showed the Go button; Firefox only shows it while you type.
