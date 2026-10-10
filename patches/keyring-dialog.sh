@@ -47,7 +47,8 @@ reps.append(('''        let content = new Dialog.MessageDialogContent();''',
             style_class: 'uac-title-label',
             text: _("Windows Security"),
         });
-        titleBar.add(titleLabel, { expand: true, x_fill: true, y_align: St.Align.MIDDLE });
+        titleBar.add(titleLabel, { expand: true, x_fill: true,
+            y_fill: false, y_align: St.Align.MIDDLE });
 
         let closeButton = new St.Button({
             style_class: 'uac-close-button',

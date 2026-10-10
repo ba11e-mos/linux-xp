@@ -42,7 +42,6 @@
   font-size: 11px !important;
   color: #000 !important;
 }
-#navigator-toolbox::after { display: none !important; }   /* FF's own 1px line */
 
 #toolbar-menubar, #TabsToolbar, #nav-bar, #PersonalToolbar {
   background: linear-gradient(to bottom,
@@ -321,6 +320,12 @@
   padding-inline: 1px !important; border-radius: 0 !important;
 }
 #identity-icon-label, #identity-icon-labels { display: none !important; }
+
+/* FF 136+ puts a "unified search button" (the current engine's favicon plus a
+   dropmarker) at the very left of the field. IE had nothing there. */
+#urlbar .searchmode-switcher,
+#urlbar .searchmode-switcher-panel-list,
+#urlbar .searchmode-switcher-close { display: none !important; }
 #tracking-protection-icon-container { display: none !important; }
 
 /* IE always showed the Go button; Firefox only shows it while you type.
@@ -343,30 +348,71 @@
 }
 
 /* strip the modern clutter from inside the field */
-#page-action-buttons > *:not(.urlbar-go-button, #urlbar-zoom-button) { display: none !important; }
+/* strip the modern clutter from inside the field. #page-action-buttons comes
+   AFTER .urlbar-go-button in the markup, so any padding it keeps shows up as
+   dead space to the right of Go. */
+#page-action-buttons > *:not(#urlbar-zoom-button) { display: none !important; }
+#page-action-buttons { padding: 0 !important; margin: 0 !important; }
 
-/* Firefox only shows this once the zoom is off 100%. It cannot be moved to
-   the status bar - it lives inside the address bar and CSS cannot reparent
-   it - so it is styled as a small XP button where it stands. */
-#urlbar-zoom-button {
-  display: flex !important;
-  align-items: center !important;
-  background: linear-gradient(to bottom, var(--xp-tb-top), var(--xp-tb-bot)) !important;
-  border: 1px solid !important;
-  border-color: var(--xp-light) var(--xp-dark) var(--xp-dark) var(--xp-light) !important;
-  border-radius: 0 !important;
-  margin: 1px 2px !important;
-  padding: 0 4px !important;
+/* Zoom indicator in the status bar. The real #urlbar-zoom-button cannot be
+   moved there: #urlbar clips position:fixed descendants, so a docked copy is
+   painted away. What it can do is carry the number - ZoomUI.sys.mjs keeps its
+   label attribute current for as long as the button is unhidden - so the cell
+   is a pseudo-element driven off that label through :has().
+   shortcut: only the fixed steps in toolkit.zoomManager.zoomValues are listed,
+   an arbitrary zoom (pinch) falls back to 100%; add the value here if needed. */
+#urlbar-zoom-button { display: none !important; }
+
+#navigator-toolbox::after { display: none !important; }   /* FF's own 1px line */
+
+/* #tabbrowser-tabbox establishes a containing block for fixed descendants, so
+   bottom:0 lands on its own lower edge - which is the top of the status bar.
+   Dropping it by the bar's height puts it back in line with the other cells. */
+#tabbrowser-tabbox::after {
+  content: "100%";
+  position: fixed;
+  bottom: calc(-1 * var(--xp-statusbar-h));
+  inset-inline-end: 220px;
+  width: 70px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  box-sizing: border-box;
+  font-family: var(--xp-font);
+  font-size: 11px;
+  color: #000;
+  background: var(--xp-face);
+  border: 1px solid;
+  border-color: var(--xp-shadow) var(--xp-light) var(--xp-light) var(--xp-shadow);
+  pointer-events: none;
+  z-index: 1;
 }
-#urlbar-zoom-button .urlbar-zoom-button-label,
-#urlbar-zoom-button label {
-  color: #000 !important;
-  font-family: var(--xp-font) !important;
-  font-size: 11px !important;
-}
-#urlbar-zoom-button:hover {
-  background: linear-gradient(to bottom, #ffffff, #efede2) !important;
-}
+:root:has(#urlbar-zoom-button:not([hidden])[label="20%"]) #tabbrowser-tabbox::after { content: "20%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="30%"]) #tabbrowser-tabbox::after { content: "30%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="40%"]) #tabbrowser-tabbox::after { content: "40%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="50%"]) #tabbrowser-tabbox::after { content: "50%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="60%"]) #tabbrowser-tabbox::after { content: "60%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="70%"]) #tabbrowser-tabbox::after { content: "70%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="80%"]) #tabbrowser-tabbox::after { content: "80%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="90%"]) #tabbrowser-tabbox::after { content: "90%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="110%"]) #tabbrowser-tabbox::after { content: "110%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="120%"]) #tabbrowser-tabbox::after { content: "120%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="130%"]) #tabbrowser-tabbox::after { content: "130%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="140%"]) #tabbrowser-tabbox::after { content: "140%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="150%"]) #tabbrowser-tabbox::after { content: "150%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="160%"]) #tabbrowser-tabbox::after { content: "160%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="170%"]) #tabbrowser-tabbox::after { content: "170%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="180%"]) #tabbrowser-tabbox::after { content: "180%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="190%"]) #tabbrowser-tabbox::after { content: "190%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="200%"]) #tabbrowser-tabbox::after { content: "200%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="220%"]) #tabbrowser-tabbox::after { content: "220%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="240%"]) #tabbrowser-tabbox::after { content: "240%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="260%"]) #tabbrowser-tabbox::after { content: "260%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="280%"]) #tabbrowser-tabbox::after { content: "280%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="300%"]) #tabbrowser-tabbox::after { content: "300%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="400%"]) #tabbrowser-tabbox::after { content: "400%"; }
+:root:has(#urlbar-zoom-button:not([hidden])[label="500%"]) #tabbrowser-tabbox::after { content: "500%"; }
+
 #urlbar-label-box { display: none !important; }
 
 /* --------------------------------------------------------------- *
@@ -460,7 +506,8 @@ menuseparator { border-top: 1px solid var(--xp-shadow) !important; margin-block:
  * --------------------------------------------------------------- */
 #browser {
   position: relative !important;
-  padding-bottom: 21px !important;
+  --xp-statusbar-h: 21px;
+  padding-bottom: var(--xp-statusbar-h) !important;
   background: var(--xp-face) !important;
 }
 #browser::before,
@@ -480,7 +527,7 @@ menuseparator { border-top: 1px solid var(--xp-shadow) !important; margin-block:
 }
 #browser::before {
   content: "Done";
-  inset-inline: 0 220px;
+  inset-inline: 0 290px;
   padding-inline-start: 6px;
 }
 #browser::after {
@@ -501,8 +548,10 @@ menuseparator { border-top: 1px solid var(--xp-shadow) !important; margin-block:
 }
 :root[inFullscreen] #browser::before,
 :root[inFullscreen] #browser::after,
+:root[inFullscreen] #tabbrowser-tabbox::after,
 :root[inDOMFullscreen] #browser::before,
-:root[inDOMFullscreen] #browser::after {
+:root[inDOMFullscreen] #browser::after,
+:root[inDOMFullscreen] #tabbrowser-tabbox::after {
   display: none !important;
 }
 
