@@ -134,6 +134,65 @@ reps.append(("""        this.prompt.bind_property('continue-label', this._contin
 
         this.contentLayout.add_child(bodyBox);"""))
 
+# The prompt has no program or publisher to list, but it does have a user,
+# so it gets the rest of the UAC furniture: the instruction line, the
+# account picture and a read-only name beside the password field.
+reps.append(("""        passwordBox.add_style_class_name('polkit-dialog-user-layout');
+        this._passwordEntry.x_align = Clutter.ActorAlign.FILL;
+        this._confirmEntry.x_align = Clutter.ActorAlign.FILL;
+""",
+"""        this._passwordEntry.x_align = Clutter.ActorAlign.FILL;
+        this._confirmEntry.x_align = Clutter.ActorAlign.FILL;
+
+        let GLib = imports.gi.GLib;
+
+        let continueLabel = new St.Label({
+            style_class: 'uac-continue-label',
+            text: _("To continue, type your password, and then click Unlock."),
+        });
+        continueLabel.clutter_text.line_wrap = true;
+
+        let userBox = new St.BoxLayout({
+            style_class: 'polkit-dialog-user-layout',
+            vertical: false,
+        });
+
+        let face = GLib.get_home_dir() + '/.face';
+        if (GLib.file_test(face, GLib.FileTest.EXISTS)) {
+            let picture = new St.Bin({ style_class: 'user-icon' });
+            picture.style = 'background-image: url("' + face + '");';
+            picture.set_size(72, 72);
+            userBox.add(picture, {
+                x_fill: false,
+                y_fill: false,
+                y_align: St.Align.START,
+            });
+        }
+
+        let userFields = new St.BoxLayout({
+            style_class: 'uac-user-fields',
+            vertical: true,
+        });
+        userBox.add(userFields, { expand: true, x_fill: true });
+
+        let nameEntry = new St.Entry({
+            style_class: 'uac-user-entry',
+            can_focus: false,
+            reactive: false,
+        });
+        nameEntry.clutter_text.editable = false;
+        nameEntry.clutter_text.selectable = false;
+        nameEntry.set_text(GLib.get_real_name() || GLib.get_user_name());
+        userFields.add(nameEntry, { x_fill: true });
+
+        // passwordBox is already a child of content; move it into the panel.
+        content.remove_child(passwordBox);
+        userFields.add(passwordBox, { expand: true, x_fill: true });
+
+        content.insert_child_at_index(continueLabel, 0);
+        content.add_child(userBox);
+"""))
+
 for old, new in reps:
     if old not in s:
         raise SystemExit("PATTERN NOT FOUND:\n" + old[:160])
