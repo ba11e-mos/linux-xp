@@ -261,8 +261,9 @@
 #urlbar .urlbar-background {
   background-color: #FFFFFF !important;
   background-image: none !important;
-  border: 1px solid !important;
-  border-color: var(--xp-dark) var(--xp-light) var(--xp-light) var(--xp-dark) !important;
+  /* A two-tone sunken bevel leaves the right and bottom edges white, which
+     vanishes against the field. IE's address bar is a flat dark box. */
+  border: 1px solid var(--xp-dark) !important;
   border-radius: 0 !important;
   box-shadow: none !important;
   outline: none !important;
@@ -626,8 +627,15 @@ findbar {
   min-height: 20px !important;
   gap: 6px !important;
 }
-#urlbar .urlbarView-favicon,
-#urlbar .urlbarView-type-icon { width: 16px !important; height: 16px !important; }
+/* FF cuts a notch out of the favicon and fills it with a bookmark/history
+   badge in .urlbarView-type-icon. IE had no badges, so drop the badge and the
+   mask that makes room for it - otherwise the icon keeps the bite. */
+#urlbar .urlbarView-favicon {
+  width: 16px !important;
+  height: 16px !important;
+  mask-image: none !important;
+}
+#urlbar .urlbarView-type-icon { display: none !important; }
 #urlbar .urlbarView-title,
 #urlbar .urlbarView-url,
 #urlbar .urlbarView-action { font-size: 11px !important; }
