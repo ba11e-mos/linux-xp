@@ -577,3 +577,108 @@ findbar {
   font-family: var(--xp-font) !important;
   font-size: 11px !important;
 }
+
+/* --------------------------------------------------------------- *
+ * 10. Address bar autocomplete - IE's flat white list
+ * --------------------------------------------------------------- */
+#urlbar .urlbarView { padding: 0 !important; }
+#urlbar .urlbarView-background {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: 1px solid var(--xp-dark) !important;
+  background-color: #FFFFFF !important;
+}
+#urlbar .urlbarView-body-inner { border: none !important; }
+#urlbar .urlbarView-results { padding: 1px !important; }
+#urlbar .urlbarView-row { padding: 0 !important; min-height: 0 !important; }
+#urlbar .urlbarView-row-inner {
+  border-radius: 0 !important;
+  padding: 1px 3px !important;
+  min-height: 16px !important;
+  gap: 4px !important;
+}
+#urlbar .urlbarView-favicon,
+#urlbar .urlbarView-type-icon { width: 16px !important; height: 16px !important; }
+#urlbar .urlbarView-title,
+#urlbar .urlbarView-url,
+#urlbar .urlbarView-action { font-size: 11px !important; }
+
+/* FF prints the group name ("Firefox Suggest") from a row's label attribute.
+   IE's list had no sections. */
+#urlbar .urlbarView-row[label]::before { display: none !important; }
+#urlbar .urlbarView-row[label] { margin-block-start: 0 !important; }
+/* the engine strip along the bottom of the panel */
+#urlbar .search-one-offs { display: none !important; }
+
+/* --------------------------------------------------------------- *
+ * 11. Sidebar - the classic one, styled like IE's Favorites pane
+ * --------------------------------------------------------------- */
+#sidebar-box {
+  background-color: var(--xp-face) !important;
+  font-family: var(--xp-font) !important;
+  font-size: 11px !important;
+  color: #000 !important;
+}
+#sidebar-header {
+  background-color: var(--xp-face) !important;
+  border-bottom: 1px solid var(--xp-shadow) !important;
+  padding: 1px 2px !important;
+  font-size: 11px !important;
+}
+#sidebar-title {
+  font-size: 11px !important;
+  font-weight: bold !important;
+  color: #000 !important;
+  margin: 0 4px !important;
+}
+#sidebar-switcher-target,
+#sidebar-close {
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 1px 2px !important;
+}
+#sidebar-switcher-target:hover,
+#sidebar-close:hover {
+  background: linear-gradient(to bottom, var(--xp-tb-top), var(--xp-tb-bot)) !important;
+  border: 1px solid var(--xp-shadow) !important;
+  padding: 0 1px !important;
+}
+#sidebar-close .toolbarbutton-icon { width: 12px !important; height: 12px !important; }
+#sidebar-splitter { border: none !important; background-color: var(--xp-shadow) !important; }
+
+/* The sidebar panels are chrome documents of their own, so the same user
+   stylesheet reaches them. */
+#bookmarksPanel, #history-panel, #sidebar-panel-header {
+  background-color: var(--xp-face) !important;
+  font-family: var(--xp-font) !important;
+  font-size: 11px !important;
+}
+#sidebar-search-container { padding: 2px !important; }
+tree.sidebar-placesTree {
+  background-color: #FFFFFF !important;
+  border: 1px solid var(--xp-dark) !important;
+  margin: 0 2px 2px 2px !important;
+  font-family: var(--xp-font) !important;
+  font-size: 11px !important;
+}
+tree.sidebar-placesTree treechildren::-moz-tree-row(selected) {
+  background-color: var(--xp-sel) !important;
+  border-radius: 0 !important;
+}
+tree.sidebar-placesTree treechildren::-moz-tree-cell-text(selected) {
+  color: #FFFFFF !important;
+}
+
+/* moz-input-search keeps its input in shadow DOM, but the design tokens it
+   reads are inherited custom properties, so they can be set on the host. */
+#sidebar-search-container #search-box {
+  --input-search-border-radius: 0;
+  --input-text-border-radius: 0;
+  --input-text-border: 1px solid var(--xp-dark);
+  --input-text-min-height: 18px;
+  --input-height: 18px;
+  --border-interactive-color: var(--xp-sel);
+  --focus-outline: 1px solid var(--xp-sel);
+  --focus-outline-offset: 0;
+  --focus-outline-width: 1px;
+}

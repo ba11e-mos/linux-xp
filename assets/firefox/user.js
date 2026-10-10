@@ -12,3 +12,6 @@ user_pref("browser.theme.content-theme", 1);
 user_pref("layout.css.prefers-color-scheme.content-override", 1);
 // IE's Links bar is always out
 user_pref("browser.toolbars.bookmarks.visibility", "always");
+// The revamped sidebar draws its launcher strip in shadow DOM, which no user
+// stylesheet can reach. The classic sidebar is plain chrome markup.
+user_pref("sidebar.revamp", false);
