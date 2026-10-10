@@ -30,6 +30,11 @@
   --toolbarbutton-active-background: transparent !important;
   --toolbarbutton-border-radius: 0 !important;
   --tab-min-height: 21px !important;
+
+  /* Chrome documents - the sidebar panels among them - otherwise pick up a
+     dark palette from the system or an installed theme, which leaves their
+     form controls unreadable against the XP face colour. */
+  color-scheme: light !important;
 }
 
 /* --------------------------------------------------------------- *
@@ -581,8 +586,12 @@ findbar {
 /* --------------------------------------------------------------- *
  * 10. Address bar autocomplete - IE's flat white list
  * --------------------------------------------------------------- */
-#urlbar .urlbarView { padding: 0 !important; }
+/* FF pulls the view out past the field with a negative margin so its padded
+   card can overhang; with the padding gone that just puts the rows outside
+   the border. */
+#urlbar .urlbarView { padding: 0 !important; margin: 0 !important; }
 #urlbar .urlbarView-background {
+  inset: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
   border: 1px solid var(--xp-dark) !important;
@@ -654,6 +663,18 @@ findbar {
   font-size: 11px !important;
 }
 #sidebar-search-container { padding: 2px !important; }
+#viewButton {
+  background: linear-gradient(to bottom, var(--xp-tb-top), var(--xp-tb-bot)) !important;
+  border: 1px solid !important;
+  border-color: var(--xp-light) var(--xp-dark) var(--xp-dark) var(--xp-light) !important;
+  border-radius: 0 !important;
+  color: #000 !important;
+  font-family: var(--xp-font) !important;
+  font-size: 11px !important;
+  padding: 0 4px !important;
+  margin: 0 2px 0 0 !important;
+}
+#viewButton:hover { background: linear-gradient(to bottom, #FFFFFF, #EFEDE2) !important; }
 tree.sidebar-placesTree {
   background-color: #FFFFFF !important;
   border: 1px solid var(--xp-dark) !important;
