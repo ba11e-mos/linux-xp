@@ -765,3 +765,34 @@ tree.sidebar-placesTree treechildren::-moz-tree-cell-text(selected) {
   --focus-outline-offset: 0;
   --focus-outline-width: 1px;
 }
+
+/* --------------------------------------------------------------- *
+ * 12. Form / login autocomplete popup
+ * --------------------------------------------------------------- */
+/* autocomplete.css points this popup at the system Field/FieldText colours,
+   which come out black under a dark theme. It is a text-field dropdown, so
+   it gets the same white list as the address bar's. */
+panel[type="autocomplete-richlistbox"] {
+  color-scheme: light !important;
+  --panel-background-color: #FFFFFF !important;
+  --panel-text-color: #000000 !important;
+  --panel-border-color: var(--xp-dark) !important;
+  --panel-border-radius: 0 !important;
+}
+panel[type="autocomplete-richlistbox"] richlistbox,
+panel[type="autocomplete-richlistbox"] .autocomplete-richlistbox {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  margin: 0 !important;
+}
+panel[type="autocomplete-richlistbox"] richlistitem {
+  background-color: transparent !important;
+  color: #000000 !important;
+  border-radius: 0 !important;
+  font-family: var(--xp-font) !important;
+  font-size: 11px !important;
+}
+panel[type="autocomplete-richlistbox"] richlistitem[selected] {
+  background-color: var(--xp-sel) !important;
+  color: #FFFFFF !important;
+}
