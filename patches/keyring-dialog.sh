@@ -107,6 +107,12 @@ reps.append(("""        this.prompt.bind_property('continue-label', this._contin
 """        this.prompt.bind_property('continue-label', this._continueButton,
             'label', GObject.BindingFlags.SYNC_CREATE);
 
+        // The field sits loose on the beige otherwise; the polkit dialog
+        // frames its own in a panel, and that style class already exists.
+        passwordBox.add_style_class_name('polkit-dialog-user-layout');
+        this._passwordEntry.x_align = Clutter.ActorAlign.FILL;
+        this._confirmEntry.x_align = Clutter.ActorAlign.FILL;
+
         let bodyBox = new St.BoxLayout({
             style_class: 'uac-body',
             vertical: true,
