@@ -349,6 +349,11 @@
   --button-font-weight: normal;
   --focus-outline: 1px solid var(--xp-sel);
   --focus-outline-offset: 0;
+  /* urlbar.css sizes the button to its label, which comes out 12px - shorter
+     than the 16px engine icon, so the hover highlight sat inside the icon.
+     Fill the field instead. */
+  --button-min-height: 20px;
+  height: 20px !important;
   margin-inline: 1px 2px !important;
 }
 #urlbar .searchmode-switcher-title {

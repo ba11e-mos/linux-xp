@@ -30,6 +30,7 @@ for prof in "${profiles[@]}"; do
     cat >> "$prof/user.js" <<EOF
 // IE-era start page, shipped with this repo
 user_pref("browser.startup.homepage", "file://$prof/chrome/home/index.html");
+user_pref("browser.startup.page", 1);
 EOF
 done
 
