@@ -485,21 +485,25 @@
 /* --------------------------------------------------------------- *
  * 7. Menus and popups in Luna grey
  * --------------------------------------------------------------- */
-/* An add-on theme (the Luna one) sets its own popup colours and flips the
-   chrome colour scheme to dark, which the token overrides alone do not beat -
-   the sidebar's own popups came out dark grey. Paint them outright. */
+/* popup.css paints the surface through --panel-background-color on a part of
+   the popup's shadow DOM. userChrome.css reaches neither the shadow tree nor
+   ::part(), so these inherited variables are the only handle - and the name is
+   --panel-background-COLOR; --panel-background does nothing, which is why the
+   add-on theme's popup colour kept coming through. */
 menupopup, panel {
   color-scheme: light !important;
-  background-color: var(--xp-face) !important;
-  color: #000000 !important;
-  --panel-background: var(--xp-face) !important;
-  --panel-color: #000000 !important;
+  --panel-text-color: #000000 !important;
   --panel-border-color: var(--xp-shadow) !important;
   --panel-border-radius: 0 !important;
-  --panel-padding: 2px !important;
+  --panel-padding: 1px !important;
+  --panel-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25) !important;
+  --panel-separator-color: var(--xp-shadow) !important;
   font-family: var(--xp-font) !important;
   font-size: 11px !important;
 }
+menupopup { --panel-background-color: #FFFFFF !important; }
+panel { --panel-background-color: var(--xp-face) !important; }
+
 menupopup > menuitem, menupopup > menu {
   background-color: transparent !important;
   padding-block: 2px !important;
@@ -596,18 +600,25 @@ findbar {
 /* FF pulls the view out past the field with a negative margin so its padded
    card can overhang; with the padding gone that just puts the rows outside
    the border. */
-/* overflow:visible so the 1px border on .urlbarView-background, which now sits
-   exactly on the clip edge, is not shaved off. */
-#urlbar .urlbarView { padding: 0 !important; margin: 0 !important; overflow: visible !important; }
-#urlbar .urlbarView-background {
-  inset: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
+/* The selected row is full-bleed, so a border on .urlbarView-background gets
+   painted over for that row's height. Put it on the outer box, which nothing
+   paints over, and let every row run the full width - which is what IE's
+   dropdown did anyway. */
+#urlbar .urlbarView {
+  padding: 0 !important;
+  margin: 0 !important;
   border: 1px solid var(--xp-dark) !important;
   background-color: #FFFFFF !important;
 }
+#urlbar .urlbarView-background {
+  inset: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-color: #FFFFFF !important;
+}
 #urlbar .urlbarView-body-inner { border: none !important; }
-#urlbar .urlbarView-results { padding: 2px !important; }
+#urlbar .urlbarView-results { padding: 0 !important; }
 #urlbar .urlbarView-row { padding: 0 !important; min-height: 0 !important; }
 #urlbar .urlbarView-row-inner {
   border-radius: 0 !important;
@@ -624,6 +635,10 @@ findbar {
 /* FF prints the group name ("Firefox Suggest") from a row's label attribute.
    IE's list had no sections. */
 #urlbar .urlbarView-row[label]::before { display: none !important; }
+/* A zero-width aria label sits in front of the favicon on the first row of a
+   group. It is still a flex item, so it eats a gap and indents that row.
+   Taking it out of flow keeps it in the accessibility tree. */
+#urlbar .urlbarView-group-aria-label { position: absolute !important; }
 #urlbar .urlbarView-row[label] { margin-block-start: 0 !important; }
 /* the engine strip along the bottom of the panel */
 #urlbar .search-one-offs { display: none !important; }
