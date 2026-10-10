@@ -485,7 +485,13 @@
 /* --------------------------------------------------------------- *
  * 7. Menus and popups in Luna grey
  * --------------------------------------------------------------- */
+/* An add-on theme (the Luna one) sets its own popup colours and flips the
+   chrome colour scheme to dark, which the token overrides alone do not beat -
+   the sidebar's own popups came out dark grey. Paint them outright. */
 menupopup, panel {
+  color-scheme: light !important;
+  background-color: var(--xp-face) !important;
+  color: #000000 !important;
   --panel-background: var(--xp-face) !important;
   --panel-color: #000000 !important;
   --panel-border-color: var(--xp-shadow) !important;
@@ -495,6 +501,7 @@ menupopup, panel {
   font-size: 11px !important;
 }
 menupopup > menuitem, menupopup > menu {
+  background-color: transparent !important;
   padding-block: 2px !important;
   border-radius: 0 !important;
   color: #000 !important;
@@ -589,7 +596,9 @@ findbar {
 /* FF pulls the view out past the field with a negative margin so its padded
    card can overhang; with the padding gone that just puts the rows outside
    the border. */
-#urlbar .urlbarView { padding: 0 !important; margin: 0 !important; }
+/* overflow:visible so the 1px border on .urlbarView-background, which now sits
+   exactly on the clip edge, is not shaved off. */
+#urlbar .urlbarView { padding: 0 !important; margin: 0 !important; overflow: visible !important; }
 #urlbar .urlbarView-background {
   inset: 0 !important;
   border-radius: 0 !important;
@@ -598,13 +607,13 @@ findbar {
   background-color: #FFFFFF !important;
 }
 #urlbar .urlbarView-body-inner { border: none !important; }
-#urlbar .urlbarView-results { padding: 1px !important; }
+#urlbar .urlbarView-results { padding: 2px !important; }
 #urlbar .urlbarView-row { padding: 0 !important; min-height: 0 !important; }
 #urlbar .urlbarView-row-inner {
   border-radius: 0 !important;
-  padding: 1px 3px !important;
-  min-height: 16px !important;
-  gap: 4px !important;
+  padding: 2px 5px !important;
+  min-height: 20px !important;
+  gap: 6px !important;
 }
 #urlbar .urlbarView-favicon,
 #urlbar .urlbarView-type-icon { width: 16px !important; height: 16px !important; }
