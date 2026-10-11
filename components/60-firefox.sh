@@ -31,6 +31,9 @@ for prof in "${profiles[@]}"; do
 // IE-era start page, shipped with this repo
 user_pref("browser.startup.homepage", "file://$prof/chrome/home/index.html");
 user_pref("linuxxp.newtab.url", "file://$prof/chrome/home/index.html");
+// Restore the previous session. Firefox's own default here is 1 (home page),
+// so leaving it out does not mean "leave the user's choice alone".
+user_pref("browser.startup.page", 3);
 EOF
 done
 

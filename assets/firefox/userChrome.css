@@ -796,3 +796,63 @@ panel[type="autocomplete-richlistbox"] richlistitem[selected] {
   background-color: var(--xp-sel) !important;
   color: #FFFFFF !important;
 }
+
+/* --------------------------------------------------------------- *
+ * 13. HTTP authentication and other common dialogs
+ * --------------------------------------------------------------- */
+/* A site that answers 401 gets Firefox's own sign-in prompt, a chrome
+   document shown inside the tab. Its surface follows the content colour
+   scheme - which an add-on theme can flip to dark - while its text, fields
+   and buttons follow the light one we force on pages, so the whole box came
+   out black on black. Pin it to the light palette. */
+#commonDialogWindow,
+#commonDialogWindow #commonDialog,
+#commonDialogWindow #dialogGrid {
+  color-scheme: light !important;
+  background-color: var(--xp-face) !important;
+  font-family: var(--xp-font) !important;
+  font-size: 11px !important;
+}
+/* Only the text: the title icon fills with currentColor, so forcing black on
+   the whole dialog turns it into a black blob. */
+#commonDialogWindow #infoBody,
+#commonDialogWindow #infoTitle,
+#commonDialogWindow #titleText,
+#commonDialogWindow label,
+#commonDialogWindow description { color: #000000 !important; }
+#commonDialogWindow input,
+#commonDialogWindow html|input {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: 1px solid var(--xp-dark) !important;
+  border-radius: 0 !important;
+}
+/* Square the furniture and swap Firefox's violet accent for Luna blue. The
+   buttons are moz-button-style XUL buttons, so they read the same tokens. */
+#commonDialogWindow {
+  --button-border-radius: 0;
+  --button-background-color: #ECE9D8;
+  --button-background-color-hover: #FFFFFF;
+  --button-background-color-active: #E0DCCA;
+  --button-border-color: var(--xp-dark);
+  --button-text-color: #000000;
+  --button-background-color-primary: var(--xp-sel);
+  --button-background-color-primary-hover: #4B82D8;
+  --button-background-color-primary-active: #1C4A9E;
+  --button-text-color-primary: #FFFFFF;
+  --button-border-color-primary: var(--xp-dark);
+  --border-radius-small: 0;
+  --border-radius-medium: 0;
+  --border-radius-circle: 0;
+  --color-accent-primary: var(--xp-sel);
+  --color-accent-primary-hover: #4B82D8;
+  --color-accent-primary-active: #1C4A9E;
+  --input-text-border-radius: 0;
+  --focus-outline: 1px solid var(--xp-sel);
+  --focus-outline-offset: 0;
+}
+#commonDialogWindow input,
+#commonDialogWindow button { border-radius: 0 !important; }
+/* The title icon paints --background-color-canvas behind itself, which the
+   dark content theme turns into a black square. */
+#commonDialogWindow .titleIcon { background-color: transparent !important; }
