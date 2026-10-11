@@ -40,6 +40,13 @@ fi
 
 "$REPO/install.sh" 50
 
+# A Firefox package update replaces the installation directory, taking the
+# autoconfig files for the new tab page with it.
+if [ ! -f /usr/lib/firefox/linux-xp.cfg ] && [ -x /usr/lib/firefox/firefox ]; then
+    log "Firefox autoconfig is gone - putting the new tab page back"
+    sudo "$REPO/install.sh" 65
+fi
+
 log "Done. Ctrl+Alt+Esc to restart Cinnamon."
 info "PAM: an update may have replaced /etc/pam.d/lightdm. If the login"
 info "screen asks for a password before the fingerprint, run:"
