@@ -856,3 +856,49 @@ panel[type="autocomplete-richlistbox"] richlistitem[selected] {
 /* The title icon paints --background-color-canvas behind itself, which the
    dark content theme turns into a black square. */
 #commonDialogWindow .titleIcon { background-color: transparent !important; }
+
+/* The dialog's buttons live in the <dialog> element's shadow DOM, and the
+   design tokens are redefined there through :host(.anonymous-content-host) -
+   so an inherited value from the document root never reaches them. Setting
+   them on the host element itself, from out here, does. */
+#commonDialogWindow #commonDialog {
+  --button-border-radius: 0 !important;
+  --border-radius-medium: 0 !important;
+  --border-radius-xlarge: 0 !important;
+  --border-radius-circle: 0 !important;
+  --button-min-height: 21px !important;
+  --button-padding: 0 12px !important;
+  --button-font-size: 11px !important;
+  --button-font-weight: normal !important;
+  --button-background-color: #ECE9D8 !important;
+  --button-background-color-hover: #FFFFFF !important;
+  --button-background-color-active: #E0DCCA !important;
+  --button-border-color: var(--xp-dark) !important;
+  --button-text-color: #000000 !important;
+  --button-text-color-hover: #000000 !important;
+  /* XP marks the default button with a heavier outline, not a filled accent. */
+  --button-background-color-primary: #ECE9D8 !important;
+  --button-background-color-primary-hover: #FFFFFF !important;
+  --button-background-color-primary-active: #E0DCCA !important;
+  --button-text-color-primary: #000000 !important;
+  --button-border-color-primary: #000000 !important;
+  --focus-outline: 1px solid var(--xp-sel) !important;
+  --focus-outline-offset: 0 !important;
+}
+#commonDialog::part(dialog-button) {
+  border-radius: 0 !important;
+  font-family: var(--xp-font) !important;
+  font-size: 11px !important;
+}
+/* Square the card itself. The rounding and shadow sit partly on the dialog
+   and partly on the chrome-side box that hosts it. */
+#commonDialogWindow #commonDialog { border-radius: 0 !important; }
+.dialogBox,
+.dialogBox .dialogFrame {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.dialogBox {
+  border: 1px solid var(--xp-dark) !important;
+  background-color: var(--xp-face) !important;
+}
