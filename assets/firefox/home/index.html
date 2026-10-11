@@ -7,72 +7,94 @@
   body {
     margin: 0; padding: 0;
     background: #ECE9D8;
-    font: 12px Tahoma, "DejaVu Sans", sans-serif;
+    font: 13px Tahoma, "DejaVu Sans", sans-serif;
     color: #000;
   }
   a { color: #0000EE; }
   a:visited { color: #551A8B; }
   a:hover { color: #CC0000; }
 
-  .page { width: 1000px; margin: 0 auto; background: #FFF;
+  .page { width: 1180px; margin: 0 auto; background: #FFF;
           border-left: 1px solid #ACA899; border-right: 1px solid #ACA899; }
 
   /* Luna title band */
   .banner {
-    height: 76px; position: relative;
+    height: 84px; position: relative;
     background: linear-gradient(to bottom, #0A50C8 0%, #0A44DD 8%, #2E78E8 42%,
                                 #0A44DD 92%, #073AAF 100%);
     border-bottom: 2px solid #FFCC00;
     color: #FFF;
   }
-  .banner h1 { margin: 0; padding: 12px 0 0 18px; font-size: 26px; letter-spacing: -0.5px;
+  .banner h1 { margin: 0; padding: 13px 0 0 20px; font-size: 29px; letter-spacing: -0.5px;
                text-shadow: 1px 1px 0 rgba(0,0,0,.45); }
-  .banner .sub { padding: 4px 0 0 20px; font-size: 12px;
+  .banner .sub { padding: 5px 0 0 22px; font-size: 13px;
                  text-shadow: 1px 1px 0 rgba(0,0,0,.45); }
-  .banner .clock { position: absolute; right: 16px; top: 18px; text-align: right;
-                   font-size: 12px; text-shadow: 1px 1px 0 rgba(0,0,0,.45); }
+  .banner .clock { position: absolute; right: 18px; top: 20px; text-align: right;
+                   font-size: 13px; line-height: 1.5; text-shadow: 1px 1px 0 rgba(0,0,0,.45); }
 
-  /* the search strip */
-  .searchbar { background: #ECE9D8; border-bottom: 1px solid #ACA899; padding: 10px 16px; }
-  .searchbar form { margin: 0; }
-  .searchbar input[type=text] {
-    width: 520px; font: 12px Tahoma, "DejaVu Sans", sans-serif;
-    border: 1px solid #716F64; padding: 2px 3px; background: #FFF;
+  /* IE's Links bar */
+  .links {
+    background: linear-gradient(to bottom, #FBFAF6, #E8E4D2);
+    border-bottom: 1px solid #ACA899;
+    padding: 3px 14px;
   }
-  .searchbar input[type=text]:focus { outline: none; border-color: #316AC5; }
-  .searchbar button {
-    font: 12px Tahoma, "DejaVu Sans", sans-serif; padding: 1px 10px; margin-left: 4px;
+  .links b { font-weight: bold; margin-right: 6px; }
+  .links a {
+    display: inline-block; padding: 1px 7px; margin-right: 2px;
+    color: #000; text-decoration: none; border: 1px solid transparent;
+  }
+  .links a:hover {
+    border-color: #FFF #716F64 #716F64 #FFF; background: #F2F0E4; color: #000;
+  }
+
+  /* search + address strip */
+  .bars { background: #ECE9D8; border-bottom: 1px solid #ACA899; padding: 10px 16px; }
+  .bars form { margin: 0 0 7px 0; }
+  .bars form:last-child { margin-bottom: 0; }
+  .bars label { display: inline-block; width: 108px; }
+  .bars input[type=text] {
+    width: 560px; font: 13px Tahoma, "DejaVu Sans", sans-serif;
+    border: 1px solid #716F64; padding: 2px 4px; background: #FFF;
+  }
+  .bars input[type=text]:focus { outline: none; border-color: #316AC5; }
+  .bars button {
+    font: 13px Tahoma, "DejaVu Sans", sans-serif; padding: 2px 12px; margin-left: 5px;
     background: linear-gradient(to bottom, #FBFAF6, #E8E4D2);
     border: 1px solid; border-color: #FFF #716F64 #716F64 #FFF; cursor: pointer;
   }
-  .searchbar button:active {
-    background: #E0DCCA; border-color: #716F64 #FFF #FFF #716F64;
-  }
-  .searchbar select {
-    font: 12px Tahoma, "DejaVu Sans", sans-serif; border: 1px solid #716F64; background: #FFF;
+  .bars button:active { background: #E0DCCA; border-color: #716F64 #FFF #FFF #716F64; }
+  .bars select {
+    font: 13px Tahoma, "DejaVu Sans", sans-serif; border: 1px solid #716F64; background: #FFF;
   }
 
   .cols { display: table; width: 100%; border-collapse: collapse; }
-  .col  { display: table-cell; width: 33.33%; vertical-align: top; padding: 14px; }
+  .col  { display: table-cell; width: 25%; vertical-align: top; padding: 14px; }
   .col + .col { border-left: 1px solid #D4D0C8; }
 
-  .box { margin-bottom: 12px; }
+  .box { margin-bottom: 14px; }
   .box h2 {
-    margin: 0 0 6px 0; padding: 3px 8px; font-size: 12px; color: #FFF;
+    margin: 0 0 6px 0; padding: 3px 8px; font-size: 13px; color: #FFF;
     background: linear-gradient(to bottom, #4B82D8, #316AC5);
     border: 1px solid #1C4A9E;
   }
   .box ul { margin: 0; padding: 0; list-style: none; }
   .box li { padding: 3px 0 3px 18px; }
-  .box li::before { content: "\00BB"; color: #316AC5; margin-left: -12px; margin-right: 4px; }
+  .box li::before { content: "\00BB"; color: #316AC5; margin-left: -13px; margin-right: 5px; }
 
-  .note { padding: 10px 16px; border-top: 1px solid #D4D0C8; color: #555; }
+  /* calendar */
+  table.cal { border-collapse: collapse; width: 100%; font-size: 12px; }
+  table.cal th { background: #D4D0C8; border: 1px solid #ACA899; padding: 2px 0; font-weight: normal; }
+  table.cal td { border: 1px solid #E4E1D6; padding: 3px 0; text-align: center; }
+  table.cal td.today { background: #316AC5; color: #FFF; font-weight: bold; }
+  table.cal caption { padding-bottom: 4px; font-weight: bold; }
+
+  .note { padding: 10px 16px; border-top: 1px solid #D4D0C8; color: #555; font-size: 12px; }
   .note code { font: 12px "DejaVu Sans Mono", monospace; }
 
   .statusbar {
-    width: 1000px; margin: 0 auto 16px auto; padding: 3px 8px;
+    width: 1180px; margin: 0 auto 18px auto; padding: 3px 8px;
     background: #ECE9D8; border: 1px solid; border-color: #ACA899 #FFF #FFF #ACA899;
-    box-sizing: border-box;
+    box-sizing: border-box; font-size: 12px;
   }
 </style>
 </head>
@@ -85,15 +107,33 @@
     <div class="clock" id="clock"></div>
   </div>
 
-  <div class="searchbar">
-    <form id="f" action="https://www.google.com/search" method="get">
+  <div class="links">
+    <b>Links</b>
+    <a href="https://www.google.com/">Google</a>
+    <a href="https://mail.google.com/">Gmail</a>
+    <a href="https://github.com/">GitHub</a>
+    <a href="https://innsida.ntnu.no/">Innsida</a>
+    <a href="https://www.youtube.com/">YouTube</a>
+    <a href="https://www.nrk.no/">NRK</a>
+    <a href="https://ba11e.com/lowballing">Lowballing</a>
+  </div>
+
+  <div class="bars">
+    <form id="searchForm" action="https://www.google.com/search" method="get">
       <label for="q">Search the Web:</label>
       <input type="text" id="q" name="q" autofocus>
       <select id="engine">
         <option value="https://www.google.com/search|q">Google</option>
         <option value="https://duckduckgo.com/|q">DuckDuckGo</option>
         <option value="https://en.wikipedia.org/w/index.php|search">Wikipedia</option>
+        <option value="https://www.youtube.com/results|search_query">YouTube</option>
+        <option value="https://github.com/search|q">GitHub</option>
       </select>
+      <button type="submit">Go</button>
+    </form>
+    <form id="addressForm">
+      <label for="addr">Address:</label>
+      <input type="text" id="addr" placeholder="example.com">
       <button type="submit">Go</button>
     </form>
   </div>
@@ -104,10 +144,21 @@
         <h2>Quick Links</h2>
         <ul>
           <li><a href="https://www.google.com/">Google</a></li>
-          <li><a href="https://github.com/">GitHub</a></li>
           <li><a href="https://en.wikipedia.org/">Wikipedia</a></li>
           <li><a href="https://www.youtube.com/">YouTube</a></li>
           <li><a href="https://news.ycombinator.com/">Hacker News</a></li>
+          <li><a href="https://www.reddit.com/">Reddit</a></li>
+          <li><a href="https://translate.google.com/">Translate</a></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h2>News</h2>
+        <ul>
+          <li><a href="https://www.nrk.no/">NRK</a></li>
+          <li><a href="https://www.vg.no/">VG</a></li>
+          <li><a href="https://www.aftenposten.no/">Aftenposten</a></li>
+          <li><a href="https://arstechnica.com/">Ars Technica</a></li>
+          <li><a href="https://lwn.net/">LWN</a></li>
         </ul>
       </div>
     </div>
@@ -119,13 +170,42 @@
           <li><a href="https://innsida.ntnu.no/">Innsida</a></li>
           <li><a href="https://ntnu.blackboard.com/">Blackboard</a></li>
           <li><a href="https://www.ntnu.no/studier/emner">Emnesok</a></li>
+          <li><a href="https://ntnu.no/bibliotek">Biblioteket</a></li>
+          <li><a href="https://www.wolframalpha.com/">WolframAlpha</a></li>
         </ul>
       </div>
       <div class="box">
-        <h2>Mail</h2>
+        <h2>Mail &amp; Chat</h2>
         <ul>
           <li><a href="https://mail.google.com/">Gmail</a></li>
           <li><a href="https://outlook.office.com/">Outlook</a></li>
+          <li><a href="https://teams.microsoft.com/">Teams</a></li>
+          <li><a href="https://web.whatsapp.com/">WhatsApp</a></li>
+          <li><a href="https://discord.com/app">Discord</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="box">
+        <h2>Code</h2>
+        <ul>
+          <li><a href="https://github.com/">GitHub</a></li>
+          <li><a href="https://developer.mozilla.org/">MDN</a></li>
+          <li><a href="https://stackoverflow.com/">Stack Overflow</a></li>
+          <li><a href="https://doc.rust-lang.org/std/">Rust std</a></li>
+          <li><a href="https://docs.python.org/3/">Python docs</a></li>
+          <li><a href="https://ba11e.com/lowballing">Lowballing</a></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h2>Shopping</h2>
+        <ul>
+          <li><a href="https://www.finn.no/">Finn</a></li>
+          <li><a href="https://www.alibaba.com/">Alibaba</a></li>
+          <li><a href="https://www.made-in-china.com/">Made-in-China</a></li>
+          <li><a href="https://www.komplett.no/">Komplett</a></li>
+          <li><a href="https://www.aliexpress.com/">AliExpress</a></li>
         </ul>
       </div>
     </div>
@@ -138,7 +218,13 @@
           <li><a href="about:addons">Add-ons</a></li>
           <li><a href="about:preferences">Options</a></li>
           <li><a href="about:config">Advanced</a></li>
+          <li><a href="about:processes">Task Manager</a></li>
+          <li><a href="about:support">Troubleshooting</a></li>
         </ul>
+      </div>
+      <div class="box">
+        <h2 id="calTitle">Calendar</h2>
+        <table class="cal" id="cal"></table>
       </div>
     </div>
   </div>
@@ -149,30 +235,73 @@
   </div>
 </div>
 
-<div class="statusbar">Done</div>
+<div class="statusbar" id="status">Done</div>
 
 <script>
   // The engine picker rewrites the form's action and the field's name, the way
   // an IE-era start page would have done it.
   var sel = document.getElementById("engine"),
-      f   = document.getElementById("f"),
+      sf  = document.getElementById("searchForm"),
       q   = document.getElementById("q");
   sel.addEventListener("change", function () {
     var p = sel.value.split("|");
-    f.action = p[0];
-    q.name   = p[1];
+    sf.action = p[0];
+    q.name    = p[1];
   });
+
+  document.getElementById("addressForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = document.getElementById("addr").value.trim();
+    if (!v) { return; }
+    location.href = /^[a-z]+:/i.test(v) ? v : "https://" + v;
+  });
+
+  var DAYS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  var MONTHS = ["January","February","March","April","May","June","July",
+                "August","September","October","November","December"];
+
+  function pad(n) { return n < 10 ? "0" + n : String(n); }
 
   function tick() {
     var d = new Date();
-    var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    var hh = String(d.getHours()).padStart(2, "0");
-    var mm = String(d.getMinutes()).padStart(2, "0");
-    document.getElementById("clock").textContent =
-      days[d.getDay()] + ", " + d.toLocaleDateString() + "   " + hh + ":" + mm;
+    document.getElementById("clock").innerHTML =
+      DAYS[d.getDay()] + ", " + d.getDate() + " " + MONTHS[d.getMonth()] +
+      " " + d.getFullYear() + "<br>" + pad(d.getHours()) + ":" + pad(d.getMinutes());
   }
+
+  function drawCalendar() {
+    var now = new Date(),
+        year = now.getFullYear(), month = now.getMonth(), today = now.getDate();
+    document.getElementById("calTitle").textContent = MONTHS[month] + " " + year;
+
+    // Monday-first, the way a Norwegian calendar reads.
+    var first = (new Date(year, month, 1).getDay() + 6) % 7,
+        days  = new Date(year, month + 1, 0).getDate(),
+        html  = "<tr><th>Ma</th><th>Ti</th><th>On</th><th>To</th>" +
+                "<th>Fr</th><th>Lo</th><th>So</th></tr><tr>",
+        cell  = 0, day;
+
+    for (; cell < first; cell++) { html += "<td></td>"; }
+    for (day = 1; day <= days; day++, cell++) {
+      if (cell && cell % 7 === 0) { html += "</tr><tr>"; }
+      html += "<td" + (day === today ? ' class="today"' : "") + ">" + day + "</td>";
+    }
+    while (cell % 7) { html += "<td></td>"; cell++; }
+    document.getElementById("cal").innerHTML = html + "</tr>";
+  }
+
   tick();
   setInterval(tick, 10000);
+  drawCalendar();
+
+  // self-check: the grid must come out whole weeks, or the layout is wrong
+  (function () {
+    var cells = document.querySelectorAll("#cal tr:not(:first-child) td").length;
+    if (cells % 7 !== 0) {
+      document.getElementById("status").textContent =
+        "Calendar grid is " + cells + " cells, not a multiple of 7";
+    }
+  })();
 </script>
 </body>
 </html>
