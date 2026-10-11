@@ -26,7 +26,10 @@ for prof in "${profiles[@]}"; do
 
     # An IE-era start page, served from the profile so the pref can point at it.
     mkdir -p "$prof/chrome/home"
-    cp "$ASSETS/firefox/home/index.html" "$prof/chrome/home/"
+    # @HOME@ stands in for the home directory: a file:// link needs an
+    # absolute path, and the asset must stay user-agnostic.
+    sed "s|@HOME@|$HOME|g" "$ASSETS/firefox/home/index.html" \
+        > "$prof/chrome/home/index.html"
     cat >> "$prof/user.js" <<EOF
 // IE-era start page, shipped with this repo
 user_pref("browser.startup.homepage", "file://$prof/chrome/home/index.html");
