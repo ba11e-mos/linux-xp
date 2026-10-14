@@ -107,21 +107,21 @@
 [class*="friendsButtonContainer_"],
 li[class*="channel__"]:has(> div > a[href="/message-requests"]) {
   position: fixed !important;
-  top: 5px !important;
+  top: 13px !important;
   z-index: 300 !important;
-  width: 48px !important;
-  height: 48px !important;
+  width: 32px !important;
+  height: 32px !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
-[class*="friendsButtonContainer_"] { left: 76px !important; }
-li[class*="channel__"]:has(> div > a[href="/message-requests"]) { left: 130px !important; }
+[class*="friendsButtonContainer_"] { right: 152px !important; }
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) { right: 110px !important; }
 
 [class*="friendsButtonContainer_"] a,
 li[class*="channel__"]:has(> div > a[href="/message-requests"]) a {
-  width: 48px !important;
-  height: 48px !important;
+  width: 32px !important;
+  height: 32px !important;
   padding: 0 !important;
   border: 1px solid transparent;
   background-position: center !important;
@@ -192,7 +192,7 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]) a > * {
 /* It goes on the inner container, not the section: the section lays its
    child out overflowing, so a pseudo-element there lands in the wrong
    place. */
-[class*="upperContainer_"]::before {
+[class*="subtitleContainer_"] [class*="upperContainer_"]::before {
   content: "To:";
   flex: 0 0 auto;
   align-self: center;
@@ -328,4 +328,127 @@ button[class*="button_"],
 [class*="privateChannels_"] [class*="nameAndDecorators__"] * {
   font-size: 11px !important;
   line-height: 16px !important;
+}
+
+/* ----------------------------------------------------------------
+   Toolbar, laid out like the reference: buddies tile, the search
+   field, the Friends tab strip, then the icon trio on the right.
+   Everything here is a real control moved into place, not a picture
+   of one.
+   ---------------------------------------------------------------- */
+
+/* "Find or start a conversation" belongs in the toolbar. Scoped to the
+   sidebar: the friends list has a search bar of its own. */
+nav[class*="privateChannels_"] > [class*="searchBar_"] {
+  position: fixed !important;
+  top: 17px !important;
+  left: 78px !important;
+  width: 240px !important;
+  height: 24px !important;
+  padding: 0 !important;
+  z-index: 300 !important;
+}
+
+nav[class*="privateChannels_"] > [class*="searchBar_"] button {
+  width: 240px !important;
+  height: 24px !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+  color: #767676 !important;
+}
+
+/* The Friends tab strip is lifted into the toolbar the same way. In a
+   channel the header stays put as the "To:" line - that one lives under
+   subtitleContainer, this one directly under main. */
+[class*="page__"] > main > section {
+  position: fixed !important;
+  top: 14px !important;
+  left: 336px !important;
+  right: 200px !important;
+  height: 30px !important;
+  min-height: 30px !important;
+  background: transparent !important;
+  border: none !important;
+  z-index: 300 !important;
+}
+
+[class*="page__"] > main > section [class*="toolbar_"] {
+  display: none !important;
+}
+
+/* Tabs: MSN had plain blue links, underlined when selected. */
+[class*="page__"] > main > section [class*="item_"],
+[class*="page__"] > main > section [role="tab"] {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  color: #0033AA !important;
+  font: 11px var(--font-primary) !important;
+  padding: 2px 8px !important;
+}
+
+[class*="page__"] > main > section [role="tab"][aria-selected="true"],
+[class*="page__"] > main > section [class*="selected"] {
+  color: #0033AA !important;
+  text-decoration: underline !important;
+  background: transparent !important;
+}
+
+/* "Add Friend" was a link, not a filled button. */
+[class*="page__"] > main > section [class*="lookFilled"] {
+  background: transparent !important;
+  color: #0033AA !important;
+  font: 11px var(--font-primary) !important;
+  text-decoration: underline !important;
+  border: none !important;
+  padding: 2px 8px !important;
+  min-height: 0 !important;
+  height: 22px !important;
+}
+
+/* Discord's own inbox and help buttons finish the MSN icon trio. */
+[class*="bar_"] [aria-label="Inbox"],
+[class*="bar_"] [aria-label="Help"] {
+  width: 32px !important;
+  height: 32px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 28px 28px !important;
+}
+
+[class*="bar_"] [aria-label="Inbox"] {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/email2.png) !important;
+}
+
+[class*="bar_"] [aria-label="Help"] {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/help.png) !important;
+}
+
+[class*="bar_"] [aria-label="Inbox"] svg,
+[class*="bar_"] [aria-label="Help"] svg {
+  display: none !important;
+}
+
+/* With the search field gone from the sidebar, the contact list would
+   start above the first message. Drop it by the header's height. */
+[class*="privateChannels_"] > [class*="scroller__"] {
+  padding-top: 34px !important;
+}
+
+/* ----------------------------------------------------------------
+   Friends list: MSN framed each contact photo.
+   ---------------------------------------------------------------- */
+[class*="peopleListItem_"] [class*="avatar"] img,
+[class*="peopleColumn__"] [class*="avatar"] img {
+  border: 1px solid var(--dsn-border);
+  border-radius: 0 !important;
+  background: #FFFFFF;
+  padding: 1px;
+}
+
+[class*="peopleColumn__"] [class*="searchBar__"] input {
+  border: 1px solid var(--dsn-border) !important;
+  border-radius: 0 !important;
+  background: #FFFFFF !important;
+  font: 11px var(--font-primary) !important;
 }
