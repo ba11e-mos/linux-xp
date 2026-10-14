@@ -2,7 +2,7 @@
  * @name MSN
  * @author linux-xp
  * @description Discord as MSN Explorer / Messenger, after heartmoder's dsn10-theme.
- * @version 2.0
+ * @version 2.1
  */
 
 /* The original dsn10-theme is archived and its selectors are from a Discord
@@ -19,6 +19,7 @@
   --dsn-border:  #7F9DB9;
   --dsn-blue:    #316AC5;
   --dsn-pane:    #FFFFFF;
+  --dsn-bar-h:   58px;
 
   --background-base-lowest:     transparent;
   --background-base-lower:      transparent;
@@ -65,22 +66,22 @@
 /* ----------------------------------------------------------------
    Top bar becomes the MSN Explorer toolbar.
    ---------------------------------------------------------------- */
+
+/* The app frame is a grid whose first row is Discord's 32px title bar.
+   The MSN toolbar is taller, so the track has to grow with it or the
+   panes slide up underneath. */
+[class*="base__"] {
+  grid-template-rows: [top] var(--dsn-bar-h) [titleBarEnd] 0px [noticeEnd] 1fr [end] !important;
+}
+
 [class*="base__"] > [class*="bar_"] {
-  height: 58px !important;
+  height: var(--dsn-bar-h) !important;
   background: url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) repeat-x !important;
   border-bottom: 1px solid var(--dsn-border);
   padding-inline: 8px;
 }
 
-/* The window title is already on the XP title bar above; MSN's toolbar
-   carried icons, not text. */
-[class*="base__"] > [class*="bar_"] > [class*="title_"] {
-  display: none !important;
-}
-
-/* MSN put a buddies tile at the far left of the toolbar, then a row of
-   round action icons. CSS cannot add elements, so the icon row is one
-   pseudo-element carrying six backgrounds. */
+/* MSN's buddies tile at the far left. */
 [class*="base__"] > [class*="bar_"]::before {
   content: "";
   flex: 0 0 auto;
@@ -91,62 +92,96 @@
   background: #FFFFFF url(https://heartmoder.github.io/dsn10-theme/assets/msn/msn-blue.png) center / 40px no-repeat;
 }
 
-[class*="base__"] > [class*="bar_"]::after {
-  content: "";
-  flex: 0 0 auto;
-  order: -1;
-  width: 320px; height: 36px;
-  margin-inline-start: 24px;
-  background-repeat: no-repeat;
-  background-size: 28px 28px;
-  background-position:
-    0 center, 52px center, 104px center,
-    156px center, 208px center, 260px center;
-  background-image:
-    url(https://heartmoder.github.io/dsn10-theme/assets/actions/email2.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/actions/help.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/actions/game.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/actions/cart.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png);
-}
-
-/* Discord's own back/forward arrows sit where MSN's buddies tile goes. */
-[class*="base__"] > [class*="bar_"] [class*="leading_"] {
+/* Discord's back/forward arrows and the window title: the XP title bar
+   above already carries the title, and MSN had no arrows here. */
+[class*="base__"] > [class*="bar_"] [class*="leading_"],
+[class*="base__"] > [class*="bar_"] > [class*="title_"] {
   display: none !important;
 }
 
-/* The app frame is a grid whose first row is Discord's 32px title bar.
-   The MSN toolbar is 58px, so the track has to grow with it or the panes
-   slide up underneath. */
-[class*="base__"] {
-  grid-template-rows: [top] 58px [titleBarEnd] 0px [noticeEnd] 1fr [end] !important;
+/* ----------------------------------------------------------------
+   Toolbar buttons. These are Discord's real Friends and Message
+   Requests entries, lifted out of the sidebar - drawing icons with
+   pseudo-elements only gets you buttons that do nothing.
+   ---------------------------------------------------------------- */
+[class*="friendsButtonContainer_"],
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) {
+  position: fixed !important;
+  top: 5px !important;
+  z-index: 300 !important;
+  width: 48px !important;
+  height: 48px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+[class*="friendsButtonContainer_"] { left: 76px !important; }
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) { left: 130px !important; }
+
+[class*="friendsButtonContainer_"] a,
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) a {
+  width: 48px !important;
+  height: 48px !important;
+  padding: 0 !important;
+  border: 1px solid transparent;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 32px 32px !important;
+}
+
+[class*="friendsButtonContainer_"] a:hover,
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) a:hover {
+  border-color: var(--dsn-border);
+  background-color: #D8E4F8 !important;
+}
+
+[class*="friendsButtonContainer_"] a {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) !important;
+}
+
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) a {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/email2.png) !important;
+}
+
+/* Label and unread pill would sit on top of the icon. */
+[class*="friendsButtonContainer_"] a > *,
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) a > * {
+  display: none !important;
+}
+
+/* Nitro, Shop and Quests: not wanted. */
+[class*="content_d125d2"] > div:has(a[href="/store"]),
+[class*="content_d125d2"] > li:has(a[href="/shop"]),
+[class*="content_d125d2"] > div:has(a[href="/quest-home"]) {
+  display: none !important;
 }
 
 /* ----------------------------------------------------------------
-   Panes: contact list, chat and member list are white MSN panels.
+   Panes. Contact list and message page are two MSN panels, framed
+   identically so their tops and bottoms line up.
    ---------------------------------------------------------------- */
 [class*="sidebarList__"],
-[class*="chatContent_"],
-[class*="membersWrap_"],
-[class*="peopleColumn__"] {
+[class*="page__"] {
   background: var(--dsn-pane) !important;
   border: 1px solid var(--dsn-border) !important;
-  margin: 4px !important;
+  margin: 4px 4px 4px 0 !important;
+  overflow: hidden !important;
 }
 
-[class*="guilds__"] {
-  background: transparent !important;
-}
+[class*="sidebarList__"] { margin-left: 4px !important; }
 
+[class*="guilds__"],
 [class*="privateChannels_"],
+[class*="chatContent_"],
+[class*="peopleColumn__"],
 [class*="sidebar_"] [class*="scroller__"] {
   background: transparent !important;
+  border: none !important;
 }
 
-/* Channel header reads as MSN's "To:" line. */
-[class*="title_f75fb0"],
-[class*="subtitleContainer_"] > section {
+/* Chat header reads as MSN's "To:" line. */
+[class*="subtitleContainer_"] > section,
+[class*="page__"] > div > section[class*="container__"] {
   background: linear-gradient(180deg, #FFFFFF 0%, #E8EFFB 100%) !important;
   border-bottom: 1px solid var(--dsn-border) !important;
   height: 34px !important;
@@ -154,9 +189,9 @@
   align-items: center !important;
 }
 
-/* The "To:" line. It goes on the inner container, not the section: the
-   section lays its child out overflowing, so a pseudo-element there lands
-   in the wrong place. */
+/* It goes on the inner container, not the section: the section lays its
+   child out overflowing, so a pseudo-element there lands in the wrong
+   place. */
 [class*="upperContainer_"]::before {
   content: "To:";
   flex: 0 0 auto;
@@ -167,17 +202,77 @@
 }
 
 /* ----------------------------------------------------------------
-   Account panel becomes the Messenger box.
+   Contact list: MSN rows, not 2025 pills.
    ---------------------------------------------------------------- */
-[class*="panels__"] {
-  background: var(--dsn-pane) !important;
-  border: 1px solid var(--dsn-border) !important;
-  margin: 4px !important;
-  padding-top: 16px !important;
-  height: auto !important;
+[class*="privateChannels_"] li[class*="channel__"] {
+  height: 34px !important;
+  margin: 0 !important;
 }
 
-[class*="panels__"]::before {
+[class*="privateChannels_"] li[class*="channel__"] a,
+[class*="privateChannels_"] li[class*="channel__"] > div[class*="interactive"] {
+  height: 34px !important;
+  min-height: 34px !important;
+  border-radius: 0 !important;
+  padding: 0 6px !important;
+  font: 11px var(--font-primary) !important;
+}
+
+/* MSN listed one line per contact. */
+[class*="privateChannels_"] [class*="subText__"] {
+  display: none !important;
+}
+
+[class*="privateChannels_"] li[class*="channel__"] [class*="interactive"]:hover,
+[class*="privateChannels_"] li[class*="channel__"] [class*="selected"] {
+  background: #D8E4F8 !important;
+  border-radius: 0 !important;
+}
+
+[class*="privateChannelsHeaderContainer__"] {
+  font: bold 11px var(--font-primary) !important;
+  color: #003399 !important;
+  text-transform: none !important;
+  padding: 2px 6px !important;
+}
+
+[class*="sectionDivider_"] {
+  background: var(--dsn-border) !important;
+}
+
+/* Sidebar search button: a flat MSN field. */
+[class*="searchBar_"] button {
+  background: #FFFFFF !important;
+  border: 1px solid var(--dsn-border) !important;
+  border-radius: 0 !important;
+  color: #000000 !important;
+  font: 11px var(--font-primary) !important;
+  height: 22px !important;
+  min-height: 22px !important;
+}
+
+/* ----------------------------------------------------------------
+   Account panel becomes the Messenger box.
+   ---------------------------------------------------------------- */
+/* The account panel is auto-placed in the sidebar grid, which drops it in
+   the first free cell once the panes above are reframed. Pin it. */
+[class*="sidebar__"] > [class*="panels__"] {
+  position: absolute !important;
+  left: 4px; right: 4px; bottom: 4px;
+  height: auto !important;
+  margin: 0 !important;
+  padding-top: 16px !important;
+  background: var(--dsn-pane) !important;
+  border: 1px solid var(--dsn-border) !important;
+  z-index: 2;
+}
+
+/* Keep the contact list clear of it. */
+[class*="sidebarList__"] {
+  padding-bottom: 74px !important;
+}
+
+[class*="sidebar__"] > [class*="panels__"]::before {
   content: "";
   position: absolute;
   top: 2px; left: 4px;
@@ -186,8 +281,23 @@
 }
 
 /* ----------------------------------------------------------------
-   Messages.
+   Member list and messages.
    ---------------------------------------------------------------- */
+[class*="membersWrap_"] {
+  background: var(--dsn-pane) !important;
+  border-left: 1px solid var(--dsn-border) !important;
+}
+
+[class*="membersWrap_"]::before {
+  content: "Member List";
+  display: block;
+  padding: 4px 8px;
+  font: bold 11px var(--font-primary);
+  color: #003399;
+  background: linear-gradient(180deg, #FFFFFF 0%, #DCE6F7 100%);
+  border-bottom: 1px solid var(--dsn-border);
+}
+
 [class*="chatContent_"] [class*="username"] {
   color: #1F7A1F !important;
   font-weight: bold !important;
@@ -201,7 +311,6 @@
   background: #F2F6FD !important;
 }
 
-/* Composer: a flat MSN input box. */
 [class*="channelTextArea_"],
 [class*="scrollableContainer_"] {
   background: #FFFFFF !important;
@@ -209,76 +318,14 @@
   border-radius: 0 !important;
 }
 
-/* ----------------------------------------------------------------
-   Controls: XP, not 2025.
-   ---------------------------------------------------------------- */
 button[class*="button_"],
 [class*="lookFilled"] {
   border-radius: 0 !important;
 }
 
-[class*="scroller"]::-webkit-scrollbar-thumb,
-::-webkit-scrollbar-thumb {
-  background: url(https://heartmoder.github.io/dsn10-theme/assets/scrollbar/luna.png) center / 100% 100% no-repeat !important;
-  border-radius: 0 !important;
-}
 
-::-webkit-scrollbar-track {
-  background: #F1F1F1 !important;
-}
-
-/* ----------------------------------------------------------------
-   Member list gets MSN's titled panel.
-   ---------------------------------------------------------------- */
-[class*="membersWrap_"]::before {
-  content: "Member List";
-  display: block;
-  padding: 4px 8px;
-  font: bold 11px var(--font-primary);
-  color: #003399;
-  background: linear-gradient(180deg, #FFFFFF 0%, #DCE6F7 100%);
-  border-bottom: 1px solid var(--dsn-border);
-}
-
-/* Selection in the contact list: MSN's pale blue, not a grey pill. */
-[class*="privateChannels_"] [class*="selected"],
-[class*="privateChannels_"] a:hover {
-  background: #D8E4F8 !important;
-  border-radius: 0 !important;
-}
-
-/* ----------------------------------------------------------------
-   MSN's search box at the right end of the toolbar. Decorative: the
-   real search lives in the channel header, which Discord owns.
-   ---------------------------------------------------------------- */
-[class*="base__"] > [class*="bar_"] [class*="trailing_"] {
-  gap: 8px;
-  align-items: center;
-}
-
-[class*="base__"] > [class*="bar_"] [class*="trailing_"]::before {
-  content: "Search";
-  order: -1;
-  width: 150px; height: 22px;
-  padding: 3px 6px;
-  box-sizing: border-box;
-  font: 11px var(--font-primary);
-  color: #808080;
-  background: #FFFFFF url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/searchbarbg.png) right center no-repeat;
-  border: 1px solid var(--dsn-border);
-}
-
-/* The guild rail sits on the window wash, not its own dark column. */
-[class*="guilds__"] [class*="listItem"],
-[class*="guilds__"] [class*="pill"] {
-  background: transparent !important;
-}
-
-/* Sidebar search button: a flat MSN field. */
-[class*="searchBar_"] button {
-  background: #FFFFFF !important;
-  border: 1px solid var(--dsn-border) !important;
-  border-radius: 0 !important;
-  color: #000000 !important;
-  font: 11px var(--font-primary) !important;
+[class*="privateChannels_"] [class*="nameAndDecorators__"],
+[class*="privateChannels_"] [class*="nameAndDecorators__"] * {
+  font-size: 11px !important;
+  line-height: 16px !important;
 }
