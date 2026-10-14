@@ -4329,3 +4329,256 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 [class*="outer_c0bea0"].user-profile-popout [class*="cardsList__"] article [class*="clickableContainer__"] {
   border: none !important;
 }
+
+/* The light strip at the tile/bar join was the tile's white inner line,
+   not a gap. With that gone, the bar's own shaded left edge belongs right
+   at the tile's edge, as in the reference. */
+[class*="base__"] > [class*="bar_"] {
+  background-position: right 0 top 0, right 10px top 0, 76px top, 85px top !important;
+}
+
+/* ================================================================
+   Settings in the same language as the main window: the wash behind,
+   white panes in the one frame (1px #647EAE, 7px top corners), a
+   member-list style header strip, sidebar rows like the contact list,
+   the page title like the To: line, and an MSN icon on every entry.
+   ================================================================ */
+
+/* --- Window ----------------------------------------------------- */
+[class*="container__8a031"].modal_e44912 {
+  border: 1px solid #647EAE !important;
+  border-radius: 7px 7px 0 0 !important;
+  background: #F5F8FE !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3) !important;
+  padding-top: 28px !important;
+}
+
+[class*="container__8a031"].modal_e44912::before {
+  content: "Settings" !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 28px !important;
+  padding-left: 10px !important;
+  border-radius: 6px 6px 0 0 !important;
+  border-bottom: 1px solid #647EAE !important;
+  background: linear-gradient(180deg, #C7D2F0 0%, #E2E8F7 100%) !important;
+  font: bold 12px/28px var(--font-primary) !important;
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+/* Close: a toolbar-style button, not the red caption button. */
+[class*="contentHeader_e9e3ed"] button[aria-label="Close"] {
+  top: -24px !important;
+  right: 4px !important;
+  width: 22px !important;
+  height: 20px !important;
+  border: 1px solid transparent !important;
+  background: transparent !important;
+}
+
+[class*="contentHeader_e9e3ed"] button[aria-label="Close"]::after {
+  color: #3A4A6B !important;
+  font: bold 12px/18px var(--font-primary) !important;
+}
+
+[class*="contentHeader_e9e3ed"] button[aria-label="Close"]:hover {
+  filter: none !important;
+  background: #EEF3FC !important;
+  border-color: #9DB4DF !important;
+  border-radius: 3px !important;
+}
+
+/* --- Sidebar: the contact list pane ----------------------------- */
+[role="dialog"] aside[class*="sidebar__409aa"] {
+  margin: 4px 0 4px 4px !important;
+  border: 1px solid #647EAE !important;
+  border-radius: 7px 7px 0 0 !important;
+  background: #FFFFFF !important;
+  overflow: hidden !important;
+}
+
+[role="dialog"] li[class*="section__409aa"] {
+  margin: 0 6px 6px 6px !important;
+}
+
+[role="dialog"] [class*="sectionLabel__409aa"],
+[role="dialog"] li[class*="section__409aa"]:not(:has([class*="sectionLabel__409aa"]))::before {
+  height: 24px !important;
+  padding: 0 0 0 6px !important;
+  border-radius: 0 !important;
+  background: none !important;
+  border-bottom: 1px solid #DCE4F5 !important;
+}
+
+[role="dialog"] [class*="sectionLabel__409aa"] *,
+[role="dialog"] li[class*="section__409aa"]:not(:has([class*="sectionLabel__409aa"]))::before {
+  font: bold 11px var(--font-primary) !important;
+  color: #444444 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.4px !important;
+}
+
+[role="dialog"] ul[class*="sectionList__409aa"] {
+  padding: 3px 0 0 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+[role="dialog"] [class*="item_caf372"] {
+  min-height: 26px !important;
+  padding: 2px 6px !important;
+  margin: 1px 0 !important;
+  border-radius: 3px !important;
+}
+
+[role="dialog"] [class*="item_caf372"] [class*="itemContent_caf372"],
+[role="dialog"] [class*="item_caf372"] [class*="itemContent_caf372"] * {
+  color: #000000 !important;
+  text-decoration: none !important;
+}
+
+[role="dialog"] [class*="item_caf372"]:hover,
+[role="dialog"] [class*="item_caf372"][class*="active_caf372"] {
+  background: linear-gradient(180deg, #FDFDFF 0%, #DCE4F5 100%) !important;
+  outline: 1px solid #7F9DB9 !important;
+  outline-offset: -1px !important;
+}
+
+[role="dialog"] [class*="item_caf372"]:hover [class*="itemContent_caf372"],
+[role="dialog"] [class*="item_caf372"]:hover [class*="itemContent_caf372"] * {
+  color: #000000 !important;
+  text-decoration: none !important;
+}
+
+[role="dialog"] [class*="item_caf372"][class*="active_caf372"] [class*="itemContent_caf372"],
+[role="dialog"] [class*="item_caf372"][class*="active_caf372"] [class*="itemContent_caf372"] * {
+  color: #000000 !important;
+  font-weight: bold !important;
+}
+
+[role="dialog"] [class*="subnav_e4d939"] * {
+  color: #333333 !important;
+}
+
+/* Search and the profile row sit in the pane like the rest. */
+[role="dialog"] [class*="fixedContent__409aa"] {
+  padding: 6px !important;
+  border-bottom: 1px solid #DCE4F5 !important;
+}
+
+[role="dialog"] [class*="fixedContent__409aa"] [class*="item_caf372"],
+[role="dialog"] [class*="fixedContent__409aa"] ul[class*="sectionList__409aa"] {
+  background: transparent !important;
+  outline: none !important;
+}
+
+[role="dialog"] aside[class*="sidebar__409aa"] [class*="fixedContent__409aa"] [class*="profileCustomizationTab"] * {
+  color: #000000 !important;
+}
+
+[role="dialog"] aside[class*="sidebar__409aa"] [class*="searchBarContainer"] [class*="container__"] {
+  background: #FFFFFF !important;
+  border: 1px solid #7F9DB9 !important;
+  border-radius: 0 !important;
+}
+
+/* --- Content: the chat window pane ------------------------------ */
+[class*="content_e9e3ed"] {
+  margin: 4px 4px 4px 4px !important;
+  border: 1px solid #647EAE !important;
+  border-radius: 7px 7px 0 0 !important;
+  background: #FFFFFF !important;
+  overflow: hidden !important;
+}
+
+[class*="contentHeader_e9e3ed"] {
+  background: #EBF1FA !important;
+  border-bottom: 1px solid #647EAE !important;
+}
+
+[class*="contentHeader_e9e3ed"] *:not(button):not(button *) {
+  color: #000000 !important;
+  font: bold 12px var(--font-primary) !important;
+}
+
+[class*="categories__6131a"] > [class*="container__75920"] {
+  background: #FFFFFF !important;
+  border: 1px solid #647EAE !important;
+  border-radius: 7px 7px 0 0 !important;
+  box-shadow: none !important;
+}
+
+[class*="categories__6131a"] [class*="container__75920"] [class*="container__75920"] {
+  background: #FFFFFF !important;
+  border: none !important;
+  border-top: 1px solid #E3E9F4 !important;
+  border-radius: 0 !important;
+}
+
+/* --- An icon on every entry -------------------------------------- */
+[role="dialog"] [class*="item_caf372"] [class*="itemContent_caf372"]::before {
+  background-size: 18px 18px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+[data-list-item-id="settings-sidebar___account_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/userprofile.png) !important; }
+[data-list-item-id="settings-sidebar___data_and_privacy_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/remotedesktop.png) !important; }
+[data-list-item-id="settings-sidebar___messaging_permissions_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png) !important; }
+[data-list-item-id="settings-sidebar___notifications_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/bell.png) !important; }
+[data-list-item-id="settings-sidebar___vencord_main_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) !important; }
+[data-list-item-id="settings-sidebar___vencord_plugins_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/lightbulb.gif) !important; }
+[data-list-item-id="settings-sidebar___vencord_themes_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/gif.png) !important; }
+[data-list-item-id="settings-sidebar___vencord_updater_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/lightning.gif) !important; }
+[data-list-item-id="settings-sidebar___vencord_cloud_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/misc/connection.png) !important; }
+[data-list-item-id="settings-sidebar___vencord_backup_restore_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/misc/folder_open.png) !important; }
+[data-list-item-id="settings-sidebar___vesktop_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/780.png) !important; }
+[data-list-item-id="settings-sidebar___nitro_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/star.gif) !important; }
+[data-list-item-id="settings-sidebar___premium_guild_subscriptions_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/plane.gif) !important; }
+[data-list-item-id="settings-sidebar___subscriptions_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/coins.gif) !important; }
+[data-list-item-id="settings-sidebar___gift_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/gift.png) !important; }
+[data-list-item-id="settings-sidebar___billing_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/cart.png) !important; }
+[data-list-item-id="settings-sidebar___voice_and_video_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/webcam.png) !important; }
+[data-list-item-id="settings-sidebar___appearance_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/rainbow.gif) !important; }
+[data-list-item-id="settings-sidebar___accessibility_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/glasses.gif) !important; }
+[data-list-item-id="settings-sidebar___system_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/computer.gif) !important; }
+[data-list-item-id="settings-sidebar___language_and_time_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/status/idle.png) !important; }
+[data-list-item-id="settings-sidebar___activity_privacy_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/game.png) !important; }
+[data-list-item-id="settings-sidebar___connected_apps_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/voicecall/sharescreen2.png) !important; }
+[data-list-item-id="settings-sidebar___developer_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/keyboard.png) !important; }
+[data-list-item-id="settings-sidebar___logout_sidebar_item"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/status/donotdisturb.png) !important; }
+
+/* Any entry Discord adds later still gets an MSN glyph, not a blank. */
+[role="dialog"] [data-list-item-id^="settings-sidebar___"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png);
+}
+
+/* Copilot's vencord rule matched two attributes and outranked the ones
+   above; the same mapping again with the weight to win. */
+[role="dialog"] [data-list-item-id="settings-sidebar___account_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/userprofile.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___data_and_privacy_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/remotedesktop.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___messaging_permissions_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___notifications_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/bell.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___vencord_main_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___vencord_plugins_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/lightbulb.gif) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___vencord_themes_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/gif.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___vencord_updater_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/lightning.gif) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___vencord_cloud_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/misc/connection.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___vencord_backup_restore_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/misc/folder_open.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___vesktop_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/780.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___nitro_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/star.gif) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___premium_guild_subscriptions_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/plane.gif) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___subscriptions_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/coins.gif) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___gift_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/gift.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___billing_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/cart.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___voice_and_video_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/webcam.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___appearance_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/rainbow.gif) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___accessibility_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/glasses.gif) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___system_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/computer.gif) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___language_and_time_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/status/idle.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___activity_privacy_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/game.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___connected_apps_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/voicecall/sharescreen2.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___developer_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/keyboard.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___logout_sidebar_item"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/status/donotdisturb.png) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___vesktop_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/messenger.gif) !important; }
