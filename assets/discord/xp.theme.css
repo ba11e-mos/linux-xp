@@ -4540,3 +4540,22 @@ nav[class*="privateChannels_"]::-webkit-scrollbar-button:single-button:vertical:
 nav[class*="privateChannels_"]::-webkit-scrollbar-button:single-button:vertical:increment {
   background-image: url(https://heartmoder.github.io/dsn10-theme/assets/scrollbar/down.png);
 }
+
+/* The composer sat 4px lower than the Messenger box beside it (1330 vs
+   1326) and 4px shorter. Same 4px gap above it as everywhere, same 96px
+   height, so the two bottom boxes line up top and bottom. */
+[class*="chatContent_"] > form {
+  margin-top: 4px !important;
+  height: 96px !important;
+  min-height: 96px !important;
+  box-sizing: border-box !important;
+  padding: 17px 12px !important;
+}
+
+/* Member list: border-box so its 1px frame does not push it 1px past the
+   bottom line the other panes end on. */
+[class*="chat_"] > [class*="content_"] [class*="membersWrap_"] {
+  box-sizing: border-box !important;
+  width: 242px !important;
+  height: calc(100% + 34px) !important;
+}
