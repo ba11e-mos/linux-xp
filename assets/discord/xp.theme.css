@@ -15,40 +15,38 @@
 :root,
 .theme-light,
 .theme-dark {
-  --dsn-face:    #ECE9D8;
-  --dsn-border:  #7F9DB9;
-  --dsn-blue:    #316AC5;
-  --dsn-pane:    #FFFFFF;
-  --dsn-bar-h:   58px;
-
-  --background-base-lowest:     transparent;
-  --background-base-lower:      transparent;
-  --background-base-low:        transparent;
-  --background-surface-high:    #F4F6FB;
-  --background-surface-higher:  #FFFFFF;
+  --dsn-face: #ECE9D8;
+  --dsn-border: #7F9DB9;
+  --dsn-blue: #316AC5;
+  --dsn-pane: #FFFFFF;
+  --dsn-bar-h: 58px;
+  --background-base-lowest: transparent;
+  --background-base-lower: transparent;
+  --background-base-low: transparent;
+  --background-surface-high: #F4F6FB;
+  --background-surface-higher: #FFFFFF;
   --background-surface-highest: #FFFFFF;
-  --background-secondary-alt:   #FFFFFF;
-
+  --background-secondary-alt: #FFFFFF;
   --background-accent: var(--dsn-blue);
-  --background-brand:  var(--dsn-blue);
-
+  --background-brand: var(--dsn-blue);
   --text-default: #000000;
-  --text-strong:  #000000;
-  --text-muted:   #3B3B3B;
-  --text-subtle:  #5A5A5A;
-  --text-link:    #0000EE;
-
+  --text-strong: #000000;
+  --text-muted: #3B3B3B;
+  --text-subtle: #5A5A5A;
+  --text-link: #0000EE;
   --border-subtle: var(--dsn-border);
   --border-normal: var(--dsn-border);
   --border-strong: #5A7EA0;
-  --border-focus:  var(--dsn-blue);
-
-  --radius-xs: 0; --radius-sm: 0; --radius-md: 0;
-  --radius-lg: 0; --radius-xl: 0; --radius-xxl: 0;
-
-  --font-primary:  Tahoma, "DejaVu Sans", sans-serif;
+  --border-focus: var(--dsn-blue);
+  --radius-xs: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-xxl: 0;
+  --font-primary: Tahoma, "DejaVu Sans", sans-serif;
   --font-headline: Tahoma, "DejaVu Sans", sans-serif;
-  --font-display:  Tahoma, "DejaVu Sans", sans-serif;
+  --font-display: Tahoma, "DejaVu Sans", sans-serif;
 }
 
 /* ----------------------------------------------------------------
@@ -58,9 +56,7 @@
 [class*="app__"],
 [class*="base__"],
 [class*="content__"][class*="5e434"] {
-  background: url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/background.png) bottom right / 360px no-repeat,
-    linear-gradient(0deg,
-      #CDDCF3 0%, #D1DFF4 25%, #F9FAFF 60%, #F8FAFF 68%, #D4E1F5 100%) !important;
+  background: url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/background.png) bottom right / 360px no-repeat, linear-gradient(0deg, #CDDCF3 0%, #D1DFF4 25%, #F9FAFF 60%, #F8FAFF 68%, #D4E1F5 100%) !important;
 }
 
 /* ----------------------------------------------------------------
@@ -77,7 +73,6 @@
 [class*="base__"] > [class*="bar_"] {
   height: var(--dsn-bar-h) !important;
   background: url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) repeat-x !important;
-  border-bottom: 1px solid var(--dsn-border);
   padding-inline: 8px;
 }
 
@@ -96,43 +91,18 @@
    Requests entries, lifted out of the sidebar - drawing icons with
    pseudo-elements only gets you buttons that do nothing.
    ---------------------------------------------------------------- */
-[class*="friendsButtonContainer_"],
 li[class*="channel__"]:has(> div > a[href="/message-requests"]) {
-  position: fixed !important;
-  top: 13px !important;
   z-index: 300 !important;
-  width: 32px !important;
-  height: 32px !important;
-  margin: 0 !important;
-  padding: 0 !important;
 }
 
-[class*="friendsButtonContainer_"] { right: 152px !important; }
-li[class*="channel__"]:has(> div > a[href="/message-requests"]) { right: 110px !important; }
-
-[class*="friendsButtonContainer_"] a,
 li[class*="channel__"] > div > a[href="/message-requests"]:not(dsn-none) {
-  width: 32px !important;
-  height: 32px !important;
-  padding: 0 !important;
-  border: 1px solid transparent;
-  background-position: center !important;
   background-repeat: no-repeat !important;
-  background-size: 32px 32px !important;
 }
 
 [class*="friendsButtonContainer_"] a:hover,
 li[class*="channel__"] > div > a[href="/message-requests"]:hover:not(dsn-none) {
   border-color: var(--dsn-border);
   background-color: #D8E4F8 !important;
-}
-
-[class*="friendsButtonContainer_"] a {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) !important;
-}
-
-li[class*="channel__"] > div > a[href="/message-requests"]:not(dsn-none) {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/email2.png) !important;
 }
 
 /* Label and unread pill would sit on top of the icon. */
@@ -152,20 +122,18 @@ li[class*="channel__"] > div > a[href="/message-requests"] > *:not(dsn-none) {
    Panes. Contact list and message page are two MSN panels, framed
    identically so their tops and bottoms line up.
    ---------------------------------------------------------------- */
-[class*="sidebarList__"],
-[class*="page__"] {
-  background: var(--dsn-pane) !important;
-  border: 1px solid var(--dsn-border) !important;
+[class*="sidebarList__"] {
   margin: 4px 4px 4px 0 !important;
   overflow: hidden !important;
 }
 
-[class*="sidebarList__"] { margin-left: 4px !important; }
+[class*="sidebarList__"] {
+  margin-left: 4px !important;
+}
 
 [class*="guilds__"],
 [class*="privateChannels_"],
 [class*="chatContent_"],
-[class*="peopleColumn__"],
 [class*="sidebar_"] [class*="scroller__"] {
   background: transparent !important;
   border: none !important;
@@ -197,16 +165,12 @@ li[class*="channel__"] > div > a[href="/message-requests"] > *:not(dsn-none) {
    Contact list: MSN rows, not 2025 pills.
    ---------------------------------------------------------------- */
 [class*="privateChannels_"] li[class*="channel__"] {
-  height: 34px !important;
   margin: 0 !important;
 }
 
 [class*="privateChannels_"] li[class*="channel__"] a,
 [class*="privateChannels_"] li[class*="channel__"] > div[class*="interactive"] {
-  height: 34px !important;
-  min-height: 34px !important;
   border-radius: 0 !important;
-  padding: 0 6px !important;
   font: 11px var(--font-primary) !important;
 }
 
@@ -215,7 +179,6 @@ li[class*="channel__"] > div > a[href="/message-requests"] > *:not(dsn-none) {
   display: none !important;
 }
 
-[class*="privateChannels_"] li[class*="channel__"] [class*="interactive"]:hover,
 [class*="privateChannels_"] li[class*="channel__"] [class*="selected"] {
   background: #D8E4F8 !important;
   border-radius: 0 !important;
@@ -223,8 +186,6 @@ li[class*="channel__"] > div > a[href="/message-requests"] > *:not(dsn-none) {
 
 [class*="privateChannelsHeaderContainer__"] {
   font: bold 11px var(--font-primary) !important;
-  color: #003399 !important;
-  text-transform: none !important;
   padding: 2px 6px !important;
 }
 
@@ -250,44 +211,25 @@ li[class*="channel__"] > div > a[href="/message-requests"] > *:not(dsn-none) {
    the first free cell once the panes above are reframed. Pin it. */
 [class*="sidebar__"] > [class*="panels__"] {
   position: absolute !important;
-  left: 4px; right: 4px; bottom: 4px;
-  height: auto !important;
+  bottom: 4px;
   margin: 0 !important;
-  padding-top: 16px !important;
-  background: var(--dsn-pane) !important;
-  border: 1px solid var(--dsn-border) !important;
   z-index: 2;
 }
 
 /* Keep the contact list clear of it. */
-[class*="sidebarList__"] {
-  padding-bottom: 74px !important;
-}
 
 [class*="sidebar__"] > [class*="panels__"]::before {
   content: "";
   position: absolute;
-  top: 2px; left: 4px;
-  width: 92px; height: 13px;
   background: url(https://heartmoder.github.io/dsn10-theme/assets/msn/msn-blue.png) left center / contain no-repeat;
 }
 
 /* ----------------------------------------------------------------
    Member list and messages.
    ---------------------------------------------------------------- */
-[class*="membersWrap_"] {
-  background: var(--dsn-pane) !important;
-  border-left: 1px solid var(--dsn-border) !important;
-}
 
 [class*="membersWrap_"]::before {
   content: "Member List";
-  display: block;
-  padding: 4px 8px;
-  font: bold 11px var(--font-primary);
-  color: #003399;
-  background: linear-gradient(180deg, #FFFFFF 0%, #DCE6F7 100%);
-  border-bottom: 1px solid var(--dsn-border);
 }
 
 [class*="chatContent_"] [class*="username"] {
@@ -310,12 +252,6 @@ li[class*="channel__"] > div > a[href="/message-requests"] > *:not(dsn-none) {
   border-radius: 0 !important;
 }
 
-button[class*="button_"],
-[class*="lookFilled"] {
-  border-radius: 0 !important;
-}
-
-
 [class*="privateChannels_"] [class*="nameAndDecorators__"],
 [class*="privateChannels_"] [class*="nameAndDecorators__"] * {
   font-size: 11px !important;
@@ -331,23 +267,6 @@ button[class*="button_"],
 
 /* "Find or start a conversation" belongs in the toolbar. Scoped to the
    sidebar: the friends list has a search bar of its own. */
-nav[class*="privateChannels_"] > [class*="searchBar_"] {
-  position: fixed !important;
-  top: 17px !important;
-  left: 78px !important;
-  width: 240px !important;
-  height: 24px !important;
-  padding: 0 !important;
-  z-index: 300 !important;
-}
-
-nav[class*="privateChannels_"] > [class*="searchBar_"] button {
-  width: 240px !important;
-  height: 24px !important;
-  justify-content: flex-start !important;
-  text-align: left !important;
-  color: #767676 !important;
-}
 
 /* The Friends tab strip is lifted into the toolbar the same way. In a
    channel the header stays put as the "To:" line - that one lives under
@@ -355,8 +274,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
 [class*="page__"] > main > section {
   position: fixed !important;
   top: 14px !important;
-  left: 336px !important;
-  right: 200px !important;
   height: 30px !important;
   min-height: 30px !important;
   background: transparent !important;
@@ -453,16 +370,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
 /* ----------------------------------------------------------------
    Contact list: name left, picture right, square frames.
    ---------------------------------------------------------------- */
-[class*="privateChannels_"] {
-  background: linear-gradient(90deg, #FFFFFF 0%, #F2F6FD 100%) !important;
-}
-
-[class*="privateChannels_"] li[class*="channel__"],
-[class*="privateChannels_"] li[class*="channel__"] a,
-[class*="privateChannels_"] li[class*="channel__"] > div[class*="interactive"] {
-  height: 40px !important;
-  min-height: 40px !important;
-}
 
 [class*="privateChannels_"] li[class*="channel__"] [class*="layout__"] {
   flex-direction: row-reverse !important;
@@ -480,14 +387,7 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
 }
 
 [class*="privateChannels_"] [class*="avatar__"] {
-  border: 1px solid #5A5A5A;
   background: #FFFFFF;
-}
-
-[class*="privateChannels_"] [class*="selected"],
-[class*="privateChannels_"] li[class*="channel__"] [class*="interactive"]:hover {
-  background: #DCE6F7 !important;
-  border: 1px solid var(--dsn-border) !important;
 }
 
 [class*="privateChannelsHeaderContainer__"] {
@@ -500,25 +400,14 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
    The Messenger panel, rebuilt from the reference: title line, big
    framed photo, status only, icon strip along the bottom.
    ---------------------------------------------------------------- */
-[class*="sidebar__"] > [class*="panels__"] {
-  height: 92px !important;
-  padding: 18px 6px 4px 6px !important;
-  border-radius: 3px !important;
-  background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 55%, #E6EDFA 100%) !important;
-}
 
 [class*="sidebar__"] > [class*="panels__"]::before {
-  top: 4px; left: 8px;
-  width: 30px; height: 14px;
   background-image: url(https://heartmoder.github.io/dsn10-theme/assets/msn/msn-blue.png);
 }
 
 [class*="sidebar__"] > [class*="panels__"]::after {
   content: "Messenger";
   position: absolute;
-  top: 2px; left: 42px;
-  font: bold 13px var(--font-primary);
-  color: #1F3C88;
 }
 
 [class*="panels__"] [class*="container__37e49"],
@@ -529,25 +418,13 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
 }
 
 /* The photo: 48px, squared off and framed. */
-[class*="panels__"] [class*="avatar__"] {
-  width: 48px !important;
-  height: 48px !important;
-  border: 2px solid #4C4C4C;
-  border-radius: 3px;
-  background: #FFFFFF;
-}
 
 [class*="panels__"] [class*="avatar__"] svg,
 [class*="panels__"] [class*="avatar__"] foreignObject {
-  width: 48px !important;
-  height: 48px !important;
   mask: none !important;
 }
 
 /* MSN showed the status, not the account name. */
-[class*="panels__"] [class*="panelTitleContainer__"] {
-  display: none !important;
-}
 
 [class*="panels__"] [class*="panelSubtextContainer__"],
 [class*="panels__"] [class*="panelSubtextContainer__"] * {
@@ -555,20 +432,9 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
   color: #000000 !important;
 }
 
-[class*="panels__"] [class*="nameTag__"] {
-  margin-top: 14px !important;
-}
-
 /* Icon strip along the bottom edge. */
-[class*="panels__"] [class*="buttons__"] {
-  position: absolute !important;
-  right: 6px; bottom: 2px;
-  gap: 6px !important;
-}
 
 [class*="panels__"] [class*="buttons__"] button {
-  width: 22px !important;
-  height: 20px !important;
   background: transparent !important;
 }
 
@@ -606,12 +472,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
    DMbarsearchright.png draws, with the icon trio sitting past it on the
    window wash. The 1px middle slice is stretched to meet the curve. */
 [class*="base__"] > [class*="bar_"] {
-  background-image:
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchright.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
-  background-size: 57px 58px, calc(100% - 207px) 58px !important;
-  background-position: right 150px top, left top !important;
-  background-repeat: no-repeat, no-repeat !important;
   border-bottom: none !important;
 }
 
@@ -619,19 +479,13 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
    left a circle inside a square frame. */
 [class*="privateChannels_"] [class*="avatar__"] img,
 [class*="privateChannels_"] [class*="avatar__"] [class*="wrapper__"],
-[class*="panels__"] [class*="avatar__"] img,
 [class*="panels__"] [class*="avatar__"] [class*="wrapper__"] {
   border-radius: 2px !important;
 }
 
 /* MSN hung the pictures off the right edge of the contact list. */
-[class*="privateChannels_"] li[class*="channel__"] a,
-[class*="privateChannels_"] li[class*="channel__"] > div[class*="interactive"] {
-  padding: 0 0 0 8px !important;
-}
 
 [class*="privateChannels_"] [class*="avatar__"] {
-  border: 1px solid #5A5A5A;
   border-radius: 2px;
   margin-right: 0 !important;
 }
@@ -655,82 +509,21 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
 
 /* Flat full-width bar. The curve belongs to the search segment, not to
    the bar itself - that is where the slant in the screenshot comes from. */
-[class*="base__"] > [class*="bar_"] {
-  background-image:
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
-  background-size: 100% 58px !important;
-  background-position: left top !important;
-  background-repeat: no-repeat !important;
-}
 
 /* The search segment: left cap, stretched middle, slanted right cap,
    spanning the full height of the bar with the field sitting inside. */
 nav[class*="privateChannels_"] > [class*="searchBar_"] {
-  top: 0 !important;
-  left: 70px !important;
-  width: 320px !important;
-  height: 58px !important;
-  display: flex !important;
   align-items: center !important;
-  background-image:
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchleft.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchright.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
-  background-size: 9px 58px, 57px 58px, 254px 58px !important;
-  background-position: left top, right top, 9px top !important;
-  background-repeat: no-repeat, no-repeat, no-repeat !important;
-}
-
-nav[class*="privateChannels_"] > [class*="searchBar_"] button {
-  width: 215px !important;
-  height: 22px !important;
-  min-height: 22px !important;
-  margin-left: 14px !important;
-  padding: 0 6px !important;
-  background: #FFFFFF !important;
-  border: 1px solid #7F9DB9 !important;
-  border-radius: 0 !important;
-  font: 12px var(--font-primary) !important;
-  color: #3B3B3B !important;
 }
 
 /* The tab strip starts after the search segment. */
-[class*="page__"] > main > section {
-  left: 410px !important;
-}
 
 /* Divider before the icon trio. */
-[class*="base__"] > [class*="bar_"]::after {
-  content: "";
-  position: fixed;
-  top: 17px;
-  right: 186px;
-  width: 1px;
-  height: 24px;
-  background: #9BB8D9;
-}
 
 /* --- Contact list ----------------------------------------------- */
 
-[class*="privateChannels_"] li[class*="channel__"],
-[class*="privateChannels_"] li[class*="channel__"] a,
-[class*="privateChannels_"] li[class*="channel__"] > div[class*="interactive"] {
-  height: 42px !important;
-  min-height: 42px !important;
-}
-
 [class*="privateChannels_"] [class*="avatar__"] {
   border: none !important;
-  width: 34px !important;
-  height: 34px !important;
-}
-
-[class*="privateChannels_"] [class*="avatar__"] img,
-[class*="privateChannels_"] [class*="avatar__"] foreignObject,
-[class*="privateChannels_"] [class*="avatar__"] svg,
-[class*="privateChannels_"] [class*="avatar__"] [class*="wrapper__"] {
-  width: 34px !important;
-  height: 34px !important;
 }
 
 /* Selected row is a double-framed box, not a flat fill. */
@@ -745,69 +538,23 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
 /* --- Messenger panel -------------------------------------------- */
 
 [class*="sidebar__"] > [class*="panels__"] {
-  height: 86px !important;
-  padding: 20px 0 0 12px !important;
-  border-radius: 4px !important;
-  /* white above, the shaded icon band below */
-  background: linear-gradient(180deg, #FFFFFF 0%, #FDFDFF 58%, #E9EFFA 58%, #DCE6F6 100%) !important;
-}
-
-[class*="sidebar__"] > [class*="panels__"]::before {
-  top: 4px; left: 10px;
-  width: 46px; height: 16px;
-}
-
-[class*="sidebar__"] > [class*="panels__"]::after {
-  top: 3px; left: 62px;
-  font: bold 14px var(--font-primary);
-}
-
-[class*="panels__"] [class*="avatar__"] {
-  width: 46px !important;
-  height: 46px !important;
-  border: 3px solid #6E6E6E !important;
-  border-radius: 6px !important;
-}
-
-[class*="panels__"] [class*="avatar__"] svg,
-[class*="panels__"] [class*="avatar__"] foreignObject,
-[class*="panels__"] [class*="avatar__"] img {
-  width: 46px !important;
-  height: 46px !important;
-}
-
-[class*="panels__"] [class*="panelSubtextContainer__"] {
-  margin-top: 2px !important;
+  /* white above, the shaded icon band below */ background: linear-gradient(180deg, #FFFFFF 0%, #FDFDFF 58%, #E9EFFA 58%, #DCE6F6 100%) !important;
 }
 
 [class*="panels__"] [class*="panelSubtextContainer__"]::after {
   content: " \25BC";
-  font-size: 10px;
   color: #000000;
 }
 
-[class*="panels__"] [class*="nameTag__"] {
-  margin-top: 8px !important;
-  margin-left: 8px !important;
-}
-
 /* The icon strip: MSN glyphs on Discord's own buttons. */
-[class*="panels__"] [class*="buttons__"] {
-  right: 10px !important;
-  bottom: 4px !important;
-  gap: 18px !important;
-}
 
 [class*="panels__"] [class*="buttons__"] [class*="buttonChevron"] {
   display: none !important;
 }
 
 [class*="panels__"] [class*="buttons__"] button {
-  width: 24px !important;
-  height: 24px !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  background-size: 20px 20px !important;
 }
 
 [class*="panels__"] [class*="buttons__"] button > * {
@@ -816,10 +563,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
 
 [class*="panels__"] [class*="buttons__"] > div:nth-child(1) button {
   background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/mic.png) !important;
-}
-
-[class*="panels__"] [class*="buttons__"] > div:nth-child(2) button {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/volume.png) !important;
 }
 
 [class*="panels__"] [class*="buttons__"] > button:last-child {
@@ -834,8 +577,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
 
 [class*="panels__"] [class*="panelSubtextContainer__"]::before {
   content: "Online";
-  font: 14px var(--font-primary);
-  color: #000000;
 }
 
 [class*="panels__"] [class*="panelSubtextContainer__"] {
@@ -855,14 +596,6 @@ li[class*="channel__"] > div > a[href="/message-requests"]:not(dsn-none) {
   background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/newpawn.png) !important;
 }
 
-[class*="base__"] > [class*="bar_"]::after {
-  z-index: 310;
-}
-
-[class*="base__"] > [class*="bar_"]::after {
-  right: 202px !important;
-}
-
 /* The lifted buttons are still list rows as far as Discord is concerned,
    so the selected-row frame was landing on them. */
 [class*="friendsButtonContainer_"] [class*="interactive"],
@@ -873,7 +606,6 @@ li[class*="channel__"] > [class*="interactive"]:where(:has(> a[href="/message-re
   outline: none !important;
 }
 
-[class*="friendsButtonContainer_"] a:not(:hover),
 li[class*="channel__"] > div > a[href="/message-requests"]:not(:hover):not(dsn-none) {
   background-color: transparent !important;
   border-color: transparent !important;
@@ -890,46 +622,14 @@ li[class*="channel__"] > div > a[href="/message-requests"]:not(:hover):not(dsn-n
 /* All of it on the bar: flat strip underneath, then the search segment's
    three slices on top. Painting the segment here instead of on the search
    field keeps it there in servers, where that field does not exist. */
-[class*="base__"] > [class*="bar_"] {
-  background-image:
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchleft.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchright.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
-  background-size: 9px 58px, 254px 58px, 57px 58px, 100% 58px !important;
-  background-position: 70px top, 79px top, 333px top, left top !important;
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat !important;
-}
 
 nav[class*="privateChannels_"] > [class*="searchBar_"] {
-  left: 84px !important;
-  top: 18px !important;
-  width: 240px !important;
-  height: 22px !important;
   background: none !important;
-}
-
-nav[class*="privateChannels_"] > [class*="searchBar_"] button {
-  margin-left: 0 !important;
-  width: 240px !important;
 }
 
 /* The Friends button is the buddies tile. */
 [class*="friendsButtonContainer_"] {
-  left: 6px !important;
   right: auto !important;
-  top: 4px !important;
-  width: 54px !important;
-  height: 50px !important;
-}
-
-[class*="friendsButtonContainer_"] a {
-  width: 54px !important;
-  height: 50px !important;
-  border: 1px solid var(--dsn-border) !important;
-  border-radius: 4px !important;
-  background-color: #FFFFFF !important;
-  background-size: 40px 40px !important;
 }
 
 [class*="friendsButtonContainer_"] a:not(:hover) {
@@ -938,9 +638,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
 }
 
 /* Which leaves the reference's trio on the right: contacts, mail, help. */
-li[class*="channel__"]:has(> div > a[href="/message-requests"]) {
-  right: 150px !important;
-}
 
 /* --- Contact list ----------------------------------------------- */
 
@@ -1001,53 +698,6 @@ nav[class*="container__2637a"] li[class*="containerDefault_"]:hover [class*="lin
 
 /* --- Messenger panel: bigger, closer to the screenshot ----------- */
 
-[class*="sidebar__"] > [class*="panels__"] {
-  height: 104px !important;
-  padding: 24px 0 0 14px !important;
-  background: linear-gradient(180deg, #FFFFFF 0%, #FDFDFF 62%, #E9EFFA 62%, #DAE4F6 100%) !important;
-}
-
-[class*="sidebar__"] > [class*="panels__"]::before {
-  top: 6px; left: 12px;
-  width: 54px; height: 19px;
-}
-
-[class*="sidebar__"] > [class*="panels__"]::after {
-  top: 4px; left: 74px;
-  font: bold 16px var(--font-primary);
-}
-
-[class*="panels__"] [class*="avatar__"] {
-  width: 56px !important;
-  height: 56px !important;
-}
-
-[class*="panels__"] [class*="avatar__"] svg,
-[class*="panels__"] [class*="avatar__"] foreignObject,
-[class*="panels__"] [class*="avatar__"] img {
-  width: 56px !important;
-  height: 56px !important;
-}
-
-[class*="panels__"] [class*="panelSubtextContainer__"]::before {
-  font-size: 16px;
-}
-
-[class*="panels__"] [class*="nameTag__"] {
-  margin-top: 16px !important;
-  margin-left: 12px !important;
-}
-
-[class*="panels__"] [class*="buttons__"] button {
-  width: 28px !important;
-  height: 28px !important;
-  background-size: 24px 24px !important;
-}
-
-[class*="sidebarList__"] {
-  padding-bottom: 92px !important;
-}
-
 /* With the title and the back arrows hidden, the icon trio is the only
    flex item left and drifts to the left edge. */
 [class*="base__"] > [class*="bar_"] [class*="trailing_"] {
@@ -1059,22 +709,6 @@ nav[class*="container__2637a"] li[class*="containerDefault_"]:hover [class*="lin
 
 /* The channel search fills the toolbar's search segment in server views,
    the way the reference has it. */
-[class*="page__"] [class*="search__"]:has([class*="searchBar_"]) {
-  position: fixed !important;
-  top: 18px !important;
-  left: 84px !important;
-  width: 240px !important;
-  z-index: 300 !important;
-}
-
-[class*="page__"] [class*="search__"] [class*="searchBar_"] {
-  width: 240px !important;
-  height: 22px !important;
-  background: #FFFFFF !important;
-  border: 1px solid #7F9DB9 !important;
-  border-radius: 0 !important;
-  font: 12px var(--font-primary) !important;
-}
 
 /* Nothing sits above the Direct Messages header any more - the nav rows
    went to the toolbar - so the spacer and the divider are dead space. */
@@ -1084,9 +718,6 @@ nav[class*="privateChannels_"] [class*="sectionDivider_"] {
 }
 
 /* Status reads beside the photo, not down on the icon band. */
-[class*="panels__"] [class*="nameTag__"] {
-  margin-top: 6px !important;
-}
 
 /* ================================================================
    Sixth pass.
@@ -1096,12 +727,8 @@ nav[class*="privateChannels_"] [class*="sectionDivider_"] {
    the reference draws them as plain manila folders. */
 [class*="folderGroup__"] [class*="folderButton__"] {
   position: relative !important;
-  width: 40px !important;
-  height: 34px !important;
-  margin: 10px auto 0 auto !important;
   background: #E3C56A !important;
   border: 1px solid #8A8A8A !important;
-  border-radius: 0 2px 2px 2px !important;
   overflow: visible !important;
 }
 
@@ -1113,8 +740,10 @@ nav[class*="privateChannels_"] [class*="sectionDivider_"] {
 [class*="folderGroup__"] [class*="folderButton__"]::before {
   content: "";
   position: absolute;
-  top: -6px; left: -1px;
-  width: 16px; height: 6px;
+  top: -6px;
+  left: -1px;
+  width: 16px;
+  height: 6px;
   background: #E3C56A;
   border: 1px solid #8A8A8A;
   border-bottom: none;
@@ -1144,42 +773,8 @@ nav[class*="privateChannels_"] [class*="sectionDivider_"] {
 
 /* The tile: rounded like the reference, with the trio a little smaller
    inside a slightly larger frame. */
-[class*="friendsButtonContainer_"] {
-  width: 58px !important;
-  height: 52px !important;
-}
-
-[class*="friendsButtonContainer_"] a {
-  width: 58px !important;
-  height: 52px !important;
-  border-radius: 8px !important;
-  background-color: #FDFDFE !important;
-  background-size: 34px 34px !important;
-  box-shadow: inset 0 0 0 1px #FFFFFF;
-}
 
 /* Messenger panel proportions, measured off the crop. */
-[class*="sidebar__"] > [class*="panels__"] {
-  height: 92px !important;
-  padding: 22px 0 0 12px !important;
-  background: linear-gradient(180deg, #FFFFFF 0%, #FDFDFF 66%, #E9EFFA 66%, #DAE4F6 100%) !important;
-}
-
-[class*="panels__"] [class*="avatar__"],
-[class*="panels__"] [class*="avatar__"] svg,
-[class*="panels__"] [class*="avatar__"] foreignObject,
-[class*="panels__"] [class*="avatar__"] img {
-  width: 52px !important;
-  height: 52px !important;
-}
-
-[class*="sidebarList__"] {
-  padding-bottom: 80px !important;
-}
-
-[class*="panels__"] [class*="nameTag__"] {
-  margin-top: 0 !important;
-}
 
 /* ================================================================
    Seventh pass: the bar slants off and the search sits outside it,
@@ -1188,37 +783,11 @@ nav[class*="privateChannels_"] [class*="sectionDivider_"] {
 
 /* The bar runs from the left edge, slants off near the right, and the
    search field sits beyond the slant on the window wash - p1's layout. */
-[class*="base__"] > [class*="bar_"] {
-  background-image:
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchright.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
-  background-size: 57px 58px, calc(100% - 250px) 58px !important;
-  background-position: right 193px top, left top !important;
-  background-repeat: no-repeat, no-repeat !important;
-}
 
 /* Search, outside the slant. Both the sidebar one (DMs) and the channel
    one (servers) land in the same place. */
-nav[class*="privateChannels_"] > [class*="searchBar_"],
-[class*="page__"] [class*="search__"]:has([class*="searchBar_"]) {
-  left: auto !important;
-  right: 24px !important;
-  top: 18px !important;
-  width: 200px !important;
-  height: 22px !important;
-}
-
-nav[class*="privateChannels_"] > [class*="searchBar_"] button,
-[class*="page__"] [class*="search__"] [class*="searchBar_"] {
-  width: 200px !important;
-}
 
 /* Message Requests moves into the bar, where p1 keeps its icon row. */
-li[class*="channel__"]:has(> div > a[href="/message-requests"]) {
-  right: auto !important;
-  left: 80px !important;
-  top: 13px !important;
-}
 
 /* Discord's inbox and help buttons do nothing useful here. */
 [class*="bar_"] [aria-label="Inbox"],
@@ -1227,24 +796,15 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]) {
   display: none !important;
 }
 
-[class*="base__"] > [class*="bar_"]::after {
-  display: none !important;
-}
-
 /* The tab strip starts right after Message Requests now. */
 [class*="page__"] > main > section {
   left: 130px !important;
-  right: 240px !important;
 }
 
 /* --- Server rail ------------------------------------------------ */
 
 /* The Discord/DM button collides with the MSN tile above it, and the tile
    already goes to direct messages. */
-[class*="guilds__"] [data-list-item-id="guildsnav___home"],
-[class*="guilds__"] [class*="tutorialContainer__1f388"] {
-  display: none !important;
-}
 
 /* Folders are plain coloured squares - no tab. */
 [class*="folderGroup__"] [class*="folderButton__"]::before {
@@ -1258,32 +818,29 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]) {
   border-radius: 2px !important;
 }
 
-[class*="folderGroup__"]:nth-child(6n+1) [class*="folderButton__"] { background: #E2A0B8 !important; }
-[class*="folderGroup__"]:nth-child(6n+2) [class*="folderButton__"] { background: #E3C56A !important; }
-[class*="folderGroup__"]:nth-child(6n+3) [class*="folderButton__"] { background: #9FC5E8 !important; }
-[class*="folderGroup__"]:nth-child(6n+4) [class*="folderButton__"] { background: #AECFA0 !important; }
-[class*="folderGroup__"]:nth-child(6n+5) [class*="folderButton__"] { background: #C9B0DC !important; }
-[class*="folderGroup__"]:nth-child(6n)   [class*="folderButton__"] { background: #E8B98A !important; }
+[class*="folderGroup__"]:nth-child(6n+1) [class*="folderButton__"] {
+  background: #E2A0B8 !important;
+}
+[class*="folderGroup__"]:nth-child(6n+2) [class*="folderButton__"] {
+  background: #E3C56A !important;
+}
+[class*="folderGroup__"]:nth-child(6n+3) [class*="folderButton__"] {
+  background: #9FC5E8 !important;
+}
+[class*="folderGroup__"]:nth-child(6n+4) [class*="folderButton__"] {
+  background: #AECFA0 !important;
+}
+[class*="folderGroup__"]:nth-child(6n+5) [class*="folderButton__"] {
+  background: #C9B0DC !important;
+}
+[class*="folderGroup__"]:nth-child(6n) [class*="folderButton__"] {
+  background: #E8B98A !important;
+}
 
 /* --- Messenger panel: the name is on it in the reference -------- */
 
 [class*="panels__"] [class*="panelTitleContainer__"] {
   display: block !important;
-}
-
-[class*="panels__"] [class*="panelTitleContainer__"],
-[class*="panels__"] [class*="panelTitleContainer__"] * {
-  font: bold 12px var(--font-primary) !important;
-  color: #000000 !important;
-  line-height: 14px !important;
-}
-
-[class*="sidebar__"] > [class*="panels__"] {
-  height: 100px !important;
-}
-
-[class*="sidebarList__"] {
-  padding-bottom: 88px !important;
 }
 
 /* ================================================================
@@ -1351,18 +908,9 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]) {
    search block starts, which puts the slant mid-bar.
    ================================================================ */
 
-[class*="base__"] > [class*="bar_"] {
-  background-image:
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
-  background-size: 50% 58px !important;
-  background-position: left top !important;
-  background-repeat: no-repeat !important;
-}
-
 nav[class*="privateChannels_"] > [class*="searchBar_"],
 [class*="page__"] [class*="search__"]:has([class*="searchBar_"]) {
   position: fixed !important;
-  left: 50% !important;
   right: auto !important;
   top: 0 !important;
   width: 231px !important;
@@ -1370,10 +918,7 @@ nav[class*="privateChannels_"] > [class*="searchBar_"],
   padding: 23px 0 0 45px !important;
   box-sizing: border-box !important;
   display: block !important;
-  background-image:
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchright.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/searchbarbgrepeat.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/searchbarbg.png) !important;
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchright.png), url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/searchbarbgrepeat.png), url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/searchbarbg.png) !important;
   background-size: 57px 58px, 196px 26px, 35px 26px !important;
   background-position: left top, 0 21px, 196px 21px !important;
   background-repeat: no-repeat, no-repeat, no-repeat !important;
@@ -1394,7 +939,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button,
   border: 1px solid #7F9DB9 !important;
   border-radius: 0 !important;
   font: 12px var(--font-primary) !important;
-  color: #6D6D6D !important;
   overflow: hidden !important;
 }
 
@@ -1417,10 +961,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button svg {
   display: block !important;
 }
 
-[class*="guilds__"] [class*="scroller_"] {
-  padding-top: 8px !important;
-}
-
 /* ================================================================
    Messenger panel, rebuilt from measurements of the p1 crop (1x):
    title row at 8px, 46px photo at (14, 28) with a 2px slate frame,
@@ -1428,23 +968,10 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button svg {
    the bottom carrying the icons. The photo overlaps the band.
    ================================================================ */
 [class*="sidebar__"] > [class*="panels__"] {
-  height: 96px !important;
-  padding: 26px 0 0 14px !important;
   box-sizing: border-box !important;
-  border: 1px solid #A5BCDF !important;
-  border-radius: 4px !important;
-  background: linear-gradient(180deg, #EEF3FC 0%, #FFFFFF 32%, #FFFFFF 100%) !important;
-  box-shadow: inset 0 0 0 1px #FFFFFF !important;
-}
-
-[class*="sidebar__"] > [class*="panels__"]::before {
-  top: 7px !important; left: 8px !important;
-  width: 42px !important; height: 15px !important;
-  background-size: contain !important;
 }
 
 [class*="sidebar__"] > [class*="panels__"]::after {
-  top: 6px !important; left: 54px !important;
   font: bold 13px var(--font-primary) !important;
   color: #233C8F !important;
 }
@@ -1466,9 +993,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button svg {
   z-index: 2 !important;
   width: 46px !important;
   height: 46px !important;
-  border: 2px solid #5A6B8C !important;
-  border-radius: 4px !important;
-  background: #FFFFFF !important;
 }
 
 [class*="panels__"] [class*="avatar__"] svg,
@@ -1505,7 +1029,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button svg {
 
 [class*="panels__"] [class*="panelSubtextContainer__"]::after {
   font-size: 9px !important;
-  margin-left: 4px !important;
 }
 
 /* The band: rounded on top, light blue, icons spread across it to the
@@ -1516,7 +1039,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button svg {
   right: 4px !important;
   bottom: 4px !important;
   height: 24px !important;
-  padding: 0 14px 0 66px !important;
   box-sizing: border-box !important;
   display: flex !important;
   justify-content: space-between !important;
@@ -1533,10 +1055,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button svg {
   background-size: 20px 20px !important;
 }
 
-[class*="sidebarList__"] {
-  padding-bottom: 92px !important;
-}
-
 /* The band has to measure against the panel, not the inner container
    Discord makes position:relative - otherwise it floats up over the
    status line. */
@@ -1548,13 +1066,16 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button svg {
 /* The wordmark at its native 50x26, which is how wide it is next to
    "Messenger" in the reference. */
 [class*="sidebar__"] > [class*="panels__"]::before {
-  top: 1px !important; left: 6px !important;
-  width: 50px !important; height: 26px !important;
+  top: 1px !important;
+  left: 6px !important;
+  width: 50px !important;
+  height: 26px !important;
   background-size: 50px 26px !important;
 }
 
 [class*="sidebar__"] > [class*="panels__"]::after {
-  top: 7px !important; left: 56px !important;
+  top: 7px !important;
+  left: 56px !important;
 }
 
 /* Past the curve the bar carries on as the thin 21px top strip all the way
@@ -1562,20 +1083,10 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button svg {
    over the search field in the reference. Positioned from the right because
    a percentage background-position is relative to the leftover space, not
    to the bar. */
-[class*="base__"] > [class*="bar_"] {
-  background-image:
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMmainbarright.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMmainbarmiddle.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
-  background-size: 10px 21px, calc(50% - 66px) 21px, 50% 58px !important;
-  background-position: right 0 top 0, right 10px top 0, left top !important;
-  background-repeat: no-repeat, no-repeat, no-repeat !important;
-}
 
 /* Overlap the bar texture by a pixel so the join does not show. */
 nav[class*="privateChannels_"] > [class*="searchBar_"],
 [class*="page__"] [class*="search__"]:has([class*="searchBar_"]) {
-  left: calc(50% - 4px) !important;
   border: none !important;
 }
 
@@ -1667,9 +1178,7 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button::before {
   border: 2px solid #A9C1E8 !important;
   border-radius: 8px !important;
   box-shadow: inset 0 0 0 1px #FFFFFF !important;
-  background:
-    url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) center / 42px 42px no-repeat,
-    linear-gradient(180deg, #F4F6FB 0%, #DCE2EE 100%) !important;
+  background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) center / 42px 42px no-repeat, linear-gradient(180deg, #F4F6FB 0%, #DCE2EE 100%) !important;
 }
 
 [class*="friendsButtonContainer_"] a:hover {
@@ -1680,13 +1189,7 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button::before {
 /* Starts after the tile with its rounded left cap, runs to the search
    block, which brings the curve. */
 [class*="base__"] > [class*="bar_"] {
-  background-image:
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMmainbarright.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMmainbarmiddle.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchleft.png),
-    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
-  background-size: 10px 21px, calc(50% - 66px) 21px, 9px 58px, calc(50% - 81px) 58px !important;
-  background-position: right 0 top 0, right 10px top 0, 72px top, 81px top !important;
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMmainbarright.png), url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMmainbarmiddle.png), url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchleft.png), url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat !important;
 }
 
@@ -1732,11 +1235,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"],
 }
 
 /* --- Sidebar at the reference's width --------------------------- */
-[class*="sidebarList__"] {
-  width: 244px !important;
-  min-width: 244px !important;
-  max-width: 244px !important;
-}
 
 [class*="guilds__"] [class*="scroller_"] {
   padding-top: 14px !important;
@@ -1745,7 +1243,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"],
 /* --- Messenger box sits in the list column, beside the rail ----- */
 [class*="sidebar__"] > [class*="panels__"] {
   left: 76px !important;
-  right: 4px !important;
 }
 
 [class*="panels__"] [class*="panelSubtextContainer__"]::after {
@@ -1786,19 +1283,11 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 }
 
 /* Bar texture runs 4px under the curve so the join never shows. */
-[class*="base__"] > [class*="bar_"] {
-  background-size: 10px 21px, calc(50% - 66px) 21px, 9px 58px, calc(50% - 77px) 58px !important;
-}
-
-nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="channel__"] a {
-  border-radius: 8px !important;
-}
 
 /* The sidebar grid area stays wider than the list column; pin the box to
    the list's own width instead of stretching to the area. */
 [class*="sidebar__"] > [class*="panels__"] {
   right: auto !important;
-  width: 246px !important;
 }
 
 /* Name and status sit 8px right of the photo and 3px higher, as measured. */
@@ -1809,10 +1298,6 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 
 [class*="panels__"] [class*="accountPopoutButtonWrapper__"] {
   gap: 8px !important;
-}
-
-[class*="sidebar__"] > [class*="panels__"] {
-  padding-top: 23px !important;
 }
 
 /* ================================================================
@@ -1833,11 +1318,6 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="channel__"] a {
   border-right: none !important;
   border-radius: 8px 0 0 8px !important;
-}
-
-[class*="base__"] > [class*="bar_"] {
-  background-position: right 0 top 0, right 10px top 0, 76px top, 85px top !important;
-  background-size: 10px 21px, calc(50% - 66px) 21px, 9px 58px, calc(50% - 81px) 58px !important;
 }
 
 /* --- Message Requests hovers like the header buttons: not at all - */
@@ -1885,7 +1365,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 [class*="page__"] :is(main, [class*="chat_"]) > section [class*="item_"] {
   background: transparent !important;
   border: 1px solid transparent !important;
-  border-radius: 0 !important;
   color: #0033AA !important;
   font: 11px var(--font-primary) !important;
   padding: 1px 7px !important;
@@ -1957,23 +1436,8 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
   background: linear-gradient(180deg, #FFFFFF 0%, #F3F6FC 100%) !important;
 }
 
-[class*="nowPlayingColumn__"] {
-  background: linear-gradient(90deg, #EEF3FB 0%, #D8E3F4 100%) !important;
-  border-left: 1px solid var(--dsn-border) !important;
-}
-
-[class*="membersWrap_"],
-[class*="membersWrap_"] [class*="members_"] {
-  background: linear-gradient(90deg, #FFFFFF 0%, #E1E9F7 100%) !important;
-}
-
 /* The composer sits on a grey-blue band, as at the foot of the chat
    window in the reference. */
-[class*="chatContent_"] > form {
-  background: linear-gradient(180deg, #E9EEF7 0%, #DCE3EF 100%) !important;
-  border-top: 1px solid var(--dsn-border) !important;
-  padding-top: 8px !important;
-}
 
 /* Tile frame: thicker and paler than the generic XP border, trio fills
    about two thirds of the box - both measured off the reference crop. */
@@ -1981,9 +1445,7 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
   border-width: 3px 0 3px 3px !important;
   border-style: solid !important;
   border-color: #B5CAEC !important;
-  background:
-    url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) 6px center / 46px 46px no-repeat,
-    linear-gradient(180deg, #F2F4F9 0%, #DCE1EC 100%) !important;
+  background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) 6px center / 46px 46px no-repeat, linear-gradient(180deg, #F2F4F9 0%, #DCE1EC 100%) !important;
 }
 
 /* Let the band show round the input, as in the reference. */
@@ -2023,18 +1485,16 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
   box-sizing: border-box !important;
   padding: 23px 0 0 14px !important;
   margin: 0 !important;
-  border: 1px solid #A5BCDF !important;
-  border-radius: 4px !important;
   background: linear-gradient(180deg, #EEF3FC 0%, #FFFFFF 32%, #FFFFFF 100%) !important;
-  box-shadow: inset 0 0 0 1px #FFFFFF !important;
   align-items: flex-start !important;
 }
 
 [class*="sidebar__"] > [class*="panels__"] > div[class*="container__37e49"]::before {
   content: "" !important;
   position: absolute !important;
-  top: 1px; left: 6px;
-  width: 50px; height: 26px;
+  left: 6px;
+  width: 50px;
+  height: 26px;
   background: url(https://heartmoder.github.io/dsn10-theme/assets/msn/msn-blue.png) left top / 50px 26px no-repeat !important;
   display: block !important;
 }
@@ -2042,7 +1502,7 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 [class*="sidebar__"] > [class*="panels__"] > div[class*="container__37e49"]::after {
   content: "Messenger" !important;
   position: absolute !important;
-  top: 7px; left: 56px;
+  left: 56px;
   font: bold 13px var(--font-primary) !important;
   color: #233C8F !important;
   display: block !important;
@@ -2050,8 +1510,6 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 
 /* No frame on the account photo. */
 [class*="panels__"] [class*="avatar__"] {
-  border: none !important;
-  border-radius: 2px !important;
   background: transparent !important;
 }
 
@@ -2060,23 +1518,14 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
   box-sizing: border-box !important;
   width: 100% !important;
   margin: 0 !important;
-  padding: 10px 10px 8px 10px !important;
-  border: 1px solid #7E9BD0 !important;
-  border-radius: 4px !important;
   background: linear-gradient(180deg, #FFFFFF 0%, #F1F5FC 40%, #C9D6EE 100%) !important;
-  box-shadow: inset 0 0 0 1px #FFFFFF !important;
 }
 
 #vc-spotify-info-wrapper {
-  gap: 8px !important;
   align-items: flex-start !important;
-  margin-bottom: 6px !important;
 }
 
 #vc-spotify-album-image {
-  width: 36px !important;
-  height: 36px !important;
-  margin-top: 4px !important;
   border-radius: 2px !important;
 }
 
@@ -2129,8 +1578,6 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 /* Five round, glossy silver buttons. */
 .vc-spotify-button-row {
   justify-content: space-between !important;
-  padding: 0 2px !important;
-  margin-top: 4px !important;
 }
 
 .vc-spotify-button {
@@ -2163,9 +1610,6 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 }
 
 /* Keep the contact list clear of whichever boxes are showing. */
-[class*="sidebarList__"]:where(:has(~ [class*="panels__"] #vc-spotify-player)):not(#dsn-none):not([data-dsn-none]) {
-  padding-bottom: 250px !important;
-}
 
 /* "#vc-spotify-titles p" outranks "#vc-spotify-song-title", so the title
    came out grey and regular. Two ids beat one. */
@@ -2180,19 +1624,6 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
   justify-content: flex-start !important;
   margin: 0 !important;
   padding: 0 !important;
-  gap: 1px !important;
-}
-
-#vc-spotify-player {
-  padding-top: 8px !important;
-}
-
-#vc-spotify-progress-bar {
-  margin-bottom: 4px !important;
-}
-
-#vc-spotify-progress-bar {
-  margin-top: -6px !important;
 }
 
 /* Message Requests keeps its header in the page, so the toolbar shows
@@ -2206,7 +1637,6 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
   height: 34px !important;
   min-height: 34px !important;
   background: linear-gradient(180deg, #FFFFFF 0%, #E8EFFB 100%) !important;
-  border-bottom: 1px solid var(--dsn-border) !important;
   z-index: auto !important;
 }
 
@@ -2220,10 +1650,8 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover::after,
 [class*="friendsButtonContainer_"]:hover::after {
   position: absolute;
-  top: calc(100% + 9px);
   left: 50%;
   transform: translateX(-50%);
-  padding: 6px 10px;
   white-space: nowrap;
   font: 14px var(--font-primary);
   color: #000000;
@@ -2245,10 +1673,6 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover::before,
 [class*="friendsButtonContainer_"]:hover::before {
   content: "";
   position: absolute;
-  top: calc(100% + 4px);
-  left: calc(50% - 5px);
-  width: 9px;
-  height: 9px;
   background: #F4F6FB;
   border-top: 1px solid #7F9DB9;
   border-left: 1px solid #7F9DB9;
@@ -2293,10 +1717,6 @@ button[class*="button_"],
    between them: the To: line and the messages in one box, the composer
    in its own box under it, the member list in its own box beside them
    with its header level with the To: line. */
-[class*="sidebarList__"] {
-  border-color: #9DB4DF !important;
-  border-radius: 6px 6px 0 0 !important;
-}
 
 [class*="page__"] {
   background: transparent !important;
@@ -2310,37 +1730,13 @@ button[class*="button_"],
   overflow: visible !important;
 }
 
-[class*="subtitleContainer_"] > section {
-  border: 1px solid #8FA8D6 !important;
-  border-radius: 8px 8px 0 0 !important;
-  background: linear-gradient(180deg, #FFFFFF 0%, #E6ECF7 100%) !important;
-}
-
-[class*="subtitleContainer_"]:where(:has(+ div > div > aside:not([aria-labelledby^="user-profile"]))):not([data-dsn-none]):not([data-dsn-none]):not(dsn-none):not(dsn-none):not(dsn-none) {
-  margin-right: 248px !important;
-}
-
-[class*="messagesWrapper_"] {
-  background: #FFFFFF !important;
-  border: 1px solid #8FA8D6 !important;
-  border-top: none !important;
-}
-
 [class*="chatContent_"] > form {
   margin-top: 6px !important;
-  border: 1px solid #8FA8D6 !important;
-  border-radius: 8px 8px 4px 4px !important;
 }
 
 [class*="membersWrap_"] {
-  width: 240px !important;
   min-width: 240px !important;
-  margin: -35px 0 0 8px !important;
-  height: calc(100% + 35px) !important;
-  border: 1px solid #8FA8D6 !important;
-  border-radius: 8px 8px 0 0 !important;
   overflow: hidden !important;
-  position: relative !important;
   z-index: 2 !important;
 }
 
@@ -2350,19 +1746,11 @@ button[class*="button_"],
   padding: 9px 10px !important;
   font: bold 13px var(--font-primary) !important;
   color: #000000 !important;
-  background: linear-gradient(180deg, #FFFFFF 0%, #DDE5F4 100%) !important;
-  border-bottom: 1px solid #8FA8D6 !important;
-}
-
-[class*="membersWrap_"] [class*="members_"] {
-  width: 240px !important;
 }
 
 /* Friends page: the list is a rounded window, Active Now sits on the
    wash. */
 [class*="peopleColumn__"] {
-  border: 1px solid #8FA8D6 !important;
-  border-radius: 6px 6px 0 0 !important;
   margin-right: 8px !important;
 }
 
@@ -2421,11 +1809,9 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover,
 
 [class*="membersWrap_"] {
   position: absolute !important;
-  top: -34px !important;
   right: 0 !important;
   bottom: 0 !important;
   width: 240px !important;
-  height: auto !important;
   margin: 0 !important;
 }
 
@@ -2446,10 +1832,6 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover,
   height: auto !important;
   align-self: stretch !important;
   margin-bottom: 108px !important;
-}
-
-[class*="sidebarList__"]:where(:has(~ [class*="panels__"] #vc-spotify-player)):not(#dsn-none):not([data-dsn-none]) {
-  margin-bottom: 236px !important;
 }
 
 /* One-line titles keep the player a fixed height, which the margin above
@@ -2501,13 +1883,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 
 /* The bar grew to 10px downward from its top, so the knob sat high.
    Centre the knob on it, and lift the whole bar a little. */
-#vc-spotify-progress-bar {
-  margin-top: -10px !important;
-}
-
-#vc-spotify-progress-bar [class*="grabber__"] {
-  margin-top: 3px !important;
-}
 
 [class*="sidebar__"] > [class*="panels__"] > div[class*="container__37e49"]::before {
   top: -3px !important;
@@ -2520,10 +1895,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 [class*="page__"] {
   width: auto !important;
   justify-self: stretch !important;
-}
-
-[class*="sidebarList__"]:where(:has(~ [class*="panels__"] #vc-spotify-player)):not(#dsn-none):not([data-dsn-none]) {
-  margin-bottom: 232px !important;
 }
 
 /* The composer's frame and margin added ~32px the message list did not
@@ -2543,12 +1914,10 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
    insets alone resolved to 100% of the row and stopped 34px short. */
 [class*="chat_"] > [class*="content_"] > [class*="membersWrap_"],
 [class*="membersWrap_"] {
-  height: calc(100% + 34px) !important;
   max-height: none !important;
 }
 
-[class*="chat_"] > [class*="content_"] > [class*="membersWrap_"],
-[class*="membersWrap_"] {
+[class*="chat_"] > [class*="content_"] > [class*="membersWrap_"] {
   height: calc(100% + 32px) !important;
 }
 
@@ -2571,31 +1940,9 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 
 /* --- Frames: 2px slate-blue with a white inner line, measured off a
    6x crop of the reference; the contact list's frame is paler. ---- */
-[class*="sidebarList__"] {
-  border: 2px solid #A9C2EC !important;
-  box-shadow: inset 0 0 0 1px #DCE7F8 !important;
-}
-
-[class*="subtitleContainer_"] > section,
-[class*="chatContent_"] > form,
-[class*="membersWrap_"],
-[class*="peopleColumn__"] {
-  border: 2px solid #7E98C2 !important;
-  box-shadow: inset 0 0 0 1px #FFFFFF !important;
-}
-
-[class*="messagesWrapper_"] {
-  border: 2px solid #7E98C2 !important;
-  border-top: none !important;
-  box-shadow: inset 1px 0 0 #FFFFFF, inset -1px 0 0 #FFFFFF, inset 0 -1px 0 #FFFFFF !important;
-}
 
 /* Member list sits 2px lower now that the header has a 2px border, so
    its top still lines up with the To: box. */
-[class*="membersWrap_"] {
-  top: -36px !important;
-  height: calc(100% + 32px) !important;
-}
 
 /* --- Hover on text buttons -------------------------------------- */
 [class*="page__"] :is(main, [class*="chat_"]) > section [class*="item_"]:hover {
@@ -2619,10 +1966,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 }
 
 /* --- Player: progress higher, clear of the buttons -------------- */
-#vc-spotify-progress-bar {
-  margin-top: -16px !important;
-  margin-bottom: 10px !important;
-}
 
 /* --- Tile in servers ------------------------------------------- */
 /* There is no Friends button in a server, and a pseudo-element cannot be
@@ -2641,17 +1984,8 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 
 [data-list-item-id="guildsnav___home"][aria-selected="false"][role="treeitem"] {
   display: block !important;
-  width: 62px !important;
-  height: 58px !important;
   box-sizing: border-box !important;
-  border-width: 3px 0 3px 3px !important;
-  border-style: solid !important;
-  border-color: #B5CAEC !important;
   border-radius: 8px 0 0 8px !important;
-  box-shadow: inset 0 0 0 1px #FFFFFF !important;
-  background:
-    url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) 6px center / 46px 46px no-repeat,
-    linear-gradient(180deg, #F2F4F9 0%, #DCE1EC 100%) !important;
   cursor: pointer;
 }
 
@@ -2700,10 +2034,7 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
   border-style: solid !important;
   border-color: #B5CAEC !important;
   border-radius: 8px 0 0 8px !important;
-  box-shadow: inset 0 0 0 1px #FFFFFF !important;
-  background:
-    url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) 6px center / 46px 46px no-repeat,
-    linear-gradient(180deg, #F2F4F9 0%, #DCE1EC 100%) !important;
+  background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) 6px center / 46px 46px no-repeat, linear-gradient(180deg, #F2F4F9 0%, #DCE1EC 100%) !important;
   overflow: hidden !important;
 }
 
@@ -2782,10 +2113,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 /* Discord's settings modal inherits the transparent app canvas. Give it
    the same separated XP window treatment as the rest of the theme. */
 [class*="container__8a031"].modal_e44912 {
-  background: linear-gradient(180deg, #F4F7FD 0%, #E2EBF8 100%) !important;
-  border: 2px solid #7E98C2 !important;
-  border-radius: 6px !important;
-  box-shadow: inset 0 0 0 1px #FFFFFF, 0 4px 14px rgba(34, 58, 94, 0.35) !important;
   overflow: hidden !important;
 }
 
@@ -2795,27 +2122,8 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
   background: transparent !important;
 }
 
-[class*="content_e9e3ed"] {
-  background: #FFFFFF !important;
-  border-left: 1px solid #A9C2EC !important;
-}
-
-[class*="contentBody_e9e3ed"],
-[class*="scroller__6131a"] {
-  background: #FFFFFF !important;
-}
-
 [class*="panel__6131a"] {
-  background: #FFFFFF !important;
-  border: 1px solid #A9C2EC !important;
   border-radius: 4px !important;
-  box-shadow: inset 0 0 0 1px #E6EEF9 !important;
-  padding: 18px 20px !important;
-}
-
-[class*="categories__6131a"] {
-  background: linear-gradient(180deg, #EEF3FC 0%, #DCE7F7 100%) !important;
-  padding: 14px 10px !important;
 }
 
 [class*="categories__6131a"] [class*="item_"] {
@@ -2854,10 +2162,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 /* Profile popout: replace Discord's rounded modern card with an MSN-style
    framed panel, blue header, and consistent white content surfaces. */
 [class*="outer_c0bea0"].user-profile-popout {
-  background: #FFFFFF !important;
-  border: 2px solid #7E98C2 !important;
-  border-radius: 5px !important;
-  box-shadow: inset 0 0 0 1px #FFFFFF, 0 4px 12px rgba(34, 58, 94, 0.35) !important;
   overflow: hidden !important;
 }
 
@@ -2958,22 +2262,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
   flex: 0 0 20px !important;
   margin-right: 8px !important;
   background: url(https://heartmoder.github.io/dsn10-theme/assets/msn/msn-blue.png) center / 20px 20px no-repeat !important;
-}
-
-[data-list-item-id="settings-sidebar___account_panel"] [class*="itemContent_caf372"]::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) !important;
-}
-
-[data-list-item-id="settings-sidebar___data_and_privacy_panel"] [class*="itemContent_caf372"]::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/pin.png) !important;
-}
-
-[data-list-item-id="settings-sidebar___messaging_permissions_panel"] [class*="itemContent_caf372"]::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png) !important;
-}
-
-[data-list-item-id="settings-sidebar___notifications_panel"] [class*="itemContent_caf372"]::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/bell.png) !important;
 }
 
 [data-list-item-id*="vencord"][data-list-item-id*="panel"] [class*="itemContent_caf372"]::before {
@@ -3120,43 +2408,22 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 
 /* --- Window: Luna frame and title bar ---------------------------- */
 [class*="container__8a031"].modal_e44912 {
-  border: 3px solid #0A3FD6 !important;
-  border-top-width: 0 !important;
-  border-radius: 8px 8px 0 0 !important;
-  background: #ECE9D8 !important;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45) !important;
-  padding-top: 30px !important;
   box-sizing: border-box !important;
 }
 
 [class*="container__8a031"].modal_e44912::before {
-  content: "Discord Settings";
   position: absolute;
-  top: 0; left: -3px; right: -3px;
-  height: 30px;
-  padding-left: 12px;
+  top: 0;
   box-sizing: border-box;
-  border-radius: 8px 8px 0 0;
-  font: bold 13px/30px Trebuchet MS, var(--font-primary);
-  color: #FFFFFF;
-  text-shadow: 1px 1px 0 #0A1E78;
-  background: linear-gradient(180deg,
-    #0997FF 0%, #0053EE 8%, #0050EE 40%, #0066FF 88%, #0066FF 93%, #005BFF 95%, #003DD7 100%);
-  z-index: 5;
   pointer-events: none;
 }
 
 /* Close button becomes the red XP caption button, up in the title bar. */
 [class*="contentHeader_e9e3ed"] button[aria-label="Close"] {
-  position: fixed !important;
   margin: 0 !important;
-  width: 22px !important;
-  height: 22px !important;
   min-height: 0 !important;
   padding: 0 !important;
-  border: 1px solid #FFFFFF !important;
   border-radius: 3px !important;
-  background: radial-gradient(circle at 35% 30%, #F3A28A 0%, #E2532D 45%, #C33A1A 100%) !important;
   box-shadow: none !important;
   z-index: 6 !important;
 }
@@ -3169,14 +2436,8 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
   content: "\2715";
   position: absolute;
   inset: 0;
-  font: bold 13px/20px Tahoma, var(--font-primary);
   text-align: center;
-  color: #FFFFFF;
   visibility: visible;
-}
-
-[class*="contentHeader_e9e3ed"] button[aria-label="Close"]:hover {
-  filter: brightness(1.12) !important;
 }
 
 [class*="modalContent_e44912"],
@@ -3186,10 +2447,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 }
 
 /* --- Task pane --------------------------------------------------- */
-[role="dialog"] aside[class*="sidebar__409aa"] {
-  background: linear-gradient(180deg, #7BA2E7 0%, #6375D6 100%) !important;
-  border-right: 1px solid #4B63C5 !important;
-}
 
 [role="dialog"] aside[class*="sidebar__409aa"] [class*="nav__409aa"],
 [role="dialog"] aside[class*="sidebar__409aa"] [class*="navScroller__409aa"] {
@@ -3214,7 +2471,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 
 /* Each section is a task box: header bar, then the pale body. */
 [role="dialog"] li[class*="section__409aa"] {
-  margin: 0 12px 14px 12px !important;
   padding: 0 !important;
   background: transparent !important;
   border: none !important;
@@ -3253,19 +2509,9 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
   letter-spacing: 0 !important;
 }
 
-[role="dialog"] ul[class*="sectionList__409aa"] {
-  padding: 6px 0 8px 0 !important;
-  background: #D6DFF7 !important;
-  border: 1px solid #FFFFFF !important;
-  border-top: none !important;
-}
-
 [role="dialog"] [class*="item_caf372"] {
-  min-height: 22px !important;
   height: auto !important;
-  padding: 3px 10px 3px 14px !important;
   border: none !important;
-  border-radius: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
 }
@@ -3273,19 +2519,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 [role="dialog"] [class*="item_caf372"] [class*="itemContent_caf372"],
 [role="dialog"] [class*="item_caf372"] [class*="itemContent_caf372"] * {
   font: 12px var(--font-primary) !important;
-  color: #215DC6 !important;
-}
-
-[role="dialog"] [class*="item_caf372"]:hover [class*="itemContent_caf372"],
-[role="dialog"] [class*="item_caf372"]:hover [class*="itemContent_caf372"] * {
-  color: #428EFF !important;
-  text-decoration: underline !important;
-}
-
-[role="dialog"] [class*="item_caf372"][class*="active_caf372"] [class*="itemContent_caf372"],
-[role="dialog"] [class*="item_caf372"][class*="active_caf372"] [class*="itemContent_caf372"] * {
-  font-weight: bold !important;
-  color: #0C3B9E !important;
 }
 
 /* Sub-pages under the active item: indented, smaller. */
@@ -3296,19 +2529,13 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 
 [role="dialog"] [class*="subnav_e4d939"] * {
   font: 11px var(--font-primary) !important;
-  color: #215DC6 !important;
   border: none !important;
   background: transparent !important;
 }
 
 /* --- Content on the blue, in beige cards ------------------------ */
-[class*="content_e9e3ed"] {
-  background: linear-gradient(180deg, #6B85DC 0%, #5A6FD1 100%) !important;
-  border-left: none !important;
-}
 
 [class*="contentHeader_e9e3ed"] {
-  background: transparent !important;
   border: none !important;
 }
 
@@ -3335,18 +2562,9 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 }
 
 /* A section card... */
-[class*="categories__6131a"] > [class*="container__75920"] {
-  background: #ECE9D8 !important;
-  border: 1px solid #FFFFFF !important;
-  border-radius: 4px !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) !important;
-}
 
 /* ...and the rows inside it. */
 [class*="categories__6131a"] [class*="container__75920"] [class*="container__75920"] {
-  background: linear-gradient(180deg, #FFFFFF 0%, #F7F6F0 100%) !important;
-  border: 1px solid #A8A8A8 !important;
-  border-radius: 6px !important;
   box-shadow: none !important;
 }
 
@@ -3397,8 +2615,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 
 [class*="contentHeader_e9e3ed"] button[aria-label="Close"] {
   position: absolute !important;
-  top: 4px !important;
-  right: 3px !important;
   left: auto !important;
 }
 
@@ -3408,12 +2624,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
   content: "General";
   display: flex;
   align-items: center;
-  height: 25px;
-  padding-left: 12px;
-  border-radius: 3px 3px 0 0;
-  font: bold 12px var(--font-primary);
-  color: #FFFFFF;
-  background: linear-gradient(90deg, #0C59B9 0%, #1C70DD 100%);
 }
 
 [role="dialog"] li[class*="section__409aa"] > span[class*="hiddenVisually"] {
@@ -3432,11 +2642,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
   box-shadow: none !important;
 }
 
-[role="dialog"] [class*="fixedContent__409aa"] [class*="section__409aa"] * {
-  color: #FFFFFF !important;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
-}
-
 /* Square framed photo, as everywhere else. */
 [role="dialog"] [class*="fixedContent__409aa"] [class*="avatar"] img,
 [role="dialog"] [class*="fixedContent__409aa"] [class*="avatar"] foreignObject {
@@ -3447,9 +2652,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 /* container_abd9a8 has contain:layout, which also makes it the containing
    block for absolute descendants. Reach up past it by the title bar's
    height instead. */
-[class*="contentHeader_e9e3ed"] button[aria-label="Close"] {
-  top: -26px !important;
-}
 
 /* The settings layout's contain:layout makes its own stacking context, so
    the close button's z-index could not beat a z-indexed title bar. Paint
@@ -3465,7 +2667,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 }
 
 [role="dialog"] aside[class*="sidebar__409aa"] [class*="fixedContent__409aa"] [class*="profileCustomizationTab"] * {
-  color: #0C3B9E !important;
   text-shadow: none !important;
 }
 
@@ -3498,15 +2699,7 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
    the status as MSN's italic personal message, and XP menus.
    ================================================================ */
 [class*="outer_c0bea0"].user-profile-popout {
-  border: 3px solid #0A3FD6 !important;
-  border-top-width: 0 !important;
-  border-radius: 8px 8px 0 0 !important;
   background: #FFFFFF !important;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
-}
-
-[class*="outer_c0bea0"].user-profile-popout [class*="inner_c0bea0"] {
-  border-radius: 0 !important;
 }
 
 /* Title bar in place of the banner. */
@@ -3516,13 +2709,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 }
 
 [class*="outer_c0bea0"].user-profile-popout [class*="banner_f7e69e"] {
-  height: 28px !important;
-  min-height: 28px !important;
-  border-radius: 8px 8px 0 0 !important;
-  margin: 0 -3px !important;
-  width: calc(100% + 6px) !important;
-  background: linear-gradient(180deg,
-    #0997FF 0%, #0053EE 8%, #0050EE 40%, #0066FF 88%, #0066FF 93%, #005BFF 95%, #003DD7 100%) !important;
   -webkit-mask: none !important;
   mask: none !important;
 }
@@ -3534,16 +2720,11 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 [class*="outer_c0bea0"].user-profile-popout [class*="banner_f7e69e"]::after {
   content: "Contact Card";
   display: block;
-  padding-left: 10px;
-  font: bold 13px/28px Trebuchet MS, var(--font-primary);
-  color: #FFFFFF;
-  text-shadow: 1px 1px 0 #0A1E78;
 }
 
 /* Photo: square, grey frame, drop shadow, no status dot - the same as the
    Messenger box. */
 [class*="outer_c0bea0"].user-profile-popout [class*="avatar__75742"] {
-  top: 38px !important;
   left: 12px !important;
   border-radius: 4px !important;
   background: transparent !important;
@@ -3610,9 +2791,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 [class*="outer_c0bea0"].user-profile-popout [class*="cardsList__"] article,
 [class*="outer_c0bea0"].user-profile-popout [class*="clickableContainer__"] {
   background: linear-gradient(180deg, #FFFFFF 0%, #E6EDF9 100%) !important;
-  border: 1px solid #7E9BD0 !important;
-  border-radius: 3px !important;
-  box-shadow: inset 0 0 0 1px #FFFFFF !important;
 }
 
 /* Menus: XP context-menu look - square, grey frame, blue highlight. */
@@ -3634,11 +2812,6 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 
 [class*="outer_c0bea0"].user-profile-popout [class*="menuItem_ce8328"] {
   margin: 0 !important;
-}
-
-[class*="outer_c0bea0"].user-profile-popout [class*="menuItemInner_ce8328"] {
-  min-height: 26px !important;
-  padding: 3px 8px !important;
 }
 
 [class*="outer_c0bea0"].user-profile-popout [class*="menuItemInner_ce8328"] * {
@@ -3750,10 +2923,7 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
 }
 
 [class*="nowPlayingColumn__"] [class*="itemCard__"] {
-  border: 1px solid #7F9DB9 !important;
-  border-radius: 0 !important;
   background: #FFFFFF !important;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15) !important;
   margin-bottom: 8px !important;
   overflow: hidden !important;
 }
@@ -3816,7 +2986,6 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
   height: 32px !important;
   margin: 0 !important;
   padding: 0 !important;
-  border: none !important;
   border-radius: 3px !important;
   background-color: transparent !important;
   background-position: center !important;
@@ -3882,20 +3051,11 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
 
 #vc-spotify-progress-bar {
   margin-top: -4px !important;
-  margin-bottom: 14px !important;
 }
 
 .vc-spotify-button-row {
   margin-top: 0 !important;
   padding: 0 4px !important;
-}
-
-[class*="sidebarList__"]:where(:has(~ [class*="panels__"] #vc-spotify-player)):not(#dsn-none):not([data-dsn-none]) {
-  margin-bottom: 260px !important;
-}
-
-[class*="sidebarList__"]:where(:has(~ [class*="panels__"] #vc-spotify-player)):not(#dsn-none):not([data-dsn-none]) {
-  margin-bottom: 256px !important;
 }
 
 /* Personal message sat at top:98px with bottom:-13px, hanging over the
@@ -3934,27 +3094,15 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
                                  #C2CCE0 / #DCE2EF / #F4F8FF
    ================================================================ */
 [class*="subtitleContainer_"] > section {
-  border: 1px solid #647EAE !important;
-  box-shadow: none !important;
   background: #EBF1FA !important;
 }
 
 [class*="messagesWrapper_"] {
-  border: 1px solid #647EAE !important;
-  border-top: none !important;
-  box-shadow: none !important;
   background: #FCFDFF !important;
 }
 
 [class*="chatContent_"] > form {
-  border: 1px solid #99ADD0 !important;
-  box-shadow: none !important;
   background: linear-gradient(180deg, #CEDCF2 0%, #D7E3F7 100%) !important;
-}
-
-[class*="membersWrap_"] {
-  border: 1px solid #BBC5D2 !important;
-  box-shadow: none !important;
 }
 
 [class*="membersWrap_"],
@@ -3964,20 +3112,6 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
 
 [class*="membersWrap_"]::before {
   background: linear-gradient(180deg, #C7D2F0 0%, #E2E8F7 100%) !important;
-  border-bottom: 1px solid #BBC5D2 !important;
-}
-
-[class*="peopleColumn__"] {
-  border: 1px solid #647EAE !important;
-  box-shadow: none !important;
-}
-
-[class*="sidebarList__"] {
-  border: 1px solid #A9C6FF !important;
-  box-shadow:
-    inset 0 0 0 1px #C2CCE0,
-    inset 0 0 0 2px #DCE2EF,
-    inset 0 0 0 3px #F4F8FF !important;
 }
 
 /* Wash between the windows. */
@@ -3988,10 +3122,6 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
 }
 
 /* Member list sits 1px higher again now the To: border is 1px. */
-[class*="membersWrap_"] {
-  top: -35px !important;
-  height: calc(100% + 34px) !important;
-}
 
 [class*="membersWrap_"] {
   top: -34px !important;
@@ -4006,28 +3136,10 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
 /* Every window-like box gets the same frame: 1px XP blue, rounded top
    corners, no inner lines. The settings and popout keep the Luna window
    frame - they are windows, not panes. */
-:root {
-  --dsn-frame: #7F9DB9;
-}
-
-[class*="sidebarList__"],
-[class*="subtitleContainer_"] > section,
-[class*="peopleColumn__"],
-[class*="membersWrap_"],
-[class*="chatContent_"] > form,
-#vc-spotify-player,
-[class*="sidebar__"] > [class*="panels__"] > div[class*="container__37e49"],
-[class*="nowPlayingColumn__"] [class*="itemCard__"],
-[class*="page__"] section:has([class*="topPill_"]):not(:has([class*="addFriend"])) {
-  border: 1px solid var(--dsn-frame) !important;
-  border-radius: 6px 6px 0 0 !important;
-  box-shadow: none !important;
-}
 
 [class*="messagesWrapper_"] {
   border: 1px solid var(--dsn-frame) !important;
   border-top: none !important;
-  border-radius: 0 !important;
   box-shadow: none !important;
 }
 
@@ -4036,9 +3148,6 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
 }
 
 /* --- Spotify times under the bar, not on it ---------------------- */
-#vc-spotify-progress-bar > span {
-  top: 23px !important;
-}
 
 #vc-spotify-progress-bar {
   margin-bottom: 18px !important;
@@ -4083,10 +3192,8 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
 [class*="privateChannelsHeaderContainer__"] [aria-label="Create Message"]:hover::after,
 [class*="privateChannelsHeaderContainer__"] [aria-label="More"]:hover::after {
   position: absolute;
-  top: calc(100% + 9px);
   left: 50%;
   transform: translateX(-50%);
-  padding: 6px 10px;
   white-space: nowrap;
   font: 14px var(--font-primary);
   color: #000000;
@@ -4109,10 +3216,6 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
 [class*="privateChannelsHeaderContainer__"] [aria-label="More"]:hover::before {
   content: "";
   position: absolute;
-  top: calc(100% + 4px);
-  left: calc(50% - 5px);
-  width: 9px;
-  height: 9px;
   background: #F4F6FB;
   border-top: 1px solid #7F9DB9;
   border-left: 1px solid #7F9DB9;
@@ -4214,9 +3317,6 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover::before,
 
 /* Tile/bar join: the bar's rounded start began 1px after the tile, so a
    strip of wash showed between them. Start it under the tile's edge. */
-[class*="base__"] > [class*="bar_"] {
-  background-position: right 0 top 0, right 10px top 0, 73px top, 82px top !important;
-}
 
 /* The To: line was 1px wider than the message box under it. */
 [class*="subtitleContainer_"] > section {
@@ -4283,10 +3383,6 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover::before,
 
 [class*="chatContent_"]:where(:has(~ aside[aria-labelledby^="user-profile"])):not([data-dsn-none]):not([data-dsn-none]):not(dsn-none):not(dsn-none) {
   margin-right: 328px !important;
-}
-
-[class*="subtitleContainer_"]:where(:has(+ div > aside[aria-labelledby^="user-profile"])):not([data-dsn-none]):not([data-dsn-none]):not(dsn-none):not(dsn-none) {
-  margin-right: 329px !important;
 }
 
 [class*="subtitleContainer_"]:where(:has(+ div > aside[aria-labelledby^="user-profile"])):not([data-dsn-none]):not([data-dsn-none]):not(dsn-none):not(dsn-none) {
@@ -4511,31 +3607,81 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
   background-repeat: no-repeat !important;
 }
 
-[data-list-item-id="settings-sidebar___account_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/userprofile.png) !important; }
-[data-list-item-id="settings-sidebar___data_and_privacy_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/remotedesktop.png) !important; }
-[data-list-item-id="settings-sidebar___messaging_permissions_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png) !important; }
-[data-list-item-id="settings-sidebar___notifications_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/bell.png) !important; }
-[data-list-item-id="settings-sidebar___vencord_main_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) !important; }
-[data-list-item-id="settings-sidebar___vencord_plugins_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/lightbulb.gif) !important; }
-[data-list-item-id="settings-sidebar___vencord_themes_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/gif.png) !important; }
-[data-list-item-id="settings-sidebar___vencord_updater_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/lightning.gif) !important; }
-[data-list-item-id="settings-sidebar___vencord_cloud_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/misc/connection.png) !important; }
-[data-list-item-id="settings-sidebar___vencord_backup_restore_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/misc/folder_open.png) !important; }
-[data-list-item-id="settings-sidebar___vesktop_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/780.png) !important; }
-[data-list-item-id="settings-sidebar___nitro_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/star.gif) !important; }
-[data-list-item-id="settings-sidebar___premium_guild_subscriptions_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/plane.gif) !important; }
-[data-list-item-id="settings-sidebar___subscriptions_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/coins.gif) !important; }
-[data-list-item-id="settings-sidebar___gift_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/gift.png) !important; }
-[data-list-item-id="settings-sidebar___billing_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/cart.png) !important; }
-[data-list-item-id="settings-sidebar___voice_and_video_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/webcam.png) !important; }
-[data-list-item-id="settings-sidebar___appearance_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/rainbow.gif) !important; }
-[data-list-item-id="settings-sidebar___accessibility_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/glasses.gif) !important; }
-[data-list-item-id="settings-sidebar___system_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/computer.gif) !important; }
-[data-list-item-id="settings-sidebar___language_and_time_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/status/idle.png) !important; }
-[data-list-item-id="settings-sidebar___activity_privacy_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/game.png) !important; }
-[data-list-item-id="settings-sidebar___connected_apps_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/voicecall/sharescreen2.png) !important; }
-[data-list-item-id="settings-sidebar___developer_panel"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/keyboard.png) !important; }
-[data-list-item-id="settings-sidebar___logout_sidebar_item"] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/status/donotdisturb.png) !important; }
+[data-list-item-id="settings-sidebar___account_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/userprofile.png) !important;
+}
+[data-list-item-id="settings-sidebar___data_and_privacy_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/remotedesktop.png) !important;
+}
+[data-list-item-id="settings-sidebar___messaging_permissions_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png) !important;
+}
+[data-list-item-id="settings-sidebar___notifications_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/bell.png) !important;
+}
+[data-list-item-id="settings-sidebar___vencord_main_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) !important;
+}
+[data-list-item-id="settings-sidebar___vencord_plugins_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/lightbulb.gif) !important;
+}
+[data-list-item-id="settings-sidebar___vencord_themes_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/gif.png) !important;
+}
+[data-list-item-id="settings-sidebar___vencord_updater_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/lightning.gif) !important;
+}
+[data-list-item-id="settings-sidebar___vencord_cloud_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/misc/connection.png) !important;
+}
+[data-list-item-id="settings-sidebar___vencord_backup_restore_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/misc/folder_open.png) !important;
+}
+[data-list-item-id="settings-sidebar___vesktop_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/780.png) !important;
+}
+[data-list-item-id="settings-sidebar___nitro_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/star.gif) !important;
+}
+[data-list-item-id="settings-sidebar___premium_guild_subscriptions_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/plane.gif) !important;
+}
+[data-list-item-id="settings-sidebar___subscriptions_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/coins.gif) !important;
+}
+[data-list-item-id="settings-sidebar___gift_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/gift.png) !important;
+}
+[data-list-item-id="settings-sidebar___billing_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/cart.png) !important;
+}
+[data-list-item-id="settings-sidebar___voice_and_video_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/webcam.png) !important;
+}
+[data-list-item-id="settings-sidebar___appearance_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/rainbow.gif) !important;
+}
+[data-list-item-id="settings-sidebar___accessibility_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/glasses.gif) !important;
+}
+[data-list-item-id="settings-sidebar___system_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/computer.gif) !important;
+}
+[data-list-item-id="settings-sidebar___language_and_time_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/status/idle.png) !important;
+}
+[data-list-item-id="settings-sidebar___activity_privacy_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/game.png) !important;
+}
+[data-list-item-id="settings-sidebar___connected_apps_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/voicecall/sharescreen2.png) !important;
+}
+[data-list-item-id="settings-sidebar___developer_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/keyboard.png) !important;
+}
+[data-list-item-id="settings-sidebar___logout_sidebar_item"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/status/donotdisturb.png) !important;
+}
 
 /* Any entry Discord adds later still gets an MSN glyph, not a blank. */
 [role="dialog"] [data-list-item-id^="settings-sidebar___"] [class*="itemContent_caf372"]::before {
@@ -4544,32 +3690,81 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 
 /* Copilot's vencord rule matched two attributes and outranked the ones
    above; the same mapping again with the weight to win. */
-[role="dialog"] [data-list-item-id="settings-sidebar___account_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/userprofile.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___data_and_privacy_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/remotedesktop.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___messaging_permissions_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___notifications_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/bell.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___vencord_main_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___vencord_plugins_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/lightbulb.gif) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___vencord_themes_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/gif.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___vencord_updater_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/lightning.gif) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___vencord_cloud_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/misc/connection.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___vencord_backup_restore_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/misc/folder_open.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___vesktop_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/780.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___nitro_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/star.gif) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___premium_guild_subscriptions_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/plane.gif) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___subscriptions_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/coins.gif) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___gift_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/gift.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___billing_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/cart.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___voice_and_video_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/webcam.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___appearance_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/rainbow.gif) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___accessibility_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/glasses.gif) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___system_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/computer.gif) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___language_and_time_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/status/idle.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___activity_privacy_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/game.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___connected_apps_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/voicecall/sharescreen2.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___developer_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/keyboard.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___logout_sidebar_item"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/status/donotdisturb.png) !important; }
-[role="dialog"] [data-list-item-id="settings-sidebar___vesktop_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/messenger.gif) !important; }
+[role="dialog"] [data-list-item-id="settings-sidebar___account_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/userprofile.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___data_and_privacy_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/remotedesktop.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___messaging_permissions_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___notifications_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/bell.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___vencord_main_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___vencord_plugins_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/lightbulb.gif) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___vencord_themes_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/gif.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___vencord_updater_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/lightning.gif) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___vencord_cloud_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/misc/connection.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___vencord_backup_restore_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/misc/folder_open.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___nitro_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/star.gif) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___premium_guild_subscriptions_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/plane.gif) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___subscriptions_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/coins.gif) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___gift_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/gift.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___billing_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/cart.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___voice_and_video_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/webcam.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___appearance_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/rainbow.gif) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___accessibility_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/glasses.gif) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___system_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/computer.gif) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___language_and_time_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/status/idle.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___activity_privacy_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/game.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___connected_apps_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/voicecall/sharescreen2.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___developer_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/keyboard.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___logout_sidebar_item"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/status/donotdisturb.png) !important;
+}
+[role="dialog"] [data-list-item-id="settings-sidebar___vesktop_panel"][data-list-item-id] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/messenger.gif) !important;
+}
 
 /* ================================================================
    Every text button in the app is an XP push button: navy 1px edge,
@@ -4712,7 +3907,6 @@ button[class*="button_a22cb0"][class*="fullWidth"]:not(:is([class*="searchBar_"]
   right: auto !important;
   width: 7px !important;
   height: 7px !important;
-  background: radial-gradient(circle at 100% 0%, transparent 5.6px, #D4E1F5 6.4px) !important;
   z-index: 1 !important;
   pointer-events: none !important;
 }
@@ -4730,9 +3924,7 @@ button[class*="button_a22cb0"][class*="fullWidth"]:not(:is([class*="searchBar_"]
   height: 26px !important;
   border: 1px solid #003C74 !important;
   border-radius: 3px !important;
-  background:
-    var(--dsn-banner-icon, none) center / 18px 18px no-repeat,
-    linear-gradient(180deg, #FFFFFF 0%, #F4F3EE 50%, #ECEBE6 86%, #D6D0C5 100%) !important;
+  background: var(--dsn-banner-icon, none) center / 18px 18px no-repeat, linear-gradient(180deg, #FFFFFF 0%, #F4F3EE 50%, #ECEBE6 86%, #D6D0C5 100%) !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
 }
@@ -4811,7 +4003,9 @@ button[class*="button_a22cb0"][class*="fullWidth"]:not(:is([class*="searchBar_"]
 [class*="outer_c0bea0"].user-profile-modal-v2::before {
   content: "Contact Card";
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 28px;
   padding-left: 10px;
   box-sizing: border-box;
@@ -4831,7 +4025,6 @@ button[class*="button_a22cb0"][class*="fullWidth"]:not(:is([class*="searchBar_"]
 }
 
 [class*="outer_c0bea0"].user-profile-modal-v2 [class*="profileContentColumns__"] {
-  padding: 4px !important;
   gap: 4px !important;
   inset: 0 !important;
 }
@@ -4978,11 +4171,19 @@ button[class*="button_a22cb0"][class*="fullWidth"]:not(:is([class*="searchBar_"]
   margin-right: 6px;
 }
 
-[class*="profileButtons__"] button[class*="hasText"] { --dsn-pb-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png); }
+[class*="profileButtons__"] button[class*="hasText"] {
+  --dsn-pb-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png);
+}
 [class*="profileButtons__"] button[aria-label="Friend"],
-[class*="profileButtons__"] button[aria-label*="Friend"] { --dsn-pb-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png); }
-[class*="profileButtons__"] button[aria-label="More"] { --dsn-pb-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/more.png); }
-[class*="profileButtons__"] button[aria-label*="Edit"] { --dsn-pb-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/userprofile.png); }
+[class*="profileButtons__"] button[aria-label*="Friend"] {
+  --dsn-pb-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png);
+}
+[class*="profileButtons__"] button[aria-label="More"] {
+  --dsn-pb-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/more.png);
+}
+[class*="profileButtons__"] button[aria-label*="Edit"] {
+  --dsn-pb-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/userprofile.png);
+}
 
 /* ================================================================
    Switches become XP check boxes: 13px white-to-grey box, navy edge,
