@@ -3709,3 +3709,303 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
 [class*="outer_c0bea0"].user-profile-popout [class*="menuOverlay_"] ul {
   padding: 0 !important;
 }
+
+/* ================================================================
+   Avatars were off-centre everywhere: the px sizes set on foreignObject
+   and img were read in the SVG's viewBox units (40 or 80), so a "46px"
+   foreignObject came out 52.9px and the photo was cropped to its top
+   left. Only the SVG is sized; everything inside fills it.
+   ================================================================ */
+body [class*="wrapper__44b0c"] svg > foreignObject[x][y] {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+body [class*="wrapper__44b0c"] svg > foreignObject[x][y] > *,
+body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+}
+
+/* The "[class*=avatar__]" frame rules also matched the <img> itself
+   (class avatar__44b0c), putting a 1px border on the photo inside the
+   SVG and pushing it 2px past its box. The frame belongs on the wrapper. */
+body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
+  border: none !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ================================================================
+   Active Now as in the reference: a small blue title, the
+   msn Messenger .net banner, and the activities as MSN panels -
+   square white boxes with a blue-gradient header strip.
+   ================================================================ */
+[class*="nowPlayingColumn__"] h2[class*="heading-lg"] {
+  font: 13px var(--font-primary) !important;
+  color: #0033AA !important;
+  margin: 4px 0 10px 4px !important;
+}
+
+[class*="nowPlayingColumn__"] h2[class*="heading-lg"]::after {
+  content: "";
+  display: block;
+  width: 237px;
+  height: 50px;
+  margin: 14px auto 4px auto;
+  border: 1px solid #7F9DB9;
+  background: url(https://heartmoder.github.io/dsn10-theme/assets/msn/wide.gif) center / 237px 50px no-repeat;
+}
+
+[class*="nowPlayingColumn__"] [class*="itemCard__"] {
+  border: 1px solid #7F9DB9 !important;
+  border-radius: 0 !important;
+  background: #FFFFFF !important;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15) !important;
+  margin-bottom: 8px !important;
+  overflow: hidden !important;
+}
+
+[class*="nowPlayingColumn__"] [class*="itemCard__"] header {
+  background: linear-gradient(180deg, #FFFFFF 0%, #DCE6F7 100%) !important;
+  border-bottom: 1px solid #ACC1E4 !important;
+  padding: 6px 8px !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+[class*="nowPlayingColumn__"] [class*="itemCard__"] [class*="body__"],
+[class*="nowPlayingColumn__"] [class*="itemCard__"] section {
+  background: #FFFFFF !important;
+  padding: 6px 8px !important;
+}
+
+[class*="nowPlayingColumn__"] [class*="itemCard__"] * {
+  font-family: var(--font-primary) !important;
+}
+
+[class*="nowPlayingColumn__"] [class*="itemCard__"] header [class*="heading"],
+[class*="nowPlayingColumn__"] [class*="itemCard__"] header [class*="text-md"] {
+  font-size: 12px !important;
+  font-weight: bold !important;
+  color: #000000 !important;
+}
+
+[class*="nowPlayingColumn__"] [class*="itemCard__"] [class*="text-xs"],
+[class*="nowPlayingColumn__"] [class*="itemCard__"] [class*="text-sm"] {
+  font-size: 11px !important;
+  color: #444444 !important;
+}
+
+[class*="nowPlayingColumn__"] [class*="wrapper__44b0c"],
+[class*="nowPlayingColumn__"] img {
+  border-radius: 2px !important;
+}
+
+[class*="nowPlayingColumn__"] [class*="wrapper__44b0c"] foreignObject {
+  mask: none !important;
+}
+
+[class*="nowPlayingColumn__"] [class*="wrapper__44b0c"] svg > g,
+[class*="nowPlayingColumn__"] [class*="wrapper__44b0c"] svg > rect {
+  display: none !important;
+}
+
+/* ================================================================
+   The two buttons beside "Direct Messages" go up into the toolbar,
+   after Message Requests: Create Message (chat-plus) and More.
+   Friends tabs and the header icons move along two slots.
+   ================================================================ */
+[class*="privateChannelsHeaderContainer__"] [aria-label="Create Message"],
+[class*="privateChannelsHeaderContainer__"] [aria-label="More"] {
+  position: fixed !important;
+  top: 13px !important;
+  width: 32px !important;
+  height: 32px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 3px !important;
+  background-color: transparent !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 26px 26px !important;
+  z-index: 300 !important;
+  cursor: pointer;
+}
+
+[class*="privateChannelsHeaderContainer__"] [aria-label="Create Message"] {
+  left: 132px !important;
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chatplus.png) !important;
+}
+
+[class*="privateChannelsHeaderContainer__"] [aria-label="More"] {
+  left: 168px !important;
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/more.png) !important;
+}
+
+[class*="privateChannelsHeaderContainer__"] [aria-label="Create Message"] *,
+[class*="privateChannelsHeaderContainer__"] [aria-label="More"] * {
+  visibility: hidden !important;
+}
+
+[class*="privateChannelsHeaderContainer__"] [aria-label="Create Message"]:hover,
+[class*="privateChannelsHeaderContainer__"] [aria-label="More"]:hover {
+  background-color: #EEF3FC !important;
+  box-shadow: inset 0 0 0 1px #9DB4DF, inset 0 1px 0 1px #FFFFFF !important;
+}
+
+[class*="base__"]:has([class*="privateChannelsHeaderContainer__"]) [class*="page__"] [class*="toolbar_"],
+[class*="base__"]:has([class*="privateChannelsHeaderContainer__"]) [class*="page__"] > main > section {
+  left: 206px !important;
+}
+
+/* The header line keeps only its label. */
+[class*="privateChannelsHeaderContainer__"] {
+  padding-right: 6px !important;
+}
+
+/* ================================================================
+   Spotify player: more room - taller rows, bigger art, space
+   between the blocks.
+   ================================================================ */
+#vc-spotify-player {
+  padding: 10px 12px 10px 12px !important;
+}
+
+#vc-spotify-info-wrapper {
+  gap: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+#vc-spotify-album-image {
+  width: 44px !important;
+  height: 44px !important;
+  margin-top: 1px !important;
+}
+
+#vc-spotify-titles {
+  gap: 2px !important;
+}
+
+#vc-spotify-progress-bar {
+  margin-top: -4px !important;
+  margin-bottom: 14px !important;
+}
+
+.vc-spotify-button-row {
+  margin-top: 0 !important;
+  padding: 0 4px !important;
+}
+
+[class*="sidebar__"]:has(#vc-spotify-player) [class*="sidebarList__"] {
+  margin-bottom: 260px !important;
+}
+
+[class*="sidebar__"]:has(#vc-spotify-player) [class*="sidebarList__"] {
+  margin-bottom: 256px !important;
+}
+
+/* Personal message sat at top:98px with bottom:-13px, hanging over the
+   header's bottom edge. Beside the photo, inside the header. */
+[class*="outer_c0bea0"].user-profile-popout [class*="container_ab8609"] {
+  top: 50px !important;
+  bottom: auto !important;
+  left: 104px !important;
+  right: 10px !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="header__5be3e"] {
+  height: 132px !important;
+  min-height: 132px !important;
+}
+
+/* Menus flush with the activity card above them (were inset 5px). */
+[class*="outer_c0bea0"].user-profile-popout [class*="menus_ce8328"] > [class*="menuOverlay_"] {
+  margin: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="menus_ce8328"] {
+  padding: 0 !important;
+}
+
+/* ================================================================
+   Frames, sampled pixel by pixel from the reference (p1): all 1px,
+   not 2px, and each window its own colour.
+     chat (To: line + messages)  1px #647EAE, fill #EBF1FA / #FCFDFF
+     composer                    1px #99ADD0, fill #CEDCF2 gradient
+     member list                 1px #BBC5D2, fill #E7ECF5, header
+                                 darker at the top (#C7D2F0 -> #E2E8F7)
+     contact list                1px #A9C6FF, then a soft 3px bevel
+                                 #C2CCE0 / #DCE2EF / #F4F8FF
+   ================================================================ */
+[class*="subtitleContainer_"] > section {
+  border: 1px solid #647EAE !important;
+  box-shadow: none !important;
+  background: #EBF1FA !important;
+}
+
+[class*="messagesWrapper_"] {
+  border: 1px solid #647EAE !important;
+  border-top: none !important;
+  box-shadow: none !important;
+  background: #FCFDFF !important;
+}
+
+[class*="chatContent_"] > form {
+  border: 1px solid #99ADD0 !important;
+  box-shadow: none !important;
+  background: linear-gradient(180deg, #CEDCF2 0%, #D7E3F7 100%) !important;
+}
+
+[class*="membersWrap_"] {
+  border: 1px solid #BBC5D2 !important;
+  box-shadow: none !important;
+}
+
+[class*="membersWrap_"],
+[class*="membersWrap_"] [class*="members_"] {
+  background: #E7ECF5 !important;
+}
+
+[class*="membersWrap_"]::before {
+  background: linear-gradient(180deg, #C7D2F0 0%, #E2E8F7 100%) !important;
+  border-bottom: 1px solid #BBC5D2 !important;
+}
+
+[class*="peopleColumn__"] {
+  border: 1px solid #647EAE !important;
+  box-shadow: none !important;
+}
+
+[class*="sidebarList__"] {
+  border: 1px solid #A9C6FF !important;
+  box-shadow:
+    inset 0 0 0 1px #C2CCE0,
+    inset 0 0 0 2px #DCE2EF,
+    inset 0 0 0 3px #F4F8FF !important;
+}
+
+/* Wash between the windows. */
+[class*="app__"],
+[class*="base__"],
+[class*="content__"][class*="5e434"] {
+  background-color: #F5F8FE !important;
+}
+
+/* Member list sits 1px higher again now the To: border is 1px. */
+[class*="membersWrap_"] {
+  top: -35px !important;
+  height: calc(100% + 34px) !important;
+}
+
+[class*="membersWrap_"] {
+  top: -34px !important;
+  height: calc(100% + 33px) !important;
+}
