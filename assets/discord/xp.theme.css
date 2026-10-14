@@ -1829,3 +1829,181 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 [class*="sidebar__"] > [class*="panels__"] {
   padding-top: 23px !important;
 }
+
+/* ================================================================
+   Tenth pass.
+   ================================================================ */
+
+/* --- Status dot off the Messenger photo -------------------------- */
+/* The dot is a <g> inside the avatar's own SVG, next to the photo's
+   foreignObject. */
+[class*="panels__"] [class*="avatar__"] svg > g,
+[class*="panels__"] [class*="avatar__"] svg > rect {
+  display: none !important;
+}
+
+/* --- Tile fixed to the start of the bar ------------------------- */
+/* In the reference the bar's rounded start butts against the tile, so
+   the tile has no right edge of its own. */
+nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="channel__"] a,
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) > [class*="bar_"]::before {
+  border-right: none !important;
+  border-radius: 8px 0 0 8px !important;
+}
+
+[class*="base__"] > [class*="bar_"] {
+  background-position: right 0 top 0, right 10px top 0, 76px top, 85px top !important;
+  background-size: 10px 21px, calc(50% - 66px) 21px, 9px 58px, calc(50% - 81px) 58px !important;
+}
+
+/* --- Message Requests hovers like the header buttons: not at all - */
+nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) [class*="interactive"],
+nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) [class*="interactive"]:hover,
+nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) a:hover {
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) a,
+nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) a:hover {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/newpawn.png) !important;
+  background-size: 26px 26px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* --- Any page header with a tab pill goes up into the toolbar ----- */
+/* Friends was handled; Message Requests (Requests / Spam) has the same
+   header and was left behind, which emptied the bar on that page. */
+[class*="page__"] section:has([class*="topPill_"]) {
+  position: fixed !important;
+  top: 14px !important;
+  left: 130px !important;
+  right: calc(50% + 8px) !important;
+  height: 30px !important;
+  min-height: 30px !important;
+  background: transparent !important;
+  border: none !important;
+  z-index: 300 !important;
+}
+
+[class*="page__"] section:has([class*="topPill_"]) [class*="iconWrapper__"] {
+  background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) center / 24px no-repeat !important;
+}
+
+[class*="page__"] section:has([class*="topPill_"]) [class*="iconWrapper__"] svg {
+  display: none !important;
+}
+
+[class*="page__"] section:has([class*="topPill_"]) [class*="item_"] {
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 0 !important;
+  color: #0033AA !important;
+  font: 11px var(--font-primary) !important;
+  padding: 1px 7px !important;
+}
+
+[class*="page__"] section:has([class*="topPill_"]) [class*="item_"][class*="selected"] {
+  border-color: var(--dsn-border) !important;
+  background: #F4F7FD !important;
+  text-decoration: underline !important;
+}
+
+[class*="page__"] section:has([class*="topPill_"]) h1,
+[class*="page__"] section:has([class*="topPill_"]) [class*="titleWrapper__"] * {
+  font: bold 12px var(--font-primary) !important;
+  color: #000000 !important;
+}
+
+/* Message Requests' own icon in its header. */
+[class*="page__"] section:has([class*="topPill_"]):not(:has([class*="addFriend"])) [class*="iconWrapper__"] {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/newpawn.png) !important;
+}
+
+/* --- Panel icons follow the original's state-aware set ---------- */
+[class*="panels__"] [class*="buttons__"] > div:nth-child(1) button[aria-checked="true"] {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/mic2.png) !important;
+}
+
+[class*="panels__"] [class*="buttons__"] > div:nth-child(2) button {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/audio.png) !important;
+}
+
+[class*="panels__"] [class*="buttons__"] > div:nth-child(2) button[aria-checked="true"] {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/audio2.png) !important;
+}
+
+/* --- Friend rows: MSN's chat bubble and "ooo" ------------------- */
+[class*="peopleListItem"] [class*="actionButton_"][aria-label^="Message "],
+[class*="peopleListItem"] [class*="actionButton_"][aria-label^="More options"] {
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 22px 22px !important;
+  background-color: transparent !important;
+}
+
+[class*="peopleListItem"] [class*="actionButton_"][aria-label^="Message "] {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png) !important;
+}
+
+[class*="peopleListItem"] [class*="actionButton_"][aria-label^="More options"] {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/more.png) !important;
+}
+
+[class*="peopleListItem"] [class*="actionButton_"][aria-label^="Message "] svg,
+[class*="peopleListItem"] [class*="actionButton_"][aria-label^="More options"] svg {
+  visibility: hidden !important;
+}
+
+/* --- Gradients from the reference ------------------------------- */
+[class*="guilds__"] {
+  background: linear-gradient(90deg, #F6F8FC 0%, #DCE5F4 100%) !important;
+}
+
+[class*="sidebarList__"] {
+  background: linear-gradient(90deg, #D9E4F6 0px, #FFFFFF 24px, #FFFFFF 100%) !important;
+}
+
+[class*="peopleColumn__"],
+[class*="tabBody__"] {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F3F6FC 100%) !important;
+}
+
+[class*="nowPlayingColumn__"] {
+  background: linear-gradient(90deg, #EEF3FB 0%, #D8E3F4 100%) !important;
+  border-left: 1px solid var(--dsn-border) !important;
+}
+
+[class*="membersWrap_"],
+[class*="membersWrap_"] [class*="members_"] {
+  background: linear-gradient(90deg, #FFFFFF 0%, #E1E9F7 100%) !important;
+}
+
+/* The composer sits on a grey-blue band, as at the foot of the chat
+   window in the reference. */
+[class*="chatContent_"] > form {
+  background: linear-gradient(180deg, #E9EEF7 0%, #DCE3EF 100%) !important;
+  border-top: 1px solid var(--dsn-border) !important;
+  padding-top: 8px !important;
+}
+
+/* Tile frame: thicker and paler than the generic XP border, trio fills
+   about two thirds of the box - both measured off the reference crop. */
+nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="channel__"] a,
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) > [class*="bar_"]::before {
+  border-width: 3px 0 3px 3px !important;
+  border-style: solid !important;
+  border-color: #B5CAEC !important;
+  background:
+    url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) 6px center / 46px 46px no-repeat,
+    linear-gradient(180deg, #F2F4F9 0%, #DCE1EC 100%) !important;
+}
+
+/* Let the band show round the input, as in the reference. */
+[class*="chatContent_"] > form {
+  padding: 12px 12px 10px 12px !important;
+}
