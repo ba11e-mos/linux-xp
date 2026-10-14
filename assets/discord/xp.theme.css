@@ -2936,57 +2936,6 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
   box-sizing: border-box !important;
 }
 
-/* Replace the black Discord/Vencord navigation glyphs with the small,
-   pixel-art MSN set. The data IDs are stable semantic hooks, unlike the
-   generated class suffixes. */
-[class*="item_caf372"] [class*="icon_caf372"],
-[class*="item_caf372"] .vc-icon {
-  display: none !important;
-}
-
-[class*="item_caf372"] [class*="itemContent_caf372"]::before {
-  content: "" !important;
-  display: block !important;
-  width: 20px !important;
-  height: 20px !important;
-  flex: 0 0 20px !important;
-  margin-right: 8px !important;
-  background: url(https://heartmoder.github.io/dsn10-theme/assets/msn/msn-blue.png) center / 20px 20px no-repeat !important;
-}
-
-[data-list-item-id="settings-sidebar___account_panel"] [class*="itemContent_caf372"]::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) !important;
-}
-
-[data-list-item-id="settings-sidebar___data_and_privacy_panel"] [class*="itemContent_caf372"]::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/pin.png) !important;
-}
-
-[data-list-item-id="settings-sidebar___messaging_permissions_panel"] [class*="itemContent_caf372"]::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png) !important;
-}
-
-[data-list-item-id="settings-sidebar___notifications_panel"] [class*="itemContent_caf372"]::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/bell.png) !important;
-}
-
-[data-list-item-id="settings-sidebar___vencord_main_panel"] [class*="itemContent_caf372"]::before,
-[data-list-item-id="settings-sidebar___vencord_plugins_panel"] [class*="itemContent_caf372"]::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) !important;
-}
-
-[data-list-item-id="settings-sidebar___vencord_themes_panel"] [class*="itemContent_caf372"]::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/game.png) !important;
-}
-
-[data-list-item-id="settings-sidebar___vencord_updater_panel"] [class*="itemContent_caf372"]::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/remotedesktop.png) !important;
-}
-
-[data-list-item-id="settings-sidebar___vesktop_panel"] [class*="itemContent_caf372"]::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/computer.gif) !important;
-}
-
 [class*="modal_e44912"] [class*="button_a22cb0"],
 [class*="modal_e44912"] [class*="textButton__7a01b"] {
   min-height: 28px !important;
@@ -3067,8 +3016,7 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
 [aria-label="Create Message"],
 [aria-label^="Message "][class*="actionButton_"],
 [aria-label^="More options"][class*="actionButton_"],
-[aria-label="Add custom status"],
-[aria-label="More"].contextMenu__39ec2 {
+[aria-label="Add custom status"] {
   border: 1px solid #7F9DB9 !important;
   border-radius: 3px !important;
   background: linear-gradient(180deg, #FFFFFF 0%, #DCE7F7 100%) !important;
@@ -3085,14 +3033,12 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
 }
 
 [aria-label="More"].moreButton__99e7c svg,
-[aria-label="Create Message"] svg,
-[aria-label="More"].contextMenu__39ec2 svg {
+[aria-label="Create Message"] svg {
   display: none !important;
 }
 
 [aria-label="More"].moreButton__99e7c::before,
-[aria-label="Create Message"]::before,
-[aria-label="More"].contextMenu__39ec2::before {
+[aria-label="Create Message"]::before {
   content: "" !important;
   display: block !important;
   width: 18px !important;
@@ -3101,8 +3047,7 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
   background: center / 18px 18px no-repeat !important;
 }
 
-[aria-label="More"].moreButton__99e7c::before,
-[aria-label="More"].contextMenu__39ec2::before {
+[aria-label="More"].moreButton__99e7c::before {
   background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/more.png) !important;
 }
 
