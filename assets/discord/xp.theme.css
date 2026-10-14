@@ -3503,3 +3503,209 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
   font-weight: normal !important;
   text-decoration: underline !important;
 }
+
+/* ================================================================
+   Profile popout as a small XP window, matching the settings: Luna
+   frame and title bar instead of the banner, square framed photo,
+   the status as MSN's italic personal message, and XP menus.
+   ================================================================ */
+[class*="outer_c0bea0"].user-profile-popout {
+  border: 3px solid #0A3FD6 !important;
+  border-top-width: 0 !important;
+  border-radius: 8px 8px 0 0 !important;
+  background: #FFFFFF !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="inner_c0bea0"] {
+  border-radius: 0 !important;
+}
+
+/* Title bar in place of the banner. */
+[class*="outer_c0bea0"].user-profile-popout [class*="header__5be3e"] {
+  background: linear-gradient(180deg, #FFFFFF 0%, #EEF3FB 100%) !important;
+  border-bottom: 1px solid #ACA899 !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="banner_f7e69e"] {
+  height: 28px !important;
+  min-height: 28px !important;
+  border-radius: 8px 8px 0 0 !important;
+  margin: 0 -3px !important;
+  width: calc(100% + 6px) !important;
+  background: linear-gradient(180deg,
+    #0997FF 0%, #0053EE 8%, #0050EE 40%, #0066FF 88%, #0066FF 93%, #005BFF 95%, #003DD7 100%) !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="banner_f7e69e"] > * {
+  display: none !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="banner_f7e69e"]::after {
+  content: "Contact Card";
+  display: block;
+  padding-left: 10px;
+  font: bold 13px/28px Trebuchet MS, var(--font-primary);
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0 #0A1E78;
+}
+
+/* Photo: square, grey frame, drop shadow, no status dot - the same as the
+   Messenger box. */
+[class*="outer_c0bea0"].user-profile-popout [class*="avatar__75742"] {
+  top: 38px !important;
+  left: 12px !important;
+  border-radius: 4px !important;
+  background: transparent !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="avatar__75742"] [class*="wrapper__"],
+[class*="outer_c0bea0"].user-profile-popout [class*="avatar__75742"] img {
+  border-radius: 3px !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="avatar__75742"] [class*="wrapper__"] {
+  border: 1px solid #6F7F9F !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35) !important;
+  overflow: hidden !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="avatar__75742"] foreignObject {
+  mask: none !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="avatar__75742"] svg > g,
+[class*="outer_c0bea0"].user-profile-popout [class*="avatar__75742"] svg > rect {
+  display: none !important;
+}
+
+/* Custom status: MSN's personal message, italic, no speech bubble. */
+[class*="outer_c0bea0"].user-profile-popout [class*="outer_ab8609"],
+[class*="outer_c0bea0"].user-profile-popout [class*="inner_ab8609"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="outer_ab8609"]::before,
+[class*="outer_c0bea0"].user-profile-popout [class*="outer_ab8609"]::after,
+[class*="outer_c0bea0"].user-profile-popout [class*="inner_ab8609"]::before,
+[class*="outer_c0bea0"].user-profile-popout [class*="inner_ab8609"]::after {
+  display: none !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="header__5be3e"] [class*="defaultColor"] {
+  font: italic 12px var(--font-primary) !important;
+  color: #5A5A5A !important;
+}
+
+/* Name block. */
+[class*="outer_c0bea0"].user-profile-popout [class*="userInfo_"] [class*="heading-lg"] {
+  font: bold 15px var(--font-primary) !important;
+  color: #000000 !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="body_ce8328"] {
+  background: #FFFFFF !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="bioText_"],
+[class*="outer_c0bea0"].user-profile-popout [class*="bioText_"] * {
+  font: 12px var(--font-primary) !important;
+  color: #000000 !important;
+}
+
+/* Activity card (Spotify): the player's pale blue box. */
+[class*="outer_c0bea0"].user-profile-popout [class*="cardsList__"] article,
+[class*="outer_c0bea0"].user-profile-popout [class*="clickableContainer__"] {
+  background: linear-gradient(180deg, #FFFFFF 0%, #E6EDF9 100%) !important;
+  border: 1px solid #7E9BD0 !important;
+  border-radius: 3px !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF !important;
+}
+
+/* Menus: XP context-menu look - square, grey frame, blue highlight. */
+[class*="outer_c0bea0"].user-profile-popout [class*="menuOverlay_"] {
+  background: #FFFFFF !important;
+  border: 1px solid #ACA899 !important;
+  border-radius: 0 !important;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2) !important;
+  padding: 2px !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="menuItem_ce8328"],
+[class*="outer_c0bea0"].user-profile-popout [class*="menuItemInner_ce8328"] {
+  border-radius: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="menuItem_ce8328"] {
+  margin: 0 !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="menuItemInner_ce8328"] {
+  min-height: 26px !important;
+  padding: 3px 8px !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="menuItemInner_ce8328"] * {
+  font: 12px var(--font-primary) !important;
+  color: #000000 !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="menuItem_ce8328"]:hover [class*="menuItemInner_ce8328"] {
+  background: #316AC5 !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="menuItem_ce8328"]:hover [class*="menuItemInner_ce8328"] * {
+  color: #FFFFFF !important;
+}
+
+/* Separator between items inside one menu. */
+[class*="outer_c0bea0"].user-profile-popout [class*="menuItem_ce8328"] + [class*="menuItem_ce8328"] {
+  border-top: 1px solid #ECE9D8 !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="newBadge"],
+[class*="outer_c0bea0"].user-profile-popout [class*="textBadge"] {
+  display: none !important;
+}
+
+/* XP menu rows are ~22px: the content's 8px padding and the li's extra
+   height made them 46-63px. */
+[class*="outer_c0bea0"].user-profile-popout [class*="menuItem_ce8328"] {
+  height: auto !important;
+  padding: 0 !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="menuItemInner_ce8328"] {
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="menuItemContent_ce8328"] {
+  padding: 3px 6px !important;
+  gap: 8px !important;
+  min-height: 24px !important;
+  height: auto !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="menuItemIcon_ce8328"] {
+  width: 18px !important;
+  height: 18px !important;
+  background-size: 16px 16px !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="menus_ce8328"] {
+  gap: 6px !important;
+}
+
+[class*="outer_c0bea0"].user-profile-popout [class*="menuOverlay_"] ul {
+  padding: 0 !important;
+}
