@@ -1190,3 +1190,165 @@ nav[class*="privateChannels_"] [class*="sectionDivider_"] {
 [class*="panels__"] [class*="nameTag__"] {
   margin-top: 0 !important;
 }
+
+/* ================================================================
+   Seventh pass: the bar slants off and the search sits outside it,
+   plain coloured squares for folders, dead icons removed.
+   ================================================================ */
+
+/* The bar runs from the left edge, slants off near the right, and the
+   search field sits beyond the slant on the window wash - p1's layout. */
+[class*="base__"] > [class*="bar_"] {
+  background-image:
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchright.png),
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
+  background-size: 57px 58px, calc(100% - 250px) 58px !important;
+  background-position: right 193px top, left top !important;
+  background-repeat: no-repeat, no-repeat !important;
+}
+
+/* Search, outside the slant. Both the sidebar one (DMs) and the channel
+   one (servers) land in the same place. */
+nav[class*="privateChannels_"] > [class*="searchBar_"],
+[class*="page__"] [class*="search__"]:has([class*="searchBar_"]) {
+  left: auto !important;
+  right: 24px !important;
+  top: 18px !important;
+  width: 200px !important;
+  height: 22px !important;
+}
+
+nav[class*="privateChannels_"] > [class*="searchBar_"] button,
+[class*="page__"] [class*="search__"] [class*="searchBar_"] {
+  width: 200px !important;
+}
+
+/* Message Requests moves into the bar, where p1 keeps its icon row. */
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) {
+  right: auto !important;
+  left: 80px !important;
+  top: 13px !important;
+}
+
+/* Discord's inbox and help buttons do nothing useful here. */
+[class*="bar_"] [aria-label="Inbox"],
+[class*="bar_"] [aria-label="Help"],
+[class*="base__"] > [class*="bar_"] [class*="trailing_"] {
+  display: none !important;
+}
+
+[class*="base__"] > [class*="bar_"]::after {
+  display: none !important;
+}
+
+/* The tab strip starts right after Message Requests now. */
+[class*="page__"] > main > section {
+  left: 130px !important;
+  right: 240px !important;
+}
+
+/* --- Server rail ------------------------------------------------ */
+
+/* The Discord/DM button collides with the MSN tile above it, and the tile
+   already goes to direct messages. */
+[class*="guilds__"] [data-list-item-id="guildsnav___home"],
+[class*="guilds__"] [class*="tutorialContainer__1f388"] {
+  display: none !important;
+}
+
+/* Folders are plain coloured squares - no tab. */
+[class*="folderGroup__"] [class*="folderButton__"]::before {
+  display: none !important;
+}
+
+[class*="folderGroup__"] [class*="folderButton__"] {
+  width: 40px !important;
+  height: 40px !important;
+  margin: 4px auto 0 auto !important;
+  border-radius: 2px !important;
+}
+
+[class*="folderGroup__"]:nth-child(6n+1) [class*="folderButton__"] { background: #E2A0B8 !important; }
+[class*="folderGroup__"]:nth-child(6n+2) [class*="folderButton__"] { background: #E3C56A !important; }
+[class*="folderGroup__"]:nth-child(6n+3) [class*="folderButton__"] { background: #9FC5E8 !important; }
+[class*="folderGroup__"]:nth-child(6n+4) [class*="folderButton__"] { background: #AECFA0 !important; }
+[class*="folderGroup__"]:nth-child(6n+5) [class*="folderButton__"] { background: #C9B0DC !important; }
+[class*="folderGroup__"]:nth-child(6n)   [class*="folderButton__"] { background: #E8B98A !important; }
+
+/* --- Messenger panel: the name is on it in the reference -------- */
+
+[class*="panels__"] [class*="panelTitleContainer__"] {
+  display: block !important;
+}
+
+[class*="panels__"] [class*="panelTitleContainer__"],
+[class*="panels__"] [class*="panelTitleContainer__"] * {
+  font: bold 12px var(--font-primary) !important;
+  color: #000000 !important;
+  line-height: 14px !important;
+}
+
+[class*="sidebar__"] > [class*="panels__"] {
+  height: 100px !important;
+}
+
+[class*="sidebarList__"] {
+  padding-bottom: 88px !important;
+}
+
+/* ================================================================
+   The channel header's buttons become p1's icon row in the bar, so
+   a DM or a server gets the same toolbar as the friends page.
+   ================================================================ */
+[class*="page__"] [class*="toolbar_"] {
+  position: fixed !important;
+  top: 13px !important;
+  left: 130px !important;
+  gap: 10px !important;
+  z-index: 300 !important;
+}
+
+[class*="page__"] [class*="toolbar_"] [class*="iconWrapper_"] {
+  width: 32px !important;
+  height: 32px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 26px 26px !important;
+}
+
+[class*="page__"] [class*="toolbar_"] [class*="iconWrapper_"] svg {
+  display: none !important;
+}
+
+[class*="toolbar_"] [aria-label="Start Voice Call"] {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/phone.png) !important;
+}
+
+[class*="toolbar_"] [aria-label="Start Video Call"],
+[class*="toolbar_"] [aria-label="Join Video Call"] {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/webcam.png) !important;
+}
+
+[class*="toolbar_"] [aria-label="Pinned Messages"] {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/pin.png) !important;
+}
+
+[class*="toolbar_"] [aria-label="Invite to Group DM"],
+[class*="toolbar_"] [aria-label="Add Friends to DM"],
+[class*="toolbar_"] [aria-label="Invite Friends"] {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/addacontact.png) !important;
+}
+
+[class*="toolbar_"] [aria-label="Hide Member List"],
+[class*="toolbar_"] [aria-label="Show Member List"],
+[class*="toolbar_"] [aria-label="Members"] {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/memberlist.png) !important;
+}
+
+[class*="toolbar_"] [aria-label="Threads"] {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png) !important;
+}
+
+[class*="toolbar_"] [aria-label="Notification Settings"] {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/bell.png) !important;
+}
