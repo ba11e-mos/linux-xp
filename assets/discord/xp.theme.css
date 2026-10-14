@@ -4559,3 +4559,15 @@ nav[class*="privateChannels_"]::-webkit-scrollbar-button:single-button:vertical:
   width: 242px !important;
   height: calc(100% + 34px) !important;
 }
+
+/* The panels section opens with an empty 0px wrapper plus a 4px gap, so
+   the list ended 8px above the box under it and 4px above the bottom of
+   the chat window. 4px less margin: the contact list now ends level with
+   the message pane (no player) and 4px above the player (with one). */
+[class*="sidebarList__"] {
+  margin-bottom: 104px !important;
+}
+
+[class*="sidebarList__"]:where(:has(~ [class*="panels__"] #vc-spotify-player)):not(#dsn-none):not([data-dsn-none]) {
+  margin-bottom: 252px !important;
+}
