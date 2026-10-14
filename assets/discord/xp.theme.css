@@ -2411,3 +2411,166 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover,
 [class*="friendsButtonContainer_"]:hover {
   z-index: 400 !important;
 }
+
+/* ================================================================
+   Thirteenth pass: alignment, measured in all three views.
+   Target: every pane top at 62, bottom at viewport - 4, 4px gaps.
+   ================================================================ */
+
+/* Page area: Discord's grid stretched it a full row tall and then the
+   margin pushed it 4px past the window bottom (and 0 on the right). */
+[class*="page__"] {
+  height: auto !important;
+  align-self: stretch !important;
+  margin: 4px 4px 4px 0 !important;
+}
+
+[class*="chat_"] {
+  padding-top: 0 !important;
+}
+
+/* Member list out of the flow. Sizing it calc(100% + 35px) in the flex
+   row made the whole page taller than the window in servers, pushing
+   the composer off-screen. Absolutely placed it cannot do that. */
+[class*="chat_"] > [class*="content_"] {
+  position: relative !important;
+}
+
+[class*="membersWrap_"] {
+  position: absolute !important;
+  top: -34px !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 240px !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+[class*="chat_"]:has([class*="membersWrap_"]) [class*="chatContent_"] {
+  margin-right: 248px !important;
+}
+
+/* Contact list ends above the boxes under it instead of running behind
+   them; its nav carried a second gradient, which was the odd box above
+   the player. */
+[class*="privateChannels_"] {
+  background: transparent !important;
+}
+
+[class*="sidebarList__"],
+[class*="sidebar__"]:has(#vc-spotify-player) [class*="sidebarList__"] {
+  padding-bottom: 0 !important;
+  height: auto !important;
+  align-self: stretch !important;
+  margin-bottom: 108px !important;
+}
+
+[class*="sidebar__"]:has(#vc-spotify-player) [class*="sidebarList__"] {
+  margin-bottom: 236px !important;
+}
+
+/* One-line titles keep the player a fixed height, which the margin above
+   depends on. */
+#vc-spotify-titles p {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* --- Toolbar ---------------------------------------------------- */
+
+/* Discord gives the channel search a 4px margin, so it stood at 1128
+   while the DM one stood at 1124 - and the top strip met the curve in
+   a different place on each page, which was the notch. */
+nav[class*="privateChannels_"] > [class*="searchBar_"],
+[class*="page__"] [class*="search__"]:has([class*="searchBar_"]) {
+  margin: 0 !important;
+}
+
+[class*="base__"] > [class*="bar_"] {
+  background-size: 10px 21px, calc(50% - 60px) 21px, 9px 58px, calc(50% - 81px) 58px !important;
+}
+
+/* Servers have no Message Requests button; start the icon row where it
+   would have been so there is no hole after the tile. */
+[class*="base__"]:not(:has(a[href="/message-requests"])) [class*="page__"] [class*="toolbar_"] {
+  left: 88px !important;
+}
+
+/* Hover and press on every toolbar and panel button: a pale raised
+   frame, pressed in on click. */
+[class*="page__"] [class*="toolbar_"] [class*="iconWrapper_"]:hover,
+nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) a:hover,
+[class*="panels__"] [class*="buttons__"] button:hover {
+  background-color: #EEF3FC !important;
+  box-shadow: inset 0 0 0 1px #9DB4DF, inset 0 1px 0 1px #FFFFFF !important;
+  border-radius: 3px !important;
+}
+
+[class*="page__"] [class*="toolbar_"] [class*="iconWrapper_"]:active,
+nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) a:active,
+[class*="panels__"] [class*="buttons__"] button:active {
+  background-color: #DCE5F4 !important;
+  box-shadow: inset 0 0 0 1px #7F9DB9, inset 1px 1px 2px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* --- Player and Messenger box ----------------------------------- */
+
+/* The bar grew to 10px downward from its top, so the knob sat high.
+   Centre the knob on it, and lift the whole bar a little. */
+#vc-spotify-progress-bar {
+  margin-top: -10px !important;
+}
+
+#vc-spotify-progress-bar [class*="grabber__"] {
+  margin-top: 3px !important;
+}
+
+[class*="sidebar__"] > [class*="panels__"] > div[class*="container__37e49"]::before {
+  top: -3px !important;
+}
+
+[class*="sidebar__"] > [class*="panels__"] > div[class*="container__37e49"]::after {
+  top: 4px !important;
+}
+
+[class*="page__"] {
+  width: auto !important;
+  justify-self: stretch !important;
+}
+
+[class*="sidebar__"]:has(#vc-spotify-player) [class*="sidebarList__"] {
+  margin-bottom: 232px !important;
+}
+
+/* The composer's frame and margin added ~32px the message list did not
+   give back, so the column overflowed its row and the member list (which
+   measures the row) ended short. */
+[class*="chatContent_"] {
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+[class*="messagesWrapper_"] {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+}
+
+/* Absolutely placed, so an explicit height no longer inflates anything;
+   insets alone resolved to 100% of the row and stopped 34px short. */
+[class*="chat_"] > [class*="content_"] > [class*="membersWrap_"],
+[class*="membersWrap_"] {
+  height: calc(100% + 34px) !important;
+  max-height: none !important;
+}
+
+[class*="chat_"] > [class*="content_"] > [class*="membersWrap_"],
+[class*="membersWrap_"] {
+  height: calc(100% + 32px) !important;
+}
+
+/* Measured: bar centre 1270.0, knob centre 1276.5 with a 3px margin -
+   so the knob wants -3.5px. */
+#vc-spotify-progress-bar [class*="grabber__"] {
+  margin-top: -3.5px !important;
+}
