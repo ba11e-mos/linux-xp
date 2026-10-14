@@ -2211,3 +2211,18 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 #vc-spotify-progress-bar {
   margin-top: -6px !important;
 }
+
+/* Message Requests keeps its header in the page, so the toolbar shows
+   only what every page has: tile, Message Requests, search. Only the
+   friends header (the one with Add Friend) goes up into the bar. */
+[class*="page__"] section:has([class*="topPill_"]):not(:has([class*="addFriend"])) {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #E8EFFB 100%) !important;
+  border-bottom: 1px solid var(--dsn-border) !important;
+  z-index: auto !important;
+}
