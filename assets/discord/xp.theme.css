@@ -2918,3 +2918,87 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
   border-color: #9DB4DF !important;
   box-shadow: inset 0 0 0 1px #FFFFFF !important;
 }
+
+/* Keep the popout the same 280px width as the Messenger banner in the
+   account panel. Discord's default 300px card is visibly too wide. */
+[class*="popoutContainer_ce8328"],
+[class*="outer_c0bea0"].user-profile-popout {
+  width: 280px !important;
+  max-width: 280px !important;
+  min-width: 280px !important;
+  box-sizing: border-box !important;
+}
+
+[class*="outer_c0bea0"] [class*="header__5be3e"],
+[class*="outer_c0bea0"] [class*="banner_f7e69e"],
+[class*="outer_c0bea0"] [class*="body_ce8328"] {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Replace the black Discord/Vencord navigation glyphs with the small,
+   pixel-art MSN set. The data IDs are stable semantic hooks, unlike the
+   generated class suffixes. */
+[class*="item_caf372"] [class*="icon_caf372"],
+[class*="item_caf372"] .vc-icon {
+  display: none !important;
+}
+
+[class*="item_caf372"] [class*="itemContent_caf372"]::before {
+  content: "" !important;
+  display: block !important;
+  width: 20px !important;
+  height: 20px !important;
+  flex: 0 0 20px !important;
+  margin-right: 8px !important;
+  background: url(https://heartmoder.github.io/dsn10-theme/assets/msn/msn-blue.png) center / 20px 20px no-repeat !important;
+}
+
+[data-list-item-id="settings-sidebar___account_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) !important;
+}
+
+[data-list-item-id="settings-sidebar___data_and_privacy_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/pin.png) !important;
+}
+
+[data-list-item-id="settings-sidebar___messaging_permissions_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png) !important;
+}
+
+[data-list-item-id="settings-sidebar___notifications_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/bell.png) !important;
+}
+
+[data-list-item-id="settings-sidebar___vencord_main_panel"] [class*="itemContent_caf372"]::before,
+[data-list-item-id="settings-sidebar___vencord_plugins_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) !important;
+}
+
+[data-list-item-id="settings-sidebar___vencord_themes_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/game.png) !important;
+}
+
+[data-list-item-id="settings-sidebar___vencord_updater_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/remotedesktop.png) !important;
+}
+
+[data-list-item-id="settings-sidebar___vesktop_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/computer.gif) !important;
+}
+
+[class*="modal_e44912"] [class*="button_a22cb0"],
+[class*="modal_e44912"] [class*="textButton__7a01b"] {
+  min-height: 28px !important;
+  border: 1px solid #7F9DB9 !important;
+  border-radius: 3px !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #DCE7F7 100%) !important;
+  color: #18304F !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF !important;
+}
+
+[class*="modal_e44912"] [class*="button_a22cb0"]:hover,
+[class*="modal_e44912"] [class*="textButton__7a01b"]:hover {
+  border-color: #316AC5 !important;
+  background: linear-gradient(180deg, #EAF2FF 0%, #BFD5F4 100%) !important;
+}
