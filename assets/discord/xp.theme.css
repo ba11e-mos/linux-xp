@@ -81,17 +81,8 @@
   padding-inline: 8px;
 }
 
-/* MSN's buddies tile at the far left. */
-[class*="base__"] > [class*="bar_"]::before {
-  content: "";
-  flex: 0 0 auto;
-  order: -2;
-  width: 54px; height: 50px;
-  margin: 3px 8px 0 6px;
-  border: 1px solid var(--dsn-border);
-  border-radius: 4px;
-  background: #FFFFFF url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) center / 40px no-repeat;
-}
+/* The buddies tile is the Friends button itself - see below - so the bar
+   draws no tile of its own. */
 
 /* Discord's back/forward arrows and the window title: the XP title bar
    above already carries the title, and MSN had no arrows here. */
@@ -430,12 +421,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
   display: none !important;
 }
 
-/* With the search field gone from the sidebar, the contact list would
-   start above the first message. Drop it by the header's height. */
-[class*="privateChannels_"] > [class*="scroller__"] {
-  padding-top: 34px !important;
-}
-
 /* ----------------------------------------------------------------
    Friends list: MSN framed each contact photo.
    ---------------------------------------------------------------- */
@@ -727,11 +712,6 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
 
 /* --- Contact list ----------------------------------------------- */
 
-/* MSN listed direct messages as pictures only, hung on the right edge. */
-[class*="privateChannels_"] li[class*="channel__"][class*="dm__"] [class*="content__"] {
-  display: none !important;
-}
-
 [class*="privateChannels_"] li[class*="channel__"],
 [class*="privateChannels_"] li[class*="channel__"] a,
 [class*="privateChannels_"] li[class*="channel__"] > div[class*="interactive"] {
@@ -897,4 +877,222 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]) [class*="interac
 li[class*="channel__"]:has(> div > a[href="/message-requests"]) a:not(:hover) {
   background-color: transparent !important;
   border-color: transparent !important;
+}
+
+/* ================================================================
+   Fifth pass: the tile is a real button, the search segment is
+   painted on the bar so it survives server views, and the server
+   channel list gets the same treatment as the contact list.
+   ================================================================ */
+
+/* --- Toolbar ---------------------------------------------------- */
+
+/* All of it on the bar: flat strip underneath, then the search segment's
+   three slices on top. Painting the segment here instead of on the search
+   field keeps it there in servers, where that field does not exist. */
+[class*="base__"] > [class*="bar_"] {
+  background-image:
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchleft.png),
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png),
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchright.png),
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
+  background-size: 9px 58px, 254px 58px, 57px 58px, 100% 58px !important;
+  background-position: 70px top, 79px top, 333px top, left top !important;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat !important;
+}
+
+nav[class*="privateChannels_"] > [class*="searchBar_"] {
+  left: 84px !important;
+  top: 18px !important;
+  width: 240px !important;
+  height: 22px !important;
+  background: none !important;
+}
+
+nav[class*="privateChannels_"] > [class*="searchBar_"] button {
+  margin-left: 0 !important;
+  width: 240px !important;
+}
+
+/* The Friends button is the buddies tile. */
+[class*="friendsButtonContainer_"] {
+  left: 6px !important;
+  right: auto !important;
+  top: 4px !important;
+  width: 54px !important;
+  height: 50px !important;
+}
+
+[class*="friendsButtonContainer_"] a {
+  width: 54px !important;
+  height: 50px !important;
+  border: 1px solid var(--dsn-border) !important;
+  border-radius: 4px !important;
+  background-color: #FFFFFF !important;
+  background-size: 40px 40px !important;
+}
+
+[class*="friendsButtonContainer_"] a:not(:hover) {
+  background-color: #FFFFFF !important;
+  border-color: var(--dsn-border) !important;
+}
+
+/* Which leaves the reference's trio on the right: contacts, mail, help. */
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) {
+  right: 150px !important;
+}
+
+/* --- Contact list ----------------------------------------------- */
+
+/* Flush right clipped the pictures against the pane's own border. */
+[class*="privateChannels_"] li[class*="channel__"] a,
+[class*="privateChannels_"] li[class*="channel__"] > div[class*="interactive"] {
+  padding: 0 4px 0 8px !important;
+}
+
+/* --- Server channel list ---------------------------------------- */
+
+nav[class*="container__2637a"] {
+  background: transparent !important;
+}
+
+nav[class*="container__2637a"] [class*="header_"] {
+  background: transparent !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid var(--dsn-border) !important;
+}
+
+nav[class*="container__2637a"] [class*="header_"] h2 {
+  font: bold 11px var(--font-primary) !important;
+  color: #003399 !important;
+}
+
+/* Category headers and channels, in MSN's spacing. */
+nav[class*="container__2637a"] li[class*="containerDefault_"] [class*="link__"],
+nav[class*="container__2637a"] li[class*="containerDefault_"] > div {
+  height: 24px !important;
+  min-height: 24px !important;
+  border-radius: 0 !important;
+  padding: 0 6px !important;
+}
+
+nav[class*="container__2637a"] li[class*="containerDefault_"] {
+  height: 24px !important;
+}
+
+nav[class*="container__2637a"] [class*="name__"] {
+  font: 11px var(--font-primary) !important;
+  color: #000000 !important;
+}
+
+nav[class*="container__2637a"] h3[class*="name__"] {
+  font: bold 11px var(--font-primary) !important;
+  color: #444444 !important;
+  text-transform: uppercase !important;
+}
+
+nav[class*="container__2637a"] li[class*="containerDefault_"] [class*="selected"],
+nav[class*="container__2637a"] li[class*="containerDefault_"]:hover [class*="link__"] {
+  background: linear-gradient(180deg, #FDFDFF 0%, #DCE4F5 100%) !important;
+  outline: 1px solid var(--dsn-border) !important;
+}
+
+/* --- Messenger panel: bigger, closer to the screenshot ----------- */
+
+[class*="sidebar__"] > [class*="panels__"] {
+  height: 104px !important;
+  padding: 24px 0 0 14px !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FDFDFF 62%, #E9EFFA 62%, #DAE4F6 100%) !important;
+}
+
+[class*="sidebar__"] > [class*="panels__"]::before {
+  top: 6px; left: 12px;
+  width: 54px; height: 19px;
+}
+
+[class*="sidebar__"] > [class*="panels__"]::after {
+  top: 4px; left: 74px;
+  font: bold 16px var(--font-primary);
+}
+
+[class*="panels__"] [class*="avatar__"] {
+  width: 56px !important;
+  height: 56px !important;
+}
+
+[class*="panels__"] [class*="avatar__"] svg,
+[class*="panels__"] [class*="avatar__"] foreignObject,
+[class*="panels__"] [class*="avatar__"] img {
+  width: 56px !important;
+  height: 56px !important;
+}
+
+[class*="panels__"] [class*="panelSubtextContainer__"]::before {
+  font-size: 16px;
+}
+
+[class*="panels__"] [class*="nameTag__"] {
+  margin-top: 16px !important;
+  margin-left: 12px !important;
+}
+
+[class*="panels__"] [class*="buttons__"] button {
+  width: 28px !important;
+  height: 28px !important;
+  background-size: 24px 24px !important;
+}
+
+[class*="sidebarList__"] {
+  padding-bottom: 92px !important;
+}
+
+/* With the title and the back arrows hidden, the icon trio is the only
+   flex item left and drifts to the left edge. */
+[class*="base__"] > [class*="bar_"] [class*="trailing_"] {
+  margin-left: auto !important;
+}
+
+/* In a server there is no Friends button to serve as the tile, so the bar
+   draws one. */
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) > [class*="bar_"]::before {
+  content: "";
+  position: fixed;
+  top: 4px; left: 6px;
+  width: 54px; height: 50px;
+  border: 1px solid var(--dsn-border);
+  border-radius: 4px;
+  background: #FFFFFF url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) center / 40px no-repeat;
+}
+
+/* The channel search fills the toolbar's search segment in server views,
+   the way the reference has it. */
+[class*="page__"] [class*="search__"]:has([class*="searchBar_"]) {
+  position: fixed !important;
+  top: 18px !important;
+  left: 84px !important;
+  width: 240px !important;
+  z-index: 300 !important;
+}
+
+[class*="page__"] [class*="search__"] [class*="searchBar_"] {
+  width: 240px !important;
+  height: 22px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #7F9DB9 !important;
+  border-radius: 0 !important;
+  font: 12px var(--font-primary) !important;
+}
+
+/* Nothing sits above the Direct Messages header any more - the nav rows
+   went to the toolbar - so the spacer and the divider are dead space. */
+nav[class*="privateChannels_"] ul[class*="content_"] > div:first-child,
+nav[class*="privateChannels_"] [class*="sectionDivider_"] {
+  display: none !important;
+}
+
+/* Status reads beside the photo, not down on the icon band. */
+[class*="panels__"] [class*="nameTag__"] {
+  margin-top: 6px !important;
 }
