@@ -111,7 +111,7 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]) {
 li[class*="channel__"]:has(> div > a[href="/message-requests"]) { right: 110px !important; }
 
 [class*="friendsButtonContainer_"] a,
-li[class*="channel__"]:has(> div > a[href="/message-requests"]) a {
+li[class*="channel__"] > div > a[href="/message-requests"]:not(dsn-none) {
   width: 32px !important;
   height: 32px !important;
   padding: 0 !important;
@@ -122,7 +122,7 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]) a {
 }
 
 [class*="friendsButtonContainer_"] a:hover,
-li[class*="channel__"]:has(> div > a[href="/message-requests"]) a:hover {
+li[class*="channel__"] > div > a[href="/message-requests"]:hover:not(dsn-none) {
   border-color: var(--dsn-border);
   background-color: #D8E4F8 !important;
 }
@@ -131,13 +131,13 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]) a:hover {
   background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) !important;
 }
 
-li[class*="channel__"]:has(> div > a[href="/message-requests"]) a {
+li[class*="channel__"] > div > a[href="/message-requests"]:not(dsn-none) {
   background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/email2.png) !important;
 }
 
 /* Label and unread pill would sit on top of the icon. */
 [class*="friendsButtonContainer_"] a > *,
-li[class*="channel__"]:has(> div > a[href="/message-requests"]) a > * {
+li[class*="channel__"] > div > a[href="/message-requests"] > *:not(dsn-none) {
   display: none !important;
 }
 
@@ -851,7 +851,7 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button * {
 
 /* Two envelopes in a row read as a mistake: Message Requests takes the
    contact-with-alert icon the reference uses for it in the sidebar. */
-li[class*="channel__"]:has(> div > a[href="/message-requests"]) a {
+li[class*="channel__"] > div > a[href="/message-requests"]:not(dsn-none) {
   background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/newpawn.png) !important;
 }
 
@@ -867,14 +867,14 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]) a {
    so the selected-row frame was landing on them. */
 [class*="friendsButtonContainer_"] [class*="interactive"],
 [class*="friendsButtonContainer_"] [class*="selected"],
-li[class*="channel__"]:has(> div > a[href="/message-requests"]) [class*="interactive"] {
+li[class*="channel__"] > [class*="interactive"]:where(:has(> a[href="/message-requests"])):not([data-dsn-none]):not(dsn-none):not(dsn-none) {
   background: transparent !important;
   border: none !important;
   outline: none !important;
 }
 
 [class*="friendsButtonContainer_"] a:not(:hover),
-li[class*="channel__"]:has(> div > a[href="/message-requests"]) a:not(:hover) {
+li[class*="channel__"] > div > a[href="/message-requests"]:not(:hover):not(dsn-none) {
   background-color: transparent !important;
   border-color: transparent !important;
 }
@@ -1056,15 +1056,6 @@ nav[class*="container__2637a"] li[class*="containerDefault_"]:hover [class*="lin
 
 /* In a server there is no Friends button to serve as the tile, so the bar
    draws one. */
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) > [class*="bar_"]::before {
-  content: "";
-  position: fixed;
-  top: 4px; left: 6px;
-  width: 54px; height: 50px;
-  border: 1px solid var(--dsn-border);
-  border-radius: 4px;
-  background: #FFFFFF url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) center / 40px no-repeat;
-}
 
 /* The channel search fills the toolbar's search segment in server views,
    the way the reference has it. */
@@ -1158,8 +1149,7 @@ nav[class*="privateChannels_"] [class*="sectionDivider_"] {
   height: 52px !important;
 }
 
-[class*="friendsButtonContainer_"] a,
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) > [class*="bar_"]::before {
+[class*="friendsButtonContainer_"] a {
   width: 58px !important;
   height: 52px !important;
   border-radius: 8px !important;
@@ -1459,7 +1449,7 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button svg {
   color: #233C8F !important;
 }
 
-[class*="panels__"] [class*="container__"] ,
+[class*="panels__"] [class*="container__"],
 [class*="panels__"] [class*="accountPopoutButtonWrapper__"] {
   background: transparent !important;
   padding: 0 !important;
@@ -1646,8 +1636,7 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button::before {
    below it, light grey-blue fill, 2px pale blue frame, trio ~42px.
    Identical box for the real Friends button (DMs) and the drawn tile
    (servers) - they differed by 12px before, which is the jump. */
-[class*="friendsButtonContainer_"],
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) > [class*="bar_"]::before {
+[class*="friendsButtonContainer_"] {
   position: fixed !important;
   left: 14px !important;
   top: 9px !important;
@@ -1668,8 +1657,7 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button::before {
   padding: 0 !important;
 }
 
-[class*="friendsButtonContainer_"] a,
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) > [class*="bar_"]::before {
+[class*="friendsButtonContainer_"] a {
   display: block !important;
   width: 62px !important;
   height: 58px !important;
@@ -1714,8 +1702,8 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]) {
   padding: 0 !important;
 }
 
-li[class*="channel__"]:has(> div > a[href="/message-requests"]) > div,
-li[class*="channel__"]:has(> div > a[href="/message-requests"]) a {
+li[class*="channel__"] > div:where(:has(> a[href="/message-requests"])):not([data-dsn-none]):not(dsn-none):not(dsn-none),
+li[class*="channel__"] > div > a[href="/message-requests"]:not(dsn-none) {
   width: 32px !important;
   height: 32px !important;
   min-height: 32px !important;
@@ -1729,7 +1717,7 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]) a {
   background-position: center !important;
 }
 
-li[class*="channel__"]:has(> div > a[href="/message-requests"]) > div {
+li[class*="channel__"] > div:where(:has(> a[href="/message-requests"])):not([data-dsn-none]):not(dsn-none):not(dsn-none) {
   background-image: none !important;
 }
 
@@ -1737,9 +1725,6 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]) > div {
 /* A DM has both the sidebar's quick switcher and the chat header's
    search; they were stacked 4px apart. Keep the header one when it
    exists, the sidebar one only on the friends page. */
-[class*="base__"]:has([class*="page__"] [class*="search__"] [class*="searchBar_"]) nav[class*="privateChannels_"] > [class*="searchBar_"] {
-  display: none !important;
-}
 
 nav[class*="privateChannels_"] > [class*="searchBar_"],
 [class*="page__"] [class*="search__"]:has([class*="searchBar_"]) {
@@ -1791,8 +1776,8 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 }
 
 nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]),
-nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) > div,
-nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) a {
+nav[class*="privateChannels_"] li[class*="channel__"] > div:where(:has(> a[href="/message-requests"])):not([data-dsn-none]):not(dsn-none):not(dsn-none),
+nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-requests"]:not(dsn-none) {
   width: 32px !important;
   height: 32px !important;
   min-height: 32px !important;
@@ -1845,8 +1830,7 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 /* --- Tile fixed to the start of the bar ------------------------- */
 /* In the reference the bar's rounded start butts against the tile, so
    the tile has no right edge of its own. */
-nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="channel__"] a,
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) > [class*="bar_"]::before {
+nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="channel__"] a {
   border-right: none !important;
   border-radius: 8px 0 0 8px !important;
 }
@@ -1857,9 +1841,9 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 }
 
 /* --- Message Requests hovers like the header buttons: not at all - */
-nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) [class*="interactive"],
-nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) [class*="interactive"]:hover,
-nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) a:hover {
+nav[class*="privateChannels_"] li[class*="channel__"] > [class*="interactive"]:where(:has(> a[href="/message-requests"])):not([data-dsn-none]):not(dsn-none):not(dsn-none),
+nav[class*="privateChannels_"] li[class*="channel__"] > [class*="interactive"]:where(:has(> a[href="/message-requests"])):hover:not([data-dsn-none]):not(dsn-none):not(dsn-none),
+nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-requests"]:hover:not(dsn-none) {
   background-color: transparent !important;
   background-image: none !important;
   border: none !important;
@@ -1867,8 +1851,8 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
   box-shadow: none !important;
 }
 
-nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) a,
-nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) a:hover {
+nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-requests"]:not(dsn-none),
+nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-requests"]:hover:not(dsn-none) {
   background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/newpawn.png) !important;
   background-size: 26px 26px !important;
   background-position: center !important;
@@ -1890,15 +1874,15 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
   z-index: 300 !important;
 }
 
-[class*="page__"] section:has([class*="topPill_"]) [class*="iconWrapper__"] {
+[class*="page__"] :is(main, [class*="chat_"]) > section [class*="iconWrapper__"] {
   background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) center / 24px no-repeat !important;
 }
 
-[class*="page__"] section:has([class*="topPill_"]) [class*="iconWrapper__"] svg {
+[class*="page__"] :is(main, [class*="chat_"]) > section [class*="iconWrapper__"] svg {
   display: none !important;
 }
 
-[class*="page__"] section:has([class*="topPill_"]) [class*="item_"] {
+[class*="page__"] :is(main, [class*="chat_"]) > section [class*="item_"] {
   background: transparent !important;
   border: 1px solid transparent !important;
   border-radius: 0 !important;
@@ -1907,20 +1891,20 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
   padding: 1px 7px !important;
 }
 
-[class*="page__"] section:has([class*="topPill_"]) [class*="item_"][class*="selected"] {
+[class*="page__"] :is(main, [class*="chat_"]) > section [class*="item_"][class*="selected"] {
   border-color: var(--dsn-border) !important;
   background: #F4F7FD !important;
   text-decoration: underline !important;
 }
 
-[class*="page__"] section:has([class*="topPill_"]) h1,
-[class*="page__"] section:has([class*="topPill_"]) [class*="titleWrapper__"] * {
+[class*="page__"] :is(main, [class*="chat_"]) > section h1,
+[class*="page__"] :is(main, [class*="chat_"]) > section [class*="titleWrapper__"] * {
   font: bold 12px var(--font-primary) !important;
   color: #000000 !important;
 }
 
 /* Message Requests' own icon in its header. */
-[class*="page__"] section:has([class*="topPill_"]):not(:has([class*="addFriend"])) [class*="iconWrapper__"] {
+[class*="page__"] [class*="chat_"] > section [class*="iconWrapper__"]:not([data-dsn-none]) {
   background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/newpawn.png) !important;
 }
 
@@ -1993,8 +1977,7 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
 
 /* Tile frame: thicker and paler than the generic XP border, trio fills
    about two thirds of the box - both measured off the reference crop. */
-nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="channel__"] a,
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) > [class*="bar_"]::before {
+nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="channel__"] a {
   border-width: 3px 0 3px 3px !important;
   border-style: solid !important;
   border-color: #B5CAEC !important;
@@ -2180,7 +2163,7 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 }
 
 /* Keep the contact list clear of whichever boxes are showing. */
-[class*="sidebar__"]:has(#vc-spotify-player) [class*="sidebarList__"] {
+[class*="sidebarList__"]:where(:has(~ [class*="panels__"] #vc-spotify-player)):not(#dsn-none):not([data-dsn-none]) {
   padding-bottom: 250px !important;
 }
 
@@ -2283,7 +2266,7 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover::before,
 }
 
 /* --- Boxes around clickable text: slightly rounded -------------- */
-[class*="page__"] section:has([class*="topPill_"]) [class*="item_"],
+[class*="page__"] :is(main, [class*="chat_"]) > section [class*="item_"],
 [class*="privateChannels_"] [class*="selected"],
 [class*="privateChannels_"] li[class*="channel__"] [class*="interactive"]:hover,
 nav[class*="container__2637a"] li[class*="containerDefault_"] [class*="selected"],
@@ -2333,7 +2316,7 @@ button[class*="button_"],
   background: linear-gradient(180deg, #FFFFFF 0%, #E6ECF7 100%) !important;
 }
 
-[class*="chat_"]:has([class*="membersWrap_"]) > [class*="subtitleContainer_"] {
+[class*="subtitleContainer_"]:where(:has(+ div > div > aside:not([aria-labelledby^="user-profile"]))):not([data-dsn-none]):not([data-dsn-none]):not(dsn-none):not(dsn-none):not(dsn-none) {
   margin-right: 248px !important;
 }
 
@@ -2446,7 +2429,7 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover,
   margin: 0 !important;
 }
 
-[class*="chat_"]:has([class*="membersWrap_"]) [class*="chatContent_"] {
+[class*="chatContent_"]:where(:has(~ div > aside:not([aria-labelledby^="user-profile"]))):not([data-dsn-none]):not([data-dsn-none]):not(dsn-none):not(dsn-none):not(dsn-none) {
   margin-right: 248px !important;
 }
 
@@ -2458,14 +2441,14 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover,
 }
 
 [class*="sidebarList__"],
-[class*="sidebar__"]:has(#vc-spotify-player) [class*="sidebarList__"] {
+[class*="sidebarList__"]:where(:has(~ [class*="panels__"] #vc-spotify-player)):not(#dsn-none):not([data-dsn-none]) {
   padding-bottom: 0 !important;
   height: auto !important;
   align-self: stretch !important;
   margin-bottom: 108px !important;
 }
 
-[class*="sidebar__"]:has(#vc-spotify-player) [class*="sidebarList__"] {
+[class*="sidebarList__"]:where(:has(~ [class*="panels__"] #vc-spotify-player)):not(#dsn-none):not([data-dsn-none]) {
   margin-bottom: 236px !important;
 }
 
@@ -2493,14 +2476,14 @@ nav[class*="privateChannels_"] > [class*="searchBar_"],
 
 /* Servers have no Message Requests button; start the icon row where it
    would have been so there is no hole after the tile. */
-[class*="base__"]:not(:has(a[href="/message-requests"])) [class*="page__"] [class*="toolbar_"] {
+[class*="page__"] [class*="toolbar_"]:not(:has([aria-label="Start Voice Call"], [aria-label="Join Voice Call"])) {
   left: 88px !important;
 }
 
 /* Hover and press on every toolbar and panel button: a pale raised
    frame, pressed in on click. */
 [class*="page__"] [class*="toolbar_"] [class*="iconWrapper_"]:hover,
-nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) a:hover,
+nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-requests"]:hover:not(dsn-none),
 [class*="panels__"] [class*="buttons__"] button:hover {
   background-color: #EEF3FC !important;
   box-shadow: inset 0 0 0 1px #9DB4DF, inset 0 1px 0 1px #FFFFFF !important;
@@ -2508,7 +2491,7 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
 }
 
 [class*="page__"] [class*="toolbar_"] [class*="iconWrapper_"]:active,
-nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) a:active,
+nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-requests"]:active:not(dsn-none),
 [class*="panels__"] [class*="buttons__"] button:active {
   background-color: #DCE5F4 !important;
   box-shadow: inset 0 0 0 1px #7F9DB9, inset 1px 1px 2px rgba(0, 0, 0, 0.25) !important;
@@ -2539,7 +2522,7 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
   justify-self: stretch !important;
 }
 
-[class*="sidebar__"]:has(#vc-spotify-player) [class*="sidebarList__"] {
+[class*="sidebarList__"]:where(:has(~ [class*="panels__"] #vc-spotify-player)):not(#dsn-none):not([data-dsn-none]) {
   margin-bottom: 232px !important;
 }
 
@@ -2615,7 +2598,7 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
 }
 
 /* --- Hover on text buttons -------------------------------------- */
-[class*="page__"] section:has([class*="topPill_"]) [class*="item_"]:hover {
+[class*="page__"] :is(main, [class*="chat_"]) > section [class*="item_"]:hover {
   border-color: #9DB4DF !important;
   background: #EEF3FC !important;
   text-decoration: underline !important;
@@ -2645,11 +2628,8 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
 /* There is no Friends button in a server, and a pseudo-element cannot be
    clicked. Discord's own Direct Messages button goes to the same place,
    so it becomes the tile there. */
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) > [class*="bar_"]::before {
-  display: none !important;
-}
 
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="guilds__"] [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) {
+[class*="guilds__"] [class*="listItem__"][class*="listItem__"]:has([data-list-item-id="guildsnav___home"][aria-selected="false"]) {
   position: fixed !important;
   left: 14px !important;
   top: 9px !important;
@@ -2659,7 +2639,7 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
   z-index: 320 !important;
 }
 
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [data-list-item-id="guildsnav___home"] {
+[data-list-item-id="guildsnav___home"][aria-selected="false"][role="treeitem"] {
   display: block !important;
   width: 62px !important;
   height: 58px !important;
@@ -2675,8 +2655,7 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
   cursor: pointer;
 }
 
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [data-list-item-id="guildsnav___home"] > *,
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) [class*="pill"] {
+[data-list-item-id="guildsnav___home"][aria-selected="false"][role="treeitem"] > * {
   visibility: hidden !important;
 }
 
@@ -2694,7 +2673,7 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
 
 /* With the DM button lifted out, the server icons moved up a slot -
    keep them where they are on the DM page. */
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="guilds__"] [class*="scroller_"] {
+[class*="guilds__"] [class*="scroller_"]:where(:has([data-list-item-id="guildsnav___home"][aria-selected="false"])):not([data-dsn-none]):not([data-dsn-none]) {
   padding-top: 54px !important;
 }
 
@@ -2709,13 +2688,13 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
 /* Paint the tile on the list item, and stretch the button inside it to
    the full tile but keep it invisible - its own SVG clipped the frame to
    48px and drew Discord's logo and unread badge on top. */
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [data-list-item-id="guildsnav___home"] {
+[data-list-item-id="guildsnav___home"][aria-selected="false"][role="treeitem"] {
   border: none !important;
   background: none !important;
   box-shadow: none !important;
 }
 
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) {
+[class*="listItem__"][class*="listItem__"]:has([data-list-item-id="guildsnav___home"][aria-selected="false"]) {
   box-sizing: border-box !important;
   border-width: 3px 0 3px 3px !important;
   border-style: solid !important;
@@ -2728,14 +2707,22 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
   overflow: hidden !important;
 }
 
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) * {
+[class*="listItem__"] *:where(:has([data-list-item-id="guildsnav___home"][aria-selected="false"])):not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] :where([data-list-item-id="guildsnav___home"][aria-selected="false"]):not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] :where([data-list-item-id="guildsnav___home"][aria-selected="false"]) *:not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] > :where(:has(+ * [data-list-item-id="guildsnav___home"][aria-selected="false"])):not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]) {
   visibility: visible !important;
 }
 
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) svg,
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) foreignObject,
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) [class*="wrapper"],
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [data-list-item-id="guildsnav___home"] {
+[class*="listItem__"] svg:where(:has([data-list-item-id="guildsnav___home"][aria-selected="false"])):not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] :where([data-list-item-id="guildsnav___home"][aria-selected="false"]) svg:not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] foreignObject:where(:has([data-list-item-id="guildsnav___home"][aria-selected="false"])):not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] :where([data-list-item-id="guildsnav___home"][aria-selected="false"]) foreignObject:not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] [class*="wrapper"]:where(:has([data-list-item-id="guildsnav___home"][aria-selected="false"])):not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] [class*="wrapper"]:where([data-list-item-id="guildsnav___home"][aria-selected="false"]):not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] :where([data-list-item-id="guildsnav___home"][aria-selected="false"]) [class*="wrapper"]:not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] > [class*="wrapper"]:where(:has(+ * [data-list-item-id="guildsnav___home"][aria-selected="false"])):not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[data-list-item-id="guildsnav___home"][aria-selected="false"][role="treeitem"] {
   position: absolute !important;
   inset: 0 !important;
   width: 100% !important;
@@ -2743,27 +2730,25 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
   opacity: 0 !important;
 }
 
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) [class*="pill"],
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) [class*="Badge"] {
-  display: none !important;
-}
-
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]):hover {
+[class*="listItem__"][class*="listItem__"]:has([data-list-item-id="guildsnav___home"][aria-selected="false"]):hover {
   border-color: #7FA2DA !important;
 }
 
 /* On press Discord brings in its selection pill wrapper over the button,
    so the release landed on that and the click went to the list item
    instead of the button. Only the button itself takes the pointer. */
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) * {
+[class*="listItem__"] *:where(:has([data-list-item-id="guildsnav___home"][aria-selected="false"])):not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] :where([data-list-item-id="guildsnav___home"][aria-selected="false"]):not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] :where([data-list-item-id="guildsnav___home"][aria-selected="false"]) *:not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] > :where(:has(+ * [data-list-item-id="guildsnav___home"][aria-selected="false"])):not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]) {
   pointer-events: none !important;
 }
 
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [data-list-item-id="guildsnav___home"] {
+[data-list-item-id="guildsnav___home"][aria-selected="false"][role="treeitem"] {
   pointer-events: auto !important;
 }
 
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) [data-list-item-id="guildsnav___home"][data-list-item-id] {
+[class*="listItem__"] [data-list-item-id="guildsnav___home"][aria-selected="false"][data-list-item-id]:not([data-dsn-none]):not([data-dsn-none]) {
   pointer-events: auto !important;
 }
 
@@ -2771,14 +2756,17 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
    wrappers, which moved the button out from under the pointer between
    press and release - the click then landed on the list item. Pin the
    button itself to the tile and switch the press animation off. */
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]),
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) * {
+[class*="listItem__"][class*="listItem__"]:has([data-list-item-id="guildsnav___home"][aria-selected="false"]),
+[class*="listItem__"] *:where(:has([data-list-item-id="guildsnav___home"][aria-selected="false"])):not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] :where([data-list-item-id="guildsnav___home"][aria-selected="false"]):not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] :where([data-list-item-id="guildsnav___home"][aria-selected="false"]) *:not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]),
+[class*="listItem__"] > :where(:has(+ * [data-list-item-id="guildsnav___home"][aria-selected="false"])):not([data-dsn-none]):not([data-dsn-none]):not([data-dsn-none]) {
   transform: none !important;
   transition: none !important;
   animation: none !important;
 }
 
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) [data-list-item-id="guildsnav___home"][data-list-item-id] {
+[class*="listItem__"] [data-list-item-id="guildsnav___home"][aria-selected="false"][data-list-item-id]:not([data-dsn-none]):not([data-dsn-none]) {
   position: fixed !important;
   left: 14px !important;
   top: 9px !important;
@@ -3859,8 +3847,8 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
   box-shadow: inset 0 0 0 1px #9DB4DF, inset 0 1px 0 1px #FFFFFF !important;
 }
 
-[class*="base__"]:has([class*="privateChannelsHeaderContainer__"]) [class*="page__"] [class*="toolbar_"],
-[class*="base__"]:has([class*="privateChannelsHeaderContainer__"]) [class*="page__"] > main > section {
+[class*="page__"] [class*="toolbar_"]:has([aria-label="Start Voice Call"], [aria-label="Join Voice Call"]),
+[class*="page__"] > main > section[class*="container__"][class] {
   left: 206px !important;
 }
 
@@ -3902,11 +3890,11 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
   padding: 0 4px !important;
 }
 
-[class*="sidebar__"]:has(#vc-spotify-player) [class*="sidebarList__"] {
+[class*="sidebarList__"]:where(:has(~ [class*="panels__"] #vc-spotify-player)):not(#dsn-none):not([data-dsn-none]) {
   margin-bottom: 260px !important;
 }
 
-[class*="sidebar__"]:has(#vc-spotify-player) [class*="sidebarList__"] {
+[class*="sidebarList__"]:where(:has(~ [class*="panels__"] #vc-spotify-player)):not(#dsn-none):not([data-dsn-none]) {
   margin-bottom: 256px !important;
 }
 
@@ -4056,7 +4044,7 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
   margin-bottom: 18px !important;
 }
 
-[class*="sidebar__"]:has(#vc-spotify-player) [class*="sidebarList__"] {
+[class*="sidebarList__"]:where(:has(~ [class*="panels__"] #vc-spotify-player)):not(#dsn-none):not([data-dsn-none]) {
   margin-bottom: 260px !important;
 }
 
@@ -4146,7 +4134,7 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
 /* Own-account popout: same left edge and width as the Messenger box it
    belongs to, ending 4px above it. Discord places the layer with an
    inline fixed left/bottom, 8px off the box. */
-[class*="layer"]:has(> * > [class*="popoutContainer_ce8328"]) {
+[class*="clickTrapContainer__"] > [class*="layer"]:has(> * > [class*="popoutContainer_ce8328"]) {
   left: 84px !important;
   bottom: 104px !important;
 }
@@ -4272,7 +4260,7 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover::before,
 
 /* The chat column's content box is 1px narrower than the row the To: line
    sits in, so the same 248px margin left the line 1px wider. */
-[class*="chat_"]:has([class*="membersWrap_"]) > [class*="subtitleContainer_"] {
+[class*="subtitleContainer_"]:where(:has(+ div > div > aside:not([aria-labelledby^="user-profile"]))):not([data-dsn-none]):not([data-dsn-none]):not(dsn-none):not(dsn-none):not(dsn-none) {
   margin-right: 249px !important;
 }
 
@@ -4293,15 +4281,15 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover::before,
   z-index: 2 !important;
 }
 
-[class*="chat_"]:has(> [class*="content_"] > aside[class*="aside_"]) [class*="chatContent_"] {
+[class*="chatContent_"]:where(:has(~ aside[aria-labelledby^="user-profile"])):not([data-dsn-none]):not([data-dsn-none]):not(dsn-none):not(dsn-none) {
   margin-right: 328px !important;
 }
 
-[class*="chat_"]:has(> [class*="content_"] > aside[class*="aside_"]) > [class*="subtitleContainer_"] {
+[class*="subtitleContainer_"]:where(:has(+ div > aside[aria-labelledby^="user-profile"])):not([data-dsn-none]):not([data-dsn-none]):not(dsn-none):not(dsn-none) {
   margin-right: 329px !important;
 }
 
-[class*="chat_"]:has(> [class*="content_"] > aside[class*="aside_"]) > [class*="subtitleContainer_"] {
+[class*="subtitleContainer_"]:where(:has(+ div > aside[aria-labelledby^="user-profile"])):not([data-dsn-none]):not([data-dsn-none]):not(dsn-none):not(dsn-none) {
   margin-right: 328px !important;
 }
 
@@ -4312,7 +4300,7 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover::before,
 /* The tile's white inner line ran down its right side too, which drew a
    white seam where it meets the bar. Keep it on top, left and bottom. */
 nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="channel__"] a,
-[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) {
+[class*="listItem__"][class*="listItem__"]:has([data-list-item-id="guildsnav___home"][aria-selected="false"]) {
   box-shadow: inset 1px 1px 0 #FFFFFF, inset 0 -1px 0 #FFFFFF !important;
 }
 
@@ -5026,7 +5014,7 @@ label[class*="container_a28278"]:hover [class*="switchIndicator_"] {
   box-shadow: inset 0 0 0 1px #FFE9A5, inset 0 0 0 2px #F8B636 !important;
 }
 
-label[class*="container_a28278"]:has(input:checked) [class*="switchIndicator_"]::after {
+label[class*="container_a28278"] [class*="switchIndicator_"]:where(:has(~ * input:checked)):not([data-dsn-none]):not(dsn-none)::after {
   content: "";
   position: absolute;
   left: 2px;
@@ -5038,7 +5026,14 @@ label[class*="container_a28278"]:has(input:checked) [class*="switchIndicator_"]:
   transform: rotate(40deg);
 }
 
-label[class*="container_a28278"]:has(input:disabled) [class*="switchIndicator_"] {
+label[class*="container_a28278"] [class*="switchIndicator_"]:where(:has(~ * input:disabled)):not([data-dsn-none]):not(dsn-none) {
   border-color: #CAC8BB !important;
   background: #F5F4EA !important;
+}
+
+/* The DM quick switcher and a page's own search sit in the same toolbar
+   slot; the page search is drawn on top, so no app-wide :has is needed to
+   hide the other one. */
+[class*="page__"] [class*="search__"]:has([class*="searchBar_"]) {
+  z-index: 301 !important;
 }
