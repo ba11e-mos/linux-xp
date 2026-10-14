@@ -611,3 +611,53 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
   background: #F4F7FD !important;
   text-decoration: underline !important;
 }
+
+/* ================================================================
+   Third pass: the toolbar's curved tail, and photos that are
+   actually square instead of round photos in square frames.
+   ================================================================ */
+
+/* The reference toolbar is not a flat strip - it ends in the curve
+   DMbarsearchright.png draws, with the icon trio sitting past it on the
+   window wash. The 1px middle slice is stretched to meet the curve. */
+[class*="base__"] > [class*="bar_"] {
+  background-image:
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchright.png),
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
+  background-size: 57px 58px, calc(100% - 207px) 58px !important;
+  background-position: right 150px top, left top !important;
+  background-repeat: no-repeat, no-repeat !important;
+  border-bottom: none !important;
+}
+
+/* Discord rounds the photo on the img itself, so the mask override alone
+   left a circle inside a square frame. */
+[class*="privateChannels_"] [class*="avatar__"] img,
+[class*="privateChannels_"] [class*="avatar__"] [class*="wrapper__"],
+[class*="panels__"] [class*="avatar__"] img,
+[class*="panels__"] [class*="avatar__"] [class*="wrapper__"] {
+  border-radius: 2px !important;
+}
+
+/* MSN hung the pictures off the right edge of the contact list. */
+[class*="privateChannels_"] li[class*="channel__"] a,
+[class*="privateChannels_"] li[class*="channel__"] > div[class*="interactive"] {
+  padding: 0 0 0 8px !important;
+}
+
+[class*="privateChannels_"] [class*="avatar__"] {
+  border: 1px solid #5A5A5A;
+  border-radius: 2px;
+  margin-right: 0 !important;
+}
+
+/* Server icons get the same treatment - Discord masks them to a squircle. */
+[class*="guilds__"] foreignObject {
+  mask: none !important;
+}
+
+[class*="guilds__"] img,
+[class*="guilds__"] [class*="wrapper__"],
+[class*="guilds__"] [class*="childWrapper"] {
+  border-radius: 2px !important;
+}
