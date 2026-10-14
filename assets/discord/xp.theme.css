@@ -2574,3 +2574,215 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
 #vc-spotify-progress-bar [class*="grabber__"] {
   margin-top: -3.5px !important;
 }
+
+/* Discord pushes the list's scroller up by the panels' height (216px with
+   the player), because normally the panels lie on top of the list. Ours
+   sit under it, so that space was a blank white block. */
+[class*="sidebarList__"] [class*="scroller__"] {
+  margin-bottom: 0 !important;
+}
+
+/* ================================================================
+   Fourteenth pass.
+   ================================================================ */
+
+/* --- Frames: 2px slate-blue with a white inner line, measured off a
+   6x crop of the reference; the contact list's frame is paler. ---- */
+[class*="sidebarList__"] {
+  border: 2px solid #A9C2EC !important;
+  box-shadow: inset 0 0 0 1px #DCE7F8 !important;
+}
+
+[class*="subtitleContainer_"] > section,
+[class*="chatContent_"] > form,
+[class*="membersWrap_"],
+[class*="peopleColumn__"] {
+  border: 2px solid #7E98C2 !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF !important;
+}
+
+[class*="messagesWrapper_"] {
+  border: 2px solid #7E98C2 !important;
+  border-top: none !important;
+  box-shadow: inset 1px 0 0 #FFFFFF, inset -1px 0 0 #FFFFFF, inset 0 -1px 0 #FFFFFF !important;
+}
+
+/* Member list sits 2px lower now that the header has a 2px border, so
+   its top still lines up with the To: box. */
+[class*="membersWrap_"] {
+  top: -36px !important;
+  height: calc(100% + 32px) !important;
+}
+
+/* --- Hover on text buttons -------------------------------------- */
+[class*="page__"] section:has([class*="topPill_"]) [class*="item_"]:hover {
+  border-color: #9DB4DF !important;
+  background: #EEF3FC !important;
+  text-decoration: underline !important;
+  cursor: pointer;
+}
+
+[class*="page__"] button[class*="button_"]:not([class*="iconWrapper"]):hover,
+[class*="page__"] [class*="lookFilled"]:hover,
+[class*="page__"] [class*="lookOutlined"]:hover {
+  filter: brightness(1.08) !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF, 0 0 0 1px #7F9DB9 !important;
+}
+
+[class*="page__"] button[class*="button_"]:not([class*="iconWrapper"]):active,
+[class*="page__"] [class*="lookFilled"]:active {
+  filter: brightness(0.95) !important;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3), 0 0 0 1px #7F9DB9 !important;
+}
+
+/* --- Player: progress higher, clear of the buttons -------------- */
+#vc-spotify-progress-bar {
+  margin-top: -16px !important;
+  margin-bottom: 10px !important;
+}
+
+/* --- Tile in servers ------------------------------------------- */
+/* There is no Friends button in a server, and a pseudo-element cannot be
+   clicked. Discord's own Direct Messages button goes to the same place,
+   so it becomes the tile there. */
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) > [class*="bar_"]::before {
+  display: none !important;
+}
+
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="guilds__"] [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) {
+  position: fixed !important;
+  left: 14px !important;
+  top: 9px !important;
+  width: 62px !important;
+  height: 58px !important;
+  margin: 0 !important;
+  z-index: 320 !important;
+}
+
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [data-list-item-id="guildsnav___home"] {
+  display: block !important;
+  width: 62px !important;
+  height: 58px !important;
+  box-sizing: border-box !important;
+  border-width: 3px 0 3px 3px !important;
+  border-style: solid !important;
+  border-color: #B5CAEC !important;
+  border-radius: 8px 0 0 8px !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF !important;
+  background:
+    url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) 6px center / 46px 46px no-repeat,
+    linear-gradient(180deg, #F2F4F9 0%, #DCE1EC 100%) !important;
+  cursor: pointer;
+}
+
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [data-list-item-id="guildsnav___home"] > *,
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) [class*="pill"] {
+  visibility: hidden !important;
+}
+
+[class*="sidebarList__"] {
+  box-sizing: border-box !important;
+}
+
+/* The DM button sat in the tile spot but under the bar, so it could not
+   be clicked. Everything in the app area paints above the bar (nothing
+   but our lifted controls overlaps it). */
+[class*="base__"] > [class*="content__"] {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* With the DM button lifted out, the server icons moved up a slot -
+   keep them where they are on the DM page. */
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="guilds__"] [class*="scroller_"] {
+  padding-top: 54px !important;
+}
+
+/* The rail carries a CSS mask (its fade at top and bottom), and a mask
+   clips everything painted inside it - including the DM button lifted up
+   to the tile spot. That is why it was invisible and unclickable. */
+[class*="guilds__"] {
+  mask: none !important;
+  -webkit-mask: none !important;
+}
+
+/* Paint the tile on the list item, and stretch the button inside it to
+   the full tile but keep it invisible - its own SVG clipped the frame to
+   48px and drew Discord's logo and unread badge on top. */
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [data-list-item-id="guildsnav___home"] {
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) {
+  box-sizing: border-box !important;
+  border-width: 3px 0 3px 3px !important;
+  border-style: solid !important;
+  border-color: #B5CAEC !important;
+  border-radius: 8px 0 0 8px !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF !important;
+  background:
+    url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) 6px center / 46px 46px no-repeat,
+    linear-gradient(180deg, #F2F4F9 0%, #DCE1EC 100%) !important;
+  overflow: hidden !important;
+}
+
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) * {
+  visibility: visible !important;
+}
+
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) svg,
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) foreignObject,
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) [class*="wrapper"],
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [data-list-item-id="guildsnav___home"] {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0 !important;
+}
+
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) [class*="pill"],
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) [class*="Badge"] {
+  display: none !important;
+}
+
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]):hover {
+  border-color: #7FA2DA !important;
+}
+
+/* On press Discord brings in its selection pill wrapper over the button,
+   so the release landed on that and the click went to the list item
+   instead of the button. Only the button itself takes the pointer. */
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) * {
+  pointer-events: none !important;
+}
+
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [data-list-item-id="guildsnav___home"] {
+  pointer-events: auto !important;
+}
+
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) [data-list-item-id="guildsnav___home"][data-list-item-id] {
+  pointer-events: auto !important;
+}
+
+/* Discord animates a press on this button with a transform on its
+   wrappers, which moved the button out from under the pointer between
+   press and release - the click then landed on the list item. Pin the
+   button itself to the tile and switch the press animation off. */
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]),
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) * {
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) [class*="listItem__"]:has([data-list-item-id="guildsnav___home"]) [data-list-item-id="guildsnav___home"][data-list-item-id] {
+  position: fixed !important;
+  left: 14px !important;
+  top: 9px !important;
+  width: 62px !important;
+  height: 58px !important;
+  inset: 9px auto auto 14px !important;
+}
