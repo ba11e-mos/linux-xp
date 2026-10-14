@@ -2226,3 +2226,188 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
   border-bottom: 1px solid var(--dsn-border) !important;
   z-index: auto !important;
 }
+
+/* ================================================================
+   Twelfth pass.
+   ================================================================ */
+
+/* --- Tooltips for the two lifted buttons ------------------------ */
+/* Discord's header buttons show a tooltip; these two are list rows and
+   have none. Same look as Discord's: pale fill, thin blue edge, arrow. */
+li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover::after,
+[class*="friendsButtonContainer_"]:hover::after {
+  position: absolute;
+  top: calc(100% + 9px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 10px;
+  white-space: nowrap;
+  font: 14px var(--font-primary);
+  color: #000000;
+  background: #F4F6FB;
+  box-shadow: inset 0 0 0 1px #7F9DB9, 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover::after {
+  content: "Message Requests";
+}
+
+[class*="friendsButtonContainer_"]:hover::after {
+  content: "Friends";
+}
+
+li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover::before,
+[class*="friendsButtonContainer_"]:hover::before {
+  content: "";
+  position: absolute;
+  top: calc(100% + 4px);
+  left: calc(50% - 5px);
+  width: 9px;
+  height: 9px;
+  background: #F4F6FB;
+  border-top: 1px solid #7F9DB9;
+  border-left: 1px solid #7F9DB9;
+  transform: rotate(45deg);
+  z-index: 1001;
+  pointer-events: none;
+}
+
+/* --- Account photo: thin frame, rounded, drop shadow ------------ */
+[class*="panels__"] [class*="avatar__"] {
+  border: 1px solid #6F7F9F !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35) !important;
+  overflow: hidden !important;
+}
+
+/* --- Boxes around clickable text: slightly rounded -------------- */
+[class*="page__"] section:has([class*="topPill_"]) [class*="item_"],
+[class*="privateChannels_"] [class*="selected"],
+[class*="privateChannels_"] li[class*="channel__"] [class*="interactive"]:hover,
+nav[class*="container__2637a"] li[class*="containerDefault_"] [class*="selected"],
+nav[class*="container__2637a"] li[class*="containerDefault_"]:hover [class*="link__"],
+button[class*="button_"],
+[class*="lookFilled"],
+[class*="lookOutlined"] {
+  border-radius: 3px !important;
+}
+
+/* --- Wider contact list ----------------------------------------- */
+[class*="sidebarList__"] {
+  width: 280px !important;
+  min-width: 280px !important;
+  max-width: 280px !important;
+}
+
+[class*="sidebar__"] > [class*="panels__"] {
+  width: 280px !important;
+}
+
+/* --- Pane frames ------------------------------------------------- */
+/* The reference has separate rounded windows with the wash showing
+   between them: the To: line and the messages in one box, the composer
+   in its own box under it, the member list in its own box beside them
+   with its header level with the To: line. */
+[class*="sidebarList__"] {
+  border-color: #9DB4DF !important;
+  border-radius: 6px 6px 0 0 !important;
+}
+
+[class*="page__"] {
+  background: transparent !important;
+  border: none !important;
+  overflow: visible !important;
+}
+
+[class*="chat_"] > [class*="content_"],
+[class*="chatContent_"] {
+  background: transparent !important;
+  overflow: visible !important;
+}
+
+[class*="subtitleContainer_"] > section {
+  border: 1px solid #8FA8D6 !important;
+  border-radius: 8px 8px 0 0 !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #E6ECF7 100%) !important;
+}
+
+[class*="chat_"]:has([class*="membersWrap_"]) > [class*="subtitleContainer_"] {
+  margin-right: 248px !important;
+}
+
+[class*="messagesWrapper_"] {
+  background: #FFFFFF !important;
+  border: 1px solid #8FA8D6 !important;
+  border-top: none !important;
+}
+
+[class*="chatContent_"] > form {
+  margin-top: 6px !important;
+  border: 1px solid #8FA8D6 !important;
+  border-radius: 8px 8px 4px 4px !important;
+}
+
+[class*="membersWrap_"] {
+  width: 240px !important;
+  min-width: 240px !important;
+  margin: -35px 0 0 8px !important;
+  height: calc(100% + 35px) !important;
+  border: 1px solid #8FA8D6 !important;
+  border-radius: 8px 8px 0 0 !important;
+  overflow: hidden !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+[class*="membersWrap_"]::before {
+  height: 34px !important;
+  box-sizing: border-box !important;
+  padding: 9px 10px !important;
+  font: bold 13px var(--font-primary) !important;
+  color: #000000 !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #DDE5F4 100%) !important;
+  border-bottom: 1px solid #8FA8D6 !important;
+}
+
+[class*="membersWrap_"] [class*="members_"] {
+  width: 240px !important;
+}
+
+/* Friends page: the list is a rounded window, Active Now sits on the
+   wash. */
+[class*="peopleColumn__"] {
+  border: 1px solid #8FA8D6 !important;
+  border-radius: 6px 6px 0 0 !important;
+  margin-right: 8px !important;
+}
+
+[class*="nowPlayingColumn__"] {
+  background: transparent !important;
+  border-left: none !important;
+}
+
+[class*="membersWrap_"] {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+[class*="membersWrap_"]::before {
+  display: block !important;
+  flex: 0 0 34px !important;
+  width: 100% !important;
+}
+
+[class*="membersWrap_"] [class*="members_"] {
+  width: 100% !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+}
+
+/* The tooltip lives in the button's stacking context, which sat under the
+   tile's; lift the button while it is hovered. */
+li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover,
+[class*="friendsButtonContainer_"]:hover {
+  z-index: 400 !important;
+}
