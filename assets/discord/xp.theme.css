@@ -4476,3 +4476,67 @@ nav[class*="container__2637a"] h3[class*="name__"],
 #vc-spotify-progress-bar [class*="grabber__"] {
   opacity: 0 !important;
 }
+
+/* ================================================================
+   Fixes.
+   ================================================================ */
+
+/* Link embeds: the left edge is Discord's colour stripe in the site's own
+   colour - white for many sites, which read as a missing frame. Keep the
+   stripe and draw the frame line outside it. */
+[class*="messagesWrapper_"] article[class*="embedFull"] {
+  box-shadow: -1px 0 0 #7F9DB9 !important;
+}
+
+/* The DM list is virtualised: rows scrolled out of view are unmounted, and
+   with them the Friends, Message Requests, New Message and More buttons
+   that live in those rows and are shown up in the toolbar. Let the list
+   take its full height so every row stays mounted, and scroll the nav
+   around it instead. */
+nav[class*="privateChannels_"] {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+nav[class*="privateChannels_"] > [class*="scroller__"] {
+  flex: 0 0 auto !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+nav[class*="privateChannels_"]::-webkit-scrollbar {
+  width: 17px;
+}
+
+nav[class*="privateChannels_"]::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, #EEEDE5 0%, #F4F1EC 15%, #F9F9F7 50%, #FDFDFA 85%, #EEEDE5 100%);
+}
+
+nav[class*="privateChannels_"]::-webkit-scrollbar-thumb {
+  min-height: 24px;
+  border: 1px solid #7C9ED8;
+  border-radius: 3px;
+  background:
+    url(https://heartmoder.github.io/dsn10-theme/assets/scrollbar/thumbtrack.png) center / 5px 8px no-repeat,
+    linear-gradient(90deg, #C6D4FE 0%, #B6C9FA 35%, #ADC3F8 70%, #A9BCED 100%);
+  box-shadow: inset 1px 1px 0 #FFFFFF;
+}
+
+nav[class*="privateChannels_"]::-webkit-scrollbar-button:single-button {
+  display: block;
+  width: 17px;
+  height: 17px;
+  background-color: #EEEDE5;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 15px 15px;
+}
+
+nav[class*="privateChannels_"]::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/scrollbar/up.png);
+}
+
+nav[class*="privateChannels_"]::-webkit-scrollbar-button:single-button:vertical:increment {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/scrollbar/down.png);
+}
