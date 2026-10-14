@@ -4711,3 +4711,334 @@ button[class*="button_a22cb0"][class*="fullWidth"]:not(:is([class*="searchBar_"]
   vertical-align: -3px;
   background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/addacontact.png) center / 16px 16px no-repeat;
 }
+
+/* The bar's left cap image is opaque, and outside its rounded bottom-left
+   corner it is white - that was the notch beside the tile (pixels
+   (76..81, 52..57)). Fill outside the curve with the wash. */
+[class*="base__"] > [class*="bar_"]::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  left: 76px !important;
+  top: 51px !important;
+  right: auto !important;
+  width: 7px !important;
+  height: 7px !important;
+  background: radial-gradient(circle at 100% 0%, transparent 5.6px, #D4E1F5 6.4px) !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+[class*="base__"] > [class*="bar_"]::after {
+  background: radial-gradient(circle at 100% 0%, transparent 6.15px, #D4E1F5 6.25px) !important;
+}
+
+/* ================================================================
+   Profiles (side panel, popouts, full profile): the round translucent
+   Friend / More buttons on the banner become XP toolbar buttons with
+   MSN icons, and the photo is square like everywhere else.
+   ================================================================ */
+[class*="bannerButton_"] {
+  width: 26px !important;
+  height: 26px !important;
+  border: 1px solid #003C74 !important;
+  border-radius: 3px !important;
+  background:
+    var(--dsn-banner-icon, none) center / 18px 18px no-repeat,
+    linear-gradient(180deg, #FFFFFF 0%, #F4F3EE 50%, #ECEBE6 86%, #D6D0C5 100%) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+[class*="bannerButton_"]:hover {
+  box-shadow: inset 0 2px 0 #FFE7A2, inset 0 -2px 0 #F8B636, inset 2px 0 0 #FBD58C, inset -2px 0 0 #FBD58C !important;
+}
+
+[class*="bannerButton_"] svg {
+  visibility: hidden !important;
+}
+
+[class*="bannerButton_"][aria-label="Friend"],
+[class*="bannerButton_"][aria-label*="Friend"] {
+  --dsn-banner-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png);
+}
+
+[class*="bannerButton_"][aria-label="More"] {
+  --dsn-banner-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/more.png);
+}
+
+[class*="bannerButton_"][aria-label*="Message"] {
+  --dsn-banner-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png);
+}
+
+[class*="bannerButton_"][aria-label*="Edit"] {
+  --dsn-banner-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/userprofile.png);
+}
+
+/* Square framed photo on every profile surface. */
+[class*="outer_c0bea0"] [class*="avatar"] [class*="wrapper__44b0c"],
+[class*="outer_c0bea0"] [class*="wrapper__44b0c"][class*="avatar"],
+[class*="outer_c0bea0"] [class*="avatar__75742"] {
+  border-radius: 3px !important;
+}
+
+[class*="outer_c0bea0"] [class*="wrapper__44b0c"] foreignObject {
+  mask: none !important;
+}
+
+[class*="outer_c0bea0"] [class*="avatar__75742"] [class*="wrapper__44b0c"] svg > g,
+[class*="outer_c0bea0"] [class*="avatar__75742"] [class*="wrapper__44b0c"] svg > rect {
+  display: none !important;
+}
+
+[class*="outer_c0bea0"] [class*="avatar__75742"] [class*="wrapper__44b0c"] {
+  border: 1px solid #6F7F9F !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35) !important;
+  overflow: hidden !important;
+  background: #FFFFFF !important;
+}
+
+/* The DM profile panel already carries the pane frame; the profile card
+   inside it should not draw a second one. */
+[class*="chat_"] > [class*="content_"] > aside [class*="outer_c0bea0"] {
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* ================================================================
+   Full profile (user-profile-modal-v2) in the settings window's
+   language: wash behind, header strip, two white panes in the one
+   frame, friends-style tabs, framed activity cards.
+   ================================================================ */
+[class*="outer_c0bea0"].user-profile-modal-v2 {
+  border: 1px solid #647EAE !important;
+  border-radius: 7px 7px 0 0 !important;
+  background: #F5F8FE !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3) !important;
+  padding-top: 28px !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2::before {
+  content: "Contact Card";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 28px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #647EAE;
+  background: linear-gradient(180deg, #C7D2F0 0%, #E2E8F7 100%);
+  font: bold 12px/28px var(--font-primary);
+  color: #000000;
+  z-index: 1;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2 [class*="inner_c0bea0"] {
+  background: transparent !important;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2 [class*="scrim__"] {
+  display: none !important;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2 [class*="profileContentColumns__"] {
+  padding: 4px !important;
+  gap: 4px !important;
+  inset: 0 !important;
+}
+
+/* Close: the same toolbar-style button as the settings window, in the
+   header strip. */
+[class*="modalHeaderButtons_"] {
+  top: 4px !important;
+  right: 4px !important;
+  z-index: 2 !important;
+}
+
+[class*="modalHeaderButtons_"] button[aria-label="Close"] {
+  width: 22px !important;
+  height: 20px !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 1px solid transparent !important;
+  border-radius: 3px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+[class*="modalHeaderButtons_"] button[aria-label="Close"]:hover {
+  background: #EEF3FC !important;
+  border-color: #9DB4DF !important;
+}
+
+[class*="modalHeaderButtons_"] button[aria-label="Close"] svg {
+  width: 14px !important;
+  height: 14px !important;
+  color: #3A4A6B !important;
+}
+
+/* Left pane: the profile. */
+[class*="outer_c0bea0"].user-profile-modal-v2 main[class*="profile__"] {
+  background: #FFFFFF !important;
+  border: 1px solid #647EAE !important;
+  border-radius: 7px 7px 0 0 !important;
+  overflow: hidden !important;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2 [class*="profileHeaderBannerContainer"] [class*="banner_"] {
+  background: linear-gradient(180deg, #EBF1FA 0%, #D4E1F5 100%) !important;
+  border-bottom: 1px solid #ACC1E4 !important;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2 [class*="profileHeaderBannerContainer"] [class*="banner_"] > * {
+  display: none !important;
+}
+
+/* Right pane: tabs and activity. */
+[class*="outer_c0bea0"].user-profile-modal-v2 [class*="container__37bfc"] {
+  background: #FFFFFF !important;
+  border: 1px solid #647EAE !important;
+  border-radius: 7px 7px 0 0 !important;
+  overflow: hidden !important;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2 [class*="tabListScroller__"] {
+  background: #EBF1FA !important;
+  border-bottom: 1px solid #647EAE !important;
+  padding: 4px 8px !important;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2 [role="tablist"] {
+  border: none !important;
+  gap: 6px !important;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2 [role="tab"] {
+  height: auto !important;
+  padding: 2px 8px !important;
+  margin: 0 !important;
+  border: 1px solid transparent !important;
+  border-radius: 3px !important;
+  color: #0033AA !important;
+  font: 12px var(--font-primary) !important;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2 [role="tab"]::after,
+[class*="outer_c0bea0"].user-profile-modal-v2 [role="tab"]::before {
+  display: none !important;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2 [role="tab"] * {
+  color: #0033AA !important;
+  font: 12px var(--font-primary) !important;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2 [role="tab"]:hover,
+[class*="outer_c0bea0"].user-profile-modal-v2 [role="tab"][aria-selected="true"] {
+  border-color: #7F9DB9 !important;
+  background: #F4F7FD !important;
+  text-decoration: underline !important;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2 [class*="card__39ec2"],
+[class*="outer_c0bea0"].user-profile-modal-v2 [class*="overlay_c0bea0"] {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F2F6FD 100%) !important;
+  border: 1px solid #647EAE !important;
+  border-radius: 7px 7px 0 0 !important;
+  box-shadow: none !important;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2 [class*="headings_"],
+[class*="outer_c0bea0"].user-profile-modal-v2 [class*="headings_"] * {
+  font: bold 11px var(--font-primary) !important;
+  color: #444444 !important;
+  text-transform: uppercase !important;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2 [class*="profileBody__"],
+[class*="outer_c0bea0"].user-profile-modal-v2 [class*="profileBody__"] [class*="bio"] * {
+  font-family: var(--font-primary) !important;
+}
+
+/* Discord pads the content 48px in from the frame; the panes sit 4px in,
+   like everywhere else. */
+[class*="outer_c0bea0"].user-profile-modal-v2 [class*="profileContentInner__"] {
+  padding: 4px !important;
+}
+
+[class*="outer_c0bea0"].user-profile-modal-v2 [class*="profileContentColumns__"] {
+  padding: 0 !important;
+  height: 100% !important;
+}
+
+/* Profile action buttons: MSN icons. */
+[class*="profileButtons__"] button svg {
+  display: none !important;
+}
+
+[class*="profileButtons__"] button [class*="buttonChildren_"]::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: -3px;
+  background: var(--dsn-pb-icon, none) center / 16px 16px no-repeat;
+}
+
+[class*="profileButtons__"] button[class*="hasText"] [class*="buttonChildren_"]::before {
+  margin-right: 6px;
+}
+
+[class*="profileButtons__"] button[class*="hasText"] { --dsn-pb-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png); }
+[class*="profileButtons__"] button[aria-label="Friend"],
+[class*="profileButtons__"] button[aria-label*="Friend"] { --dsn-pb-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png); }
+[class*="profileButtons__"] button[aria-label="More"] { --dsn-pb-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/more.png); }
+[class*="profileButtons__"] button[aria-label*="Edit"] { --dsn-pb-icon: url(https://heartmoder.github.io/dsn10-theme/assets/actions/userprofile.png); }
+
+/* ================================================================
+   Switches become XP check boxes: 13px white-to-grey box, navy edge,
+   green tick when on, orange hot-track on hover.
+   ================================================================ */
+label[class*="container_a28278"] {
+  width: 13px !important;
+  height: 13px !important;
+  flex: 0 0 13px !important;
+}
+
+label[class*="container_a28278"] [class*="switchIndicator_"] {
+  position: relative !important;
+  width: 13px !important;
+  height: 13px !important;
+  box-sizing: border-box !important;
+  border: 1px solid #1C5180 !important;
+  border-radius: 0 !important;
+  background: linear-gradient(135deg, #DCDCD7 0%, #F5F4EF 60%, #FFFFFF 100%) !important;
+  box-shadow: none !important;
+  transition: none !important;
+}
+
+label[class*="container_a28278"] [class*="switchIndicator_"] svg {
+  display: none !important;
+}
+
+label[class*="container_a28278"]:hover [class*="switchIndicator_"] {
+  box-shadow: inset 0 0 0 1px #FFE9A5, inset 0 0 0 2px #F8B636 !important;
+}
+
+label[class*="container_a28278"]:has(input:checked) [class*="switchIndicator_"]::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0px;
+  width: 4px;
+  height: 7px;
+  border: solid #21A121;
+  border-width: 0 2px 2px 0;
+  transform: rotate(40deg);
+}
+
+label[class*="container_a28278"]:has(input:disabled) [class*="switchIndicator_"] {
+  border-color: #CAC8BB !important;
+  background: #F5F4EA !important;
+}
