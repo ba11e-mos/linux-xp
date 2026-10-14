@@ -4180,3 +4180,42 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover::before,
   height: 8px !important;
   left: calc(50% - 4px) !important;
 }
+
+/* ================================================================
+   The frame, measured off the reference's chat window at pixel level:
+   1px #647EAE, top corners rounded 7px (the curve runs (330,96) to
+   (325,101)), bottom corners square. Used for every pane.
+   ================================================================ */
+:root {
+  --dsn-frame: #647EAE;
+}
+
+[class*="sidebarList__"],
+[class*="subtitleContainer_"] > section,
+[class*="peopleColumn__"],
+[class*="membersWrap_"],
+[class*="chatContent_"] > form,
+#vc-spotify-player,
+[class*="sidebar__"] > [class*="panels__"] > div[class*="container__37e49"],
+[class*="nowPlayingColumn__"] [class*="itemCard__"],
+[class*="page__"] section:has([class*="topPill_"]):not(:has([class*="addFriend"])) {
+  border: 1px solid var(--dsn-frame) !important;
+  border-radius: 7px 7px 0 0 !important;
+  box-shadow: none !important;
+}
+
+[class*="messagesWrapper_"] {
+  border-color: var(--dsn-frame) !important;
+  border-radius: 0 !important;
+}
+
+[class*="membersWrap_"]::before {
+  border-bottom-color: var(--dsn-frame) !important;
+}
+
+/* Inner corners follow the frame, so a header's background does not
+   poke out past the rounding. */
+[class*="membersWrap_"]::before,
+[class*="sidebarList__"] > *:first-child {
+  border-radius: 6px 6px 0 0 !important;
+}
