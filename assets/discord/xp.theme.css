@@ -1636,3 +1636,196 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button::before {
   color: #555555;
   line-height: 20px;
 }
+
+/* ================================================================
+   Ninth pass: one toolbar for every view, measured in both.
+   ================================================================ */
+
+/* --- Tile ------------------------------------------------------- */
+/* Reference: anchored near the left edge, taller than the bar so it hangs
+   below it, light grey-blue fill, 2px pale blue frame, trio ~42px.
+   Identical box for the real Friends button (DMs) and the drawn tile
+   (servers) - they differed by 12px before, which is the jump. */
+[class*="friendsButtonContainer_"],
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) > [class*="bar_"]::before {
+  position: fixed !important;
+  left: 14px !important;
+  top: 9px !important;
+  width: 62px !important;
+  height: 58px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  z-index: 320 !important;
+}
+
+[class*="friendsButtonContainer_"] > *,
+[class*="friendsButtonContainer_"] li,
+[class*="friendsButtonContainer_"] [class*="interactive"] {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+[class*="friendsButtonContainer_"] a,
+[class*="base__"]:not(:has([class*="friendsButtonContainer_"])) > [class*="bar_"]::before {
+  display: block !important;
+  width: 62px !important;
+  height: 58px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  border: 2px solid #A9C1E8 !important;
+  border-radius: 8px !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF !important;
+  background:
+    url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) center / 42px 42px no-repeat,
+    linear-gradient(180deg, #F4F6FB 0%, #DCE2EE 100%) !important;
+}
+
+[class*="friendsButtonContainer_"] a:hover {
+  border-color: #7FA2DA !important;
+}
+
+/* --- Bar -------------------------------------------------------- */
+/* Starts after the tile with its rounded left cap, runs to the search
+   block, which brings the curve. */
+[class*="base__"] > [class*="bar_"] {
+  background-image:
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMmainbarright.png),
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMmainbarmiddle.png),
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchleft.png),
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
+  background-size: 10px 21px, calc(50% - 66px) 21px, 9px 58px, calc(50% - 81px) 58px !important;
+  background-position: right 0 top 0, right 10px top 0, 72px top, 81px top !important;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat !important;
+}
+
+/* --- Message Requests: same kind of button as its neighbours ---- */
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) {
+  position: fixed !important;
+  left: 96px !important;
+  right: auto !important;
+  top: 13px !important;
+  width: 32px !important;
+  height: 32px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) > div,
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) a {
+  width: 32px !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  background-size: 26px 26px !important;
+  background-position: center !important;
+}
+
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) > div {
+  background-image: none !important;
+}
+
+/* --- Search: one block, same place in every view ---------------- */
+/* A DM has both the sidebar's quick switcher and the chat header's
+   search; they were stacked 4px apart. Keep the header one when it
+   exists, the sidebar one only on the friends page. */
+[class*="base__"]:has([class*="page__"] [class*="search__"] [class*="searchBar_"]) nav[class*="privateChannels_"] > [class*="searchBar_"] {
+  display: none !important;
+}
+
+nav[class*="privateChannels_"] > [class*="searchBar_"],
+[class*="page__"] [class*="search__"]:has([class*="searchBar_"]) {
+  left: calc(50% - 4px) !important;
+}
+
+/* --- Sidebar at the reference's width --------------------------- */
+[class*="sidebarList__"] {
+  width: 244px !important;
+  min-width: 244px !important;
+  max-width: 244px !important;
+}
+
+[class*="guilds__"] [class*="scroller_"] {
+  padding-top: 14px !important;
+}
+
+/* --- Messenger box sits in the list column, beside the rail ----- */
+[class*="sidebar__"] > [class*="panels__"] {
+  left: 76px !important;
+  right: 4px !important;
+}
+
+[class*="panels__"] [class*="panelSubtextContainer__"]::after {
+  margin-left: 2px !important;
+}
+
+[class*="panels__"] [class*="buttons__"] {
+  padding: 0 10px 0 64px !important;
+}
+
+/* The contact-row rule (privateChannels > li.channel > a, padding 0 4px 0 8px)
+   outranks the plain selectors above, which left the tile at 50x46 and
+   Message Requests 20px wide. Same weight plus one, so these win. */
+nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="channel__"],
+nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="channel__"] > div,
+nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="channel__"] a {
+  width: 62px !important;
+  height: 58px !important;
+  min-height: 58px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="channel__"] > div {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+}
+
+nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]),
+nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) > div,
+nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/message-requests"]) a {
+  width: 32px !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Bar texture runs 4px under the curve so the join never shows. */
+[class*="base__"] > [class*="bar_"] {
+  background-size: 10px 21px, calc(50% - 66px) 21px, 9px 58px, calc(50% - 77px) 58px !important;
+}
+
+nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="channel__"] a {
+  border-radius: 8px !important;
+}
+
+/* The sidebar grid area stays wider than the list column; pin the box to
+   the list's own width instead of stretching to the area. */
+[class*="sidebar__"] > [class*="panels__"] {
+  right: auto !important;
+  width: 246px !important;
+}
+
+/* Name and status sit 8px right of the photo and 3px higher, as measured. */
+[class*="panels__"] [class*="nameTag__"] {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+[class*="panels__"] [class*="accountPopoutButtonWrapper__"] {
+  gap: 8px !important;
+}
+
+[class*="sidebar__"] > [class*="panels__"] {
+  padding-top: 23px !important;
+}
