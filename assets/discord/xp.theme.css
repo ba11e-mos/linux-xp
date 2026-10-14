@@ -1352,3 +1352,287 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]) {
 [class*="toolbar_"] [aria-label="Notification Settings"] {
   background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/bell.png) !important;
 }
+
+/* ================================================================
+   Eighth pass. Toolbar composition copied from the original theme's
+   own rule for its search element: the bar's curve sits on the left
+   edge of the search block, a 26px strip runs under the field, and
+   the strip ends in its own slant. The bar texture stops where the
+   search block starts, which puts the slant mid-bar.
+   ================================================================ */
+
+[class*="base__"] > [class*="bar_"] {
+  background-image:
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
+  background-size: 50% 58px !important;
+  background-position: left top !important;
+  background-repeat: no-repeat !important;
+}
+
+nav[class*="privateChannels_"] > [class*="searchBar_"],
+[class*="page__"] [class*="search__"]:has([class*="searchBar_"]) {
+  position: fixed !important;
+  left: 50% !important;
+  right: auto !important;
+  top: 0 !important;
+  width: 231px !important;
+  height: 58px !important;
+  padding: 23px 0 0 45px !important;
+  box-sizing: border-box !important;
+  display: block !important;
+  background-image:
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchright.png),
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/searchbarbgrepeat.png),
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/searchbarbg.png) !important;
+  background-size: 57px 58px, 196px 26px, 35px 26px !important;
+  background-position: left top, 0 21px, 196px 21px !important;
+  background-repeat: no-repeat, no-repeat, no-repeat !important;
+  z-index: 300 !important;
+}
+
+/* The field itself: white, thin XP border, "Search" on the left and the
+   magnifier on the right, as in the screenshot. */
+nav[class*="privateChannels_"] > [class*="searchBar_"] button,
+[class*="page__"] [class*="search__"] [class*="searchBar_"] {
+  width: 150px !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  margin: 0 !important;
+  padding: 0 24px 0 4px !important;
+  box-sizing: border-box !important;
+  background: #FFFFFF url(https://leafinguh.github.io/msn7-disc/raw/topbar/search.png) right 3px center / 16px 16px no-repeat !important;
+  border: 1px solid #7F9DB9 !important;
+  border-radius: 0 !important;
+  font: 12px var(--font-primary) !important;
+  color: #6D6D6D !important;
+  overflow: hidden !important;
+}
+
+/* Discord's own magnifier and clear icons would double up with the one
+   painted on the field. */
+[class*="page__"] [class*="search__"] [class*="searchBar_"] svg,
+nav[class*="privateChannels_"] > [class*="searchBar_"] button svg {
+  display: none !important;
+}
+
+/* Friends tabs must stop short of the search block. */
+[class*="page__"] > main > section {
+  right: calc(50% + 8px) !important;
+}
+
+/* --- Server rail: the DM button stays, clear of the tile -------- */
+
+[class*="guilds__"] [data-list-item-id="guildsnav___home"],
+[class*="guilds__"] [class*="tutorialContainer__1f388"] {
+  display: block !important;
+}
+
+[class*="guilds__"] [class*="scroller_"] {
+  padding-top: 8px !important;
+}
+
+/* ================================================================
+   Messenger panel, rebuilt from measurements of the p1 crop (1x):
+   title row at 8px, 46px photo at (14, 28) with a 2px slate frame,
+   name at 12px bold, status at 13px, and a 22px rounded band along
+   the bottom carrying the icons. The photo overlaps the band.
+   ================================================================ */
+[class*="sidebar__"] > [class*="panels__"] {
+  height: 96px !important;
+  padding: 26px 0 0 14px !important;
+  box-sizing: border-box !important;
+  border: 1px solid #A5BCDF !important;
+  border-radius: 4px !important;
+  background: linear-gradient(180deg, #EEF3FC 0%, #FFFFFF 32%, #FFFFFF 100%) !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF !important;
+}
+
+[class*="sidebar__"] > [class*="panels__"]::before {
+  top: 7px !important; left: 8px !important;
+  width: 42px !important; height: 15px !important;
+  background-size: contain !important;
+}
+
+[class*="sidebar__"] > [class*="panels__"]::after {
+  top: 6px !important; left: 54px !important;
+  font: bold 13px var(--font-primary) !important;
+  color: #233C8F !important;
+}
+
+[class*="panels__"] [class*="container__"] ,
+[class*="panels__"] [class*="accountPopoutButtonWrapper__"] {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  align-items: flex-start !important;
+}
+
+[class*="panels__"] [class*="accountPopoutButtonWrapper__"]:hover {
+  background: transparent !important;
+}
+
+[class*="panels__"] [class*="avatar__"] {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 46px !important;
+  height: 46px !important;
+  border: 2px solid #5A6B8C !important;
+  border-radius: 4px !important;
+  background: #FFFFFF !important;
+}
+
+[class*="panels__"] [class*="avatar__"] svg,
+[class*="panels__"] [class*="avatar__"] foreignObject,
+[class*="panels__"] [class*="avatar__"] img {
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 2px !important;
+}
+
+[class*="panels__"] [class*="avatar__"]::before {
+  display: none !important;
+}
+
+[class*="panels__"] [class*="nameTag__"] {
+  margin: 0 0 0 10px !important;
+}
+
+[class*="panels__"] [class*="panelTitleContainer__"],
+[class*="panels__"] [class*="panelTitleContainer__"] * {
+  font: bold 12px var(--font-primary) !important;
+  line-height: 15px !important;
+  color: #000000 !important;
+}
+
+[class*="panels__"] [class*="panelSubtextContainer__"] {
+  margin-top: 5px !important;
+}
+
+[class*="panels__"] [class*="panelSubtextContainer__"]::before {
+  font: 13px var(--font-primary) !important;
+  color: #333333 !important;
+}
+
+[class*="panels__"] [class*="panelSubtextContainer__"]::after {
+  font-size: 9px !important;
+  margin-left: 4px !important;
+}
+
+/* The band: rounded on top, light blue, icons spread across it to the
+   right of the photo. */
+[class*="panels__"] [class*="buttons__"] {
+  position: absolute !important;
+  left: 4px !important;
+  right: 4px !important;
+  bottom: 4px !important;
+  height: 24px !important;
+  padding: 0 14px 0 66px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 0 !important;
+  border-radius: 8px 8px 2px 2px !important;
+  background: linear-gradient(180deg, #E8EFFA 0%, #D3E0F4 100%) !important;
+  z-index: 1 !important;
+}
+
+[class*="panels__"] [class*="buttons__"] button {
+  width: 22px !important;
+  height: 22px !important;
+  background-size: 20px 20px !important;
+}
+
+[class*="sidebarList__"] {
+  padding-bottom: 92px !important;
+}
+
+/* The band has to measure against the panel, not the inner container
+   Discord makes position:relative - otherwise it floats up over the
+   status line. */
+[class*="panels__"] [class*="container__37e49"],
+[class*="panels__"] > div > div[class*="container__"] {
+  position: static !important;
+}
+
+/* The wordmark at its native 50x26, which is how wide it is next to
+   "Messenger" in the reference. */
+[class*="sidebar__"] > [class*="panels__"]::before {
+  top: 1px !important; left: 6px !important;
+  width: 50px !important; height: 26px !important;
+  background-size: 50px 26px !important;
+}
+
+[class*="sidebar__"] > [class*="panels__"]::after {
+  top: 7px !important; left: 56px !important;
+}
+
+/* Past the curve the bar carries on as the thin 21px top strip all the way
+   to the right edge, where its own cap ends it - that is the band running
+   over the search field in the reference. Positioned from the right because
+   a percentage background-position is relative to the leftover space, not
+   to the bar. */
+[class*="base__"] > [class*="bar_"] {
+  background-image:
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMmainbarright.png),
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMmainbarmiddle.png),
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
+  background-size: 10px 21px, calc(50% - 66px) 21px, 50% 58px !important;
+  background-position: right 0 top 0, right 10px top 0, left top !important;
+  background-repeat: no-repeat, no-repeat, no-repeat !important;
+}
+
+/* Overlap the bar texture by a pixel so the join does not show. */
+nav[class*="privateChannels_"] > [class*="searchBar_"],
+[class*="page__"] [class*="search__"]:has([class*="searchBar_"]) {
+  left: calc(50% - 4px) !important;
+  border: none !important;
+}
+
+nav[class*="privateChannels_"] > [class*="searchBar_"] button,
+[class*="page__"] [class*="search__"] [class*="searchBar_"],
+[class*="page__"] [class*="search__"] [class*="searchBar_"] * {
+  font-size: 13px !important;
+  color: #555555 !important;
+}
+
+/* The reference field just says "Search". */
+/* Slate placeholder: the text lives in an unclassed span flagged with
+   data-slate-placeholder. */
+[class*="page__"] [class*="search__"] [data-slate-placeholder] {
+  font-size: 0 !important;
+}
+
+[class*="page__"] [class*="search__"] [data-slate-placeholder]::before {
+  content: "Search";
+  font: 13px var(--font-primary);
+  color: #555555;
+}
+
+/* Name in the Messenger box at the reference's size. */
+[class*="panels__"] [class*="panelTitleContainer__"],
+[class*="panels__"] [class*="panelTitleContainer__"] * {
+  font-size: 11px !important;
+}
+
+[class*="page__"] [class*="search__"] [data-slate-placeholder] {
+  top: 0 !important;
+  line-height: 20px !important;
+}
+
+[class*="page__"] [class*="search__"] [data-slate-placeholder]::before {
+  line-height: 20px;
+}
+
+/* "Find or start a conversation" does not fit a 150px field; it gets cut
+   to "Find or star...". Same label as the server search instead. */
+nav[class*="privateChannels_"] > [class*="searchBar_"] button > * {
+  display: none !important;
+}
+
+nav[class*="privateChannels_"] > [class*="searchBar_"] button::before {
+  content: "Search";
+  font: 13px var(--font-primary);
+  color: #555555;
+  line-height: 20px;
+}
