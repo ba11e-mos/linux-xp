@@ -661,3 +661,240 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
 [class*="guilds__"] [class*="childWrapper"] {
   border-radius: 2px !important;
 }
+
+/* ================================================================
+   Fourth pass, measured off the reference crops.
+   ================================================================ */
+
+/* --- Toolbar ---------------------------------------------------- */
+
+/* Flat full-width bar. The curve belongs to the search segment, not to
+   the bar itself - that is where the slant in the screenshot comes from. */
+[class*="base__"] > [class*="bar_"] {
+  background-image:
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
+  background-size: 100% 58px !important;
+  background-position: left top !important;
+  background-repeat: no-repeat !important;
+}
+
+/* The search segment: left cap, stretched middle, slanted right cap,
+   spanning the full height of the bar with the field sitting inside. */
+nav[class*="privateChannels_"] > [class*="searchBar_"] {
+  top: 0 !important;
+  left: 70px !important;
+  width: 320px !important;
+  height: 58px !important;
+  display: flex !important;
+  align-items: center !important;
+  background-image:
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchleft.png),
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchright.png),
+    url(https://heartmoder.github.io/dsn10-theme/assets/toolbar-bg/light/DMbarsearchmiddle.png) !important;
+  background-size: 9px 58px, 57px 58px, 254px 58px !important;
+  background-position: left top, right top, 9px top !important;
+  background-repeat: no-repeat, no-repeat, no-repeat !important;
+}
+
+nav[class*="privateChannels_"] > [class*="searchBar_"] button {
+  width: 215px !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  margin-left: 14px !important;
+  padding: 0 6px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #7F9DB9 !important;
+  border-radius: 0 !important;
+  font: 12px var(--font-primary) !important;
+  color: #3B3B3B !important;
+}
+
+/* The tab strip starts after the search segment. */
+[class*="page__"] > main > section {
+  left: 410px !important;
+}
+
+/* Divider before the icon trio. */
+[class*="base__"] > [class*="bar_"]::after {
+  content: "";
+  position: fixed;
+  top: 17px;
+  right: 186px;
+  width: 1px;
+  height: 24px;
+  background: #9BB8D9;
+}
+
+/* --- Contact list ----------------------------------------------- */
+
+/* MSN listed direct messages as pictures only, hung on the right edge. */
+[class*="privateChannels_"] li[class*="channel__"][class*="dm__"] [class*="content__"] {
+  display: none !important;
+}
+
+[class*="privateChannels_"] li[class*="channel__"],
+[class*="privateChannels_"] li[class*="channel__"] a,
+[class*="privateChannels_"] li[class*="channel__"] > div[class*="interactive"] {
+  height: 42px !important;
+  min-height: 42px !important;
+}
+
+[class*="privateChannels_"] [class*="avatar__"] {
+  border: none !important;
+  width: 34px !important;
+  height: 34px !important;
+}
+
+[class*="privateChannels_"] [class*="avatar__"] img,
+[class*="privateChannels_"] [class*="avatar__"] foreignObject,
+[class*="privateChannels_"] [class*="avatar__"] svg,
+[class*="privateChannels_"] [class*="avatar__"] [class*="wrapper__"] {
+  width: 34px !important;
+  height: 34px !important;
+}
+
+/* Selected row is a double-framed box, not a flat fill. */
+[class*="privateChannels_"] [class*="selected"],
+[class*="privateChannels_"] li[class*="channel__"] [class*="interactive"]:hover {
+  background: linear-gradient(180deg, #FDFDFF 0%, #DCE4F5 100%) !important;
+  border: 1px solid #FFFFFF !important;
+  outline: 1px solid var(--dsn-border) !important;
+  outline-offset: 0 !important;
+}
+
+/* --- Messenger panel -------------------------------------------- */
+
+[class*="sidebar__"] > [class*="panels__"] {
+  height: 86px !important;
+  padding: 20px 0 0 12px !important;
+  border-radius: 4px !important;
+  /* white above, the shaded icon band below */
+  background: linear-gradient(180deg, #FFFFFF 0%, #FDFDFF 58%, #E9EFFA 58%, #DCE6F6 100%) !important;
+}
+
+[class*="sidebar__"] > [class*="panels__"]::before {
+  top: 4px; left: 10px;
+  width: 46px; height: 16px;
+}
+
+[class*="sidebar__"] > [class*="panels__"]::after {
+  top: 3px; left: 62px;
+  font: bold 14px var(--font-primary);
+}
+
+[class*="panels__"] [class*="avatar__"] {
+  width: 46px !important;
+  height: 46px !important;
+  border: 3px solid #6E6E6E !important;
+  border-radius: 6px !important;
+}
+
+[class*="panels__"] [class*="avatar__"] svg,
+[class*="panels__"] [class*="avatar__"] foreignObject,
+[class*="panels__"] [class*="avatar__"] img {
+  width: 46px !important;
+  height: 46px !important;
+}
+
+[class*="panels__"] [class*="panelSubtextContainer__"] {
+  margin-top: 2px !important;
+}
+
+[class*="panels__"] [class*="panelSubtextContainer__"]::after {
+  content: " \25BC";
+  font-size: 10px;
+  color: #000000;
+}
+
+[class*="panels__"] [class*="nameTag__"] {
+  margin-top: 8px !important;
+  margin-left: 8px !important;
+}
+
+/* The icon strip: MSN glyphs on Discord's own buttons. */
+[class*="panels__"] [class*="buttons__"] {
+  right: 10px !important;
+  bottom: 4px !important;
+  gap: 18px !important;
+}
+
+[class*="panels__"] [class*="buttons__"] [class*="buttonChevron"] {
+  display: none !important;
+}
+
+[class*="panels__"] [class*="buttons__"] button {
+  width: 24px !important;
+  height: 24px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 20px 20px !important;
+}
+
+[class*="panels__"] [class*="buttons__"] button > * {
+  display: none !important;
+}
+
+[class*="panels__"] [class*="buttons__"] > div:nth-child(1) button {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/mic.png) !important;
+}
+
+[class*="panels__"] [class*="buttons__"] > div:nth-child(2) button {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/volume.png) !important;
+}
+
+[class*="panels__"] [class*="buttons__"] > button:last-child {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) !important;
+}
+
+/* The subtext cycles custom status and listening activity; MSN showed the
+   status and nothing else. */
+[class*="panels__"] [class*="panelSubtextContainer__"] > * {
+  display: none !important;
+}
+
+[class*="panels__"] [class*="panelSubtextContainer__"]::before {
+  content: "Online";
+  font: 14px var(--font-primary);
+  color: #000000;
+}
+
+[class*="panels__"] [class*="panelSubtextContainer__"] {
+  white-space: nowrap !important;
+}
+
+/* Placeholder sits against the left edge of the field. */
+nav[class*="privateChannels_"] > [class*="searchBar_"] button,
+nav[class*="privateChannels_"] > [class*="searchBar_"] button * {
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+/* Two envelopes in a row read as a mistake: Message Requests takes the
+   contact-with-alert icon the reference uses for it in the sidebar. */
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) a {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/newpawn.png) !important;
+}
+
+[class*="base__"] > [class*="bar_"]::after {
+  z-index: 310;
+}
+
+[class*="base__"] > [class*="bar_"]::after {
+  right: 202px !important;
+}
+
+/* The lifted buttons are still list rows as far as Discord is concerned,
+   so the selected-row frame was landing on them. */
+[class*="friendsButtonContainer_"] [class*="interactive"],
+[class*="friendsButtonContainer_"] [class*="selected"],
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) [class*="interactive"] {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+}
+
+[class*="friendsButtonContainer_"] a:not(:hover),
+li[class*="channel__"]:has(> div > a[href="/message-requests"]) a:not(:hover) {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
