@@ -3122,3 +3122,384 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
 [class*="outer_c0bea0"] [class*="menus_ce8328"] > :nth-child(2) > ul > :nth-child(2) [class*="menuItemIcon_ce8328"] {
   background: #DCE7F7 url(https://heartmoder.github.io/dsn10-theme/assets/actions/email.png) center / 18px 18px no-repeat !important;
 }
+
+/* ================================================================
+   Settings as the original theme had it (dsn10 src/3.png): an XP
+   window with the Explorer task pane down the left - blue wash,
+   grouped boxes with dark-blue headers - and the content on the same
+   blue, in beige cards holding white rounded rows.
+   ================================================================ */
+
+/* --- Window: Luna frame and title bar ---------------------------- */
+[class*="container__8a031"].modal_e44912 {
+  border: 3px solid #0A3FD6 !important;
+  border-top-width: 0 !important;
+  border-radius: 8px 8px 0 0 !important;
+  background: #ECE9D8 !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45) !important;
+  padding-top: 30px !important;
+  box-sizing: border-box !important;
+}
+
+[class*="container__8a031"].modal_e44912::before {
+  content: "Discord Settings";
+  position: absolute;
+  top: 0; left: -3px; right: -3px;
+  height: 30px;
+  padding-left: 12px;
+  box-sizing: border-box;
+  border-radius: 8px 8px 0 0;
+  font: bold 13px/30px Trebuchet MS, var(--font-primary);
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0 #0A1E78;
+  background: linear-gradient(180deg,
+    #0997FF 0%, #0053EE 8%, #0050EE 40%, #0066FF 88%, #0066FF 93%, #005BFF 95%, #003DD7 100%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Close button becomes the red XP caption button, up in the title bar. */
+[class*="contentHeader_e9e3ed"] button[aria-label="Close"] {
+  position: fixed !important;
+  margin: 0 !important;
+  width: 22px !important;
+  height: 22px !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 1px solid #FFFFFF !important;
+  border-radius: 3px !important;
+  background: radial-gradient(circle at 35% 30%, #F3A28A 0%, #E2532D 45%, #C33A1A 100%) !important;
+  box-shadow: none !important;
+  z-index: 6 !important;
+}
+
+[class*="contentHeader_e9e3ed"] button[aria-label="Close"] * {
+  visibility: hidden !important;
+}
+
+[class*="contentHeader_e9e3ed"] button[aria-label="Close"]::after {
+  content: "\2715";
+  position: absolute;
+  inset: 0;
+  font: bold 13px/20px Tahoma, var(--font-primary);
+  text-align: center;
+  color: #FFFFFF;
+  visibility: visible;
+}
+
+[class*="contentHeader_e9e3ed"] button[aria-label="Close"]:hover {
+  filter: brightness(1.12) !important;
+}
+
+[class*="modalContent_e44912"],
+[class*="modalContentInner_e44912"],
+[class*="container_abd9a8"] {
+  border-radius: 0 !important;
+}
+
+/* --- Task pane --------------------------------------------------- */
+[role="dialog"] aside[class*="sidebar__409aa"] {
+  background: linear-gradient(180deg, #7BA2E7 0%, #6375D6 100%) !important;
+  border-right: 1px solid #4B63C5 !important;
+}
+
+[role="dialog"] aside[class*="sidebar__409aa"] [class*="nav__409aa"],
+[role="dialog"] aside[class*="sidebar__409aa"] [class*="navScroller__409aa"] {
+  background: transparent !important;
+}
+
+/* Profile header and search sit on the wash like the Explorer bar's
+   top block. */
+[role="dialog"] aside[class*="sidebar__409aa"] [class*="fixedContent__409aa"] {
+  background: transparent !important;
+  color: #FFFFFF !important;
+}
+
+[role="dialog"] aside[class*="sidebar__409aa"] [class*="fixedContent__409aa"] * {
+  color: #FFFFFF !important;
+}
+
+[role="dialog"] aside[class*="sidebar__409aa"] [class*="searchBarContainer"] input,
+[role="dialog"] aside[class*="sidebar__409aa"] [class*="searchBarContainer"] * {
+  color: #000000 !important;
+}
+
+/* Each section is a task box: header bar, then the pale body. */
+[role="dialog"] li[class*="section__409aa"] {
+  margin: 0 12px 14px 12px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+[role="dialog"] li[class*="section__409aa"] + li[class*="section__409aa"]::before,
+[role="dialog"] [class*="sidebar__409aa"] [class*="separator"],
+[role="dialog"] [class*="sidebar__409aa"] [role="separator"] {
+  display: none !important;
+}
+
+[role="dialog"] [class*="sectionLabel__409aa"],
+[role="dialog"] li[class*="section__409aa"] > span[class*="hiddenVisually"] {
+  position: static !important;
+  display: flex !important;
+  align-items: center !important;
+  width: auto !important;
+  height: 25px !important;
+  margin: 0 !important;
+  padding: 0 0 0 12px !important;
+  clip: auto !important;
+  overflow: hidden !important;
+  border-radius: 3px 3px 0 0 !important;
+  background: linear-gradient(90deg, #0C59B9 0%, #1C70DD 100%) !important;
+}
+
+[role="dialog"] [class*="sectionLabel__409aa"] *,
+[role="dialog"] li[class*="section__409aa"] > span[class*="hiddenVisually"] * {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  clip: auto !important;
+  font: bold 12px var(--font-primary) !important;
+  color: #FFFFFF !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+[role="dialog"] ul[class*="sectionList__409aa"] {
+  padding: 6px 0 8px 0 !important;
+  background: #D6DFF7 !important;
+  border: 1px solid #FFFFFF !important;
+  border-top: none !important;
+}
+
+[role="dialog"] [class*="item_caf372"] {
+  min-height: 22px !important;
+  height: auto !important;
+  padding: 3px 10px 3px 14px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+[role="dialog"] [class*="item_caf372"] [class*="itemContent_caf372"],
+[role="dialog"] [class*="item_caf372"] [class*="itemContent_caf372"] * {
+  font: 12px var(--font-primary) !important;
+  color: #215DC6 !important;
+}
+
+[role="dialog"] [class*="item_caf372"]:hover [class*="itemContent_caf372"],
+[role="dialog"] [class*="item_caf372"]:hover [class*="itemContent_caf372"] * {
+  color: #428EFF !important;
+  text-decoration: underline !important;
+}
+
+[role="dialog"] [class*="item_caf372"][class*="active_caf372"] [class*="itemContent_caf372"],
+[role="dialog"] [class*="item_caf372"][class*="active_caf372"] [class*="itemContent_caf372"] * {
+  font-weight: bold !important;
+  color: #0C3B9E !important;
+}
+
+/* Sub-pages under the active item: indented, smaller. */
+[role="dialog"] [class*="subnav_e4d939"] {
+  border: none !important;
+  margin-left: 22px !important;
+}
+
+[role="dialog"] [class*="subnav_e4d939"] * {
+  font: 11px var(--font-primary) !important;
+  color: #215DC6 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* --- Content on the blue, in beige cards ------------------------ */
+[class*="content_e9e3ed"] {
+  background: linear-gradient(180deg, #6B85DC 0%, #5A6FD1 100%) !important;
+  border-left: none !important;
+}
+
+[class*="contentHeader_e9e3ed"] {
+  background: transparent !important;
+  border: none !important;
+}
+
+[class*="contentHeader_e9e3ed"] * {
+  color: #FFFFFF !important;
+  font: bold 14px var(--font-primary) !important;
+}
+
+[class*="contentBody_e9e3ed"],
+[class*="scroller__6131a"] {
+  background: transparent !important;
+}
+
+[class*="panel__6131a"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+[class*="categories__6131a"] {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* A section card... */
+[class*="categories__6131a"] > [class*="container__75920"] {
+  background: #ECE9D8 !important;
+  border: 1px solid #FFFFFF !important;
+  border-radius: 4px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* ...and the rows inside it. */
+[class*="categories__6131a"] [class*="container__75920"] [class*="container__75920"] {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F7F6F0 100%) !important;
+  border: 1px solid #A8A8A8 !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+}
+
+[class*="panel__6131a"] h1,
+[class*="panel__6131a"] h2,
+[class*="panel__6131a"] h3 {
+  font-family: var(--font-primary) !important;
+  color: #000000 !important;
+}
+
+/* XP push buttons. */
+[role="dialog"] [class*="content_e9e3ed"] button[class*="button_a22cb0"]:not([aria-label="Close"]) {
+  min-height: 23px !important;
+  height: auto !important;
+  padding: 3px 12px !important;
+  border: 1px solid #003C74 !important;
+  border-radius: 3px !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F2F2EC 70%, #D6D0C5 100%) !important;
+  box-shadow: inset 0 -1px 0 #D6D0C5 !important;
+  color: #000000 !important;
+  font: 12px var(--font-primary) !important;
+}
+
+[role="dialog"] [class*="content_e9e3ed"] button[class*="button_a22cb0"]:not([aria-label="Close"]):hover {
+  box-shadow: inset 0 0 0 2px #FFCF6A, inset 0 0 0 3px #F8B636 !important;
+}
+
+[role="dialog"] [class*="content_e9e3ed"] button[class*="button_a22cb0"]:not([aria-label="Close"]):active {
+  background: linear-gradient(180deg, #E5E3DA 0%, #F0EFE8 100%) !important;
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.2) !important;
+}
+
+[role="dialog"] [class*="content_e9e3ed"] button[class*="button_a22cb0"]:not([aria-label="Close"]) * {
+  color: #000000 !important;
+}
+
+/* Close button: placed against the modal (position:relative), so the
+   wrappers between them must not be positioned. Absolutely placed, it is
+   not clipped by their overflow either - its containing block is above
+   them. */
+[class*="container__8a031"].modal_e44912 [class*="modalContent_e44912"],
+[class*="container__8a031"].modal_e44912 [class*="modalContentInner_e44912"],
+[class*="container__8a031"].modal_e44912 [class*="container_abd9a8"],
+[class*="container__8a031"].modal_e44912 [class*="content_e9e3ed"],
+[class*="container__8a031"].modal_e44912 [class*="contentHeader_e9e3ed"] {
+  position: static !important;
+}
+
+[class*="contentHeader_e9e3ed"] button[aria-label="Close"] {
+  position: absolute !important;
+  top: 4px !important;
+  right: 3px !important;
+  left: auto !important;
+}
+
+/* "General" has its label visually hidden; give its box the same header
+   as the others. */
+[role="dialog"] li[class*="section__409aa"]:not(:has([class*="sectionLabel__409aa"]))::before {
+  content: "General";
+  display: flex;
+  align-items: center;
+  height: 25px;
+  padding-left: 12px;
+  border-radius: 3px 3px 0 0;
+  font: bold 12px var(--font-primary);
+  color: #FFFFFF;
+  background: linear-gradient(90deg, #0C59B9 0%, #1C70DD 100%);
+}
+
+[role="dialog"] li[class*="section__409aa"] > span[class*="hiddenVisually"] {
+  display: none !important;
+}
+
+/* Nitro promo pill. */
+[role="dialog"] [class*="premiumTrialBadge"] {
+  display: none !important;
+}
+
+/* Profile block at the top of the pane: white text on the wash. */
+[role="dialog"] [class*="fixedContent__409aa"] [class*="section__409aa"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+[role="dialog"] [class*="fixedContent__409aa"] [class*="section__409aa"] * {
+  color: #FFFFFF !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+}
+
+/* Square framed photo, as everywhere else. */
+[role="dialog"] [class*="fixedContent__409aa"] [class*="avatar"] img,
+[role="dialog"] [class*="fixedContent__409aa"] [class*="avatar"] foreignObject {
+  border-radius: 3px !important;
+  mask: none !important;
+}
+
+/* container_abd9a8 has contain:layout, which also makes it the containing
+   block for absolute descendants. Reach up past it by the title bar's
+   height instead. */
+[class*="contentHeader_e9e3ed"] button[aria-label="Close"] {
+  top: -26px !important;
+}
+
+/* The settings layout's contain:layout makes its own stacking context, so
+   the close button's z-index could not beat a z-indexed title bar. Paint
+   the bar at 0; the content comes after it in tree order. */
+[class*="container__8a031"].modal_e44912::before {
+  z-index: 0 !important;
+}
+
+/* The profile block keeps its pale card, so its text goes dark. */
+[role="dialog"] [class*="fixedContent__409aa"] [class*="section__409aa"] * {
+  color: #0C3B9E !important;
+  text-shadow: none !important;
+}
+
+[role="dialog"] aside[class*="sidebar__409aa"] [class*="fixedContent__409aa"] [class*="profileCustomizationTab"] * {
+  color: #0C3B9E !important;
+  text-shadow: none !important;
+}
+
+[role="dialog"] [class*="profileCustomizationTab"] [class*="lineClamp"]:first-child {
+  font-weight: bold !important;
+}
+
+[role="dialog"] [class*="profileCustomizationTab"] foreignObject {
+  mask: none !important;
+}
+
+[role="dialog"] [class*="profileCustomizationTab"] [class*="avatar"],
+[role="dialog"] [class*="profileCustomizationTab"] img {
+  border-radius: 3px !important;
+}
+
+[role="dialog"] [class*="profileCustomizationTab"] svg > g,
+[role="dialog"] [class*="profileCustomizationTab"] svg > rect {
+  display: none !important;
+}
+
+[role="dialog"] [class*="profileCustomizationTab"] [class*="editProfilesRow"] * {
+  font-weight: normal !important;
+  text-decoration: underline !important;
+}
