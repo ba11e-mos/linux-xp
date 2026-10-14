@@ -2786,3 +2786,135 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
   height: 58px !important;
   inset: 9px auto auto 14px !important;
 }
+
+/* ============================================================
+   Settings and profile surfaces
+   ============================================================ */
+
+/* Discord's settings modal inherits the transparent app canvas. Give it
+   the same separated XP window treatment as the rest of the theme. */
+[class*="container__8a031"].modal_e44912 {
+  background: linear-gradient(180deg, #F4F7FD 0%, #E2EBF8 100%) !important;
+  border: 2px solid #7E98C2 !important;
+  border-radius: 6px !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF, 0 4px 14px rgba(34, 58, 94, 0.35) !important;
+  overflow: hidden !important;
+}
+
+[class*="modalContent_e44912"],
+[class*="modalContentInner_e44912"],
+[class*="container_abd9a8"] {
+  background: transparent !important;
+}
+
+[class*="content_e9e3ed"] {
+  background: #FFFFFF !important;
+  border-left: 1px solid #A9C2EC !important;
+}
+
+[class*="contentBody_e9e3ed"],
+[class*="scroller__6131a"] {
+  background: #FFFFFF !important;
+}
+
+[class*="panel__6131a"] {
+  background: #FFFFFF !important;
+  border: 1px solid #A9C2EC !important;
+  border-radius: 4px !important;
+  box-shadow: inset 0 0 0 1px #E6EEF9 !important;
+  padding: 18px 20px !important;
+}
+
+[class*="categories__6131a"] {
+  background: linear-gradient(180deg, #EEF3FC 0%, #DCE7F7 100%) !important;
+  padding: 14px 10px !important;
+}
+
+[class*="categories__6131a"] [class*="item_"] {
+  border: 1px solid transparent !important;
+  border-radius: 4px !important;
+  color: #18304F !important;
+}
+
+[class*="categories__6131a"] [class*="item_"]:hover {
+  border-color: #9DB4DF !important;
+  background: #F4F7FD !important;
+}
+
+[class*="categories__6131a"] [class*="selected_"] {
+  border-color: #7E98C2 !important;
+  background: linear-gradient(180deg, #DCEAFF 0%, #BFD5F4 100%) !important;
+  color: #102B55 !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF !important;
+}
+
+[class*="container__75920"] {
+  background: #FFFFFF !important;
+  border: 1px solid #A9C2EC !important;
+  border-radius: 4px !important;
+}
+
+[class*="container__8a031"] input,
+[class*="container__8a031"] textarea,
+[class*="container__8a031"] [class*="input_"] {
+  background: #FFFFFF !important;
+  border: 1px solid #7F9DB9 !important;
+  border-radius: 3px !important;
+  color: #000000 !important;
+}
+
+/* Profile popout: replace Discord's rounded modern card with an MSN-style
+   framed panel, blue header, and consistent white content surfaces. */
+[class*="outer_c0bea0"].user-profile-popout {
+  background: #FFFFFF !important;
+  border: 2px solid #7E98C2 !important;
+  border-radius: 5px !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF, 0 4px 12px rgba(34, 58, 94, 0.35) !important;
+  overflow: hidden !important;
+}
+
+[class*="outer_c0bea0"] [class*="inner_c0bea0"],
+[class*="outer_c0bea0"] [class*="body_ce8328"] {
+  background: #FFFFFF !important;
+}
+
+[class*="outer_c0bea0"] [class*="header__5be3e"] {
+  background: linear-gradient(180deg, #E8F0FC 0%, #C9DAF2 100%) !important;
+  border-bottom: 1px solid #7E98C2 !important;
+}
+
+[class*="outer_c0bea0"] [class*="banner_f7e69e"],
+[class*="outer_c0bea0"] [class*="fill_f7e69e"] {
+  background: linear-gradient(180deg, #6E9BD7 0%, #BFD6F4 100%) !important;
+}
+
+[class*="outer_c0bea0"] [class*="avatar__"] img {
+  border: 2px solid #FFFFFF !important;
+  border-radius: 4px !important;
+  box-shadow: 0 1px 3px rgba(24, 48, 79, 0.45) !important;
+}
+
+[class*="outer_c0bea0"] [class*="card__9d597"] {
+  background: linear-gradient(180deg, #F7FAFF 0%, #E5EEF9 100%) !important;
+  border: 1px solid #A9C2EC !important;
+  border-radius: 4px !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF !important;
+}
+
+[class*="outer_c0bea0"] [class*="menus_ce8328"] {
+  background: #FFFFFF !important;
+  border-top: 1px solid #A9C2EC !important;
+  padding: 5px !important;
+}
+
+[class*="outer_c0bea0"] [class*="menuItem_ce8328"] {
+  border: 1px solid transparent !important;
+  border-radius: 3px !important;
+  color: #18304F !important;
+}
+
+[class*="outer_c0bea0"] [class*="menuItem_ce8328"]:hover {
+  background: #E8F0FC !important;
+  border-color: #9DB4DF !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF !important;
+}
