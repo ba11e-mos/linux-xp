@@ -4582,3 +4582,132 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 [role="dialog"] [data-list-item-id="settings-sidebar___developer_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/textarea/keyboard.png) !important; }
 [role="dialog"] [data-list-item-id="settings-sidebar___logout_sidebar_item"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/status/donotdisturb.png) !important; }
 [role="dialog"] [data-list-item-id="settings-sidebar___vesktop_panel"][data-list-item-id] [class*="itemContent_caf372"]::before { background-image: url(https://heartmoder.github.io/dsn10-theme/assets/emojis/messenger.gif) !important; }
+
+/* ================================================================
+   Every text button in the app is an XP push button: navy 1px edge,
+   3px corners, the white-to-beige face, the orange hot-track on hover
+   and a pressed-in face on click. Primary buttons get XP's blue
+   "default button" ring, destructive ones red text. Text-only links
+   are plain blue links. Icon buttons and our own toolbar/player/panel
+   buttons are left alone.
+   ================================================================ */
+button[class*="button_a22cb0"]:not([class*="icon-only"]):not(:is([class*="searchBar_"] *)):not([aria-label="Close"]),
+button[class*="button__201d5"]:is([class*="lookFilled"], [class*="lookOutlined"]):not(:is([class*="panels__"] *)),
+[role="dialog"] [class*="content_e9e3ed"] button[class*="button_a22cb0"]:not([class*="icon-only"]):not([aria-label="Close"]) {
+  min-height: 23px !important;
+  height: auto !important;
+  padding: 2px 12px !important;
+  border: 1px solid #003C74 !important;
+  border-radius: 3px !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F4F3EE 50%, #ECEBE6 86%, #D6D0C5 100%) !important;
+  box-shadow: none !important;
+  color: #000000 !important;
+  font: 12px var(--font-primary) !important;
+  text-shadow: none !important;
+  transition: none !important;
+}
+
+button[class*="button_a22cb0"]:not([class*="icon-only"]):not(:is([class*="searchBar_"] *)):not([aria-label="Close"]) *,
+button[class*="button__201d5"]:is([class*="lookFilled"], [class*="lookOutlined"]):not(:is([class*="panels__"] *)) * {
+  color: inherit !important;
+  font: inherit !important;
+}
+
+button[class*="button_a22cb0"]:not([class*="icon-only"]):not(:is([class*="searchBar_"] *)):not([aria-label="Close"]):hover,
+button[class*="button__201d5"]:is([class*="lookFilled"], [class*="lookOutlined"]):not(:is([class*="panels__"] *)):hover,
+[role="dialog"] [class*="content_e9e3ed"] button[class*="button_a22cb0"]:not([class*="icon-only"]):not([aria-label="Close"]):hover {
+  filter: none !important;
+  box-shadow: inset 0 2px 0 #FFE7A2, inset 0 -2px 0 #F8B636, inset 2px 0 0 #FBD58C, inset -2px 0 0 #FBD58C !important;
+}
+
+button[class*="button_a22cb0"]:not([class*="icon-only"]):not(:is([class*="searchBar_"] *)):not([aria-label="Close"]):active,
+button[class*="button__201d5"]:is([class*="lookFilled"], [class*="lookOutlined"]):not(:is([class*="panels__"] *)):active,
+[role="dialog"] [class*="content_e9e3ed"] button[class*="button_a22cb0"]:not([class*="icon-only"]):not([aria-label="Close"]):active {
+  background: linear-gradient(180deg, #E5E3DA 0%, #F0EFE8 100%) !important;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* XP's default button: a blue ring inside the edge. */
+button[class*="button_a22cb0"][class*="primary_a22cb0"]:not([class*="critical"]):not([class*="icon-only"]),
+button[class*="button__201d5"][class*="colorBrand"][class*="lookFilled"] {
+  box-shadow: inset 0 0 0 1px #A8C4F0, inset 0 -1px 0 1px #84A9E6 !important;
+}
+
+/* Destructive: same button, red text. */
+button[class*="button_a22cb0"][class*="critical"],
+button[class*="button__201d5"][class*="colorRed"] {
+  color: #A00000 !important;
+}
+
+button[class*="button_a22cb0"]:disabled,
+button[class*="button__201d5"]:disabled {
+  color: #ACA899 !important;
+  border-color: #C9C7BA !important;
+  background: #F5F4EA !important;
+  box-shadow: none !important;
+}
+
+/* Text buttons are links. */
+button[class*="textButton__7a01b"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  color: #0033AA !important;
+  font: 12px var(--font-primary) !important;
+}
+
+button[class*="textButton__7a01b"] * {
+  color: #0033AA !important;
+}
+
+button[class*="textButton__7a01b"]:hover,
+button[class*="textButton__7a01b"]:hover * {
+  text-decoration: underline !important;
+  color: #3366CC !important;
+}
+
+/* Discord's size classes put a 38px-tall, 7px/15px-padded wrapper inside
+   the button and a 100px minimum width on it. XP buttons size to their
+   label: 23px tall, 75px minimum. */
+button[class*="button_a22cb0"]:not([class*="icon-only"]):not(:is([class*="searchBar_"] *)):not([aria-label="Close"]) {
+  min-width: 75px !important;
+  width: auto !important;
+}
+
+button[class*="button_a22cb0"]:not([class*="icon-only"]):not(:is([class*="searchBar_"] *)):not([aria-label="Close"]) [class*="buttonChildrenWrapper_"] {
+  min-height: 0 !important;
+  min-width: 0 !important;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+button[class*="button_a22cb0"][class*="fullWidth"]:not(:is([class*="searchBar_"] *)) {
+  width: 100% !important;
+}
+
+/* An earlier modal rule framed text buttons like push buttons. */
+[class*="modal_e44912"] button[class*="textButton__7a01b"],
+[class*="modal_e44912"] button[class*="textButton__7a01b"]:hover {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 4px !important;
+  min-height: 0 !important;
+}
+
+/* Invite to Group DM: MSN's add-a-contact icon instead of Discord's. */
+[class*="membersWrap_"] button[class*="button_a22cb0"] svg {
+  display: none !important;
+}
+
+[class*="membersWrap_"] button[class*="button_a22cb0"] [class*="buttonChildren_"]::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  vertical-align: -3px;
+  background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/addacontact.png) center / 16px 16px no-repeat;
+}
