@@ -2956,57 +2956,39 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
    MSN action controls
    ============================================================ */
 
-/* Discord's Lottie/SVG account controls look especially out of place
-   against the pixel-art account panel. Keep the real buttons, but replace
-   their artwork with the matching MSN action glyphs. */
-[aria-label="Mute"],
-[aria-label="Deafen"],
-[aria-label="User Settings"] {
-  width: 27px !important;
-  height: 25px !important;
-  min-width: 27px !important;
-  border: 1px solid #7F9DB9 !important;
-  border-radius: 2px !important;
-  background: linear-gradient(180deg, #FFFFFF 0%, #DCE7F7 52%, #B9CDEB 100%) !important;
-  color: transparent !important;
-  box-shadow: inset 0 0 0 1px #FFFFFF, 1px 1px 0 #6B82A5 !important;
-}
-
-[aria-label="Mute"]:hover,
-[aria-label="Deafen"]:hover,
-[aria-label="User Settings"]:hover {
-  border-color: #316AC5 !important;
-  background: linear-gradient(180deg, #FFFFFF 0%, #EAF2FF 52%, #BDD7FA 100%) !important;
-}
-
-[aria-label="Mute"] svg,
-[aria-label="Deafen"] svg,
-[aria-label="User Settings"] svg {
+/* Settings navigation uses the original MSN action set. */
+[class*="item_caf372"] [class*="icon_caf372"],
+[class*="item_caf372"] .vc-icon {
   display: none !important;
 }
 
-[aria-label="Mute"]::before,
-[aria-label="Deafen"]::before,
-[aria-label="User Settings"]::before {
+[class*="item_caf372"] [class*="itemContent_caf372"]::before {
   content: "" !important;
   display: block !important;
   width: 20px !important;
   height: 20px !important;
-  margin: auto !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-size: 20px 20px !important;
+  flex: 0 0 20px !important;
+  margin-right: 8px !important;
+  background: url(https://heartmoder.github.io/dsn10-theme/assets/msn/msn-blue.png) center / 20px 20px no-repeat !important;
 }
 
-[aria-label="Mute"]::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/mic.png) !important;
+[data-list-item-id="settings-sidebar___account_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) !important;
 }
 
-[aria-label="Deafen"]::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/audio.png) !important;
+[data-list-item-id="settings-sidebar___data_and_privacy_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/pin.png) !important;
 }
 
-[aria-label="User Settings"]::before {
+[data-list-item-id="settings-sidebar___messaging_permissions_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png) !important;
+}
+
+[data-list-item-id="settings-sidebar___notifications_panel"] [class*="itemContent_caf372"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/bell.png) !important;
+}
+
+[data-list-item-id*="vencord"][data-list-item-id*="panel"] [class*="itemContent_caf372"]::before {
   background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) !important;
 }
 
@@ -3110,52 +3092,33 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
   background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) center / 18px 18px no-repeat !important;
 }
 
-/* Replace Spotify's smooth Material glyphs with a small, consistent XP
-   button row. Text labels stay hidden because the aria labels remain on
-   the original SVGs for accessibility and tooltips. */
-#vc-spotify-player .vc-spotify-button {
-  width: 30px !important;
-  height: 27px !important;
-  border: 1px solid #7F9DB9 !important;
+/* Give the profile menu its own compact MSN action strip. */
+[class*="outer_c0bea0"] [class*="menuItemIcon_ce8328"] {
+  width: 22px !important;
+  height: 22px !important;
+  margin-right: 7px !important;
+  border: 1px solid #9DB4DF !important;
   border-radius: 2px !important;
-  background: linear-gradient(180deg, #FFFFFF 0%, #DCE7F7 100%) !important;
-  box-shadow: inset 0 0 0 1px #FFFFFF, 1px 1px 0 #6B82A5 !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #DCE7F7 100%) center / auto !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF !important;
 }
 
-#vc-spotify-player .vc-spotify-button:hover {
-  border-color: #316AC5 !important;
-  background: linear-gradient(180deg, #FFFFFF 0%, #EAF2FF 100%) !important;
-}
-
-#vc-spotify-player .vc-spotify-button svg {
+[class*="outer_c0bea0"] [class*="menuItemIcon_ce8328"] svg {
   display: none !important;
 }
 
-#vc-spotify-player .vc-spotify-button::before {
-  content: "" !important;
-  display: block !important;
-  width: 18px !important;
-  height: 18px !important;
-  margin: auto !important;
-  background: center / 18px 18px no-repeat !important;
+[class*="outer_c0bea0"] [class*="menus_ce8328"] > :nth-child(1) > ul > :nth-child(1) [class*="menuItemIcon_ce8328"] {
+  background: #DCE7F7 url(https://heartmoder.github.io/dsn10-theme/assets/actions/userprofile.png) center / 18px 18px no-repeat !important;
 }
 
-#vc-spotify-player .vc-spotify-button:has(.vc-spotify-shuffle)::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/mixer.png) !important;
+[class*="outer_c0bea0"] [class*="menus_ce8328"] > :nth-child(1) > ul > :nth-child(2) [class*="menuItemIcon_ce8328"] {
+  background: #DCE7F7 url(https://heartmoder.github.io/dsn10-theme/assets/actions/bell.png) center / 18px 18px no-repeat !important;
 }
 
-#vc-spotify-player .vc-spotify-button:has(.vc-spotify-previous)::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/remotedesktop2.png) !important;
+[class*="outer_c0bea0"] [class*="menus_ce8328"] > :nth-child(2) > ul > :nth-child(1) [class*="menuItemIcon_ce8328"] {
+  background: #DCE7F7 url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) center / 18px 18px no-repeat !important;
 }
 
-#vc-spotify-player .vc-spotify-button:has(.vc-spotify-pause)::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/audio2.png) !important;
-}
-
-#vc-spotify-player .vc-spotify-button:has(.vc-spotify-next)::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/remotedesktop.png) !important;
-}
-
-#vc-spotify-player .vc-spotify-button:has(.vc-spotify-repeat)::before {
-  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) !important;
+[class*="outer_c0bea0"] [class*="menus_ce8328"] > :nth-child(2) > ul > :nth-child(2) [class*="menuItemIcon_ce8328"] {
+  background: #DCE7F7 url(https://heartmoder.github.io/dsn10-theme/assets/actions/email.png) center / 18px 18px no-repeat !important;
 }
