@@ -322,7 +322,7 @@ li[class*="channel__"] > div > a[href="/message-requests"] > *:not(dsn-none) {
   height: 32px !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  background-size: 28px 28px !important;
+  background-size: 24px 24px !important;
 }
 
 [class*="bar_"] [aria-label="Inbox"] {
@@ -428,7 +428,7 @@ li[class*="channel__"] > div > a[href="/message-requests"] > *:not(dsn-none) {
 
 [class*="panels__"] [class*="panelSubtextContainer__"],
 [class*="panels__"] [class*="panelSubtextContainer__"] * {
-  font: 13px var(--font-primary) !important;
+  font: 12px var(--font-primary) !important;
   color: #000000 !important;
 }
 
@@ -860,7 +860,7 @@ nav[class*="privateChannels_"] [class*="sectionDivider_"] {
   height: 32px !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  background-size: 26px 26px !important;
+  background-size: 24px 24px !important;
 }
 
 [class*="page__"] [class*="toolbar_"] [class*="iconWrapper_"] svg {
@@ -972,7 +972,7 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button svg {
 }
 
 [class*="sidebar__"] > [class*="panels__"]::after {
-  font: bold 13px var(--font-primary) !important;
+  font: bold 12px var(--font-primary) !important;
   color: #233C8F !important;
 }
 
@@ -1023,7 +1023,7 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button svg {
 }
 
 [class*="panels__"] [class*="panelSubtextContainer__"]::before {
-  font: 13px var(--font-primary) !important;
+  font: 12px var(--font-primary) !important;
   color: #333333 !important;
 }
 
@@ -1052,7 +1052,7 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button svg {
 [class*="panels__"] [class*="buttons__"] button {
   width: 22px !important;
   height: 22px !important;
-  background-size: 20px 20px !important;
+  background-size: 16px 16px !important;
 }
 
 /* The band has to measure against the panel, not the inner container
@@ -1093,7 +1093,7 @@ nav[class*="privateChannels_"] > [class*="searchBar_"],
 nav[class*="privateChannels_"] > [class*="searchBar_"] button,
 [class*="page__"] [class*="search__"] [class*="searchBar_"],
 [class*="page__"] [class*="search__"] [class*="searchBar_"] * {
-  font-size: 13px !important;
+  font-size: 12px !important;
   color: #555555 !important;
 }
 
@@ -1106,7 +1106,7 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button,
 
 [class*="page__"] [class*="search__"] [data-slate-placeholder]::before {
   content: "Search";
-  font: 13px var(--font-primary);
+  font: 12px var(--font-primary);
   color: #555555;
 }
 
@@ -1133,7 +1133,7 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button > * {
 
 nav[class*="privateChannels_"] > [class*="searchBar_"] button::before {
   content: "Search";
-  font: 13px var(--font-primary);
+  font: 12px var(--font-primary);
   color: #555555;
   line-height: 20px;
 }
@@ -1216,7 +1216,7 @@ li[class*="channel__"] > div > a[href="/message-requests"]:not(dsn-none) {
   outline: none !important;
   border-radius: 0 !important;
   background-color: transparent !important;
-  background-size: 26px 26px !important;
+  background-size: 24px 24px !important;
   background-position: center !important;
 }
 
@@ -1334,7 +1334,7 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-requests"]:not(dsn-none),
 nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-requests"]:hover:not(dsn-none) {
   background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/newpawn.png) !important;
-  background-size: 26px 26px !important;
+  background-size: 24px 24px !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
 }
@@ -1405,7 +1405,7 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 [class*="peopleListItem"] [class*="actionButton_"][aria-label^="More options"] {
   background-position: center !important;
   background-repeat: no-repeat !important;
-  background-size: 22px 22px !important;
+  background-size: 16px 16px !important;
   background-color: transparent !important;
 }
 
@@ -1445,7 +1445,7 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
   border-width: 3px 0 3px 3px !important;
   border-style: solid !important;
   border-color: #B5CAEC !important;
-  background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) 6px center / 46px 46px no-repeat, linear-gradient(180deg, #F2F4F9 0%, #DCE1EC 100%) !important;
+  background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) 5px center / 48px 48px no-repeat, linear-gradient(180deg, #F2F4F9 0%, #DCE1EC 100%) !important;
 }
 
 /* Let the band show round the input, as in the reference. */
@@ -1503,7 +1503,7 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
   content: "Messenger" !important;
   position: absolute !important;
   left: 56px;
-  font: bold 13px var(--font-primary) !important;
+  font: bold 12px var(--font-primary) !important;
   color: #233C8F !important;
   display: block !important;
 }
@@ -1531,7 +1531,7 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 
 #vc-spotify-song-title,
 #vc-spotify-song-title * {
-  font: bold 13px var(--font-primary) !important;
+  font: bold 12px var(--font-primary) !important;
   color: #000000 !important;
 }
 
@@ -1615,7 +1615,7 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
    came out grey and regular. Two ids beat one. */
 #vc-spotify-titles #vc-spotify-song-title,
 #vc-spotify-titles #vc-spotify-song-title * {
-  font: bold 13px var(--font-primary) !important;
+  font: bold 12px var(--font-primary) !important;
   color: #000000 !important;
 }
 
@@ -1653,7 +1653,7 @@ li[class*="channel__"]:has(> div > a[href="/message-requests"]):hover::after,
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
-  font: 14px var(--font-primary);
+  font: 11px var(--font-primary);
   color: #000000;
   background: #F4F6FB;
   box-shadow: inset 0 0 0 1px #7F9DB9, 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -1744,7 +1744,7 @@ button[class*="button_"],
   height: 34px !important;
   box-sizing: border-box !important;
   padding: 9px 10px !important;
-  font: bold 13px var(--font-primary) !important;
+  font: bold 12px var(--font-primary) !important;
   color: #000000 !important;
 }
 
@@ -2034,7 +2034,7 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
   border-style: solid !important;
   border-color: #B5CAEC !important;
   border-radius: 8px 0 0 8px !important;
-  background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) 6px center / 46px 46px no-repeat, linear-gradient(180deg, #F2F4F9 0%, #DCE1EC 100%) !important;
+  background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) 5px center / 48px 48px no-repeat, linear-gradient(180deg, #F2F4F9 0%, #DCE1EC 100%) !important;
   overflow: hidden !important;
 }
 
@@ -2302,7 +2302,7 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
   width: 18px !important;
   height: 18px !important;
   margin: auto !important;
-  background: center / 18px 18px no-repeat !important;
+  background: center / 16px 16px no-repeat !important;
 }
 
 [aria-label="More"].moreButton__99e7c::before {
@@ -2332,7 +2332,7 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
   width: 18px !important;
   height: 18px !important;
   margin: auto !important;
-  background: center / 18px 18px no-repeat !important;
+  background: center / 16px 16px no-repeat !important;
 }
 
 [aria-label^="Message "][class*="actionButton_"]::before {
@@ -2365,7 +2365,7 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
   height: 18px !important;
   margin-right: 5px !important;
   vertical-align: middle !important;
-  background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) center / 18px 18px no-repeat !important;
+  background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) center / 16px 16px no-repeat !important;
 }
 
 /* Give the profile menu its own compact MSN action strip. */
@@ -2384,19 +2384,19 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 }
 
 [class*="outer_c0bea0"] [class*="menus_ce8328"] > :nth-child(1) > ul > :nth-child(1) [class*="menuItemIcon_ce8328"] {
-  background: #DCE7F7 url(https://heartmoder.github.io/dsn10-theme/assets/actions/userprofile.png) center / 18px 18px no-repeat !important;
+  background: #DCE7F7 url(https://heartmoder.github.io/dsn10-theme/assets/actions/userprofile.png) center / 16px 16px no-repeat !important;
 }
 
 [class*="outer_c0bea0"] [class*="menus_ce8328"] > :nth-child(1) > ul > :nth-child(2) [class*="menuItemIcon_ce8328"] {
-  background: #DCE7F7 url(https://heartmoder.github.io/dsn10-theme/assets/actions/bell.png) center / 18px 18px no-repeat !important;
+  background: #DCE7F7 url(https://heartmoder.github.io/dsn10-theme/assets/actions/bell.png) center / 16px 16px no-repeat !important;
 }
 
 [class*="outer_c0bea0"] [class*="menus_ce8328"] > :nth-child(2) > ul > :nth-child(1) [class*="menuItemIcon_ce8328"] {
-  background: #DCE7F7 url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) center / 18px 18px no-repeat !important;
+  background: #DCE7F7 url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) center / 16px 16px no-repeat !important;
 }
 
 [class*="outer_c0bea0"] [class*="menus_ce8328"] > :nth-child(2) > ul > :nth-child(2) [class*="menuItemIcon_ce8328"] {
-  background: #DCE7F7 url(https://heartmoder.github.io/dsn10-theme/assets/actions/email.png) center / 18px 18px no-repeat !important;
+  background: #DCE7F7 url(https://heartmoder.github.io/dsn10-theme/assets/actions/email.png) center / 16px 16px no-repeat !important;
 }
 
 /* ================================================================
@@ -2541,7 +2541,7 @@ nav[class*="privateChannels_"] li[class*="channel__"] > div > a[href="/message-r
 
 [class*="contentHeader_e9e3ed"] * {
   color: #FFFFFF !important;
-  font: bold 14px var(--font-primary) !important;
+  font: bold 12px var(--font-primary) !important;
 }
 
 [class*="contentBody_e9e3ed"],
@@ -2907,7 +2907,7 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
    square white boxes with a blue-gradient header strip.
    ================================================================ */
 [class*="nowPlayingColumn__"] h2[class*="heading-lg"] {
-  font: 13px var(--font-primary) !important;
+  font: 12px var(--font-primary) !important;
   color: #0033AA !important;
   margin: 4px 0 10px 4px !important;
 }
@@ -2990,7 +2990,7 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
   background-color: transparent !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  background-size: 26px 26px !important;
+  background-size: 24px 24px !important;
   z-index: 300 !important;
   cursor: pointer;
 }
@@ -3195,7 +3195,7 @@ body [class*="wrapper__44b0c"] svg > foreignObject[x][y] img {
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
-  font: 14px var(--font-primary);
+  font: 11px var(--font-primary);
   color: #000000;
   background: #F4F6FB;
   box-shadow: inset 0 0 0 1px #7F9DB9, 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -3602,7 +3602,7 @@ nav[class*="privateChannels_"] [class*="friendsButtonContainer_"] li[class*="cha
 
 /* --- An icon on every entry -------------------------------------- */
 [role="dialog"] [class*="item_caf372"] [class*="itemContent_caf372"]::before {
-  background-size: 18px 18px !important;
+  background-size: 16px 16px !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
 }
@@ -3824,7 +3824,7 @@ button[class*="button__201d5"][class*="colorRed"] {
 
 button[class*="button_a22cb0"]:disabled,
 button[class*="button__201d5"]:disabled {
-  color: #ACA899 !important;
+  color: #A1A192 !important;
   border-color: #C9C7BA !important;
   background: #F5F4EA !important;
   box-shadow: none !important;
@@ -3924,7 +3924,7 @@ button[class*="button_a22cb0"][class*="fullWidth"]:not(:is([class*="searchBar_"]
   height: 26px !important;
   border: 1px solid #003C74 !important;
   border-radius: 3px !important;
-  background: var(--dsn-banner-icon, none) center / 18px 18px no-repeat, linear-gradient(180deg, #FFFFFF 0%, #F4F3EE 50%, #ECEBE6 86%, #D6D0C5 100%) !important;
+  background: var(--dsn-banner-icon, none) center / 16px 16px no-repeat, linear-gradient(180deg, #FFFFFF 0%, #F4F3EE 50%, #ECEBE6 86%, #D6D0C5 100%) !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
 }
@@ -4237,4 +4237,157 @@ label[class*="container_a28278"] [class*="switchIndicator_"]:where(:has(~ * inpu
    hide the other one. */
 [class*="page__"] [class*="search__"]:has([class*="searchBar_"]) {
   z-index: 301 !important;
+}
+
+/* ================================================================
+   Windows XP Visual Guidelines (Microsoft, 2001) - controls the
+   reference screenshots do not show, built to the document.
+   ================================================================ */
+
+/* Scroll bars: 17px Luna bar - beige shaft, blue rounded scroll box with a
+   grip, blue arrow buttons. Discord sets scrollbar-width/colour on its
+   scrollers, and those standard properties switch the ::-webkit-scrollbar
+   styling off, so they are reset first. The guild rail (none_) keeps no bar. */
+[class*="scrollerBase_"]:not([class*="none_"]) {
+  scrollbar-width: auto !important;
+  scrollbar-color: auto !important;
+}
+
+[class*="scrollerBase_"]:not([class*="none_"])::-webkit-scrollbar {
+  width: 17px;
+  height: 17px;
+}
+
+[class*="scrollerBase_"]:not([class*="none_"])::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, #EEEDE5 0%, #F4F1EC 15%, #F9F9F7 50%, #FDFDFA 85%, #EEEDE5 100%);
+}
+
+[class*="scrollerBase_"]:not([class*="none_"])::-webkit-scrollbar-thumb {
+  min-height: 24px;
+  border: 1px solid #7C9ED8;
+  border-radius: 3px;
+  background:
+    url(https://heartmoder.github.io/dsn10-theme/assets/scrollbar/thumbtrack.png) center / 5px 8px no-repeat,
+    linear-gradient(90deg, #C6D4FE 0%, #B6C9FA 35%, #ADC3F8 70%, #A9BCED 100%);
+  box-shadow: inset 1px 1px 0 #FFFFFF;
+}
+
+[class*="scrollerBase_"]:not([class*="none_"])::-webkit-scrollbar-thumb:hover {
+  background:
+    url(https://heartmoder.github.io/dsn10-theme/assets/scrollbar/thumbtrack.png) center / 5px 8px no-repeat,
+    linear-gradient(90deg, #DAE6FF 0%, #CADBFF 35%, #C0D3FC 70%, #B8CBF5 100%);
+}
+
+[class*="scrollerBase_"]:not([class*="none_"])::-webkit-scrollbar-button:single-button {
+  display: block;
+  width: 17px;
+  height: 17px;
+  background-color: #EEEDE5;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 15px 15px;
+}
+
+[class*="scrollerBase_"]:not([class*="none_"])::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/scrollbar/up.png);
+}
+
+[class*="scrollerBase_"]:not([class*="none_"])::-webkit-scrollbar-button:single-button:vertical:increment {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/scrollbar/down.png);
+}
+
+[class*="scrollerBase_"]:not([class*="none_"])::-webkit-scrollbar-button:single-button:horizontal {
+  display: none;
+}
+
+[class*="scrollerBase_"]:not([class*="none_"])::-webkit-scrollbar-corner {
+  background: #ECE9D8;
+}
+
+/* Radio buttons: 13px, white-to-grey face, navy edge, green dot when
+   selected (Discord marks the selected option with data-selected). */
+[class*="radioGroupOption"] svg[class*="radioIndicator"] {
+  width: 13px !important;
+  height: 13px !important;
+  flex: 0 0 13px !important;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #DCDCD7 0%, #F5F4EF 60%, #FFFFFF 100%);
+  box-shadow: inset 0 0 0 1px #1C5180;
+}
+
+[class*="radioGroupOption"] svg[class*="radioIndicator"] circle {
+  fill: transparent !important;
+  stroke: none !important;
+}
+
+[class*="radioGroupOption"][data-selected="true"] svg[class*="radioIndicator"] circle[class*="innerDotRadio"] {
+  fill: #21A121 !important;
+}
+
+[class*="radioGroupOption"]:hover svg[class*="radioIndicator"] {
+  box-shadow: inset 0 0 0 1px #1C5180, inset 0 0 0 2px #FFE9A5, inset 0 0 0 3px #F8B636;
+}
+
+/* Drop-down combo boxes: white field, #7F9DB9 edge, and the blue drop
+   button on the right. */
+[role="dialog"] [class*="select_"] {
+  min-height: 23px !important;
+  padding: 1px 1px 1px 4px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #7F9DB9 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+[role="dialog"] [class*="select_"] [class*="icons_"] {
+  align-self: stretch !important;
+  width: 17px !important;
+  height: auto !important;
+  margin-left: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #C6D6FC 0%, #B6CBF8 50%, #A8C0F2 100%);
+  box-shadow: inset 0 0 0 1px #FFFFFF, 0 0 0 1px #B0C3EE;
+}
+
+[role="dialog"] [class*="select_"]:hover [class*="icons_"] {
+  background: linear-gradient(180deg, #DCE7FF 0%, #CADCFF 50%, #BCD0FA 100%);
+}
+
+[role="dialog"] [class*="select_"] [class*="icons_"] svg {
+  width: 9px !important;
+  height: 9px !important;
+  color: #4D6185 !important;
+}
+
+/* Sliders: a sunken 4px groove and the pointed thumb; no coloured fill.
+   The music player's seek bar keeps the reference's green bar. */
+[role="dialog"] [role="slider"] [class*="bar__"] {
+  height: 4px !important;
+  border-radius: 0 !important;
+  border: none !important;
+  background: #FFFFFF !important;
+  box-shadow: inset 1px 1px 0 #9D9C99, inset -1px -1px 0 #FFFFFF, 0 0 0 1px #DCDAD5 !important;
+}
+
+[role="dialog"] [role="slider"] [class*="barFill__"] {
+  background: transparent !important;
+  border: none !important;
+}
+
+[role="dialog"] [role="slider"] [class*="grabber__"] {
+  width: 11px !important;
+  height: 19px !important;
+  margin-top: -2px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F4F3EE 55%, #E3E1D7 100%) !important;
+  clip-path: polygon(0 0, 100% 0, 100% 68%, 50% 100%, 0 68%);
+  box-shadow: inset 0 0 0 1px #9D9C99, inset 0 -3px 0 #21A121 !important;
+}
+
+[role="dialog"] [role="slider"]:hover [class*="grabber__"] {
+  box-shadow: inset 0 0 0 1px #9D9C99, inset 0 -3px 0 #F8B636 !important;
 }
