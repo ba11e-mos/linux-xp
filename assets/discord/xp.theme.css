@@ -89,7 +89,8 @@
   width: 54px; height: 50px;
   margin: 3px 8px 0 6px;
   border: 1px solid var(--dsn-border);
-  background: #FFFFFF url(https://heartmoder.github.io/dsn10-theme/assets/msn/msn-blue.png) center / 40px no-repeat;
+  border-radius: 4px;
+  background: #FFFFFF url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) center / 40px no-repeat;
 }
 
 /* Discord's back/forward arrows and the window title: the XP title bar
@@ -451,4 +452,162 @@ nav[class*="privateChannels_"] > [class*="searchBar_"] button {
   border-radius: 0 !important;
   background: #FFFFFF !important;
   font: 11px var(--font-primary) !important;
+}
+
+/* ================================================================
+   Second pass against the reference screenshots.
+   ================================================================ */
+
+/* Selected tab sits in a box, not just underlined. */
+[class*="page__"] > main > section [role="tab"][aria-selected="true"] {
+  border: 1px solid var(--dsn-border) !important;
+  background: #F4F7FD !important;
+  padding: 1px 7px !important;
+}
+
+/* ----------------------------------------------------------------
+   Contact list: name left, picture right, square frames.
+   ---------------------------------------------------------------- */
+[class*="privateChannels_"] {
+  background: linear-gradient(90deg, #FFFFFF 0%, #F2F6FD 100%) !important;
+}
+
+[class*="privateChannels_"] li[class*="channel__"],
+[class*="privateChannels_"] li[class*="channel__"] a,
+[class*="privateChannels_"] li[class*="channel__"] > div[class*="interactive"] {
+  height: 40px !important;
+  min-height: 40px !important;
+}
+
+[class*="privateChannels_"] li[class*="channel__"] [class*="layout__"] {
+  flex-direction: row-reverse !important;
+  gap: 8px !important;
+}
+
+[class*="privateChannels_"] li[class*="channel__"] [class*="content__"] {
+  text-align: left !important;
+}
+
+/* Discord masks avatars to a circle with an SVG mask; dropping the mask
+   is what makes them square again. */
+[class*="privateChannels_"] [class*="avatar__"] foreignObject {
+  mask: none !important;
+}
+
+[class*="privateChannels_"] [class*="avatar__"] {
+  border: 1px solid #5A5A5A;
+  background: #FFFFFF;
+}
+
+[class*="privateChannels_"] [class*="selected"],
+[class*="privateChannels_"] li[class*="channel__"] [class*="interactive"]:hover {
+  background: #DCE6F7 !important;
+  border: 1px solid var(--dsn-border) !important;
+}
+
+[class*="privateChannelsHeaderContainer__"] {
+  text-transform: uppercase !important;
+  color: #444444 !important;
+  letter-spacing: 0.4px !important;
+}
+
+/* ----------------------------------------------------------------
+   The Messenger panel, rebuilt from the reference: title line, big
+   framed photo, status only, icon strip along the bottom.
+   ---------------------------------------------------------------- */
+[class*="sidebar__"] > [class*="panels__"] {
+  height: 92px !important;
+  padding: 18px 6px 4px 6px !important;
+  border-radius: 3px !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 55%, #E6EDFA 100%) !important;
+}
+
+[class*="sidebar__"] > [class*="panels__"]::before {
+  top: 4px; left: 8px;
+  width: 30px; height: 14px;
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/msn/msn-blue.png);
+}
+
+[class*="sidebar__"] > [class*="panels__"]::after {
+  content: "Messenger";
+  position: absolute;
+  top: 2px; left: 42px;
+  font: bold 13px var(--font-primary);
+  color: #1F3C88;
+}
+
+[class*="panels__"] [class*="container__37e49"],
+[class*="panels__"] > div > div[class*="container__"] {
+  background: transparent !important;
+  padding: 0 !important;
+  align-items: flex-start !important;
+}
+
+/* The photo: 48px, squared off and framed. */
+[class*="panels__"] [class*="avatar__"] {
+  width: 48px !important;
+  height: 48px !important;
+  border: 2px solid #4C4C4C;
+  border-radius: 3px;
+  background: #FFFFFF;
+}
+
+[class*="panels__"] [class*="avatar__"] svg,
+[class*="panels__"] [class*="avatar__"] foreignObject {
+  width: 48px !important;
+  height: 48px !important;
+  mask: none !important;
+}
+
+/* MSN showed the status, not the account name. */
+[class*="panels__"] [class*="panelTitleContainer__"] {
+  display: none !important;
+}
+
+[class*="panels__"] [class*="panelSubtextContainer__"],
+[class*="panels__"] [class*="panelSubtextContainer__"] * {
+  font: 13px var(--font-primary) !important;
+  color: #000000 !important;
+}
+
+[class*="panels__"] [class*="nameTag__"] {
+  margin-top: 14px !important;
+}
+
+/* Icon strip along the bottom edge. */
+[class*="panels__"] [class*="buttons__"] {
+  position: absolute !important;
+  right: 6px; bottom: 2px;
+  gap: 6px !important;
+}
+
+[class*="panels__"] [class*="buttons__"] button {
+  width: 22px !important;
+  height: 20px !important;
+  background: transparent !important;
+}
+
+/* Push the picture to the right edge, the way MSN listed contacts. */
+[class*="privateChannels_"] li[class*="channel__"] [class*="content__"] {
+  flex: 1 1 auto !important;
+}
+
+[class*="privateChannels_"] li[class*="channel__"] [class*="layout__"] {
+  width: 100% !important;
+}
+
+/* The buddies trio next to "Friends", as in the reference. */
+[class*="page__"] > main > section [class*="iconWrapper__"] {
+  background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/group.png) center / 24px no-repeat !important;
+}
+
+[class*="page__"] > main > section [class*="iconWrapper__"] svg {
+  display: none !important;
+}
+
+/* Tabs are divs with role=tab only sometimes; catch the item class too. */
+[class*="page__"] > main > section [class*="item_"][class*="selected"] {
+  border: 1px solid var(--dsn-border) !important;
+  background: #F4F7FD !important;
+  text-decoration: underline !important;
 }
