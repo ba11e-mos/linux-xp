@@ -3002,3 +3002,215 @@ nav[class*="privateChannels_"] li[class*="channel__"]:has(> div > a[href="/messa
   border-color: #316AC5 !important;
   background: linear-gradient(180deg, #EAF2FF 0%, #BFD5F4 100%) !important;
 }
+
+/* ============================================================
+   MSN action controls
+   ============================================================ */
+
+/* Discord's Lottie/SVG account controls look especially out of place
+   against the pixel-art account panel. Keep the real buttons, but replace
+   their artwork with the matching MSN action glyphs. */
+[aria-label="Mute"],
+[aria-label="Deafen"],
+[aria-label="User Settings"] {
+  width: 27px !important;
+  height: 25px !important;
+  min-width: 27px !important;
+  border: 1px solid #7F9DB9 !important;
+  border-radius: 2px !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #DCE7F7 52%, #B9CDEB 100%) !important;
+  color: transparent !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF, 1px 1px 0 #6B82A5 !important;
+}
+
+[aria-label="Mute"]:hover,
+[aria-label="Deafen"]:hover,
+[aria-label="User Settings"]:hover {
+  border-color: #316AC5 !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #EAF2FF 52%, #BDD7FA 100%) !important;
+}
+
+[aria-label="Mute"] svg,
+[aria-label="Deafen"] svg,
+[aria-label="User Settings"] svg {
+  display: none !important;
+}
+
+[aria-label="Mute"]::before,
+[aria-label="Deafen"]::before,
+[aria-label="User Settings"]::before {
+  content: "" !important;
+  display: block !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin: auto !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 20px 20px !important;
+}
+
+[aria-label="Mute"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/mic.png) !important;
+}
+
+[aria-label="Deafen"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/audio.png) !important;
+}
+
+[aria-label="User Settings"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) !important;
+}
+
+/* Small DM controls use actual semantic labels, so they remain usable
+   while looking like the compact Messenger contact actions. */
+[aria-label="More"].moreButton__99e7c,
+[aria-label="Create Message"],
+[aria-label^="Message "][class*="actionButton_"],
+[aria-label^="More options"][class*="actionButton_"],
+[aria-label="Add custom status"],
+[aria-label="More"].contextMenu__39ec2 {
+  border: 1px solid #7F9DB9 !important;
+  border-radius: 3px !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #DCE7F7 100%) !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF !important;
+  color: #18304F !important;
+}
+
+[aria-label="More"].moreButton__99e7c,
+[aria-label="Create Message"] {
+  width: 25px !important;
+  height: 23px !important;
+  padding: 2px !important;
+  opacity: 1 !important;
+}
+
+[aria-label="More"].moreButton__99e7c svg,
+[aria-label="Create Message"] svg,
+[aria-label="More"].contextMenu__39ec2 svg {
+  display: none !important;
+}
+
+[aria-label="More"].moreButton__99e7c::before,
+[aria-label="Create Message"]::before,
+[aria-label="More"].contextMenu__39ec2::before {
+  content: "" !important;
+  display: block !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin: auto !important;
+  background: center / 18px 18px no-repeat !important;
+}
+
+[aria-label="More"].moreButton__99e7c::before,
+[aria-label="More"].contextMenu__39ec2::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/more.png) !important;
+}
+
+[aria-label="Create Message"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chatplus.png) !important;
+}
+
+[aria-label^="Message "][class*="actionButton_"],
+[aria-label^="More options"][class*="actionButton_"] {
+  width: 30px !important;
+  height: 26px !important;
+  opacity: 0.78 !important;
+}
+
+[aria-label^="Message "][class*="actionButton_"] svg,
+[aria-label^="More options"][class*="actionButton_"] svg {
+  display: none !important;
+}
+
+[aria-label^="Message "][class*="actionButton_"]::before,
+[aria-label^="More options"][class*="actionButton_"]::before {
+  content: "" !important;
+  display: block !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin: auto !important;
+  background: center / 18px 18px no-repeat !important;
+}
+
+[aria-label^="Message "][class*="actionButton_"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/chat.png) !important;
+}
+
+[aria-label^="More options"][class*="actionButton_"]::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/more.png) !important;
+}
+
+[aria-label^="Message "][class*="actionButton_"]:hover,
+[aria-label^="More options"][class*="actionButton_"]:hover {
+  opacity: 1 !important;
+}
+
+/* The custom status affordance is an inline modern plus icon. */
+[aria-label="Add custom status"] {
+  min-height: 27px !important;
+  padding: 3px 7px !important;
+}
+
+[aria-label="Add custom status"] svg {
+  display: none !important;
+}
+
+[aria-label="Add custom status"] .inner_ab8609::before {
+  content: "" !important;
+  display: inline-block !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin-right: 5px !important;
+  vertical-align: middle !important;
+  background: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) center / 18px 18px no-repeat !important;
+}
+
+/* Replace Spotify's smooth Material glyphs with a small, consistent XP
+   button row. Text labels stay hidden because the aria labels remain on
+   the original SVGs for accessibility and tooltips. */
+#vc-spotify-player .vc-spotify-button {
+  width: 30px !important;
+  height: 27px !important;
+  border: 1px solid #7F9DB9 !important;
+  border-radius: 2px !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #DCE7F7 100%) !important;
+  box-shadow: inset 0 0 0 1px #FFFFFF, 1px 1px 0 #6B82A5 !important;
+}
+
+#vc-spotify-player .vc-spotify-button:hover {
+  border-color: #316AC5 !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #EAF2FF 100%) !important;
+}
+
+#vc-spotify-player .vc-spotify-button svg {
+  display: none !important;
+}
+
+#vc-spotify-player .vc-spotify-button::before {
+  content: "" !important;
+  display: block !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin: auto !important;
+  background: center / 18px 18px no-repeat !important;
+}
+
+#vc-spotify-player .vc-spotify-button:has(.vc-spotify-shuffle)::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/mixer.png) !important;
+}
+
+#vc-spotify-player .vc-spotify-button:has(.vc-spotify-previous)::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/remotedesktop2.png) !important;
+}
+
+#vc-spotify-player .vc-spotify-button:has(.vc-spotify-pause)::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/audio2.png) !important;
+}
+
+#vc-spotify-player .vc-spotify-button:has(.vc-spotify-next)::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/remotedesktop.png) !important;
+}
+
+#vc-spotify-player .vc-spotify-button:has(.vc-spotify-repeat)::before {
+  background-image: url(https://heartmoder.github.io/dsn10-theme/assets/actions/additionalsettings.png) !important;
+}
