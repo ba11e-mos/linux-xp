@@ -798,16 +798,16 @@ panel[type="autocomplete-richlistbox"] richlistitem[selected] {
 }
 
 /* --------------------------------------------------------------- *
- * 13. HTTP authentication and other common dialogs
+ * 13. HTTP authentication, "open in app" and other common dialogs
  * --------------------------------------------------------------- */
 /* A site that answers 401 gets Firefox's own sign-in prompt, a chrome
    document shown inside the tab. Its surface follows the content colour
    scheme - which an add-on theme can flip to dark - while its text, fields
    and buttons follow the light one we force on pages, so the whole box came
    out black on black. Pin it to the light palette. */
-#commonDialogWindow,
-#commonDialogWindow #commonDialog,
-#commonDialogWindow #dialogGrid {
+:root:is(#commonDialogWindow, :has(#rememberContainer)),
+:root:is(#commonDialogWindow, :has(#rememberContainer)) > dialog,
+:root:is(#commonDialogWindow, :has(#rememberContainer)) #dialogGrid {
   color-scheme: light !important;
   background-color: var(--xp-face) !important;
   font-family: var(--xp-font) !important;
@@ -815,13 +815,13 @@ panel[type="autocomplete-richlistbox"] richlistitem[selected] {
 }
 /* Only the text: the title icon fills with currentColor, so forcing black on
    the whole dialog turns it into a black blob. */
-#commonDialogWindow #infoBody,
-#commonDialogWindow #infoTitle,
-#commonDialogWindow #titleText,
-#commonDialogWindow label,
-#commonDialogWindow description { color: #000000 !important; }
-#commonDialogWindow input,
-#commonDialogWindow html|input {
+:root:is(#commonDialogWindow, :has(#rememberContainer)) #infoBody,
+:root:is(#commonDialogWindow, :has(#rememberContainer)) #infoTitle,
+:root:is(#commonDialogWindow, :has(#rememberContainer)) #titleText,
+:root:is(#commonDialogWindow, :has(#rememberContainer)) label,
+:root:is(#commonDialogWindow, :has(#rememberContainer)) description { color: #000000 !important; }
+:root:is(#commonDialogWindow, :has(#rememberContainer)) input,
+:root:is(#commonDialogWindow, :has(#rememberContainer)) html|input {
   background-color: #FFFFFF !important;
   color: #000000 !important;
   border: 1px solid var(--xp-dark) !important;
@@ -829,7 +829,7 @@ panel[type="autocomplete-richlistbox"] richlistitem[selected] {
 }
 /* Square the furniture and swap Firefox's violet accent for Luna blue. The
    buttons are moz-button-style XUL buttons, so they read the same tokens. */
-#commonDialogWindow {
+:root:is(#commonDialogWindow, :has(#rememberContainer)) {
   --button-border-radius: 0;
   --button-background-color: #ECE9D8;
   --button-background-color-hover: #FFFFFF;
@@ -851,17 +851,17 @@ panel[type="autocomplete-richlistbox"] richlistitem[selected] {
   --focus-outline: 1px solid var(--xp-sel);
   --focus-outline-offset: 0;
 }
-#commonDialogWindow input,
-#commonDialogWindow button { border-radius: 0 !important; }
+:root:is(#commonDialogWindow, :has(#rememberContainer)) input,
+:root:is(#commonDialogWindow, :has(#rememberContainer)) button { border-radius: 0 !important; }
 /* The title icon paints --background-color-canvas behind itself, which the
    dark content theme turns into a black square. */
-#commonDialogWindow .titleIcon { background-color: transparent !important; }
+:root:is(#commonDialogWindow, :has(#rememberContainer)) .titleIcon { background-color: transparent !important; }
 
 /* The dialog's buttons live in the <dialog> element's shadow DOM, and the
    design tokens are redefined there through :host(.anonymous-content-host) -
    so an inherited value from the document root never reaches them. Setting
    them on the host element itself, from out here, does. */
-#commonDialogWindow #commonDialog {
+:root:is(#commonDialogWindow, :has(#rememberContainer)) > dialog {
   --button-border-radius: 0 !important;
   --border-radius-medium: 0 !important;
   --border-radius-xlarge: 0 !important;
@@ -874,6 +874,14 @@ panel[type="autocomplete-richlistbox"] richlistitem[selected] {
   --button-background-color-hover: #FFFFFF !important;
   --button-background-color-active: #E0DCCA !important;
   --button-border-color: var(--xp-dark) !important;
+  --button-border: 1px solid var(--xp-dark) !important;
+  --button-border-color-hover: var(--xp-dark) !important;
+  --button-border-color-active: var(--xp-dark) !important;
+  --button-border-color-disabled: var(--xp-dark) !important;
+  --button-border-color-primary-hover: #000000 !important;
+  --button-border-color-primary-active: #000000 !important;
+  --button-border-color-primary-disabled: #000000 !important;
+  --color-accent-primary: var(--xp-sel) !important;
   --button-text-color: #000000 !important;
   --button-text-color-hover: #000000 !important;
   /* XP marks the default button with a heavier outline, not a filled accent. */
@@ -885,14 +893,14 @@ panel[type="autocomplete-richlistbox"] richlistitem[selected] {
   --focus-outline: 1px solid var(--xp-sel) !important;
   --focus-outline-offset: 0 !important;
 }
-#commonDialog::part(dialog-button) {
+:root:is(#commonDialogWindow, :has(#rememberContainer)) > dialog::part(dialog-button) {
   border-radius: 0 !important;
   font-family: var(--xp-font) !important;
   font-size: 11px !important;
 }
 /* Square the card itself. The rounding and shadow sit partly on the dialog
    and partly on the chrome-side box that hosts it. */
-#commonDialogWindow #commonDialog { border-radius: 0 !important; }
+:root:is(#commonDialogWindow, :has(#rememberContainer)) > dialog { border-radius: 0 !important; }
 .dialogBox,
 .dialogBox .dialogFrame {
   border-radius: 0 !important;
