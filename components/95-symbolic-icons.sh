@@ -47,6 +47,19 @@ if have convert; then
         done
     done
     log "$n battery icons set to the charging artwork"
+
+    # Frames for the charging animation (patches/power-applet.sh): all six
+    # fill levels, same size, so the icon steps evenly from empty to full.
+    for lvl in 000 020 040 060 080 100; do
+        src="$icons/22x22/apps/gpm-primary-$lvl-charging.png"
+        [ -f "$src" ] || continue
+        for sz in 16 22 24; do
+            d="$icons/${sz}x${sz}/status"
+            [ -d "$d" ] || continue
+            convert "$src" -background none -gravity center -extent 22x22 \
+                -filter Lanczos -resize ${sz}x${sz} -strip "$d/xp-charge-$lvl-symbolic.png"
+        done
+    done
 fi
 
 # The XP pack draws Windows Update, but only at 128px, so the tray falls back

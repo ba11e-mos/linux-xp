@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Animates the battery icon while charging: the panel icon steps through the
-# charge levels (the same-size battery-*-symbolic icons 95-symbolic-icons.sh
-# makes), empty to full, like a phone filling up.
+# six charge levels (the same-size xp-charge-*-symbolic icons
+# 95-symbolic-icons.sh makes), empty to full, like a phone filling up.
 #
 #   sudo bash power-applet.sh           apply
 #   sudo bash power-applet.sh --revert  undo
@@ -39,7 +39,7 @@ reps = []
 reps.append(('const Gio = imports.gi.Gio;\n',
 '''const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
-const XP_CHARGE_FRAMES = ["empty", "low", "good", "full"].map(n => "battery-" + n + "-symbolic");
+const XP_CHARGE_FRAMES = ["000", "020", "040", "060", "080", "100"].map(n => "xp-charge-" + n + "-symbolic");
 '''))
 
 # Both icon setters (single device and display device) share this line.
