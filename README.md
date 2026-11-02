@@ -20,6 +20,9 @@ Built and tested on Linux Mint 22, Cinnamon 6.4, Firefox 152.
 | Firefox | Internet Explorer 6 |
 | VS Code | Native title bar, and a bundled Luna theme with readable colours |
 | Lock screen | Idle and suspend both go to the XP greeter |
+| Screen saver | 3D Pipes after 10 minutes, the lock 5 minutes later |
+| Sounds | The XP sound scheme: startup, shutdown, balloon, device in/out, dialogs |
+| Boot screen | The XP logo with the blue blocks running in the bar |
 | Terminal | cmd.exe |
 | Teams | The MSN icon |
 | Update Manager | The XP Windows Update icon, in the tray too |
@@ -53,6 +56,7 @@ XP_PACK=~/Downloads/Windows-XP-3.1.zip ./install.sh 10
 
 XP_WALLPAPER=~/Pictures/bliss.jpg ./install.sh 20
 XP_MSN_ICON=~/Pictures/msn.png    ./install.sh 90
+XP_SOUNDS=~/Downloads/xpwav.zip   ./install.sh 15
 ```
 
 | What | Where |
@@ -64,6 +68,9 @@ XP_MSN_ICON=~/Pictures/msn.png    ./install.sh 90
 | MSN butterfly icon | [icon-icons.com](https://images.icon-icons.com/5/PNG/256/msn_146.png) - needs a browser User-Agent, `curl` alone gets a Cloudflare page |
 | VGA raster fonts (`Bm437`) | [The Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/) |
 | Tahoma | `sudo apt install fonts-wine` |
+| XP sounds (`xpwav.zip`) | [lelegofrog.github.io/winwavxp.html](https://lelegofrog.github.io/winwavxp.html) |
+| Boot screen | [BFUR64/WindowsXP-Plymouth](https://github.com/BFUR64/WindowsXP-Plymouth) - cloned automatically |
+| 3D Pipes | `sudo apt install xscreensaver-gl` |
 | Login screen greeter | [JezerM/nody-greeter](https://github.com/JezerM/nody-greeter) |
 | Login screen theme | [mshernandez5/WelcomeXP](https://github.com/mshernandez5/WelcomeXP) |
 

@@ -1,6 +1,8 @@
 #!/bin/sh
 # Hands idle locking and suspend locking to lightdm, so both show the
-# WelcomeXP greeter instead of cinnamon-screensaver.
+# WelcomeXP greeter instead of cinnamon-screensaver. Before the lock, XP's
+# screen saver (xp-screensaver.py) runs for LOCK_AFTER seconds; input during
+# that time just dismisses it.
 #
 # Two lockers must never both be armed, or you get the XP greeter and the
 # Cinnamon lock screen stacked on top of each other. Cinnamon's side is
@@ -9,7 +11,8 @@
 #   org.cinnamon.desktop.screensaver           idle-activation-enabled false
 #   org.cinnamon.desktop.screensaver           lock-enabled    false
 
-IDLE_SECONDS=900
+SAVER_SECONDS=600
+LOCK_AFTER=300
 SESSION_ID="${XDG_SESSION_ID:-$(loginctl list-sessions --no-legend 2>/dev/null | awk -v u="$USER" '$3==u {print $1; exit}')}"
 
 session_locked() {
@@ -55,12 +58,13 @@ fi
 # once at login is not enough - re-assert it.
 (
     while true; do
-        case "$(xset q | awk '/timeout:/ {print $2}')" in
-            "$IDLE_SECONDS") ;;
-            *) xset s "$IDLE_SECONDS" "$IDLE_SECONDS" ;;
+        # noblank: the server's own blanking would hide the screen saver
+        case "$(xset q | awk '/timeout:/ {print $2, $4} /prefer blanking:/ {print $3}' | tr '\n' ' ')" in
+            "no $SAVER_SECONDS $LOCK_AFTER ") ;;
+            *) xset s "$SAVER_SECONDS" "$LOCK_AFTER"; xset s noblank ;;
         esac
         sleep 60
     done
 ) &
 
-exec xss-lock -- "$0" --locker
+exec xss-lock -n "$(dirname "$0")/xp-screensaver.py" -- "$0" --locker

@@ -1,9 +1,11 @@
-# Idle and suspend lock to the XP greeter, and only that one
+# XP screen saver after 10 minutes idle, then lock to the XP greeter
 
 have xss-lock || { warn "xss-lock missing (sudo apt install xss-lock)"; return 0; }
 have dm-tool  || { warn "dm-tool missing - this needs lightdm"; return 0; }
 
 install -Dm755 "$ASSETS/idle-lock/xp-idle-lock.sh" "$HOME/.local/bin/xp-idle-lock.sh"
+install -Dm755 "$ASSETS/idle-lock/xp-screensaver.py" "$HOME/.local/bin/xp-screensaver.py"
+[ -x /usr/libexec/xscreensaver/pipes ] || warn "3D Pipes missing (sudo apt install xscreensaver-gl) - the screen saver stays black"
 
 auto="$HOME/.config/autostart/xp-idle-lock.desktop"
 backup_file "$auto"
