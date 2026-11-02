@@ -15,17 +15,20 @@ SAVER_SECONDS=600
 LOCK_AFTER=300
 SESSION_ID="${XDG_SESSION_ID:-$(loginctl list-sessions --no-legend 2>/dev/null | awk -v u="$USER" '$3==u {print $1; exit}')}"
 
-session_locked() {
-    [ -n "$SESSION_ID" ] || return 1
-    [ "$(loginctl show-session "$SESSION_ID" -p LockedHint --value 2>/dev/null || printf no)" = yes ]
+# Active flips to no while the greeter has the screen and back to yes on
+# unlock. LockedHint is no use here: xss-lock sets it itself and clears it
+# only once this locker exits, so waiting on it never returns.
+session_active() {
+    [ -n "$SESSION_ID" ] || return 0
+    [ "$(loginctl show-session "$SESSION_ID" -p Active --value 2>/dev/null || printf yes)" = yes ]
 }
 
 locker() {
     # If another lock request lands while the greeter is already up, do
-    # nothing and wait for the session to unlock instead of stacking another
-    # greeter on top.
-    if session_locked; then
-        while session_locked; do
+    # nothing and wait for the session to come back instead of stacking
+    # another greeter on top.
+    if ! session_active; then
+        while ! session_active; do
             sleep 1
         done
         exit 0
@@ -33,13 +36,15 @@ locker() {
 
     dm-tool lock
 
-    # dm-tool returns immediately, so wait for the lock hint to flip on and
-    # then stay alive until the session actually unlocks.
-    while ! session_locked; do
+    # dm-tool returns immediately: wait (up to 10 s) for the greeter to take
+    # the screen, then stay alive until the session is active again.
+    i=0
+    while session_active && [ "$i" -lt 50 ]; do
         sleep 0.2
+        i=$((i + 1))
     done
 
-    while session_locked; do
+    while ! session_active; do
         sleep 1
     done
 }
