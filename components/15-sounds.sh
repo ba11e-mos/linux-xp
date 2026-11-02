@@ -53,7 +53,6 @@ EOF
 
 s="$theme/stereo"
 gsettings set org.cinnamon.desktop.sound theme-name 'WindowsXP'
-gsettings set org.cinnamon.desktop.sound event-sounds true
 gsettings set org.cinnamon.desktop.sound volume-sound-file "$s/audio-volume-change.wav"
 gsettings set org.cinnamon.sounds login-file        "$s/desktop-login.wav"
 gsettings set org.cinnamon.sounds logout-file       "$s/desktop-logout.wav"
