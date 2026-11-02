@@ -264,3 +264,8 @@
 48x48/status/empty-notif-symbolic.png	48x48/status/gtk-dialog-info.png
 48x48/status/low-notif-symbolic.png	48x48/status/gtk-dialog-info.png
 48x48/status/normal-notif-symbolic.png	48x48/status/gtk-dialog-info.png
+16x16/mimetypes/application-x-ipynb+json.png	16x16/mimetypes/application-x-python-bytecode.png
+22x22/mimetypes/application-x-ipynb+json.png	22x22/mimetypes/application-x-python-bytecode.png
+24x24/mimetypes/application-x-ipynb+json.png	24x24/mimetypes/application-x-python-bytecode.png
+128x128/mimetypes/application-x-ipynb+json.png	128x128/mimetypes/application-x-python-bytecode.png
+scalable/mimetypes/application-x-ipynb+json.svg	scalable/mimetypes/application-x-python-bytecode.svg
