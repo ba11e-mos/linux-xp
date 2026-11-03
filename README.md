@@ -44,7 +44,7 @@ the rest, and runs. Log out and back in afterwards.
 
 ¹ GTK4/libadwaita apps get Luna title bars; what is inside them keeps the GNOME look.  
 ² Snap Firefox gets the skin but not the new-tab page.  
-³ Whisker Menu: XP colours on the button, its own layout inside.
+³ Whisker Menu in XP colours; the layout inside is Whisker's.
 
 Tested in clean virtual machines (install, reboot, log in, uninstall):
 Cinnamon on Linux Mint 22.1, XFCE and GNOME on Ubuntu 24.04, Firefox 159.

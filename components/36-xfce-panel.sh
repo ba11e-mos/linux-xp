@@ -54,48 +54,11 @@ pset /plugins/plugin-5/digital-time-format -t string -s '%H:%M'
 
 # --- colours: blue taskbar, green Start, light-blue tray ---
 css="$gtk/gtk.css"
-if ! marker_present "$css" "linux-xp: xfce panel"; then
-    cat >> "$css" <<'CSS'
-
-/* linux-xp: xfce panel */
-.xfce4-panel.background {
-    background-color: #245EDC;
-    background-image: linear-gradient(to bottom, #3168D5 0%, #4993E6 8%, #2157D7 40%, #2663E0 88%, #1941A5 100%);
-    color: #FFFFFF;
-}
-.xfce4-panel #whiskermenu-button {
-    background-color: #3C9A3C;
-    background-image: linear-gradient(to bottom, #3D9E3D 0%, #79C579 10%, #3C9A3C 45%, #2E7D2E 100%);
-    border-radius: 0 10px 10px 0;
-    padding: 0 14px 0 6px;
-    color: #FFFFFF;
-    font-weight: bold;
-    font-style: italic;
-    text-shadow: 1px 1px #1A4D1A;
-}
-.xfce4-panel #whiskermenu-button:hover { background-image: linear-gradient(to bottom, #4FB34F 0%, #8FD68F 10%, #4FB34F 45%, #3A913A 100%); }
-.xfce4-panel #whiskermenu-button:checked { background-image: linear-gradient(to bottom, #2E7D2E 0%, #3C9A3C 100%); }
-.xfce4-panel #whiskermenu-button label { color: #FFFFFF; }
-.xfce4-panel .tasklist button {
-    background-color: #3C81F3;
-    background-image: none;
-    border: 1px solid #1941A5;
-    border-radius: 3px;
-    margin: 2px 1px;
-    color: #FFFFFF;
-}
-.xfce4-panel .tasklist button:hover { background-color: #5A96F5; }
-.xfce4-panel .tasklist button:checked { background-color: #1E52B7; }
-.xfce4-panel .tasklist button label { color: #FFFFFF; }
-.xfce4-panel #systray, .xfce4-panel #pulseaudio-button, .xfce4-panel #clock-button {
-    background-color: #0F8FEB;
-    background-image: linear-gradient(to bottom, #0C59B9 0%, #139EE9 8%, #18B5F2 40%, #139BEB 88%, #1290E8 100%);
-    border-left: 1px solid #092E51;
-    color: #FFFFFF;
-}
-.xfce4-panel #clock-button label { color: #FFFFFF; }
-CSS
-fi
+backup_file "$css"
+sed -i '/^\/\* linux-xp: xfce panel/,/^\/\* linux-xp: xfce panel end \*\//d' "$css"
+cat "$ASSETS/xfce/panel.css" >> "$css"
+# XP's caption buttons: window icon on the left, minimise, maximise, close
+xfset xfwm4 /general/button_layout string 'O|HMC'
 log "XP taskbar and Start button set (Whisker Menu)"
 
 # --- balloon tips ---

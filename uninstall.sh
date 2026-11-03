@@ -81,6 +81,7 @@ if is_xfce; then
         run xfconf-query -c xsettings -p "$p" -r 2>/dev/null || true
     done
     run xfconf-query -c xfwm4 -p /general/theme -r 2>/dev/null || true
+    run xfconf-query -c xfwm4 -p /general/button_layout -r 2>/dev/null || true
     run xfconf-query -c xfce4-screensaver -p /saver/enabled -r 2>/dev/null || true
     run xfconf-query -c xfce4-screensaver -p /lock/enabled -r 2>/dev/null || true
     run xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/lock-screen-suspend-hibernate -r 2>/dev/null || true

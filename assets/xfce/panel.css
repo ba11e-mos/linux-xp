@@ -1,0 +1,83 @@
+/* linux-xp: xfce panel - the same XP pictures Cinnamon uses (../cinnamon) */
+.xfce4-panel.background {
+    background-color: #245EDC;
+    background-image: url("../cinnamon/panel.png");
+    background-size: 100% 100%;
+    color: #FFFFFF;
+}
+.xfce4-panel #whiskermenu-button {
+    background-color: transparent;
+    background-image: url("../cinnamon/menu-box.png");
+    background-size: 100% 100%;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    padding: 0 22px 0 8px;
+    color: #FFFFFF;
+    font-family: Tahoma, sans-serif;
+    font-size: 12pt;
+    font-weight: bold;
+    font-style: italic;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+}
+.xfce4-panel #whiskermenu-button:hover { background-image: url("../cinnamon/menu-hover.png"); }
+.xfce4-panel #whiskermenu-button:checked,
+.xfce4-panel #whiskermenu-button:active { background-image: url("../cinnamon/menu-active.png"); }
+.xfce4-panel #whiskermenu-button label { color: #FFFFFF; margin-left: 4px; }
+.xfce4-panel #whiskermenu-button > box { margin: 0 18px 0 6px; }
+.xfce4-panel #whiskermenu-button { min-width: 96px; }
+.xfce4-panel .tasklist button {
+    background-color: transparent;
+    background-image: url("../cinnamon/normal.png");
+    background-size: 100% 100%;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 3px 1px 2px 1px;
+    padding: 0 6px;
+    color: #FFFFFF;
+}
+.xfce4-panel .tasklist button:hover { background-image: url("../cinnamon/hover.png"); }
+.xfce4-panel .tasklist button:checked { background-image: url("../cinnamon/active.png"); }
+.xfce4-panel .tasklist button label { color: #FFFFFF; }
+.xfce4-panel #systray, .xfce4-panel #pulseaudio-button, .xfce4-panel #clock-button {
+    background-color: #0F8FEB;
+    background-image: url("../cinnamon/panel-right.png");
+    background-size: 100% 100%;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    color: #FFFFFF;
+}
+.xfce4-panel #systray { padding-left: 8px; }
+.xfce4-panel #clock-button { padding: 0 10px; background-image: linear-gradient(to bottom, #0C59B9 0%, #139EE9 8%, #18B5F2 40%, #139BEB 88%, #1290E8 100%); }
+.xfce4-panel #clock-button label { color: #FFFFFF; }
+/* Start menu (Whisker Menu): XP's blue header, white programs, light-blue
+   categories, blue footer. Whisker names only its window, so these follow
+   its layout: window > frame > box > column > [header, search, contents]. */
+#whiskermenu-window, #whiskermenu-window > *, #whiskermenu-window > * > *, #whiskermenu-window > * > * > * {
+    background-color: #FFFFFF; padding: 0; margin: 0; border: none; }
+#whiskermenu-window > * { border: 1px solid #0A246A; border-radius: 6px 6px 0 0; }
+#whiskermenu-window > * > * > * { border-bottom: 28px solid #245EDC; }
+#whiskermenu-window > * > * > * > *:first-child {
+    background-image: linear-gradient(to bottom, #1E5FD8 0%, #3F8CF3 10%, #245EDC 55%, #1D4FC0 100%);
+    border-bottom: 2px solid #E68B2C;
+    border-radius: 5px 5px 0 0;
+    padding: 6px 8px;
+    color: #FFFFFF;
+}
+#whiskermenu-window > * > * > * > *:first-child label { color: #FFFFFF; font-weight: bold; font-size: 13pt; text-shadow: 1px 1px #0A246A; }
+#whiskermenu-window > * > * > * > *:first-child button { background: transparent; border: none; box-shadow: none; }
+#whiskermenu-window > * > * > * > *:first-child button:hover { background-color: alpha(#FFFFFF, 0.25); }
+#whiskermenu-window > * > * > * > *:nth-child(2) { padding: 6px; }
+#whiskermenu-window > * > * > * > *:last-child > *:first-child > *:last-child, #whiskermenu-window > * > * > * > *:last-child > *:first-child > *:last-child viewport, #whiskermenu-window > * > * > * > *:last-child > *:first-child > *:last-child box { background-color: #D3E5FA; border: none; }
+#whiskermenu-window > * > * > * > *:last-child > *:first-child > *:last-child { border-left: 1px solid #95BDEE; }
+#whiskermenu-window > * > * > * > *:last-child > *:first-child > *:last-child button { background: transparent; border: none; border-radius: 0; box-shadow: none; color: #000000; }
+#whiskermenu-window > * > * > * > *:last-child > *:first-child > *:last-child button:hover, #whiskermenu-window > * > * > * > *:last-child > *:first-child > *:last-child button:checked { background-color: #316AC5; color: #FFFFFF; }
+#whiskermenu-window > * > * > * > *:last-child > *:first-child > *:last-child button:hover label, #whiskermenu-window > * > * > * > *:last-child > *:first-child > *:last-child button:checked label { color: #FFFFFF; }
+#whiskermenu-window > * > * > * > *:last-child > *:first-child > *:last-child button box { background-color: transparent; }
+#whiskermenu-window scrolledwindow { border: none; }
+#whiskermenu-window treeview:selected, #whiskermenu-window treeview:hover { background-color: #316AC5; color: #FFFFFF; }
+/* linux-xp: xfce panel end */
