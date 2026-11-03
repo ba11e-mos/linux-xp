@@ -1,0 +1,208 @@
+diff --git a/css/xp.css b/css/xp.css
+index 814a0ee..08b4587 100644
+--- a/css/xp.css
++++ b/css/xp.css
+@@ -754,3 +754,30 @@ body
+ 	animation-fill-mode: forwards;
+ 	animation-timing-function: steps(16, end);
+ }
++
++/*
++ * Fingerprint reader hint.
++ *
++ * Replaces the "Type your password" text above the password box while
++ * pam_fprintd is waiting for a scan, instead of dumping the raw PAM
++ * message into the header bar.
++ */
++.password-msg.fingerprint,
++.password-msg.fingerprint-error
++{
++    padding-left: 18px;
++    background-repeat: no-repeat;
++    background-position: left center;
++    background-size: 14px 14px;
++}
++
++.password-msg.fingerprint
++{
++    background-image: url("../img/fingerprint.svg");
++}
++
++.password-msg.fingerprint-error
++{
++    color: #ffb3b3;
++    background-image: url("../img/fingerprint-error.svg");
++}
+diff --git a/js/login.js b/js/login.js
+index c582453..f5036c4 100644
+--- a/js/login.js
++++ b/js/login.js
+@@ -17,6 +17,22 @@ export class Login
+      */
+     static defaultProfilePicture = "img/bike.png";
+ 
++    /**
++     * The text shown above the password box when nothing special is happening.
++     * Must match the markup in index.html.
++     */
++    static defaultPasswordMsg = "Type your password";
++
++    /**
++     * The text shown while the fingerprint reader is waiting for a scan.
++     */
++    static fingerprintPromptMsg = "Place your finger on the fingerprint reader";
++
++    /**
++     * The text shown when a fingerprint scan was not recognized.
++     */
++    static fingerprintFailMsg = "Fingerprint not recognized, try again";
++
+     /**
+      * The last selected user listing (currently attempting to login).
+      */
+@@ -68,6 +84,12 @@ export class Login
+ 
+         // Populate User Listings
+         this.createUserListings();
++
++        // With a single account there is nothing to choose, so select it
++        // straight away. Authentication - and therefore the fingerprint
++        // reader - starts on selection, so waiting for a click just
++        // delays the whole login by however long the click takes.
++        this.autoSelectSingleUser();
+     }
+ 
+     /**
+@@ -78,9 +100,12 @@ export class Login
+      */
+     show_prompt(text, type)
+     {
+-        // Messages Only Useful For Debugging, Disabled For Appearance
+-        // let header = document.querySelector("#header");
+-        // header.textContent = type + ": " + text;
++        // PAM asks for the password only once the reader has had its
++        // turn, so this is the point where the password text belongs.
++        if (type === "password" && !this.fingerprintActive)
++        {
++            this.setPasswordMsg(Login.defaultPasswordMsg, null);
++        }
+     }
+ 
+     /**
+@@ -91,8 +116,74 @@ export class Login
+      */
+     show_message(text, type)
+     {
+-        let header = document.querySelector("#header");
+-        header.textContent = type + ": " + text;
++        // No user selected, so there is nowhere sensible to put the message.
++        if (!this.activeUserListing)
++        {
++            return;
++        }
++        if (Login.isFingerprintMessage(text))
++        {
++            if (type === "error" || Login.isFingerprintFailure(text))
++            {
++                this.fingerprintActive = false;
++                this.setPasswordMsg(Login.fingerprintFailMsg, "fingerprint-error");
++            }
++            else
++            {
++                this.fingerprintActive = true;
++                this.setPasswordMsg(Login.fingerprintPromptMsg, "fingerprint");
++            }
++            return;
++        }
++        // Non-fingerprint errors still deserve to be seen.
++        if (type === "error")
++        {
++            this.setPasswordMsg(text, "fingerprint-error");
++        }
++    }
++
++    /**
++     * Whether a PAM message came from the fingerprint reader.
++     *
++     * @param {String} text The message text.
++     * @returns {Boolean} True if the message is about fingerprints.
++     */
++    static isFingerprintMessage(text)
++    {
++        return /finger|fprint/i.test(text);
++    }
++
++    /**
++     * Whether a fingerprint message reports a failed or unusable scan.
++     *
++     * @param {String} text The message text.
++     * @returns {Boolean} True if the scan did not succeed.
++     */
++    static isFingerprintFailure(text)
++    {
++        return /fail|not match|no match|didn.t match|try again|retry|timed out|swipe too/i.test(text);
++    }
++
++    /**
++     * Sets the text above the password box of the active user listing.
++     *
++     * @param {String} text The text to show.
++     * @param {String} state Extra class to apply, or null for the plain style.
++     */
++    setPasswordMsg(text, state)
++    {
++        if (!this.activeUserListing)
++        {
++            return;
++        }
++        let msg = this.activeUserListing.querySelector(".password-msg");
++        msg.textContent = text;
++        msg.classList.remove("fingerprint");
++        msg.classList.remove("fingerprint-error");
++        if (state)
++        {
++            msg.classList.add(state);
++        }
+     }
+ 
+     /**
+@@ -118,6 +209,9 @@ export class Login
+         {
+             // Show Error Popup
+             this.activeUserListing.querySelector(".password-error-popup").classList.add("active");
++            // Clear Any Fingerprint Hint Left Over From The Attempt
++            this.fingerprintActive = false;
++            this.setPasswordMsg(Login.defaultPasswordMsg, null);
+             // Enable Password Input Forms
+             this.disablePasswordForms(false);
+             // Keep User Selected For Another Attempt
+@@ -146,6 +240,19 @@ export class Login
+         // nothing, don't autologin
+     }
+ 
++    /**
++     * Selects the only user listing, if there is exactly one.
++     */
++    autoSelectSingleUser()
++    {
++        let listings = document.querySelectorAll("#userListings .user");
++        if (listings.length !== 1)
++        {
++            return;
++        }
++        this.setActiveUser(listings[0]);
++    }
++
+     /**
+      * Called When A User Listing In The Menu Is Selected
+      */
+@@ -197,6 +304,9 @@ export class Login
+         }
+         // Assign Styles To Active User Listing
+         this.activeUserListing.classList.add("active");
++        // Start Blank: PAM Has Not Asked For Anything Yet
++        this.fingerprintActive = false;
++        this.setPasswordMsg("", null);
+         // Focus Password Box
+         this.activeUserListing.querySelector(".password").focus();
+         // Begin Authentication

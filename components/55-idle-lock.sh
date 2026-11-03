@@ -28,5 +28,4 @@ gsettings set org.cinnamon.desktop.screensaver idle-activation-enabled false 2>/
 gsettings set org.cinnamon.desktop.screensaver lock-enabled false 2>/dev/null || true
 
 log "Cinnamon's own locker switched off, xss-lock takes idle and suspend"
-info "the greeter itself is set up separately - see docs/login-screen.md"
 info "takes effect at next login, or run ~/.local/bin/xp-idle-lock.sh now"

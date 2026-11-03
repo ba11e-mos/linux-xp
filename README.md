@@ -30,11 +30,9 @@ the rest, and runs. Log out and back in afterwards.
 - **Screen saver:** 3D Pipes after 10 minutes, then the lock screen
 - **Boot screen:** the XP logo and loading bar
 - **Firefox** as Internet Explorer 6, with an IE-era start page
-- **VS Code**, **Discord** (as MSN Messenger, via Vesktop), **Teams** (MSN
-  icon), **terminal** (as cmd.exe)
+- **Login screen:** the XP Welcome screen, with fingerprint prompts
+- **VS Code**, **Teams** (MSN icon), **terminal** (as cmd.exe)
 - **Games:** Minesweeper, Solitaire, Spider, FreeCell, Hearts, 3D Pinball
-
-The login screen is a separate, manual setup: [docs/login-screen.md](docs/login-screen.md).
 
 ## Where things come from
 
@@ -53,12 +51,12 @@ pick the part that needs it, into `~/.cache/linux-xp`.
 | XP games | [archive.org/details/windows-xp-games](https://archive.org/details/windows-xp-games), run with Wine |
 | MSN icon | [icon-icons.com](https://images.icon-icons.com/5/PNG/256/msn_146.png) |
 | VGA font | [The Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/) |
-| Login screen | [JezerM/nody-greeter](https://github.com/JezerM/nody-greeter) + [mshernandez5/WelcomeXP](https://github.com/mshernandez5/WelcomeXP) |
+| Login screen | [JezerM/nody-greeter](https://github.com/JezerM/nody-greeter) 1.6.2 + [mshernandez5/WelcomeXP](https://github.com/mshernandez5/WelcomeXP), patched for fingerprints |
 
 The sounds, games, Bliss and boot-screen artwork are Microsoft's.
 
-The Firefox skin, the Discord theme, the Cinnamon patches and the VS Code
-theme are written here.
+The Firefox skin, the Cinnamon patches, the WelcomeXP fingerprint patch and
+the VS Code theme are written here.
 
 ## After a Mint update
 
@@ -67,6 +65,14 @@ update removes the new-tab setup. Put them back with:
 
 ```bash
 ./after-update.sh
+```
+
+## If the login screen breaks
+
+Press Ctrl+Alt+F2, log in, and go back to Mint's login screen:
+
+```bash
+sudo rm /etc/lightdm/lightdm.conf.d/99-nody.conf && sudo systemctl restart lightdm
 ```
 
 ## Uninstall
