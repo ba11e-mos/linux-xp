@@ -17,6 +17,8 @@ headerbar:backdrop, .titlebar:backdrop, toolbarview > .top-bar:backdrop {
 /* libadwaita puts the header bar inside a painted top bar: paint only the outer
    one, or Files' two panes show two bars 3px apart */
 toolbarview > .top-bar headerbar, toolbarview > .top-bar headerbar:backdrop { background: none; box-shadow: none; }
+/* the sidebar bar as tall as the content one, which the path bar makes 2px taller */
+.sidebar-pane toolbarview > .top-bar headerbar { min-height: 48px; }
 /* the window clips its corners; split views (Files) have two header bars side by side */
 window.csd:not(.maximized):not(.tiled) { border-radius: 8px 8px 0 0; }
 headerbar .title, .titlebar .title, windowtitle .title {
