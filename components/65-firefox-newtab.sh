@@ -6,19 +6,25 @@
 # Firefox installation - which is why it needs root, and why a Firefox package
 # update wipes it (after-update.sh puts it back).
 
-ff_dir=""
+# Each target is "<dir for autoconfig.js>:<dir for the .cfg>". The deb or
+# tarball Firefox reads both from its installation; the snap's is read-only,
+# but it reads the same files from /etc/firefox.
+targets=()
 for d in /usr/lib/firefox /usr/lib64/firefox /opt/firefox; do
-    [ -x "$d/firefox" ] && { ff_dir="$d"; break; }
+    [ -x "$d/firefox" ] && { targets+=("$d/defaults/pref:$d"); break; }
 done
-[ -n "$ff_dir" ] || { warn "no system Firefox installation found - skipping new tab page"; return 0; }
+[ -d /snap/firefox ] && targets+=("/etc/firefox/defaults/pref:/etc/firefox")
+[ ${#targets[@]} -gt 0 ] || { warn "no deb, tarball or snap Firefox found - skipping new tab page"; return 0; }
 
 if [ "${XP_SKIP_SUDO:-0}" = "1" ]; then
     skip "skipped (XP_SKIP_SUDO=1)"
     return 0
 fi
 
-sudo install -d "$ff_dir/defaults/pref"
-sudo tee "$ff_dir/defaults/pref/autoconfig.js" >/dev/null <<'EOF'
+for t in "${targets[@]}"; do
+pref_dir="${t%%:*}" ff_dir="${t#*:}"
+sudo install -d "$pref_dir"
+sudo tee "$pref_dir/autoconfig.js" >/dev/null <<'EOF'
 // linux-xp
 pref("general.config.filename", "linux-xp.cfg");
 pref("general.config.obscure_value", 0);
@@ -50,4 +56,5 @@ try {
 EOF
 
 log "new tab page wired up in $ff_dir"
-info "each profile's user.js sets linuxxp.newtab.url (component 60)"
+done
+info "each profile's user.js sets linuxxp.newtab.url (component 60); restart Firefox to load it"

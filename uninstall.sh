@@ -43,7 +43,8 @@ while IFS= read -r o; do
 done < <(find /usr/share/cinnamon -name "*.orig-xp" 2>/dev/null)
 
 # --- Firefox ---
-for prof in "$HOME"/.mozilla/firefox/*.default*/; do
+for prof in "$HOME"/.mozilla/firefox/*.default*/ "$HOME"/snap/firefox/common/.mozilla/firefox/*.default*/ \
+            "$HOME"/.var/app/org.mozilla.firefox/.mozilla/firefox/*.default*/; do
     [ -d "$prof" ] || continue
     log "Firefox: $(basename "$prof")"
     run rm -rf "$prof/chrome"
@@ -59,7 +60,7 @@ if [ -d "$ext" ]; then
 fi
 
 # --- Firefox new tab autoconfig (component 65) ---
-for d in /usr/lib/firefox /usr/lib64/firefox /opt/firefox; do
+for d in /usr/lib/firefox /usr/lib64/firefox /opt/firefox /etc/firefox; do
     if grep -qs linux-xp "$d/defaults/pref/autoconfig.js"; then
         log "Firefox new tab autoconfig in $d"
         run sudo rm -f "$d/defaults/pref/autoconfig.js" "$d/linux-xp.cfg"

@@ -43,7 +43,7 @@ the rest, and runs. Log out and back in afterwards.
 | VS Code Luna theme, Teams MSN icon | ✓ | untested | untested |
 
 ¹ GTK4/libadwaita apps get Luna title bars; what is inside them keeps the GNOME look.  
-² Snap Firefox gets the skin but not the new-tab page.  
+² Snap Firefox reads the new-tab setup from /etc/firefox, which no snap update touches.  
 ³ Whisker Menu in XP colours; the layout inside is Whisker's.
 
 Tested in clean virtual machines (install, reboot, log in, uninstall):
