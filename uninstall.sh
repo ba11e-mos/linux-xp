@@ -15,6 +15,15 @@ dry=0
 run() { if [ "$dry" = 1 ]; then printf '    would run: %s\n' "$*"; else "$@" 2>/dev/null || info "skipped: $*"; fi; }
 
 # --- user files from the backup tree ---
+# xfconfd holds the XFCE panel layout in memory and would write it back over
+# the restored file, so stop it and the panel first (component 36)
+panel=0
+if [ -f "$BACKUP$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml" ] && pgrep -x xfce4-panel >/dev/null; then
+    panel=1
+    run xfce4-panel --quit
+    run pkill -x xfconfd
+    [ "$dry" = 1 ] || sleep 1
+fi
 if [ -d "$BACKUP" ]; then
     log "restoring files from $BACKUP"
     while IFS= read -r b; do
@@ -75,6 +84,11 @@ if is_xfce; then
     run xfconf-query -c xfce4-screensaver -p /saver/enabled -r 2>/dev/null || true
     run xfconf-query -c xfce4-screensaver -p /lock/enabled -r 2>/dev/null || true
     run xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/lock-screen-suspend-hibernate -r 2>/dev/null || true
+    for p in /theme /notify-location /do-fadeout /initial-opacity; do
+        run xfconf-query -c xfce4-notifyd -p "$p" -r 2>/dev/null || true
+    done
+    run pkill -x xfce4-notifyd
+    [ "$panel" = 1 ] && [ "$dry" = 0 ] && { setsid xfce4-panel >/dev/null 2>&1 < /dev/null & }
     for p in /color-use-theme /color-foreground /color-background /color-palette /misc-cursor-shape /font-use-system /font-name; do
         run xfconf-query -c xfce4-terminal -p "$p" -r 2>/dev/null || true
     done

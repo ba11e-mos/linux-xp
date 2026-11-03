@@ -26,12 +26,12 @@ the rest, and runs. Log out and back in afterwards.
 | Luna theme, XP icons and cursors | ✓ | ✓ | ✓ |
 | Luna window frames | ✓ | ✓ | partly¹ |
 | Bliss wallpaper | ✓ | ✓ | ✓ |
-| XP taskbar | ✓ | – | ✓ |
-| XP start menu | ✓ | – | ✓ |
+| XP taskbar | ✓ | ✓ | ✓ |
+| XP start menu | ✓ | ✓³ | ✓ |
 | UAC-style password prompts | ✓ | – | – |
 | XP volume OSD, Media Player sound applet | ✓ | – | – |
 | Captioned panel menus | ✓ | – | – |
-| Balloon tips | ✓ | – | ✓ |
+| Balloon tips | ✓ | ✓ | ✓ |
 | Animated charging battery | ✓ | – | – |
 | XP sounds | ✓ | ✓ | ✓ |
 | 3D Pipes screen saver, then lock | ✓ | ✓ | – |
@@ -43,7 +43,8 @@ the rest, and runs. Log out and back in afterwards.
 | VS Code Luna theme, Teams MSN icon | ✓ | untested | untested |
 
 ¹ GNOME draws its own frames for GTK4/libadwaita apps, which ignore the theme.  
-² Snap Firefox gets the skin but not the new-tab page.
+² Snap Firefox gets the skin but not the new-tab page.  
+³ Whisker Menu: XP colours on the button, its own layout inside.
 
 Tested in clean virtual machines (install, reboot, log in, uninstall):
 Cinnamon on Linux Mint 22.1, XFCE and GNOME on Ubuntu 24.04, Firefox 159.
@@ -66,6 +67,8 @@ pick the part that needs it, into `~/.cache/linux-xp`.
 | XP sounds | [lelegofrog.github.io/winwavxp.html](https://lelegofrog.github.io/winwavxp.html) |
 | Boot screen | [BFUR64/WindowsXP-Plymouth](https://github.com/BFUR64/WindowsXP-Plymouth) |
 | 3D Pipes | `xscreensaver-gl` from apt |
+| GNOME taskbar and Start menu | [Dash to Panel](https://extensions.gnome.org/extension/1160/dash-to-panel/) and [ArcMenu](https://extensions.gnome.org/extension/3628/arcmenu/) from extensions.gnome.org |
+| XFCE Start menu | `xfce4-whiskermenu-plugin` from apt |
 | XP games | [archive.org/details/windows-xp-games](https://archive.org/details/windows-xp-games), run with Wine |
 | MSN icon | [icon-icons.com](https://images.icon-icons.com/5/PNG/256/msn_146.png) |
 | VGA font | [The Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/) |

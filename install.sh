@@ -20,6 +20,7 @@ PARTS=(
 "20||XP_WALLPAPER=bliss|Bliss as the wallpaper"
 "30 50|node:nodejs||Start menu, XP dialogs, volume OSD, Media Player sound applet, charging battery (sudo)"
 "35|/usr/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com:gnome-shell-extensions unzip:unzip||GNOME: XP shell theme, taskbar and Start menu"
+"36|/usr/lib/*/xfce4/panel/plugins/libwhiskermenu.so:xfce4-whiskermenu-plugin /usr/lib/*/xfce4/notifyd/xfce4-notifyd:xfce4-notifyd||XFCE: XP taskbar, Start menu and balloon tips"
 "15|ffmpeg:ffmpeg unzip:unzip||XP sounds: startup, shutdown, balloons, USB in/out"
 "57|lightdm:lightdm git:git||XP login screen (sudo)"
 "55|xss-lock:xss-lock /usr/libexec/xscreensaver/pipes:xscreensaver-gl /usr/lib/*/girepository-1.0/Gtk-3.0.typelib:gir1.2-gtk-3.0||3D Pipes screen saver, then lock to the login screen"
@@ -49,6 +50,7 @@ offered() {
     case " $1 " in
         *" 30 "*) is_cinnamon ;;            # Cinnamon's own code
         *" 35 "*) is_gnome ;;
+        *" 36 "*) is_xfce ;;
         *" 55 "*|*" 57 "*) ! is_gnome ;;    # lightdm and X11; GNOME has GDM and Wayland
         *) true ;;
     esac
