@@ -4,18 +4,19 @@
 headerbar, .titlebar, window.csd > .titlebar, toolbarview > .top-bar {
     min-height: 30px;
     color: @xp_title_fg;
-    background-color: #0A5FE6;
-    background-image: url("@ASSETS@/titlebar-focused-middle.png");
-    background-size: 1px 100%;
-    background-repeat: repeat-x;
+    background-color: #0058E6;
+    background-image: linear-gradient(to bottom, #005CE9 0%, #3F97FF 3%, #2B90FF 7%, #0671FE 12%, #0060EE 17%, #0058E6 24%, #0055E5 38%, #0058E6 48%, #005BF2 62%, #0065FD 72%, #036EFF 79%, #026AFE 86%, #0164F9 90%, #004DE3 94%, #0144D0 100%);
     box-shadow: none;
     border: none;
     border-radius: 0;
 }
 headerbar:backdrop, .titlebar:backdrop, toolbarview > .top-bar:backdrop {
-    background-color: #7A96DF;
-    background-image: url("@ASSETS@/titlebar-unfocused-middle.png");
+    background-color: #7A99E0;
+    background-image: linear-gradient(to bottom, #6A91E0 0%, #9AB4E9 4%, #9DB9EB 7%, #80A5E6 14%, #7A99E0 24%, #7B97E0 45%, #7E9DE5 62%, #82A9E9 79%, #82A9E9 86%, #7A96E0 93%, #7A96E0 100%);
 }
+/* libadwaita puts the header bar inside a painted top bar: paint only the outer
+   one, or Files' two panes show two bars 3px apart */
+toolbarview > .top-bar headerbar, toolbarview > .top-bar headerbar:backdrop { background: none; box-shadow: none; }
 /* the window clips its corners; split views (Files) have two header bars side by side */
 window.csd:not(.maximized):not(.tiled) { border-radius: 8px 8px 0 0; }
 headerbar .title, .titlebar .title, windowtitle .title {
@@ -36,33 +37,27 @@ headerbar button:not(.titlebutton):hover, headerbar menubutton > button:hover { 
 headerbar button:not(.titlebutton):checked, headerbar button:not(.titlebutton):active { background-color: alpha(#000000, 0.2); }
 headerbar entry { color: #000000; background-color: #FFFFFF; border: 1px solid #7F9DB9; border-radius: 0; }
 
-/* the Luna caption buttons */
-windowcontrols button, .titlebutton {
-    min-width: 21px;
-    min-height: 21px;
+/* the Luna caption buttons, drawn in CSS: sandboxed apps (snap, flatpak) can
+   read this file but not the theme's pictures */
+windowcontrols button, button.titlebutton {
+    min-width: 19px;
+    min-height: 19px;
     padding: 0;
     margin: 0 1px;
-    border: none;
-    border-radius: 0;
+    border: 1px solid #FFFFFF;
+    border-radius: 3px;
     box-shadow: none;
-    background-color: transparent;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 21px 21px;
+    color: #FFFFFF;
+    -gtk-icon-shadow: none;
+    background-color: #3A71F4;
+    background-image: linear-gradient(to bottom, #A5C0FA, #5785F7 45%, #3A71F4 70%, #1B55DF);
 }
-windowcontrols button > image, .titlebutton > image { opacity: 0; }
-windowcontrols button.close, button.titlebutton.close    { background-image: url("@ASSETS@/close-normal.png"); }
-button.titlebutton.close:hover, windowcontrols button.close:hover    { background-image: url("@ASSETS@/close-hover.png"); }
-button.titlebutton.close:active, windowcontrols button.close:active   { background-image: url("@ASSETS@/close-active.png"); }
-windowcontrols button.minimize, button.titlebutton.minimize { background-image: url("@ASSETS@/minimize-normal.png"); }
-button.titlebutton.minimize:hover, windowcontrols button.minimize:hover { background-image: url("@ASSETS@/minimize-hover.png"); }
-button.titlebutton.minimize:active, windowcontrols button.minimize:active { background-image: url("@ASSETS@/minimize-active.png"); }
-windowcontrols button.maximize, button.titlebutton.maximize { background-image: url("@ASSETS@/maximize-normal.png"); }
-button.titlebutton.maximize:hover, windowcontrols button.maximize:hover { background-image: url("@ASSETS@/maximize-hover.png"); }
-button.titlebutton.maximize:active, windowcontrols button.maximize:active { background-image: url("@ASSETS@/maximize-active.png"); }
-.maximized windowcontrols button.maximize, .maximized button.titlebutton.maximize { background-image: url("@ASSETS@/restore-normal.png"); }
-.maximized windowcontrols button.maximize:hover { background-image: url("@ASSETS@/restore-hover.png"); }
-button.titlebutton.close:backdrop, windowcontrols button.close:backdrop    { background-image: url("@ASSETS@/close-backdrop.png"); }
-button.titlebutton.minimize:backdrop, windowcontrols button.minimize:backdrop { background-image: url("@ASSETS@/minimize-backdrop.png"); }
-button.titlebutton.maximize:backdrop, windowcontrols button.maximize:backdrop { background-image: url("@ASSETS@/maximize-backdrop.png"); }
+windowcontrols button:hover, button.titlebutton:hover { background-image: linear-gradient(to bottom, #AECAFF, #6196FF 45%, #4080FF 70%, #2163E8); }
+windowcontrols button:active, button.titlebutton:active { background-image: linear-gradient(to bottom, #003070, #0047A7 45%, #004BAE); }
+windowcontrols button.close, button.titlebutton.close { background-color: #E35C3A; background-image: linear-gradient(to bottom, #F2B0A0, #E87257 45%, #E35C3A 70%, #CC3E1B); }
+windowcontrols button.close:hover, button.titlebutton.close:hover { background-image: linear-gradient(to bottom, #FFC0B8, #FF8576 45%, #FF6B5A 70%, #EC4F3D); }
+windowcontrols button.close:active, button.titlebutton.close:active { background-image: linear-gradient(to bottom, #782611, #B4381A 45%, #BC3C1B); }
+windowcontrols button:backdrop, button.titlebutton:backdrop { border-color: #BCC7EF; background-image: linear-gradient(to bottom, #8CA6EA, #6789EA 45%, #4D7AE2); }
+windowcontrols button.close:backdrop, button.titlebutton.close:backdrop { background-image: linear-gradient(to bottom, #B8A0BA, #B07F9A 45%, #A66E80); }
+windowcontrols button > image, button.titlebutton > image { color: #FFFFFF; -gtk-icon-shadow: none; }
 /* linux-xp end */

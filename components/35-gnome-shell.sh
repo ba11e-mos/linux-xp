@@ -138,26 +138,14 @@ fi
 # --- Luna title bars for GTK4/libadwaita apps, GNOME Terminal and Wine ---
 # GNOME draws the frames of X11 apps with GTK4, and GTK4 has no theme
 # support, but every GTK app reads the user's gtk.css last.
-if gtk_assets="$(theme_dir gtk-3.20)/assets" && [ -d "$gtk_assets" ]; then
-    # snap Firefox may read only its own folder, not ~/.themes or any hidden dir;
-    # other apps read that folder too, so the pictures go there when it exists
-    # shortcut: covers snap Firefox only, other snaps and flatpaks get no caption pictures
-    pics="$gtk_assets"
-    if [ -d "$HOME/snap/firefox/common" ]; then
-        pics="$HOME/snap/firefox/common/linux-xp"
-        mkdir -p "$pics"
-        cp "$gtk_assets"/{titlebar-focused-middle,titlebar-unfocused-middle}.png "$pics/"
-        cp "$gtk_assets"/{close,minimize,maximize}-{normal,hover,active,backdrop}.png "$gtk_assets"/restore-{normal,hover}.png "$pics/"
-    fi
-    for v in gtk-3.0 gtk-4.0; do
-        f="$HOME/.config/$v/gtk.css"
-        mkdir -p "$(dirname "$f")"
-        backup_file "$f"
-        [ -f "$f" ] && sed -i '/^\/\* linux-xp: Luna title bars/,/^\/\* linux-xp end \*\//d' "$f"
-        sed "s|@ASSETS@|$pics|g" "$ASSETS/gnome-shell/gtk4-luna.css" >> "$f"
-    done
-    gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
-    log "Luna title bars for GTK4 apps and X11 windows"
-fi
+for v in gtk-3.0 gtk-4.0; do
+    f="$HOME/.config/$v/gtk.css"
+    mkdir -p "$(dirname "$f")"
+    backup_file "$f"
+    [ -f "$f" ] && sed -i '/^\/\* linux-xp: Luna title bars/,/^\/\* linux-xp end \*\//d' "$f"
+    cat "$ASSETS/gnome-shell/gtk4-luna.css" >> "$f"
+done
+gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
+log "Luna title bars for GTK4 apps, snaps, flatpaks and X11 windows"
 
 info "log out and back in to load the taskbar and Start menu"
