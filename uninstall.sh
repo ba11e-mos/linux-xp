@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Put back what install.sh changed.
+# Put back what install.sh changed, and remove what it added.
 #
 #   ./uninstall.sh          restore everything
 #   ./uninstall.sh --dry    only show what would happen
@@ -30,7 +30,7 @@ log "restoring Cinnamon source files"
 while IFS= read -r o; do
     info "${o%.orig-xp}"
     run sudo cp -a "$o" "${o%.orig-xp}"
-done < <(sudo find /usr/share/cinnamon -name "*.orig-xp" 2>/dev/null)
+done < <(find /usr/share/cinnamon -name "*.orig-xp" 2>/dev/null)
 
 # --- Firefox ---
 for prof in "$HOME"/.mozilla/firefox/*.default*/; do
@@ -48,4 +48,85 @@ if [ -d "$ext" ]; then
     run rm -rf "$ext"
 fi
 
-log "Done. Pick your theme again in Settings > Themes, then log out and in."
+# --- Firefox new tab autoconfig (component 65) ---
+for d in /usr/lib/firefox /usr/lib64/firefox /opt/firefox; do
+    if grep -qs linux-xp "$d/defaults/pref/autoconfig.js"; then
+        log "Firefox new tab autoconfig in $d"
+        run sudo rm -f "$d/defaults/pref/autoconfig.js" "$d/linux-xp.cfg"
+    fi
+done
+
+# --- desktop settings (component 20): back to the distribution defaults ---
+D="$(desktop_schema)"
+log "theme, icons, cursor and wallpaper back to the defaults"
+for k in gtk-theme icon-theme cursor-theme; do run gsettings reset "$D.interface" "$k"; done
+run gsettings reset "$D.wm.preferences" theme
+run gsettings reset org.cinnamon.theme name 2>/dev/null || true
+run gsettings reset "$D.background" picture-uri
+run gsettings reset "$D.background" picture-options
+
+# --- theme, icons and cursors (component 10, everything 30/40/90/95 put in them) ---
+log "removing the XP theme, icons and cursors"
+for d in "$HOME"/.themes/"Windows XP "* "$HOME/.icons/$ICON_NAME" "$HOME/.icons/$CURSOR_NAME"; do
+    [ -e "$d" ] && run rm -rf "$d"
+done
+
+# --- sounds (component 15) ---
+log "sounds back to the defaults"
+run rm -rf "$HOME/.local/share/sounds/WindowsXP"
+run gsettings reset org.cinnamon.desktop.sound theme-name
+run gsettings reset org.cinnamon.desktop.sound volume-sound-file
+for k in login-file logout-file notification-file plug-file unplug-file minimize-file \
+         minimize-enabled tile-enabled switch-enabled; do
+    run gsettings reset org.cinnamon.sounds "$k"
+done
+
+# --- screen saver and idle lock (component 55): Cinnamon's own locker back ---
+log "screen saver and idle lock"
+run pkill -u "$USER" -x xss-lock || true
+run rm -f "$HOME/.config/autostart/xp-idle-lock.desktop" \
+          "$HOME/.local/bin/xp-idle-lock.sh" "$HOME/.local/bin/xp-screensaver.py"
+run gsettings reset org.cinnamon.settings-daemon.plugins.power lock-on-suspend
+run gsettings reset org.cinnamon.desktop.screensaver idle-activation-enabled
+run gsettings reset org.cinnamon.desktop.screensaver lock-enabled
+run xset s default
+
+# --- login screen (component 57): back to Mint's greeter ---
+if [ -f /etc/lightdm/lightdm.conf.d/99-nody.conf ]; then
+    log "login screen back to Mint's (shows at the next login)"
+    run sudo rm -f /etc/lightdm/lightdm.conf.d/99-nody.conf
+    run sudo rm -rf /usr/share/web-greeter/themes/WelcomeXP
+fi
+
+# --- boot screen (component 85) ---
+if [ -d /usr/share/plymouth/themes/WindowsXP ]; then
+    log "boot screen back to Mint's"
+    run sudo update-alternatives --remove default.plymouth /usr/share/plymouth/themes/WindowsXP/WindowsXP.plymouth
+    run sudo rm -rf /usr/share/plymouth/themes/WindowsXP
+    run sudo sed -i '/^DeviceScale=1$/d' /etc/plymouth/plymouthd.conf
+    run sudo update-initramfs -u
+fi
+
+# --- terminal (component 80) ---
+prof="$(gsettings get org.gnome.Terminal.ProfilesList default 2>/dev/null | tr -d "'")"
+if [ -n "$prof" ]; then
+    log "terminal colours and font back to the defaults"
+    B="org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$prof/"
+    for k in use-theme-colors background-color foreground-color cursor-shape palette use-system-font font; do
+        run gsettings reset "$B" "$k"
+    done
+fi
+run rm -f "$HOME"/.local/share/fonts/Bm437_IBM_VGA_*.otb
+
+# --- games (component 92) ---
+log "removing the XP games"
+run rm -rf "$HOME/.local/share/xp-games"
+for id in winmine sol spider freecell mshearts pinball; do
+    run rm -f "$HOME/.local/share/applications/xp-$id.desktop" \
+              "$HOME/.local/share/icons/hicolor/48x48/apps/xp-$id.png"
+done
+
+# --- downloads ---
+run rm -rf "$CACHE"
+
+log "Done. Log out and back in."
