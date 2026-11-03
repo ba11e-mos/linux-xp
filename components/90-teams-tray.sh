@@ -1,10 +1,11 @@
 # Teams: the MSN icon in the task bar and the system tray
 #
-# The MSN image is not bundled (see README). Point at it with XP_MSN_ICON.
+# The MSN butterfly is downloaded from icon-icons.com on first run;
+# XP_MSN_ICON=/path uses a local image.
 
 icons="$(icon_dir)" || { warn "icon theme not found"; return 0; }
 src="${XP_MSN_ICON:-}"
-[ -n "$src" ] && [ -f "$src" ] || { skip "XP_MSN_ICON not set - skipped"; return 0; }
+[ -n "$src" ] || src="$(fetch https://images.icon-icons.com/5/PNG/256/msn_146.png msn.png)" || return 0
 have convert || { warn "ImageMagick missing (sudo apt install imagemagick)"; return 0; }
 
 name="com.github.IsmaelMartinez.teams_for_linux"

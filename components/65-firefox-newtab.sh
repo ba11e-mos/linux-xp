@@ -12,21 +12,20 @@ for d in /usr/lib/firefox /usr/lib64/firefox /opt/firefox; do
 done
 [ -n "$ff_dir" ] || { warn "no system Firefox installation found - skipping new tab page"; return 0; }
 
-if [ "$(id -u)" != 0 ]; then
-    warn "component 65 writes into $ff_dir and needs root:"
-    warn "    sudo $REPO/install.sh 65"
+if [ "${XP_SKIP_SUDO:-0}" = "1" ]; then
+    skip "skipped (XP_SKIP_SUDO=1)"
     return 0
 fi
 
-install -d "$ff_dir/defaults/pref"
-cat > "$ff_dir/defaults/pref/autoconfig.js" <<'EOF'
+sudo install -d "$ff_dir/defaults/pref"
+sudo tee "$ff_dir/defaults/pref/autoconfig.js" >/dev/null <<'EOF'
 // linux-xp
 pref("general.config.filename", "linux-xp.cfg");
 pref("general.config.obscure_value", 0);
 pref("general.config.sandbox_enabled", false);
 EOF
 
-cat > "$ff_dir/linux-xp.cfg" <<'EOF'
+sudo tee "$ff_dir/linux-xp.cfg" >/dev/null <<'EOF'
 // linux-xp - the first line of an autoconfig file is always ignored.
 try {
   // AboutNewTab is a browser module and is not loadable this early, so the

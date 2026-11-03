@@ -44,7 +44,7 @@ fi
 # autoconfig files for the new tab page with it.
 if [ ! -f /usr/lib/firefox/linux-xp.cfg ] && [ -x /usr/lib/firefox/firefox ]; then
     log "Firefox autoconfig is gone - putting the new tab page back"
-    sudo "$REPO/install.sh" 65
+    "$REPO/install.sh" 65
 fi
 
 log "Done. Ctrl+Alt+Esc to restart Cinnamon."

@@ -1,16 +1,14 @@
-# XP's games under Wine: Minesweeper, Solitaire, Spider Solitaire, FreeCell,
-# Hearts and 3D Pinball - Space Cadet
+# XP games under Wine: Minesweeper, Solitaire, Spider, FreeCell, Hearts, Pinball
 #
-# The games are not bundled - they are Microsoft's. Download "windows xp
-# games.zip" from https://archive.org/details/windows-xp-games into
-# ~/Downloads, or point at the zip or an unpacked folder with XP_GAMES=/path.
+# The games are Microsoft's and not bundled: they are downloaded from
+# archive.org/details/windows-xp-games on first run. XP_GAMES=/path uses a
+# local zip or folder.
 # The MSN Internet games in that zip are left out: their servers are gone.
 
 have wine || { warn "wine missing (sudo apt install wine)"; return 0; }
 
 src="${XP_GAMES:-}"
-[ -n "$src" ] || src="$(find "$HOME/Downloads" -maxdepth 2 \( -iname '*xp*games*.zip' -o -iname 'winmine.exe' \) 2>/dev/null | sort | head -1)"
-[ -n "$src" ] || { warn "no XP games found. Download them (see README) and run this component again."; return 0; }
+[ -n "$src" ] || src="$(fetch "https://archive.org/download/windows-xp-games/windows%20xp%20games.zip" xp-games.zip)" || return 0
 
 tmp="$(mktemp -d)"; trap 'rm -rf "$tmp"' RETURN
 case "$src" in

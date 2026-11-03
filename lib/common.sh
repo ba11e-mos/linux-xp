@@ -21,6 +21,21 @@ skip() { printf '%s -- %s%s\n' "$DIM" "$*" "$OFF"; }
 
 have() { command -v "$1" >/dev/null 2>&1; }
 
+# fetch <url> <file> - download once into the cache, print the local path.
+# A browser User-Agent because some hosts (icon-icons.com) refuse curl's.
+CACHE="${XP_CACHE:-$HOME/.cache/linux-xp}"
+fetch() {
+    local out="$CACHE/$2"
+    if [ ! -s "$out" ]; then
+        mkdir -p "$CACHE"
+        info "downloading $2" >&2
+        curl -fsSL -A "Mozilla/5.0 (X11; Linux x86_64; rv:152.0) Gecko/20100101 Firefox/152.0" \
+            -o "$out.part" "$1" || { rm -f "$out.part"; warn "download failed: $1"; return 1; }
+        mv "$out.part" "$out"
+    fi
+    printf '%s\n' "$out"
+}
+
 # theme_dir <subpath> -> first existing location of the installed theme
 theme_dir() {
     local sub="$1" d

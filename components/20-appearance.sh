@@ -23,9 +23,13 @@ fi
 # desktop keeps whatever face the distribution set.
 
 
+# XP_WALLPAPER=bliss: the 600 dpi scan of Bliss from archive.org
+if [ "${XP_WALLPAPER:-}" = bliss ]; then
+    XP_WALLPAPER="$(fetch https://archive.org/download/bliss-600dpi/bliss-600dpi.png bliss.png)" || XP_WALLPAPER=
+fi
 if [ -n "${XP_WALLPAPER:-}" ] && [ -f "$XP_WALLPAPER" ]; then
     set_if "$D.background" picture-uri "file://$XP_WALLPAPER"
     set_if "$D.background" picture-options 'zoom'
 else
-    info "set the wallpaper yourself, or pass XP_WALLPAPER=/path/to/bliss.jpg"
+    info "wallpaper left alone (XP_WALLPAPER=bliss or =/path/to/image sets one)"
 fi

@@ -1,12 +1,10 @@
 # Windows XP sound scheme: startup, shutdown, balloon, device in/out, dialogs
 #
-# The sounds are not bundled - they are Microsoft's. Download xpwav.zip from
-# https://lelegofrog.github.io/winwavxp.html into ~/Downloads, or point at the
-# zip or an unpacked folder with XP_SOUNDS=/path.
+# The sounds are Microsoft's and not bundled: xpwav.zip is downloaded from
+# lelegofrog.github.io on first run. XP_SOUNDS=/path uses a local zip or folder.
 
 src="${XP_SOUNDS:-}"
-[ -n "$src" ] || src="$(find "$HOME/Downloads" -maxdepth 2 \( -iname 'xpwav*.zip' -o -iname 'Windows XP Startup.wav' \) 2>/dev/null | sort | head -1)"
-[ -n "$src" ] || { warn "no XP sounds found. Download xpwav.zip (see README) and run this component again."; return 0; }
+[ -n "$src" ] || src="$(fetch https://lelegofrog.github.io/lelegodlex/win/xp/xpwav.zip xpwav.zip)" || return 0
 
 tmp="$(mktemp -d)"; trap 'rm -rf "$tmp"' RETURN
 case "$src" in

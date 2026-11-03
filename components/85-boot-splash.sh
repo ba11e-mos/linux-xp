@@ -1,7 +1,7 @@
 # XP boot screen: the logo on black with the blue blocks running in the bar
 #
-# Uses BFUR64/WindowsXP-Plymouth (MIT). Clone it into ~/Downloads/xp-plymouth,
-# point at it with XP_PLYMOUTH=/path, or let this component clone it.
+# Uses BFUR64/WindowsXP-Plymouth (MIT), cloned on first run. XP_PLYMOUTH=/path
+# uses a local clone.
 # Needs sudo: the theme goes in /usr/share/plymouth and the initramfs is rebuilt.
 
 have plymouth-set-default-theme || have update-alternatives || { warn "plymouth not installed"; return 0; }
@@ -11,7 +11,7 @@ if [ "${XP_SKIP_SUDO:-0}" = "1" ]; then
     return 0
 fi
 
-src="${XP_PLYMOUTH:-$HOME/Downloads/xp-plymouth}"
+src="${XP_PLYMOUTH:-$CACHE/xp-plymouth}"
 if [ ! -f "$src/WindowsXP/WindowsXP.plymouth" ]; then
     have git || { warn "git missing, and no theme at $src"; return 0; }
     info "cloning BFUR64/WindowsXP-Plymouth into $src"

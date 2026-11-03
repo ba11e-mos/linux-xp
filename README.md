@@ -1,236 +1,83 @@
 # linux-xp
 
-Turn Linux Mint Cinnamon into Windows XP.
-
-Built and tested on Linux Mint 22, Cinnamon 6.4, Firefox 152.
-
-## What it does
-
-| Part | Result |
-|---|---|
-| Desktop | Luna theme, XP icons, XP cursors, Tahoma |
-| Title bars | The real Luna buttons, with their full white outline |
-| Admin password | The polkit dialog redrawn as the Windows 7 UAC prompt |
-| Keyring unlock | The same prompt, same caption bar |
-| Volume | XP's wedge-and-track OSD |
-| Sound applet | Windows Media Player 8 |
-| Panel menus | XP dialogs with a blue caption bar and a red X |
-| Start menu | The XP header with your name and account picture |
-| Notifications | XP balloon tips |
-| Firefox | Internet Explorer 6 |
-| VS Code | Native title bar, and a bundled Luna theme with readable colours |
-| Lock screen | Idle and suspend both go to the XP greeter |
-| Screen saver | 3D Pipes after 10 minutes, the lock 5 minutes later |
-| Sounds | The XP sound scheme: startup, shutdown, balloon, device in/out, dialogs |
-| Boot screen | The XP logo with the blue blocks running in the bar |
-| Games | XP's own Minesweeper, Solitaire, Spider, FreeCell, Hearts and 3D Pinball, under Wine |
-| Terminal | cmd.exe |
-| Teams | The MSN icon |
-| Update Manager | The XP Windows Update icon, in the tray too |
+Turns Linux Mint Cinnamon into Windows XP. Tested on Mint 22, Cinnamon 6.4,
+Firefox 152.
 
 ## Install
 
 ```bash
-git clone git@github.com:ba11e-mos/linux-xp.git
+git clone https://github.com/ba11e-mos/linux-xp.git
 cd linux-xp
 ./install.sh
 ```
 
-Components can be run on their own:
+It asks yes or no for each part, installs the packages they need, downloads
+the rest, and runs. Log out and back in afterwards.
 
 ```bash
-./install.sh --list      # see what there is
-./install.sh 60          # just Firefox
-./install.sh 30 40       # the Cinnamon shell and the title bar buttons
+./install.sh --yes      # everything, no questions
+./install.sh --list     # the components
+./install.sh 15 92      # only those components
 ```
 
-Log out and back in when it finishes.
+## What you can pick
 
-### Artwork that is not in here
+- **Desktop:** Luna theme, XP icons and cursors, Bliss wallpaper
+- **Cinnamon:** XP start menu, UAC-style password prompts, XP volume OSD,
+  Media Player sound applet, captioned menus, balloon tips, animated
+  charging battery
+- **Sounds:** the XP sound scheme
+- **Screen saver:** 3D Pipes after 10 minutes, then the lock screen
+- **Boot screen:** the XP logo and loading bar
+- **Firefox** as Internet Explorer 6, with an IE-era start page
+- **VS Code**, **Discord** (as MSN Messenger, via Vesktop), **Teams** (MSN
+  icon), **terminal** (as cmd.exe)
+- **Games:** Minesweeper, Solitaire, Spider, FreeCell, Hearts, 3D Pinball
 
-The theme, the icons, the cursors, the wallpaper and the MSN icon are other
-people's work, so they are not bundled. Download them and point at them:
+The login screen is a separate, manual setup: [docs/login-screen.md](docs/login-screen.md).
 
-```bash
-# Theme and icon pack - drop the zip in ~/Downloads, or:
-XP_PACK=~/Downloads/Windows-XP-3.1.zip ./install.sh 10
+## Where things come from
 
-XP_WALLPAPER=~/Pictures/bliss.jpg ./install.sh 20
-XP_MSN_ICON=~/Pictures/msn.png    ./install.sh 90
-XP_SOUNDS=~/Downloads/xpwav.zip   ./install.sh 15
-```
+Nothing below is bundled in this repo. The installer downloads it when you
+pick the part that needs it, into `~/.cache/linux-xp`.
 
-| What | Where |
+| What | Source |
 |---|---|
-| Luna GTK/Cinnamon/metacity theme | [B00merang-Project/Windows-XP](https://github.com/B00merang-Project/Windows-XP) |
-| XP icon pack | [B00merang-Artwork/Windows-XP](https://github.com/B00merang-Artwork/Windows-XP) |
-| XP cursors | [na0miluv/modernXP-cursor-theme](https://github.com/na0miluv/modernXP-cursor-theme) |
-| Bliss wallpaper | [en.wikipedia.org/wiki/Bliss_(image)](https://en.wikipedia.org/wiki/Bliss_(image)) |
-| MSN butterfly icon | [icon-icons.com](https://images.icon-icons.com/5/PNG/256/msn_146.png) - needs a browser User-Agent, `curl` alone gets a Cloudflare page |
-| VGA raster fonts (`Bm437`) | [The Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/) |
-| Tahoma | `sudo apt install fonts-wine` |
-| XP sounds (`xpwav.zip`) | [lelegofrog.github.io/winwavxp.html](https://lelegofrog.github.io/winwavxp.html) |
-| Boot screen | [BFUR64/WindowsXP-Plymouth](https://github.com/BFUR64/WindowsXP-Plymouth) - cloned automatically |
-| 3D Pipes | `sudo apt install xscreensaver-gl` |
-| XP games | [archive.org/details/windows-xp-games](https://archive.org/details/windows-xp-games) - `XP_GAMES=~/Downloads/windows\ xp\ games.zip ./install.sh 92` |
-| Login screen greeter | [JezerM/nody-greeter](https://github.com/JezerM/nody-greeter) |
-| Login screen theme | [mshernandez5/WelcomeXP](https://github.com/mshernandez5/WelcomeXP) |
+| Luna GTK/Cinnamon theme | [B00merang-Project/Windows-XP](https://github.com/B00merang-Project/Windows-XP) 3.1 |
+| XP icons | [B00merang-Artwork/Windows-XP](https://github.com/B00merang-Artwork/Windows-XP) 3.1 |
+| Cursors | [na0miluv/modernXP-cursor-theme](https://github.com/na0miluv/modernXP-cursor-theme) |
+| Bliss | [archive.org/details/bliss-600dpi](https://archive.org/details/bliss-600dpi) |
+| XP sounds | [lelegofrog.github.io/winwavxp.html](https://lelegofrog.github.io/winwavxp.html) |
+| Boot screen | [BFUR64/WindowsXP-Plymouth](https://github.com/BFUR64/WindowsXP-Plymouth) |
+| 3D Pipes | `xscreensaver-gl` from apt |
+| XP games | [archive.org/details/windows-xp-games](https://archive.org/details/windows-xp-games), run with Wine |
+| MSN icon | [icon-icons.com](https://images.icon-icons.com/5/PNG/256/msn_146.png) |
+| VGA font | [The Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/) |
+| Login screen | [JezerM/nody-greeter](https://github.com/JezerM/nody-greeter) + [mshernandez5/WelcomeXP](https://github.com/mshernandez5/WelcomeXP) |
 
-### Optional
+The sounds, games, Bliss and boot-screen artwork are Microsoft's.
 
-```bash
-XP_TERMINAL_FONT=1 ./install.sh 80     # the real VGA raster font
-XP_SKIP_SUDO=1     ./install.sh        # skip everything that edits system files
-```
-
-The login screen is a separate setup - see [docs/login-screen.md](docs/login-screen.md).
-
-## Will it work on GNOME? On other distros?
-
-Partly on GNOME, mostly yes on other distros that run Cinnamon.
-
-Nothing hard-fails on the wrong desktop. Components that need Cinnamon check
-for it and skip themselves, so on GNOME you still get Firefox, VS Code, the
-icons and the terminal.
-
-| # | Component | Cinnamon | GNOME | KDE / XFCE |
-|---|---|---|---|---|
-| 10 | Theme and icon packs | yes | GTK apps yes, shell no | GTK apps only |
-| 20 | Themes, font, cursor | yes | yes¹ | no² |
-| 30 | Cinnamon shell CSS | yes | no³ | no |
-| 40 | Title bar buttons | yes | likely⁴ | no⁵ |
-| 50 | Cinnamon source patches | yes⁶ | no | no |
-| 55 | Idle and suspend lock | yes⁸ | no | no |
-| 60 | Firefox | yes | yes | yes |
-| 70 | VS Code | yes | yes | yes |
-| 80 | Terminal | yes⁷ | yes⁷ | no⁷ |
-| 90 | Teams icon | yes | yes | yes |
-| 95 | Symbolic icon names | yes | yes | yes |
-
-1. Writes `org.gnome.desktop.*` instead of `org.cinnamon.desktop.*`. GNOME
-   also needs the User Themes extension before a shell theme applies at all.
-2. KDE and XFCE keep appearance settings outside gsettings entirely.
-3. This is ~1800 lines of Cinnamon-specific St CSS. GNOME Shell uses different
-   widget class names throughout, so it would have to be rewritten, not ported.
-4. It patches `gtk-3.20/gtk.css`, which any GTK3 desktop reads. GNOME draws
-   headerbar buttons from the same rules, so it should apply - untested.
-5. KWin and xfwm4 use their own decoration themes, not GTK CSS.
-6. Version-sensitive. The patches anchor on exact strings in
-   `/usr/share/cinnamon/js/ui/*.js` as they are in Cinnamon 6.4. On a different
-   version they will not find their anchors and will refuse rather than
-   corrupt the file.
-7. Only `gnome-terminal`, whichever desktop it runs on.
-8. Needs lightdm and `xss-lock`. It also switches off Cinnamon's own locker,
-   which is Cinnamon-specific.
-
-**Other distros.** Anything shipping Cinnamon should work: Fedora's Cinnamon
-spin, Debian, Arch, Ubuntu Cinnamon. Two caveats. The Cinnamon version has to
-be close to 6.4 for component 50, per note 6 above. And a few messages suggest
-`apt` packages by name - the packages exist elsewhere under other names.
-
-Snap and flatpak Firefox are handled; component 60 looks in all three profile
-locations.
+The Firefox skin, the Discord theme, the Cinnamon patches and the VS Code
+theme are written here.
 
 ## After a Mint update
 
-Almost all of this lives in your home directory and survives updates: the
-theme, the icons, the Firefox chrome, the VS Code theme, the gsettings.
-
-Seven files do not. They are Cinnamon's own, under `/usr/share/cinnamon`,
-and a `cinnamon` package update replaces them:
-
-```
-js/ui/applet.js                    captioned applet menus
-js/ui/osdWindow.js                 the volume OSD
-js/ui/polkitAuthenticationAgent.js the UAC dialog
-applets/{calendar,network,printers,sound}@cinnamon.org/applet.js
-```
+A `cinnamon` update overwrites the patched Cinnamon files, and a Firefox
+update removes the new-tab setup. Put them back with:
 
 ```bash
-./after-update.sh --dry    # list what it would refresh
 ./after-update.sh
 ```
-
-Do not just re-run the patch scripts by hand. Each one restores its
-`.orig-xp` copy before patching, so after an update that would put the
-pre-update file back over the new one. `after-update.sh` deletes the stale
-copies first, then re-runs component 50.
-
-`/etc/pam.d/lightdm` is a conffile: apt will ask before replacing it. Keep
-your version, or run `patches/pam-fingerprint-first.sh` again afterwards.
-
-A Firefox major version can break the IE skin on its own - it is CSS
-against Firefox's internal markup, which moves. Nothing is lost; the rules
-just stop matching, and `./install.sh --list` shows which component to look
-at.
 
 ## Uninstall
 
 ```bash
-./uninstall.sh --dry     # see what would be put back
+./uninstall.sh --dry    # see what would be put back
 ./uninstall.sh
 ```
 
-Everything that gets changed is copied to `~/.local/share/linux-xp/backups`
-first, and the scripts that edit Cinnamon's source files leave an `.orig-xp`
-next to every file they touch. `uninstall.sh` uses both.
+Every file is backed up to `~/.local/share/linux-xp/backups` before it is
+changed.
 
-## Layout
-
-```
-install.sh              runs components/ in order
-lib/common.sh           logging, backups, theme lookup, desktop detection
-components/NN-*.sh      one step each, runnable alone, idempotent
-patches/*.sh            edit /usr/share/cinnamon/js/... (the only sudo)
-assets/cinnamon/        the cinnamon.css additions and the images they use
-assets/firefox/         userChrome.css, user.js and the IE icons
-assets/icons/           redrawn icons, plus a list of symbolic aliases
-assets/vscode/theme/    the VS Code theme, installed as a folder extension
-assets/idle-lock/       the script that hands idle and suspend to lightdm
-```
-
-The VS Code theme is bundled rather than pulled from the marketplace. It is
-[Mssjim's Windows XP Dark](https://github.com/Mssjim) (MIT) with twenty-eight
-colour values changed - surfaces the original left light while the text on
-them stayed white, which made hover cards, the suggestion list, the command
-palette and the peek view unreadable.
-
-## Traps worth knowing
-
-Notes from building this. Each one cost time to find.
-
-**`@namespace` in userChrome.css kills the address bar.** Every guide starts
-with `@namespace url(...there.is.only.xul)`. In Firefox 152 the address bar is
-HTML, not XUL, so every rule targeting `#urlbar` matches nothing - silently.
-The file here has no `@namespace`.
-
-**Negative margins crash Cinnamon.** St computes sizes unsigned, so
-`margin-top: -6px` becomes an enormous number and the shell dies with
-`GLib-ERROR: failed to allocate ... bytes`. Use `translation_y` on the actor.
-
-**`background-gradient-*` suppresses `background-image`.** If a St element has
-a gradient set, even `transparent`, the image is never painted.
-
-**St has its own child properties.** `St.BoxLayout` honours `y-fill`, not
-`Clutter.ActorAlign`, and `St.Bin` wants `St.Align`, not
-`Clutter.ActorAlign` - the wrong enum throws
-`Error: 3 is not a valid value for enumeration StAlign`.
-
-**Title bars are GTK, not metacity.** Cinnamon draws window frames from
-`gtk-3.20/gtk.css`, in the section marked `/* CSD */`. Editing `metacity-1/`
-does nothing.
-
-**GTK reads `gtk-3.20/`, not `gtk-3.0/`**, when a theme ships both.
-
-**The keyring prompt is Cinnamon's, not gcr-prompter's.** `gcr` ships a GTK
-prompter, but Cinnamon registers its own `KeyringDialog` on the same DBus
-name, and that one is a St dialog carrying `.prompt-dialog` - so it can be
-patched exactly like the polkit prompt.
-
-**Two lockers stack.** `lock-on-suspend` makes cinnamon-screensaver lock on
-resume while `xss-lock` is already showing the greeter, so you get both
-screens. Component 55 turns Cinnamon's side off.
-
-**cinnamon-settings-daemon zeroes `xset s`** whenever it decides it is
-managing idle itself, which kills the idle path without any error. Setting
-the timer once at login is not enough; the script re-asserts it.
+[docs/notes.md](docs/notes.md) covers other desktops, the repo layout and the
+traps found while building this.
