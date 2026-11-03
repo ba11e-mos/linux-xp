@@ -30,7 +30,7 @@ fi
 log "restoring Cinnamon source files"
 while IFS= read -r o; do
     info "${o%.orig-xp}"
-    run sudo cp -a "$o" "${o%.orig-xp}"
+    run sudo mv "$o" "${o%.orig-xp}"
 done < <(find /usr/share/cinnamon -name "*.orig-xp" 2>/dev/null)
 
 # --- Firefox ---
