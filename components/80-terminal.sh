@@ -21,13 +21,13 @@ if [ "${XP_TERMINAL_FONT:-0}" = "1" ]; then
   </pattern></acceptfont></selectfont>
 </fontconfig>
 XML
-    if ! fc-list 2>/dev/null | grep -qi "Bm437" &&
+    if ! fc-list 2>/dev/null | grep -i "Bm437" >/dev/null &&
        z="$(fetch https://int10h.org/oldschool-pc-fonts/download/oldschool_pc_font_pack_v2.2_linux.zip oldschool-pc-fonts.zip)"; then
         mkdir -p "$HOME/.local/share/fonts"
         unzip -qq -o -j "$z" '*/Bm437_IBM_VGA_*.otb' -d "$HOME/.local/share/fonts"
     fi
     fc-cache -f >/dev/null 2>&1
-    fc-list 2>/dev/null | grep -qi "Bm437" && vga=1 || warn "Bm437 fonts missing after download"
+    fc-list 2>/dev/null | grep -i "Bm437" >/dev/null && vga=1 || warn "Bm437 fonts missing after download"
 fi
 
 done_any=0

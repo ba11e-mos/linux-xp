@@ -18,7 +18,7 @@ source "$(dirname "$(readlink -f "$0")")/lib/common.sh"
 PARTS=(
 "10 20 40 95|convert:imagemagick unzip:unzip curl:curl||Luna theme, XP icons and cursors (the base for everything else)"
 "20||XP_WALLPAPER=bliss|Bliss as the wallpaper"
-"30 50|||Start menu, XP dialogs, volume OSD, Media Player sound applet, charging battery (sudo)"
+"30 50|node:nodejs||Start menu, XP dialogs, volume OSD, Media Player sound applet, charging battery (sudo)"
 "15|ffmpeg:ffmpeg unzip:unzip||XP sounds: startup, shutdown, balloons, USB in/out"
 "57|lightdm:lightdm git:git||XP login screen (sudo)"
 "55|xss-lock:xss-lock /usr/libexec/xscreensaver/pipes:xscreensaver-gl /usr/lib/*/girepository-1.0/Gtk-3.0.typelib:gir1.2-gtk-3.0||3D Pipes screen saver, then lock to the login screen"
@@ -96,7 +96,7 @@ fi
 ran=0
 for f in "$REPO"/components/*.sh; do
     num="$(basename "$f" .sh | cut -d- -f1)"
-    printf '%s\n' "${wanted[@]}" | grep -qx "$num" || continue
+    printf '%s\n' "${wanted[@]}" | grep -x "$num" >/dev/null || continue
     log "$(sed -n '1s/^# \{0,1\}//p' "$f")"
     # shellcheck disable=SC1090
     ( source "$f" ) || warn "component $num failed - continuing"

@@ -7,8 +7,8 @@ flatpak - though the IE look is tuned for Firefox 152 and drifts on others.
 ## Install
 
 ```bash
-git clone https://github.com/ba11e-mos/linux-xp.git
-cd linux-xp
+curl -L https://github.com/ba11e-mos/linux-xp/archive/refs/heads/main.tar.gz | tar xz
+cd linux-xp-main
 ./install.sh
 ```
 

@@ -6,6 +6,7 @@
 require_cinnamon || return 0
 
 [ -d /usr/share/cinnamon/js ] || { warn "/usr/share/cinnamon/js not found"; return 0; }
+have node || { warn "nodejs missing (sudo apt install nodejs) - it checks every patched file before it is kept"; return 0; }
 
 if [ "${XP_SKIP_SUDO:-0}" = "1" ]; then
     skip "skipped (XP_SKIP_SUDO=1)"
