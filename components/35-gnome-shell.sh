@@ -68,12 +68,21 @@ if s="$(install_ext dash-to-panel@jderose9.github.com)"; then
     dtp panel-positions '{"0":"BOTTOM"}'
     dtp panel-sizes '{"0":30}'
     dtp show-activities-button false
-    dtp trans-use-custom-bg true
-    dtp trans-bg-color '#245EDC'
-    dtp trans-use-custom-opacity true
-    dtp trans-panel-opacity 1.0
-    dtp dot-style-focused 'SOLID'
-    dtp dot-style-unfocused 'DOTS'
+    # XP's task buttons: one per window, icon and title, no dots or previews;
+    # the colours come from the shell theme (xp-extras.css)
+    dtp trans-use-custom-bg false
+    dtp group-apps false
+    dtp show-favorites false
+    dtp show-window-previews false
+    dtp highlight-appicon-hover false
+    dtp focus-highlight false
+    dtp dot-size 0
+    dtp appicon-padding 7
+    dtp appicon-margin 0
+    dtp group-apps-use-fixed-width true
+    dtp group-apps-label-max-width 150
+    dtp group-apps-label-font-size 12
+    dtp group-apps-label-font-color '#FFFFFF'
     # Start | running apps ... | tray, clock
     dtp panel-element-positions '{"0":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'
     enable_ext dash-to-panel@jderose9.github.com
@@ -90,30 +99,47 @@ if s="$(install_ext arcmenu@arcmenu.com)"; then
     arc position-in-panel 'Left'
     arc menu-button-appearance 'Icon_Text'
     arc menu-button-text 'start'
-    [ -f "$icons/scalable/apps/start-here.svg" ] && arc menu-button-icon "$icons/scalable/apps/start-here.svg"
+    # the PNG: the pack's SVG wraps a bitmap without the xlink namespace and St draws nothing
+    [ -f "$icons/128x128/apps/start-here.png" ] && arc menu-button-icon "$icons/128x128/apps/start-here.png"
     arc menu-button-icon-size 20
-    arc menu-button-bg-color "(true, '#3C9A3C')"
-    arc menu-button-hover-bg-color "(true, '#4FB34F')"
-    arc menu-button-active-bg-color "(true, '#2E7D2E')"
-    arc menu-button-fg-color "(true, '#FFFFFF')"
-    arc menu-button-hover-fg-color "(true, '#FFFFFF')"
-    arc menu-button-active-fg-color "(true, '#FFFFFF')"
-    arc menu-button-border-radius "(true, 0)"
-    # the menu itself: XP's white pane with Luna blue highlights
-    arc override-menu-theme true
-    arc menu-background-color '#FFFFFF'
-    arc menu-foreground-color '#000000'
-    arc menu-border-color '#0A246A'
-    arc menu-border-width 2
-    arc menu-border-radius 6
-    arc menu-item-hover-bg-color '#316AC5'
-    arc menu-item-hover-fg-color '#FFFFFF'
-    arc menu-item-active-bg-color '#316AC5'
-    arc menu-item-active-fg-color '#FFFFFF'
-    arc menu-separator-color '#D3D3D3'
-    arc search-entry-border-radius "(true, 0)"
+    # the shell theme draws the button and the menu frame
+    arc override-menu-theme false
     enable_ext arcmenu@arcmenu.com
     log "XP Start menu installed (ArcMenu)"
+fi
+
+# --- XP pictures for the taskbar and Start menu, in the shell theme ---
+shell="$(theme_dir gnome-shell)" || { warn "no gnome-shell in $THEME_NAME"; shell=""; }
+if [ -n "$shell" ]; then
+    # Cinnamon's Start menu frame, mirrored so the blue places column is on
+    # the right, and widened to ArcMenu's columns
+    convert "$shell/menu-bg.png" -flop \( -clone 0 -crop 20x478+0+0 \) \( -clone 0 -crop 213x478+20+0 -resize 255x478\! \) \
+        \( -clone 0 -crop 147x478+233+0 \) -delete 0 +append +repage "$shell/xp-start-menu.png"
+    css="$shell/gnome-shell.css" marker="/* --- linux-xp extras --- */"
+    backup_file "$css"
+    if marker_present "$css" "$marker"; then
+        sed -i "/^\/\* --- linux-xp extras --- \*\//,\$d" "$css"
+    fi
+    { printf '%s\n' "$marker"; cat "$ASSETS/gnome-shell/xp-extras.css"; } >> "$css"
+    # load it now
+    gsettings set org.gnome.shell.extensions.user-theme name "" 2>/dev/null
+    gsettings set org.gnome.shell.extensions.user-theme name "$THEME_NAME" 2>/dev/null
+    log "XP taskbar and Start menu pictures added to the shell theme"
+fi
+
+# --- Luna title bars for GTK4/libadwaita apps, GNOME Terminal and Wine ---
+# GNOME draws the frames of X11 apps with GTK4, and GTK4 has no theme
+# support, but every GTK app reads the user's gtk.css last.
+if gtk_assets="$(theme_dir gtk-3.20)/assets" && [ -d "$gtk_assets" ]; then
+    for v in gtk-3.0 gtk-4.0; do
+        f="$HOME/.config/$v/gtk.css"
+        mkdir -p "$(dirname "$f")"
+        backup_file "$f"
+        [ -f "$f" ] && sed -i '/^\/\* linux-xp: Luna title bars/,/^\/\* linux-xp end \*\//d' "$f"
+        sed "s|@ASSETS@|$gtk_assets|g" "$ASSETS/gnome-shell/gtk4-luna.css" >> "$f"
+    done
+    gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
+    log "Luna title bars for GTK4 apps and X11 windows"
 fi
 
 info "log out and back in to load the taskbar and Start menu"

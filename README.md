@@ -24,7 +24,7 @@ the rest, and runs. Log out and back in afterwards.
 | Feature | Cinnamon | XFCE | GNOME |
 |---|:-:|:-:|:-:|
 | Luna theme, XP icons and cursors | ✓ | ✓ | ✓ |
-| Luna window frames | ✓ | ✓ | partly¹ |
+| Luna window frames | ✓ | ✓ | ✓¹ |
 | Bliss wallpaper | ✓ | ✓ | ✓ |
 | XP taskbar | ✓ | ✓ | ✓ |
 | XP start menu | ✓ | ✓³ | ✓ |
@@ -42,7 +42,7 @@ the rest, and runs. Log out and back in afterwards.
 | Games: Minesweeper, Solitaire, Spider, FreeCell, Hearts, Pinball | ✓ | ✓ | ✓ |
 | VS Code Luna theme, Teams MSN icon | ✓ | untested | untested |
 
-¹ GNOME draws its own frames for GTK4/libadwaita apps, which ignore the theme.  
+¹ GTK4/libadwaita apps get Luna title bars; what is inside them keeps the GNOME look.  
 ² Snap Firefox gets the skin but not the new-tab page.  
 ³ Whisker Menu: XP colours on the button, its own layout inside.
 

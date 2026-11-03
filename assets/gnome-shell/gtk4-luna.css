@@ -1,0 +1,69 @@
+/* linux-xp: Luna title bars for GTK4 and libadwaita apps, which skip GTK3
+   themes. GNOME also draws the frames of X11 apps (Wine) with GTK4. */
+@define-color xp_title_fg #FFFFFF;
+headerbar, .titlebar, window.csd > .titlebar {
+    min-height: 30px;
+    color: @xp_title_fg;
+    background-color: #0A5FE6;
+    background-image: url("@ASSETS@/titlebar-focused-middle.png");
+    background-size: 1px 100%;
+    background-repeat: repeat-x;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+}
+headerbar:backdrop, .titlebar:backdrop {
+    background-color: #7A96DF;
+    background-image: url("@ASSETS@/titlebar-unfocused-middle.png");
+}
+window.csd:not(.maximized):not(.tiled) { border-radius: 8px 8px 0 0; }
+window.csd:not(.maximized):not(.tiled):not(.popup) > .titlebar,
+window.csd:not(.maximized):not(.tiled) headerbar { border-radius: 7px 7px 0 0; }
+headerbar .title, .titlebar .title, windowtitle .title {
+    color: #FFFFFF;
+    font-weight: bold;
+    text-shadow: 1px 1px #0A1E6E;
+}
+headerbar:backdrop .title, windowtitle:backdrop .title { color: #D8E4F8; text-shadow: none; }
+headerbar .subtitle, windowtitle .subtitle { color: #D8E4F8; }
+/* tool buttons sitting on the blue bar */
+headerbar button:not(.titlebutton), headerbar menubutton > button {
+    color: #FFFFFF;
+    background: transparent;
+    border-radius: 3px;
+    box-shadow: none;
+}
+headerbar button:not(.titlebutton):hover, headerbar menubutton > button:hover { background-color: alpha(#FFFFFF, 0.2); }
+headerbar button:not(.titlebutton):checked, headerbar button:not(.titlebutton):active { background-color: alpha(#000000, 0.2); }
+headerbar entry { color: #000000; background-color: #FFFFFF; border: 1px solid #7F9DB9; border-radius: 0; }
+
+/* the Luna caption buttons */
+windowcontrols button, .titlebutton {
+    min-width: 21px;
+    min-height: 21px;
+    padding: 0;
+    margin: 0 1px;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 21px 21px;
+}
+windowcontrols button > image, .titlebutton > image { opacity: 0; }
+windowcontrols button.close, button.titlebutton.close    { background-image: url("@ASSETS@/close-normal.png"); }
+button.titlebutton.close:hover, windowcontrols button.close:hover    { background-image: url("@ASSETS@/close-hover.png"); }
+button.titlebutton.close:active, windowcontrols button.close:active   { background-image: url("@ASSETS@/close-active.png"); }
+windowcontrols button.minimize, button.titlebutton.minimize { background-image: url("@ASSETS@/minimize-normal.png"); }
+button.titlebutton.minimize:hover, windowcontrols button.minimize:hover { background-image: url("@ASSETS@/minimize-hover.png"); }
+button.titlebutton.minimize:active, windowcontrols button.minimize:active { background-image: url("@ASSETS@/minimize-active.png"); }
+windowcontrols button.maximize, button.titlebutton.maximize { background-image: url("@ASSETS@/maximize-normal.png"); }
+button.titlebutton.maximize:hover, windowcontrols button.maximize:hover { background-image: url("@ASSETS@/maximize-hover.png"); }
+button.titlebutton.maximize:active, windowcontrols button.maximize:active { background-image: url("@ASSETS@/maximize-active.png"); }
+.maximized windowcontrols button.maximize, .maximized button.titlebutton.maximize { background-image: url("@ASSETS@/restore-normal.png"); }
+.maximized windowcontrols button.maximize:hover { background-image: url("@ASSETS@/restore-hover.png"); }
+button.titlebutton.close:backdrop, windowcontrols button.close:backdrop    { background-image: url("@ASSETS@/close-backdrop.png"); }
+button.titlebutton.minimize:backdrop, windowcontrols button.minimize:backdrop { background-image: url("@ASSETS@/minimize-backdrop.png"); }
+button.titlebutton.maximize:backdrop, windowcontrols button.maximize:backdrop { background-image: url("@ASSETS@/maximize-backdrop.png"); }
+/* linux-xp end */

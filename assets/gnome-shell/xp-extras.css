@@ -1,0 +1,97 @@
+/* Taskbar: Dash to Panel sets inline styles on #panel that blank its
+   background, and only a background colour on its parent, so the Luna bar
+   image goes on the parent. */
+.dashtopanelPanel {
+    border-image: url('panel.png') 80 0 0 0;
+    color: #FFFFFF;
+}
+#panel.dashtopanelMainPanel { font-family: Tahoma, "Noto Sans", sans-serif; font-size: 9pt; }
+
+/* Start */
+#panel .arcmenu-panel-menu {
+    border-image: url('menu-box.png') 7 0 0 0;
+    border-right-width: 10px;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0 16px 0 6px;
+    color: #FFFFFF;
+}
+#panel .arcmenu-panel-menu:hover { border-image: url('menu-hover.png') 7 0 0 0; box-shadow: none; background-color: transparent; }
+#panel .arcmenu-panel-menu:active,
+#panel .arcmenu-panel-menu:checked { border-image: url('menu-active.png') 7 0 0 0; box-shadow: none; background-color: transparent; }
+#panel .arcmenu-panel-menu .arcmenu-menu-button {
+    color: #FFFFFF;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+}
+
+/* Window buttons */
+#dashtopanelTaskbar .overview-tile .dtp-container {
+    border-image: url('normal.png') 4 4 4 4;
+    border-radius: 0;
+    margin: 0 1px;
+    padding: 0 4px;
+}
+#dashtopanelTaskbar .overview-tile:hover .dtp-container { border-image: url('hover.png') 4 4 4 4; }
+#dashtopanelTaskbar .overview-tile.focused .dtp-container { border-image: url('active.png') 4 4 4 4; }
+#dashtopanelTaskbar .overview-label { color: #FFFFFF; }
+
+/* Notification area: the light-blue tray behind the indicators and clock */
+#panel .panel-button,
+#panel .panel-button:hover,
+#panel .panel-button:active,
+#panel .panel-button:checked { border-radius: 0; box-shadow: none; background-color: transparent; color: #FFFFFF; }
+#panel .panel-button.clock-display { border-image: url('panel-right.png') 7 0 0 0; }
+#panel .panel-button.clock-display .clock { color: #FFFFFF; font-weight: normal; }
+
+/* Menus from the panel: XP's white menu with a navy edge */
+.popup-menu-content,
+.quick-settings,
+.calendar,
+.datemenu-popover,
+.message-list {
+    background-color: #FFFFFF;
+    color: #000000;
+    border: 1px solid #0A246A;
+    border-radius: 0;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.4);
+}
+.popup-menu-item { border-radius: 0; color: #000000; }
+.popup-menu-item:hover, .popup-menu-item:focus { background-color: #316AC5; color: #FFFFFF; }
+.quick-toggle, .quick-menu-toggle .quick-toggle {
+    background-color: #ECE9D8;
+    color: #000000;
+    border: 1px solid #003C74;
+    border-radius: 3px;
+}
+.quick-toggle:hover { background-color: #F5F4EA; }
+.quick-toggle:checked { background-color: #316AC5; color: #FFFFFF; }
+.quick-toggle:checked:hover { background-color: #4A7FD4; }
+.icon-button, .quick-settings .icon-button {
+    background-color: #ECE9D8;
+    color: #000000;
+    border: 1px solid #003C74;
+    border-radius: 3px;
+}
+.slider { -barlevel-active-background-color: #316AC5; -barlevel-background-color: #D4D0C8; color: #316AC5; }
+
+/* Start menu: the XP frame - blue header, white programs, blue places, blue footer */
+.arcmenu-menu .popup-menu-content {
+    border: none;
+    border-image: url('xp-start-menu.png') 68 8 44 8;
+    background-color: transparent;
+    padding: 74px 4px 46px 4px;
+    box-shadow: none;
+}
+.arcmenu-menu { color: #000000; border-image: none; border: none; padding: 0; background: none; -arrow-background-color: transparent; -arrow-border-width: 0; }
+.arcmenu-menu .popup-menu-item:hover,
+.arcmenu-menu .popup-menu-item:focus,
+.arcmenu-menu .arcmenu-menu-item:hover { background-color: #316AC5; color: #FFFFFF; }
+.arcmenu-menu .arcmenu-search-entry, #ArcMenuSearchEntry { border-radius: 0; border: 1px solid #7F9DB9; background-color: #FFFFFF; color: #000000; }
+#panel .panel-status-indicators-box { border-image: url('panel-right.png') 7 0 0 0; padding: 0 4px; }
+#panel .panel-status-indicators-box .panel-status-indicators-box { border-image: none; padding: 0; }
+#dashtopanelTaskbar .overview-tile .overview-icon { padding: 0; }

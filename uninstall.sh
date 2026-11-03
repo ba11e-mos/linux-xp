@@ -98,6 +98,10 @@ if is_gnome; then
     run gsettings reset org.gnome.shell.extensions.user-theme name
     run gsettings reset org.gnome.desktop.background picture-uri-dark
     run gsettings reset org.gnome.desktop.interface color-scheme
+    run gsettings reset org.gnome.desktop.wm.preferences button-layout
+    for f in "$HOME/.config/gtk-3.0/gtk.css" "$HOME/.config/gtk-4.0/gtk.css"; do
+        [ -f "$f" ] && run sed -i '/^\/\* linux-xp: Luna title bars/,/^\/\* linux-xp end \*\//d' "$f"
+    done
     for e in dash-to-panel@jderose9.github.com arcmenu@arcmenu.com; do
         run rm -rf "$HOME/.local/share/gnome-shell/extensions/$e"
     done
