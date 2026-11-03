@@ -102,6 +102,10 @@ if s="$(install_ext arcmenu@arcmenu.com)"; then
     # the PNG: the pack's SVG wraps a bitmap without the xlink namespace and St draws nothing
     [ -f "$icons/128x128/apps/start-here.png" ] && arc menu-button-icon "$icons/128x128/apps/start-here.png"
     arc menu-button-icon-size 20
+    # the frame picture is drawn for this size (xp-extras.css)
+    arc menu-height 600
+    arc right-panel-width 205
+    arc menu-width-adjustment 0
     # the shell theme draws the button and the menu frame
     arc override-menu-theme false
     enable_ext arcmenu@arcmenu.com
@@ -112,9 +116,13 @@ fi
 shell="$(theme_dir gnome-shell)" || { warn "no gnome-shell in $THEME_NAME"; shell=""; }
 if [ -n "$shell" ]; then
     # Cinnamon's Start menu frame, mirrored so the blue places column is on
-    # the right, and widened to ArcMenu's columns
-    convert "$shell/menu-bg.png" -flop \( -clone 0 -crop 20x478+0+0 \) \( -clone 0 -crop 213x478+20+0 -resize 255x478\! \) \
-        \( -clone 0 -crop 147x478+233+0 \) -delete 0 +append +repage "$shell/xp-start-menu.png"
+    # the right, and stretched to ArcMenu's 640x720 with the edges kept 1:1
+    convert "$shell/menu-bg.png" -flop \
+        \( -clone 0 -crop 20x478+0+0 \) \( -clone 0 -crop 213x478+20+0 -resize 405x478\! \) \
+        \( -clone 0 -crop 144x478+233+0 -resize 212x478\! \) \( -clone 0 -crop 3x478+377+0 \) \
+        -delete 0 +append +repage \
+        \( -clone 0 -crop 640x68+0+0 \) \( -clone 0 -crop 640x367+0+68 -resize 640x609\! \) \( -clone 0 -crop 640x43+0+435 \) \
+        -delete 0 -append +repage "$shell/xp-start-menu.png"
     css="$shell/gnome-shell.css" marker="/* --- linux-xp extras --- */"
     backup_file "$css"
     if marker_present "$css" "$marker"; then

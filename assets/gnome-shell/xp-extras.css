@@ -48,18 +48,41 @@
 #panel .panel-button.clock-display { border-image: url('panel-right.png') 7 0 0 0; }
 #panel .panel-button.clock-display .clock { color: #FFFFFF; font-weight: normal; }
 
-/* Menus from the panel: XP's white menu with a navy edge */
-.popup-menu-content,
-.quick-settings,
-.calendar,
-.datemenu-popover,
-.message-list {
+/* Menus from the panel: XP's white menu with a navy edge. The Cinnamon
+   theme's grey menu frame (popupmenu.png + 20px padding) sits around GNOME's
+   own menu box and pushes it off screen, so it goes. */
+.popup-menu-boxpointer, .popup-menu, .panel-menu {
+    border-image: none;
+    border: none;
+    padding: 0;
+    background: none;
+    -arrow-background-color: transparent;
+    -arrow-border-width: 0;
+    -arrow-rise: 0;
+}
+.popup-menu-content, .quick-settings {
     background-color: #FFFFFF;
     color: #000000;
     border: 1px solid #0A246A;
     border-radius: 0;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.4);
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+    padding: 6px;
 }
+/* only the outer box gets the frame */
+.datemenu-popover .calendar, .datemenu-popover .message-list, .datemenu-popover .events-button,
+.datemenu-popover .world-clocks-button, .datemenu-popover .weather-button {
+    border: 1px solid #7F9DB9;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: #FFFFFF;
+}
+.datemenu-popover .message-list { border: none; }
+.calendar-day-base { border-radius: 0; }
+.calendar-today, .calendar-today:selected { background-color: #316AC5; color: #FFFFFF; border-radius: 0; }
+#panel .panel-button.clock-display .clock,
+#panel .panel-button.clock-display:active .clock,
+#panel .panel-button.clock-display:checked .clock,
+#panel .panel-button.clock-display:hover .clock { box-shadow: none; background: none; border-radius: 0; }
 .popup-menu-item { border-radius: 0; color: #000000; }
 .popup-menu-item:hover, .popup-menu-item:focus { background-color: #316AC5; color: #FFFFFF; }
 .quick-toggle, .quick-menu-toggle .quick-toggle {
@@ -82,7 +105,11 @@
 /* Start menu: the XP frame - blue header, white programs, blue places, blue footer */
 .arcmenu-menu .popup-menu-content {
     border: none;
-    border-image: url('xp-start-menu.png') 68 8 44 8;
+    border-image: none;
+    /* drawn 1:1 - St scales border-image edges unevenly; 640x720 is ArcMenu's
+       default size (menu-height 600 plus the padding) */
+    background-image: url('xp-start-menu.png');
+    background-size: 640px 720px;
     background-color: transparent;
     padding: 74px 4px 46px 4px;
     box-shadow: none;
