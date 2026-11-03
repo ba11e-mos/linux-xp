@@ -23,7 +23,7 @@ Built and tested on Linux Mint 22, Cinnamon 6.4, Firefox 152.
 | Screen saver | 3D Pipes after 10 minutes, the lock 5 minutes later |
 | Sounds | The XP sound scheme: startup, shutdown, balloon, device in/out, dialogs |
 | Boot screen | The XP logo with the blue blocks running in the bar |
-| Games | XP's own Minesweeper and Solitaire, under Wine |
+| Games | XP's own Minesweeper, Solitaire, Spider, FreeCell, Hearts and 3D Pinball, under Wine |
 | Terminal | cmd.exe |
 | Teams | The MSN icon |
 | Update Manager | The XP Windows Update icon, in the tray too |
@@ -72,7 +72,7 @@ XP_SOUNDS=~/Downloads/xpwav.zip   ./install.sh 15
 | XP sounds (`xpwav.zip`) | [lelegofrog.github.io/winwavxp.html](https://lelegofrog.github.io/winwavxp.html) |
 | Boot screen | [BFUR64/WindowsXP-Plymouth](https://github.com/BFUR64/WindowsXP-Plymouth) - cloned automatically |
 | 3D Pipes | `sudo apt install xscreensaver-gl` |
-| Minesweeper, Solitaire | [archive.org/details/windows-xp-games](https://archive.org/details/windows-xp-games) - `XP_GAMES=~/Downloads/windows\ xp\ games.zip ./install.sh 92` |
+| XP games | [archive.org/details/windows-xp-games](https://archive.org/details/windows-xp-games) - `XP_GAMES=~/Downloads/windows\ xp\ games.zip ./install.sh 92` |
 | Login screen greeter | [JezerM/nody-greeter](https://github.com/JezerM/nody-greeter) |
 | Login screen theme | [mshernandez5/WelcomeXP](https://github.com/mshernandez5/WelcomeXP) |
 
