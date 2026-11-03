@@ -7,6 +7,21 @@
 
 have wine || { warn "wine missing (sudo apt install wine)"; return 0; }
 
+# The games are 32-bit. Mint enables i386 packages, Ubuntu does not, so its
+# plain "wine" install can only run 64-bit programs. WineHQ builds have both.
+st="$(dpkg -s wine32:i386 winehq-stable winehq-staging winehq-devel 2>/dev/null || true)"
+if have dpkg && [[ "$st" != *"Status: install ok installed"* ]]; then
+    if [ "${XP_SKIP_SUDO:-0}" = "1" ]; then
+        warn "32-bit Wine missing and XP_SKIP_SUDO=1 - the games will not start"
+    else
+        info "adding 32-bit Wine (the games are 32-bit)"
+        sudo dpkg --add-architecture i386 &&
+            sudo apt-get update -qq &&
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq wine32:i386 >/dev/null ||
+            warn "could not install wine32:i386 - the games will not start"
+    fi
+fi
+
 src="${XP_GAMES:-}"
 [ -n "$src" ] || src="$(fetch "https://archive.org/download/windows-xp-games/windows%20xp%20games.zip" xp-games.zip)" || return 0
 

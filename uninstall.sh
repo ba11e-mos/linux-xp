@@ -79,6 +79,29 @@ if is_xfce; then
         run xfconf-query -c xfce4-terminal -p "$p" -r 2>/dev/null || true
     done
 fi
+if is_gnome; then
+    log "GNOME shell theme, taskbar, Start menu and wallpaper back to the defaults"
+    run gsettings reset org.gnome.shell.extensions.user-theme name
+    run gsettings reset org.gnome.desktop.background picture-uri-dark
+    run gsettings reset org.gnome.desktop.interface color-scheme
+    for e in dash-to-panel@jderose9.github.com arcmenu@arcmenu.com; do
+        run rm -rf "$HOME/.local/share/gnome-shell/extensions/$e"
+    done
+    run dconf reset -f /org/gnome/shell/extensions/dash-to-panel/
+    run dconf reset -f /org/gnome/shell/extensions/arcmenu/
+    # Ubuntu Dock back, our extensions off
+    run python3 - <<'PY'
+import ast, subprocess
+def get(k):
+    v = subprocess.run(["gsettings", "get", "org.gnome.shell", k], capture_output=True, text=True).stdout.strip()
+    return ast.literal_eval(v.replace("@as ", "")) if v else []
+ours = {"dash-to-panel@jderose9.github.com", "arcmenu@arcmenu.com"}
+on = [u for u in get("enabled-extensions") if u not in ours]
+off = [u for u in get("disabled-extensions") if u != "ubuntu-dock@ubuntu.com"]
+subprocess.run(["gsettings", "set", "org.gnome.shell", "enabled-extensions", str(on)], check=True)
+subprocess.run(["gsettings", "set", "org.gnome.shell", "disabled-extensions", str(off)], check=True)
+PY
+fi
 run rm -f "$HOME/.config/autostart/xp-startup-sound.desktop"
 
 # --- theme, icons and cursors (component 10, everything 30/40/90/95 put in them) ---

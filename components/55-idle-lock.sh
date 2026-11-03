@@ -1,5 +1,7 @@
 # XP screen saver after 10 minutes idle, then lock to the XP greeter
 
+is_gnome && { skip "GNOME locks with GDM and runs on Wayland, where xss-lock cannot"; return 0; }
+
 have xss-lock || { warn "xss-lock missing (sudo apt install xss-lock)"; return 0; }
 have dm-tool  || { warn "dm-tool missing - this needs lightdm"; return 0; }
 

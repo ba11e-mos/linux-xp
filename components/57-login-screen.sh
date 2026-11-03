@@ -9,6 +9,8 @@
 # If the login screen ever breaks: Ctrl+Alt+F2, log in, then
 #   sudo rm /etc/lightdm/lightdm.conf.d/99-nody.conf && sudo systemctl restart lightdm
 
+is_gnome && { skip "GNOME logs in through GDM, not lightdm"; return 0; }
+
 have lightdm || { warn "lightdm not installed - the login screen needs it"; return 0; }
 if [ "${XP_SKIP_SUDO:-0}" = "1" ]; then
     skip "skipped (XP_SKIP_SUDO=1)"

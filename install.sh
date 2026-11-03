@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# linux-xp - turn a Cinnamon or XFCE desktop into Windows XP.
+# linux-xp - turn a Cinnamon, XFCE or GNOME desktop into Windows XP.
 #
 #   ./install.sh             ask about each part, then install what you chose
 #   ./install.sh --yes       install everything without asking
@@ -19,6 +19,7 @@ PARTS=(
 "10 20 40 95|convert:imagemagick unzip:unzip curl:curl||Luna theme, XP icons and cursors (the base for everything else)"
 "20||XP_WALLPAPER=bliss|Bliss as the wallpaper"
 "30 50|node:nodejs||Start menu, XP dialogs, volume OSD, Media Player sound applet, charging battery (sudo)"
+"35|/usr/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com:gnome-shell-extensions unzip:unzip||GNOME: XP shell theme, taskbar and Start menu"
 "15|ffmpeg:ffmpeg unzip:unzip||XP sounds: startup, shutdown, balloons, USB in/out"
 "57|lightdm:lightdm git:git||XP login screen (sudo)"
 "55|xss-lock:xss-lock /usr/libexec/xscreensaver/pipes:xscreensaver-gl /usr/lib/*/girepository-1.0/Gtk-3.0.typelib:gir1.2-gtk-3.0||3D Pipes screen saver, then lock to the login screen"
@@ -43,6 +44,16 @@ list_components() {
     done
 }
 
+# offered <components> - whether a part makes sense on this desktop
+offered() {
+    case " $1 " in
+        *" 30 "*) is_cinnamon ;;            # Cinnamon's own code
+        *" 35 "*) is_gnome ;;
+        *" 55 "*|*" 57 "*) ! is_gnome ;;    # lightdm and X11; GNOME has GDM and Wayland
+        *) true ;;
+    esac
+}
+
 # ask <question> - yes unless the answer starts with n
 ask() {
     local a
@@ -62,7 +73,7 @@ for a in "$@"; do
     esac
 done
 
-is_cinnamon || is_xfce || warn "neither Cinnamon nor XFCE found - only the desktop-independent parts will do anything"
+is_cinnamon || is_xfce || is_gnome || warn "no Cinnamon, XFCE or GNOME found - only the desktop-independent parts will do anything"
 mkdir -p "$BACKUP"
 
 if [ "$picked" = 0 ]; then
@@ -70,8 +81,7 @@ if [ "$picked" = 0 ]; then
     pkgs=()
     for p in "${PARTS[@]}"; do
         IFS='|' read -r comps needs env text <<<"$p"
-        # the shell parts are Cinnamon code; there is nothing to offer elsewhere
-        [[ " $comps " == *" 30 "* ]] && ! is_cinnamon && continue
+        offered "$comps" || continue
         ask "$text" || continue
         read -ra c <<<"$comps"; wanted+=("${c[@]}")
         [ -n "$env" ] && export "${env?}"

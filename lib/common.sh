@@ -73,6 +73,9 @@ is_cinnamon() {
     have cinnamon && [ -d /usr/share/cinnamon ]
 }
 
+# GNOME Shell (Ubuntu's default desktop). Cinnamon is a fork, so rule it out.
+is_gnome() { have gnome-shell && ! is_cinnamon; }
+
 # XFCE keeps its settings in Xfconf, not gsettings.
 is_xfce() { have xfconf-query && have xfce4-session; }
 

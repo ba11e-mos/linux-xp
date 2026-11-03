@@ -18,9 +18,6 @@ elif is_xfce; then
     xfset xsettings /Net/IconThemeName   string "$ICON_NAME"
     xfset xsettings /Gtk/CursorThemeName string "$CURSOR_NAME"
     xfset xfwm4     /general/theme       string "$THEME_NAME"
-else
-    info "on GNOME the shell theme needs the User Themes extension"
-    set_if org.gnome.shell.extensions.user-theme name "$THEME_NAME"
 fi
 
 # Deliberately no font here. Wine ships a Tahoma, but it carries embedded
@@ -34,6 +31,8 @@ if [ "${XP_WALLPAPER:-}" = bliss ]; then
 fi
 if [ -n "${XP_WALLPAPER:-}" ] && [ -f "$XP_WALLPAPER" ]; then
     set_if "$D.background" picture-uri "file://$XP_WALLPAPER"
+    # GNOME keeps a second wallpaper for dark mode
+    is_gnome && set_if "$D.background" picture-uri-dark "file://$XP_WALLPAPER"
     set_if "$D.background" picture-options 'zoom'
     if is_xfce; then
         # one backdrop per monitor and workspace; set every one that exists

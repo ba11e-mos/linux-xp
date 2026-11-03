@@ -1,8 +1,6 @@
 # linux-xp
 
-Turns a Linux desktop into Windows XP. Made on Linux Mint 22 (Cinnamon 6.4),
-also tested on Ubuntu 24.04 with XFCE. Any Firefox works - deb, snap or
-flatpak - though the IE look is tuned for Firefox 152 and drifts on others.
+Turns a Linux desktop into Windows XP: Cinnamon, XFCE or GNOME.
 
 ## Install
 
@@ -21,20 +19,38 @@ the rest, and runs. Log out and back in afterwards.
 ./install.sh 15 92      # only those components
 ```
 
-## What you can pick
+## What works where
 
-- **Desktop:** Luna theme, XP icons and cursors, Bliss wallpaper
-- **Cinnamon only:** XP start menu, UAC-style password prompts, XP volume OSD,
-  Media Player sound applet, captioned menus, balloon tips, animated
-  charging battery
-- **Sounds:** the XP sound scheme
-- **Screen saver:** 3D Pipes after 10 minutes, then the lock screen
-- **Boot screen:** the XP logo and loading bar
-- **Firefox** as Internet Explorer 6, with an IE-era start page (put your own
-  links in `~/.config/linux-xp/home.html`)
-- **Login screen:** the XP Welcome screen, with fingerprint prompts
-- **VS Code**, **Teams** (MSN icon), **terminal** (as cmd.exe)
-- **Games:** Minesweeper, Solitaire, Spider, FreeCell, Hearts, 3D Pinball
+| Feature | Cinnamon | XFCE | GNOME |
+|---|:-:|:-:|:-:|
+| Luna theme, XP icons and cursors | ✓ | ✓ | ✓ |
+| Luna window frames | ✓ | ✓ | partly¹ |
+| Bliss wallpaper | ✓ | ✓ | ✓ |
+| XP taskbar | ✓ | – | ✓ |
+| XP start menu | ✓ | – | ✓ |
+| UAC-style password prompts | ✓ | – | – |
+| XP volume OSD, Media Player sound applet | ✓ | – | – |
+| Captioned panel menus | ✓ | – | – |
+| Balloon tips | ✓ | – | ✓ |
+| Animated charging battery | ✓ | – | – |
+| XP sounds | ✓ | ✓ | ✓ |
+| 3D Pipes screen saver, then lock | ✓ | ✓ | – |
+| XP login screen (fingerprint prompts) | ✓ | ✓ | – |
+| XP boot screen | ✓ | ✓ | ✓ |
+| Firefox as Internet Explorer 6 | ✓ | ✓ | ✓² |
+| Terminal as cmd.exe | ✓ | ✓ | ✓ |
+| Games: Minesweeper, Solitaire, Spider, FreeCell, Hearts, Pinball | ✓ | ✓ | ✓ |
+| VS Code Luna theme, Teams MSN icon | ✓ | untested | untested |
+
+¹ GNOME draws its own frames for GTK4/libadwaita apps, which ignore the theme.  
+² Snap Firefox gets the skin but not the new-tab page.
+
+Tested in clean virtual machines (install, reboot, log in, uninstall):
+Cinnamon on Linux Mint 22.1, XFCE and GNOME on Ubuntu 24.04, Firefox 159.
+Other distros with these desktops should work; the installer names packages
+the Debian/Ubuntu way. The Firefox skin drifts on old versions (on 134 two
+menu labels overlap). Your own start page links go in
+`~/.config/linux-xp/home.html`.
 
 ## Where things come from
 
