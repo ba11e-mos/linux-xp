@@ -28,8 +28,11 @@ for prof in "${profiles[@]}"; do
     mkdir -p "$prof/chrome/home"
     # @HOME@ stands in for the home directory: a file:// link needs an
     # absolute path, and the asset must stay user-agnostic.
-    sed "s|@HOME@|$HOME|g" "$ASSETS/firefox/home/index.html" \
-        > "$prof/chrome/home/index.html"
+    # Your own links go in ~/.config/linux-xp/home.html, which wins over the
+    # generic page and survives reinstalls.
+    page="$ASSETS/firefox/home/index.html"
+    [ -f "$HOME/.config/linux-xp/home.html" ] && page="$HOME/.config/linux-xp/home.html"
+    sed "s|@HOME@|$HOME|g" "$page" > "$prof/chrome/home/index.html"
     cat >> "$prof/user.js" <<EOF
 // IE-era start page, shipped with this repo
 user_pref("browser.startup.homepage", "file://$prof/chrome/home/index.html");

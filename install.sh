@@ -27,7 +27,7 @@ PARTS=(
 "70|||VS Code with a Luna theme"
 "80|unzip:unzip|XP_TERMINAL_FONT=1|Terminal as cmd.exe, with the VGA raster font"
 "90|convert:imagemagick||Teams with the MSN icon"
-"92|wine:wine 7z:p7zip-full convert:imagemagick unzip:unzip||XP games: Minesweeper, Solitaire, Spider, FreeCell, Hearts, Pinball"
+"92|wine:wine 7z:p7zip-full convert:imagemagick unzip:unzip winetricks:winetricks cabextract:cabextract||XP games: Minesweeper, Solitaire, Spider, FreeCell, Hearts, Pinball"
 )
 
 usage() {

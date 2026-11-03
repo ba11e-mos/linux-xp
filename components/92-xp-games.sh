@@ -29,6 +29,18 @@ else
     warn "Pinball not in $src"
 fi
 
+# Hearts is linked against MFC42u.DLL, which neither the zip nor Wine has.
+# winetricks installs it from Microsoft's Visual C++ 6 redistributable.
+pfx="${WINEPREFIX:-$HOME/.wine}"
+if [ -f "$dir/mshearts.exe" ] && ! compgen -G "$pfx/drive_c/windows/*/mfc42u.dll" >/dev/null; then
+    if have winetricks; then
+        info "installing MFC42 for Hearts (winetricks)"
+        winetricks -q mfc42 >/dev/null 2>&1 || warn "winetricks mfc42 failed - Hearts will not start"
+    else
+        warn "winetricks missing - Hearts will not start"
+    fi
+fi
+
 apps="$HOME/.local/share/applications"
 icons="$HOME/.local/share/icons/hicolor/48x48/apps"
 mkdir -p "$apps" "$icons"

@@ -910,3 +910,70 @@ panel[type="autocomplete-richlistbox"] richlistitem[selected] {
   border: 1px solid var(--xp-dark) !important;
   background-color: var(--xp-face) !important;
 }
+
+/* --------------------------------------------------------------- *
+ * 14. Print preview (Ctrl+P)
+ * --------------------------------------------------------------- */
+/* The settings pane is chrome://global/content/print.html. Its canvas comes
+   from the add-on theme's dark palette while its text follows the light
+   scheme, so it rendered dark text on near-black. Pin it to the XP face. */
+.previewStack,
+.printPreviewBrowser { background-color: #808080 !important; }
+
+@-moz-document url("chrome://global/content/print.html") {
+  :root {
+    color-scheme: light !important;
+    --background-color-canvas: var(--xp-face) !important;
+    --background-color-box: #FFFFFF !important;
+    --text-color: #000000 !important;
+    --text-color-deemphasized: #444444 !important;
+    --border-color: var(--xp-dark) !important;
+    --color-accent-primary: var(--xp-sel) !important;
+    --color-accent-primary-hover: #4B82D8 !important;
+    --color-accent-primary-active: #1C4A9E !important;
+    --focus-outline: 1px solid var(--xp-sel) !important;
+    --focus-outline-offset: 0 !important;
+    --border-radius-small: 0 !important;
+    --border-radius-medium: 0 !important;
+    --border-radius-circle: 0 !important;
+    --button-border-radius: 0 !important;
+    --button-min-height: 21px !important;
+    --button-font-size: 11px !important;
+    --button-font-weight: normal !important;
+    --button-background-color: #ECE9D8 !important;
+    --button-background-color-hover: #FFFFFF !important;
+    --button-background-color-active: #E0DCCA !important;
+    --button-text-color: #000000 !important;
+    --button-text-color-hover: #000000 !important;
+    --button-border: 1px solid var(--xp-dark) !important;
+    --button-border-color: var(--xp-dark) !important;
+    --button-border-color-hover: var(--xp-dark) !important;
+    --button-border-color-active: var(--xp-dark) !important;
+    --button-border-color-disabled: var(--xp-dark) !important;
+    /* XP marks the default button with a heavier outline, not a filled accent */
+    --button-background-color-primary: #ECE9D8 !important;
+    --button-background-color-primary-hover: #FFFFFF !important;
+    --button-background-color-primary-active: #E0DCCA !important;
+    --button-text-color-primary: #000000 !important;
+    --button-text-color-primary-hover: #000000 !important;
+    --button-border-color-primary: #000000 !important;
+    --button-border-color-primary-hover: #000000 !important;
+    --button-border-color-primary-active: #000000 !important;
+    background-color: var(--xp-face) !important;
+  }
+  body {
+    background-color: var(--xp-face) !important;
+    color: #000000 !important;
+    font-family: var(--xp-font) !important;
+    font-size: 11px !important;
+  }
+  select,
+  input:is([type="number"], [type="text"]) {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border: 1px solid #7F9DB9 !important;
+    border-radius: 0 !important;
+  }
+  button, select, input { font-family: var(--xp-font) !important; font-size: 11px !important; }
+  #orientation-control label, .toggle-group-label { border-radius: 0 !important; }
+}

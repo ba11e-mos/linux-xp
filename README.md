@@ -30,7 +30,8 @@ the rest, and runs. Log out and back in afterwards.
 - **Sounds:** the XP sound scheme
 - **Screen saver:** 3D Pipes after 10 minutes, then the lock screen
 - **Boot screen:** the XP logo and loading bar
-- **Firefox** as Internet Explorer 6, with an IE-era start page
+- **Firefox** as Internet Explorer 6, with an IE-era start page (put your own
+  links in `~/.config/linux-xp/home.html`)
 - **Login screen:** the XP Welcome screen, with fingerprint prompts
 - **VS Code**, **Teams** (MSN icon), **terminal** (as cmd.exe)
 - **Games:** Minesweeper, Solitaire, Spider, FreeCell, Hearts, 3D Pinball
