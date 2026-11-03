@@ -52,6 +52,10 @@ audio-volume-change	Default
 EOF
 
 s="$theme/stereo"
+# The volume keys play it on every step, so at full level it is too loud
+if have ffmpeg; then
+    ffmpeg -hide_banner -loglevel error -y -i "$(wav Default)" -af volume=0.3 "$s/audio-volume-change.wav"
+fi
 gsettings set org.cinnamon.desktop.sound theme-name 'WindowsXP'
 gsettings set org.cinnamon.desktop.sound volume-sound-file "$s/audio-volume-change.wav"
 gsettings set org.cinnamon.sounds login-file        "$s/desktop-login.wav"
