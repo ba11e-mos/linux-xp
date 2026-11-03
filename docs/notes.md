@@ -4,7 +4,8 @@ Background for people changing the code. The README covers using it.
 
 ## Will it work on GNOME? On other distros?
 
-Partly on GNOME, mostly yes on other distros that run Cinnamon.
+Cinnamon gets everything, XFCE everything except the Cinnamon shell parts
+(30, 50). Partly on GNOME.
 
 Nothing hard-fails on the wrong desktop. Components that need Cinnamon check
 for it and skip themselves, so on GNOME you still get Firefox, VS Code, the

@@ -19,6 +19,9 @@ if ! have nody-greeter; then
     deb="$(fetch https://github.com/JezerM/nody-greeter/releases/download/1.6.2/nody-greeter-1.6.2-ubuntu.deb nody-greeter.deb)" || return 0
     sudo apt-get install -y "$deb" >/dev/null || { warn "nody-greeter install failed"; return 0; }
 fi
+# Electron needs its setuid sandbox helper where unprivileged user namespaces
+# are restricted (Ubuntu 24.04); the release .deb ships it without the bit.
+[ -f /opt/nody-greeter/chrome-sandbox ] && sudo chmod 4755 /opt/nody-greeter/chrome-sandbox
 nody-greeter --version >/dev/null 2>&1 || { warn "nody-greeter does not run - login screen left as it is"; return 0; }
 
 src="$CACHE/WelcomeXP"
@@ -41,6 +44,12 @@ sudo chmod -R 755 "$dst"
 
 sudo sed -i 's/^\( *theme:\).*/\1 WelcomeXP/' /etc/lightdm/web-greeter.yml
 sudo mkdir -p /etc/lightdm/lightdm.conf.d
-printf '[Seat:*]\ngreeter-session=nody-greeter\nuser-session=cinnamon\n' |
+# WelcomeXP logs in to lightdm's default session, which is "ubuntu" on Ubuntu
+# even without GNOME installed - so name the desktop this runs on.
+sess=""
+for s in $(is_cinnamon && echo cinnamon) $(is_xfce && echo xfce); do
+    [ -f "/usr/share/xsessions/$s.desktop" ] && { sess="$s"; break; }
+done
+{ printf '[Seat:*]\ngreeter-session=nody-greeter\n'; [ -n "$sess" ] && printf 'user-session=%s\n' "$sess"; } |
     sudo tee /etc/lightdm/lightdm.conf.d/99-nody.conf >/dev/null
 log "XP login screen set - it shows the next time you log out or boot"

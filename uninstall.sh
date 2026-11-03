@@ -11,7 +11,8 @@ source "$(dirname "$(readlink -f "$0")")/lib/common.sh"
 dry=0
 [ "${1:-}" = "--dry" ] && dry=1
 
-run() { if [ "$dry" = 1 ]; then printf '    would run: %s\n' "$*"; else "$@"; fi; }
+# A failed step (a setting this desktop does not have) must not stop the rest.
+run() { if [ "$dry" = 1 ]; then printf '    would run: %s\n' "$*"; else "$@" 2>/dev/null || info "skipped: $*"; fi; }
 
 # --- user files from the backup tree ---
 if [ -d "$BACKUP" ]; then
@@ -65,6 +66,21 @@ run gsettings reset org.cinnamon.theme name 2>/dev/null || true
 run gsettings reset "$D.background" picture-uri
 run gsettings reset "$D.background" picture-options
 
+if is_xfce; then
+    log "XFCE appearance, sounds and lockers back to the defaults"
+    for p in /Net/ThemeName /Net/IconThemeName /Gtk/CursorThemeName /Net/SoundThemeName; do
+        run xfconf-query -c xsettings -p "$p" -r 2>/dev/null || true
+    done
+    run xfconf-query -c xfwm4 -p /general/theme -r 2>/dev/null || true
+    run xfconf-query -c xfce4-screensaver -p /saver/enabled -r 2>/dev/null || true
+    run xfconf-query -c xfce4-screensaver -p /lock/enabled -r 2>/dev/null || true
+    run xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/lock-screen-suspend-hibernate -r 2>/dev/null || true
+    for p in /color-use-theme /color-foreground /color-background /color-palette /misc-cursor-shape /font-use-system /font-name; do
+        run xfconf-query -c xfce4-terminal -p "$p" -r 2>/dev/null || true
+    done
+fi
+run rm -f "$HOME/.config/autostart/xp-startup-sound.desktop"
+
 # --- theme, icons and cursors (component 10, everything 30/40/90/95 put in them) ---
 log "removing the XP theme, icons and cursors"
 for d in "$HOME"/.themes/"Windows XP "* "$HOME/.icons/$ICON_NAME" "$HOME/.icons/$CURSOR_NAME"; do
@@ -93,14 +109,14 @@ run xset s default
 
 # --- login screen (component 57): back to Mint's greeter ---
 if [ -f /etc/lightdm/lightdm.conf.d/99-nody.conf ]; then
-    log "login screen back to Mint's (shows at the next login)"
+    log "login screen back to the default (shows at the next login)"
     run sudo rm -f /etc/lightdm/lightdm.conf.d/99-nody.conf
     run sudo rm -rf /usr/share/web-greeter/themes/WelcomeXP
 fi
 
 # --- boot screen (component 85) ---
 if [ -d /usr/share/plymouth/themes/WindowsXP ]; then
-    log "boot screen back to Mint's"
+    log "boot screen back to the default"
     run sudo update-alternatives --remove default.plymouth /usr/share/plymouth/themes/WindowsXP/WindowsXP.plymouth
     run sudo rm -rf /usr/share/plymouth/themes/WindowsXP
     run sudo sed -i '/^DeviceScale=1$/d' /etc/plymouth/plymouthd.conf
@@ -108,7 +124,7 @@ if [ -d /usr/share/plymouth/themes/WindowsXP ]; then
 fi
 
 # --- terminal (component 80) ---
-prof="$(gsettings get org.gnome.Terminal.ProfilesList default 2>/dev/null | tr -d "'")"
+prof="$(gsettings get org.gnome.Terminal.ProfilesList default 2>/dev/null | tr -d "'" || true)"
 if [ -n "$prof" ]; then
     log "terminal colours and font back to the defaults"
     B="org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$prof/"
@@ -116,7 +132,7 @@ if [ -n "$prof" ]; then
         run gsettings reset "$B" "$k"
     done
 fi
-run rm -f "$HOME"/.local/share/fonts/Bm437_IBM_VGA_*.otb
+run rm -f "$HOME"/.local/share/fonts/Bm437_IBM_VGA_*.otb "$HOME/.config/fontconfig/conf.d/70-xp-vga-font.conf"
 
 # --- games (component 92) ---
 log "removing the XP games"

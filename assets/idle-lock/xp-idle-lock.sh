@@ -63,10 +63,12 @@ fi
 # once at login is not enough - re-assert it.
 (
     while true; do
-        # noblank: the server's own blanking would hide the screen saver
-        case "$(xset q | awk '/timeout:/ {print $2, $4} /prefer blanking:/ {print $3}' | tr '\n' ' ')" in
-            "no $SAVER_SECONDS $LOCK_AFTER ") ;;
-            *) xset s "$SAVER_SECONDS" "$LOCK_AFTER"; xset s noblank ;;
+        # noblank: the server's own blanking would hide the screen saver.
+        # expose: with neither blanking nor exposures the server never
+        # activates at all, so xss-lock never hears of it (XFCE sets noexpose).
+        case "$(xset q | awk '/timeout:/ {print $2, $4} /prefer blanking:/ {print $3, $6}' | tr '\n' ' ')" in
+            "no yes $SAVER_SECONDS $LOCK_AFTER ") ;;
+            *) xset s "$SAVER_SECONDS" "$LOCK_AFTER"; xset s noblank; xset s expose ;;
         esac
         sleep 60
     done

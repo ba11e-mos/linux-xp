@@ -54,17 +54,31 @@ s="$theme/stereo"
 if have ffmpeg; then
     ffmpeg -hide_banner -loglevel error -y -i "$(wav Default)" -af volume=0.3 "$s/audio-volume-change.wav"
 fi
-gsettings set org.cinnamon.desktop.sound theme-name 'WindowsXP'
-gsettings set org.cinnamon.desktop.sound volume-sound-file "$s/audio-volume-change.wav"
-gsettings set org.cinnamon.sounds login-file        "$s/desktop-login.wav"
-gsettings set org.cinnamon.sounds logout-file       "$s/desktop-logout.wav"
-gsettings set org.cinnamon.sounds notification-file "$s/message.wav"
-gsettings set org.cinnamon.sounds plug-file         "$s/device-added.wav"
-gsettings set org.cinnamon.sounds unplug-file       "$s/device-removed.wav"
-gsettings set org.cinnamon.sounds minimize-file     "$s/window-minimized.wav"
-gsettings set org.cinnamon.sounds minimize-enabled  true
-# XP has no sound for snapping a window or switching workspace
-gsettings set org.cinnamon.sounds tile-enabled      false
-gsettings set org.cinnamon.sounds switch-enabled    false
+if is_cinnamon; then
+    gsettings set org.cinnamon.desktop.sound theme-name 'WindowsXP'
+    gsettings set org.cinnamon.desktop.sound volume-sound-file "$s/audio-volume-change.wav"
+    gsettings set org.cinnamon.sounds login-file        "$s/desktop-login.wav"
+    gsettings set org.cinnamon.sounds logout-file       "$s/desktop-logout.wav"
+    gsettings set org.cinnamon.sounds notification-file "$s/message.wav"
+    gsettings set org.cinnamon.sounds plug-file         "$s/device-added.wav"
+    gsettings set org.cinnamon.sounds unplug-file       "$s/device-removed.wav"
+    gsettings set org.cinnamon.sounds minimize-file     "$s/window-minimized.wav"
+    gsettings set org.cinnamon.sounds minimize-enabled  true
+    # XP has no sound for snapping a window or switching workspace
+    gsettings set org.cinnamon.sounds tile-enabled      false
+    gsettings set org.cinnamon.sounds switch-enabled    false
+else
+    is_xfce && xfset xsettings /Net/SoundThemeName string WindowsXP
+    gsettings set org.gnome.desktop.sound theme-name 'WindowsXP' 2>/dev/null || true
+    # Only Cinnamon plays a login sound itself; elsewhere an autostart entry does
+    mkdir -p "$HOME/.config/autostart"
+    cat > "$HOME/.config/autostart/xp-startup-sound.desktop" <<DESKTOP
+[Desktop Entry]
+Type=Application
+Name=XP startup sound
+Exec=paplay "$s/desktop-login.wav"
+NoDisplay=true
+DESKTOP
+fi
 
 log "XP sound scheme installed ($(ls "$s" | wc -l) sounds)"

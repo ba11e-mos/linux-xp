@@ -13,6 +13,11 @@ set_if "$D.wm.preferences" theme         "$THEME_NAME"
 
 if is_cinnamon; then
     set_if org.cinnamon.theme name "$THEME_NAME"
+elif is_xfce; then
+    xfset xsettings /Net/ThemeName       string "$THEME_NAME"
+    xfset xsettings /Net/IconThemeName   string "$ICON_NAME"
+    xfset xsettings /Gtk/CursorThemeName string "$CURSOR_NAME"
+    xfset xfwm4     /general/theme       string "$THEME_NAME"
 else
     info "on GNOME the shell theme needs the User Themes extension"
     set_if org.gnome.shell.extensions.user-theme name "$THEME_NAME"
@@ -30,6 +35,12 @@ fi
 if [ -n "${XP_WALLPAPER:-}" ] && [ -f "$XP_WALLPAPER" ]; then
     set_if "$D.background" picture-uri "file://$XP_WALLPAPER"
     set_if "$D.background" picture-options 'zoom'
+    if is_xfce; then
+        # one backdrop per monitor and workspace; set every one that exists
+        for p in $(xfconf-query -c xfce4-desktop -l 2>/dev/null | grep 'last-image$'); do
+            xfset xfce4-desktop "$p" string "$XP_WALLPAPER"
+        done
+    fi
 else
     info "wallpaper left alone (XP_WALLPAPER=bliss or =/path/to/image sets one)"
 fi

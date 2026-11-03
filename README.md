@@ -1,7 +1,8 @@
 # linux-xp
 
-Turns Linux Mint Cinnamon into Windows XP. Tested on Mint 22, Cinnamon 6.4,
-Firefox 152.
+Turns a Linux desktop into Windows XP. Made on Linux Mint 22 (Cinnamon 6.4),
+also tested on Ubuntu 24.04 with XFCE. Any Firefox works - deb, snap or
+flatpak - though the IE look is tuned for Firefox 152 and drifts on others.
 
 ## Install
 
@@ -23,7 +24,7 @@ the rest, and runs. Log out and back in afterwards.
 ## What you can pick
 
 - **Desktop:** Luna theme, XP icons and cursors, Bliss wallpaper
-- **Cinnamon:** XP start menu, UAC-style password prompts, XP volume OSD,
+- **Cinnamon only:** XP start menu, UAC-style password prompts, XP volume OSD,
   Media Player sound applet, captioned menus, balloon tips, animated
   charging battery
 - **Sounds:** the XP sound scheme

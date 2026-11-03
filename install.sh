@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# linux-xp - turn Linux Mint Cinnamon into Windows XP.
+# linux-xp - turn a Cinnamon or XFCE desktop into Windows XP.
 #
 #   ./install.sh             ask about each part, then install what you chose
 #   ./install.sh --yes       install everything without asking
@@ -21,7 +21,7 @@ PARTS=(
 "30 50|||Start menu, XP dialogs, volume OSD, Media Player sound applet, charging battery (sudo)"
 "15|ffmpeg:ffmpeg unzip:unzip||XP sounds: startup, shutdown, balloons, USB in/out"
 "57|lightdm:lightdm git:git||XP login screen (sudo)"
-"55|xss-lock:xss-lock /usr/libexec/xscreensaver/pipes:xscreensaver-gl||3D Pipes screen saver, then lock to the login screen"
+"55|xss-lock:xss-lock /usr/libexec/xscreensaver/pipes:xscreensaver-gl /usr/lib/*/girepository-1.0/Gtk-3.0.typelib:gir1.2-gtk-3.0||3D Pipes screen saver, then lock to the login screen"
 "85|git:git plymouth:plymouth||XP boot screen (sudo)"
 "60 65|||Firefox as Internet Explorer 6 (sudo)"
 "70|||VS Code with a Luna theme"
@@ -62,7 +62,7 @@ for a in "$@"; do
     esac
 done
 
-is_cinnamon || warn "Cinnamon not found - the shell components will skip themselves"
+is_cinnamon || is_xfce || warn "neither Cinnamon nor XFCE found - only the desktop-independent parts will do anything"
 mkdir -p "$BACKUP"
 
 if [ "$picked" = 0 ]; then
@@ -70,12 +70,14 @@ if [ "$picked" = 0 ]; then
     pkgs=()
     for p in "${PARTS[@]}"; do
         IFS='|' read -r comps needs env text <<<"$p"
+        # the shell parts are Cinnamon code; there is nothing to offer elsewhere
+        [[ " $comps " == *" 30 "* ]] && ! is_cinnamon && continue
         ask "$text" || continue
         read -ra c <<<"$comps"; wanted+=("${c[@]}")
         [ -n "$env" ] && export "${env?}"
         for n in $needs; do
             case "${n%%:*}" in
-                /*) [ -e "${n%%:*}" ] ;;
+                /*) compgen -G "${n%%:*}" >/dev/null ;;
                 *)  have "${n%%:*}" ;;
             esac || pkgs+=("${n#*:}")
         done
@@ -83,7 +85,7 @@ if [ "$picked" = 0 ]; then
     [ ${#wanted[@]} -gt 0 ] || die "nothing chosen"
 
     # One password prompt up front, then the rest runs unattended.
-    sudo -v || die "sudo is needed for the packages and the system parts"
+    sudo -n true 2>/dev/null || sudo -v || die "sudo is needed for the packages and the system parts"
     if [ ${#pkgs[@]} -gt 0 ]; then
         mapfile -t pkgs < <(printf '%s\n' "${pkgs[@]}" | sort -u)
         log "Installing packages: ${pkgs[*]}"

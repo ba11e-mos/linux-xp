@@ -73,6 +73,12 @@ is_cinnamon() {
     have cinnamon && [ -d /usr/share/cinnamon ]
 }
 
+# XFCE keeps its settings in Xfconf, not gsettings.
+is_xfce() { have xfconf-query && have xfce4-session; }
+
+# xfset <channel> <property> <type> <value> - set an Xfconf property, creating it if missing
+xfset() { xfconf-query -c "$1" -p "$2" -n -t "$3" -s "$4" 2>/dev/null || warn "could not set $1 $2"; }
+
 require_cinnamon() {
     is_cinnamon && return 0
     skip "needs Cinnamon - skipped on this desktop"

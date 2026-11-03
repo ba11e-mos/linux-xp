@@ -16,16 +16,22 @@ Type=Application
 Name=XP idle lock
 Comment=Lock to the lightdm greeter on idle instead of cinnamon-screensaver
 Exec=$HOME/.local/bin/xp-idle-lock.sh
-OnlyShowIn=X-Cinnamon;
+OnlyShowIn=X-Cinnamon;XFCE;
 X-GNOME-Autostart-enabled=true
 NoDisplay=false
 DESKTOP
 
-# Two lockers must never both be armed, or the XP greeter and the Cinnamon
-# lock screen stack on top of each other - which is what lock-on-suspend did.
-gsettings set org.cinnamon.settings-daemon.plugins.power lock-on-suspend false 2>/dev/null || true
-gsettings set org.cinnamon.desktop.screensaver idle-activation-enabled false 2>/dev/null || true
-gsettings set org.cinnamon.desktop.screensaver lock-enabled false 2>/dev/null || true
+# Two lockers must never both be armed, or the XP greeter and the desktop's
+# own lock screen stack on top of each other.
+if is_cinnamon; then
+    gsettings set org.cinnamon.settings-daemon.plugins.power lock-on-suspend false 2>/dev/null || true
+    gsettings set org.cinnamon.desktop.screensaver idle-activation-enabled false 2>/dev/null || true
+    gsettings set org.cinnamon.desktop.screensaver lock-enabled false 2>/dev/null || true
+elif is_xfce; then
+    xfset xfce4-screensaver /saver/enabled bool false
+    xfset xfce4-screensaver /lock/enabled bool false
+    xfset xfce4-power-manager /xfce4-power-manager/lock-screen-suspend-hibernate bool false
+fi
 
-log "Cinnamon's own locker switched off, xss-lock takes idle and suspend"
+log "the desktop's own locker switched off, xss-lock takes idle and suspend"
 info "takes effect at next login, or run ~/.local/bin/xp-idle-lock.sh now"
