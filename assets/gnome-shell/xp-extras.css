@@ -21,9 +21,12 @@
 #panel .arcmenu-panel-menu:hover { border-image: url('menu-hover.png') 7 0 0 0; box-shadow: none; background-color: transparent; }
 #panel .arcmenu-panel-menu:active,
 #panel .arcmenu-panel-menu:checked { border-image: url('menu-active.png') 7 0 0 0; box-shadow: none; background-color: transparent; }
-#panel .arcmenu-panel-menu .arcmenu-menu-button {
+/* StLabel: without the type selector a theme rule wins and the weight stays normal */
+#panel .arcmenu-panel-menu StLabel.arcmenu-menu-button {
     color: #FFFFFF;
-    font-size: 13pt;
+    font-size: 12pt;
+    /* the panel ignores the button's own padding; keep the text off the rounded end */
+    margin-right: 14px;
     font-style: italic;
     font-weight: bold;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.7);

@@ -1,7 +1,7 @@
 /* linux-xp: Luna title bars for GTK4 and libadwaita apps, which skip GTK3
    themes. GNOME also draws the frames of X11 apps (Wine) with GTK4. */
 @define-color xp_title_fg #FFFFFF;
-headerbar, .titlebar, window.csd > .titlebar {
+headerbar, .titlebar, window.csd > .titlebar, toolbarview > .top-bar {
     min-height: 30px;
     color: @xp_title_fg;
     background-color: #0A5FE6;
@@ -12,13 +12,12 @@ headerbar, .titlebar, window.csd > .titlebar {
     border: none;
     border-radius: 0;
 }
-headerbar:backdrop, .titlebar:backdrop {
+headerbar:backdrop, .titlebar:backdrop, toolbarview > .top-bar:backdrop {
     background-color: #7A96DF;
     background-image: url("@ASSETS@/titlebar-unfocused-middle.png");
 }
+/* the window clips its corners; split views (Files) have two header bars side by side */
 window.csd:not(.maximized):not(.tiled) { border-radius: 8px 8px 0 0; }
-window.csd:not(.maximized):not(.tiled):not(.popup) > .titlebar,
-window.csd:not(.maximized):not(.tiled) headerbar { border-radius: 7px 7px 0 0; }
 headerbar .title, .titlebar .title, windowtitle .title {
     color: #FFFFFF;
     font-weight: bold;
