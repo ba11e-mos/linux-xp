@@ -1,53 +1,83 @@
 #!/usr/bin/env bash
 #
-# Run this after a Mint update that touched cinnamon, lightdm or firefox.
+# Run this after a system update. It puts back what an update can undo:
 #
-# Everything this setup does lives in your home directory except a handful
-# of files under /usr/share/cinnamon, which an update replaces. Those are
-# what this puts back.
+#   Cinnamon   a cinnamon update replaces the patched files in /usr/share/cinnamon
+#   GNOME      a new GNOME version turns off Dash to Panel and ArcMenu until
+#              they are swapped for builds made for it
+#   Firefox    a deb or tarball update replaces the installation directory,
+#              taking the new-tab autoconfig with it (the snap reads it from
+#              /etc/firefox, which no update touches)
 #
-# The trap it avoids: every patch script keeps a .orig-xp copy and restores
-# it before patching, so re-running one after an update would overwrite the
-# newly installed file with the pre-update version. The stale copies have to
-# go first.
+# XFCE keeps everything in your home directory, so it has nothing to put back.
+#
+#   ./after-update.sh          check and repair
+#   ./after-update.sh --dry    only show what it would do
 
 set -euo pipefail
 source "$(dirname "$(readlink -f "$0")")/lib/common.sh"
 
 dry=0
 [ "${1:-}" = "--dry" ] && dry=1
+fixed=0
 
-mapfile -t stale < <(find /usr/share/cinnamon -name "*.orig-xp" 2>/dev/null | sort)
+# fix <why> <component> - re-run one component, or say it would
+fix() {
+    log "$1"
+    fixed=1
+    if [ "$dry" = 1 ]; then info "--dry: would run install.sh $2"; else "$REPO/install.sh" "$2"; fi
+}
 
-if [ ${#stale[@]} -eq 0 ]; then
-    info "no .orig-xp copies under /usr/share/cinnamon - nothing to refresh"
-else
-    log "stale backups from before the update"
-    for f in "${stale[@]}"; do
-        printf '    %s\n' "$f"
-    done
-    if [ "$dry" = 1 ]; then
-        info "--dry: would delete those and re-run the patches"
-        exit 0
+# --- Cinnamon ---
+# Every patch script keeps a .orig-xp copy and restores it before patching, so
+# re-running one after an update would put the pre-update file back. The stale
+# copies have to go first.
+if [ -d /usr/share/cinnamon/js ]; then
+    # A patched file shows up in dpkg --verify as changed; one the update put
+    # back does not. Only those lose their .orig-xp - deleting the copy of a
+    # still-patched file would make the patch back up and patch it twice.
+    # Without dpkg every copy counts as stale.
+    changed=""
+    if have dpkg; then
+        pkgs="$(dpkg -S /usr/share/cinnamon 2>/dev/null | cut -d: -f1 | tr -d ',')"
+        changed="$(dpkg --verify $pkgs 2>/dev/null || true)"
     fi
-    for f in "${stale[@]}"; do
-        sudo rm -f "$f"
+    stale=()
+    while IFS= read -r f; do
+        [ -n "$changed" ] && grep -qF " ${f%.orig-xp}" <<<"$changed" && continue
+        stale+=("$f")
+    done < <(find /usr/share/cinnamon -name "*.orig-xp" 2>/dev/null | sort)
+    if [ ${#stale[@]} -gt 0 ]; then
+        log "a Cinnamon update replaced ${#stale[@]} patched files"
+        printf '    %s\n' "${stale[@]%.orig-xp}"
+        [ "$dry" = 0 ] && sudo rm -f "${stale[@]}"
+        fix "re-patching Cinnamon" 50
+        info "Ctrl+Alt+Esc to restart Cinnamon"
+        info "PAM: an update may also have replaced /etc/pam.d/lightdm. If the login"
+        info "screen asks for a password before the fingerprint, run:"
+        info "  sudo bash $PATCHES/pam-fingerprint-first.sh"
+    fi
+fi
+
+# --- GNOME ---
+if have gnome-shell; then
+    ver="$(gnome-shell --version 2>/dev/null | grep -oE '[0-9]+' | head -1)"
+    for uuid in dash-to-panel@jderose9.github.com arcmenu@arcmenu.com; do
+        meta="$HOME/.local/share/gnome-shell/extensions/$uuid/metadata.json"
+        [ -f "$meta" ] || continue
+        if ! python3 -c 'import json,sys; sys.exit(sys.argv[2] not in json.load(open(sys.argv[1]))["shell-version"])' "$meta" "$ver"; then
+            fix "GNOME $ver is newer than the taskbar and Start menu builds" 35
+            break
+        fi
     done
-    log "removed ${#stale[@]} stale backups"
 fi
 
-[ "$dry" = 1 ] && exit 0
+# --- Firefox (deb or tarball) ---
+for d in /usr/lib/firefox /usr/lib64/firefox /opt/firefox; do
+    if [ -x "$d/firefox" ] && [ ! -f "$d/linux-xp.cfg" ]; then
+        fix "a Firefox update removed the new-tab setup in $d" 65
+        break
+    fi
+done
 
-"$REPO/install.sh" 50
-
-# A Firefox package update replaces the installation directory, taking the
-# autoconfig files for the new tab page with it.
-if [ ! -f /usr/lib/firefox/linux-xp.cfg ] && [ -x /usr/lib/firefox/firefox ]; then
-    log "Firefox autoconfig is gone - putting the new tab page back"
-    "$REPO/install.sh" 65
-fi
-
-log "Done. Ctrl+Alt+Esc to restart Cinnamon."
-info "PAM: an update may have replaced /etc/pam.d/lightdm. If the login"
-info "screen asks for a password before the fingerprint, run:"
-info "  sudo bash $PATCHES/pam-fingerprint-first.sh"
+[ "$fixed" = 1 ] && log "Done." || log "Nothing to put back."

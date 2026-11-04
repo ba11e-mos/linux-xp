@@ -1,6 +1,6 @@
 # linux-xp
 
-Turns a Linux desktop into Windows XP: Cinnamon, XFCE or GNOME.
+Gives your Linux desktop (Cinnamon, XFCE or GNOME) a Windows XP look :)
 
 ## Install
 
@@ -14,9 +14,9 @@ It asks yes or no for each part, installs the packages they need, downloads
 the rest, and runs. Log out and back in afterwards.
 
 ```bash
-./install.sh --yes      # everything, no questions
-./install.sh --list     # the components
-./install.sh 15 92      # only those components
+./install.sh --yes      # installs everything
+./install.sh --list     # lists possible components
+./install.sh 15 92      # installs only specific components
 ```
 
 ## What works where
@@ -42,20 +42,19 @@ the rest, and runs. Log out and back in afterwards.
 | Games: Minesweeper, Solitaire, Spider, FreeCell, Hearts, Pinball | ✓ | ✓ | ✓ |
 | VS Code Luna theme, Teams MSN icon | ✓ | untested | untested |
 
-¹ GTK4/libadwaita apps get Luna title bars; what is inside them keeps the GNOME look.  
+¹ GTK4/libadwaita apps only get Luna title bars.  
 ² Snap Firefox reads the new-tab setup from /etc/firefox, which no snap update touches.  
 ³ Whisker Menu in XP colours; the layout inside is Whisker's.
 
 Tested in clean virtual machines (install, reboot, log in, uninstall):
 Cinnamon on Linux Mint 22.1, XFCE and GNOME on Ubuntu 24.04, Firefox 159.
 Other distros with these desktops should work; the installer names packages
-the Debian/Ubuntu way. The Firefox skin drifts on old versions (on 134 two
-menu labels overlap). Your own start page links go in
+the Debian/Ubuntu way. Your own start page links go in
 `~/.config/linux-xp/home.html`.
 
-## Where things come from
+## Where do the assets come from?
 
-Nothing below is bundled in this repo. The installer downloads it when you
+Nothing listed below is bundled in this repo. The installer downloads it when you
 pick the part that needs it, into `~/.cache/linux-xp`.
 
 | What | Source |
@@ -76,15 +75,21 @@ pick the part that needs it, into `~/.cache/linux-xp`.
 
 The sounds, games, Bliss and boot-screen artwork are Microsoft's.
 
-The Firefox skin, the Cinnamon patches, the WelcomeXP fingerprint patch and
-the VS Code theme are written here.
+The Firefox skin, the Cinnamon patches, the WelcomeXP fingerprint patch and the VS Code theme are written here.
 
-## After a Mint update
+## After a Linux update
 
-A `cinnamon` update overwrites the patched Cinnamon files, and a Firefox
-update removes the new-tab setup. Put them back with:
+Most of this lives in your home directory, which updates leave alone. Three
+things an update can undo:
+
+- a `cinnamon` update replaces the patched Cinnamon files
+- a new GNOME version turns off the taskbar and Start menu until they get builds made for it
+- a deb Firefox update removes the new-tab setup (snap Firefox keeps it)
+
+`after-update.sh` checks all three and puts back only what is gone; on XFCE it has nothing to do.
 
 ```bash
+./after-update.sh --dry    # see what it would put back
 ./after-update.sh
 ```
 
@@ -103,8 +108,6 @@ sudo rm /etc/lightdm/lightdm.conf.d/99-nody.conf && sudo systemctl restart light
 ./uninstall.sh
 ```
 
-Every file is backed up to `~/.local/share/linux-xp/backups` before it is
-changed.
+Every file is backed up to `~/.local/share/linux-xp/backups` before it is changed.
 
-[docs/notes.md](docs/notes.md) covers other desktops, the repo layout and the
-traps found while building this.
+[docs/notes.md](docs/notes.md) covers other desktops, the repo layout and other odd stuff found while building this.
