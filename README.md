@@ -86,7 +86,7 @@ things an update can undo:
 - a new GNOME version turns off the taskbar and Start menu until they get builds made for it
 - a deb Firefox update removes the new-tab setup (snap Firefox keeps it)
 
-`after-update.sh` checks all three and puts back only what is gone; on XFCE it has nothing to do.
+`after-update.sh` checks all three and puts back only what is gone
 
 ```bash
 ./after-update.sh --dry    # see what it would put back
@@ -95,7 +95,8 @@ things an update can undo:
 
 ## If the login screen breaks
 
-Press Ctrl+Alt+F2, log in, and go back to Mint's login screen:
+Cinnamon and XFCE (anything on lightdm): press Ctrl+Alt+F2, log in, and go
+back to the distribution's own login screen:
 
 ```bash
 sudo rm /etc/lightdm/lightdm.conf.d/99-nody.conf && sudo systemctl restart lightdm
