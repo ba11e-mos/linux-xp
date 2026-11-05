@@ -1,0 +1,14 @@
+// The XP lock (dm-tool lock) switches to the greeter's VT, so while locked
+// the session counts as inactive. Background flatpak metadata refreshes
+// (Mint's update manager after resume) then fall from "yes" to a password
+// prompt, and the UAC dialogs pile up behind the lock - dead by the time
+// you unlock. Let the same users who get them without a password while
+// active have them while locked.
+polkit.addRule(function(action, subject) {
+    if ((action.id == "org.freedesktop.Flatpak.modify-repo" ||
+         action.id == "org.freedesktop.Flatpak.appstream-update") &&
+        subject.local && (subject.isInGroup("sudo") || subject.isInGroup("wheel"))) {
+        return polkit.Result.YES;
+    }
+    return polkit.Result.NOT_HANDLED;
+});

@@ -35,5 +35,11 @@ elif is_xfce; then
     xfset xfce4-power-manager /xfce4-power-manager/lock-screen-suspend-hibernate bool false
 fi
 
+# Locked = inactive session, so background flatpak refreshes would ask for
+# a password behind the lock (see the rules file).
+if have flatpak; then
+    sudo install -Dm644 "$ASSETS/idle-lock/50-linux-xp-flatpak.rules" /etc/polkit-1/rules.d/50-linux-xp-flatpak.rules
+fi
+
 log "the desktop's own locker switched off, xss-lock takes idle and suspend"
 info "takes effect at next login, or run ~/.local/bin/xp-idle-lock.sh now"

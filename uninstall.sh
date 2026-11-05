@@ -145,6 +145,7 @@ log "screen saver and idle lock"
 run pkill -u "$USER" -x xss-lock || true
 run rm -f "$HOME/.config/autostart/xp-idle-lock.desktop" \
           "$HOME/.local/bin/xp-idle-lock.sh" "$HOME/.local/bin/xp-screensaver.py"
+run sudo rm -f /etc/polkit-1/rules.d/50-linux-xp-flatpak.rules
 run gsettings reset org.cinnamon.settings-daemon.plugins.power lock-on-suspend
 run gsettings reset org.cinnamon.desktop.screensaver idle-activation-enabled
 run gsettings reset org.cinnamon.desktop.screensaver lock-enabled
