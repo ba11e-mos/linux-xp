@@ -551,14 +551,14 @@ menuseparator { border-top: 1px solid var(--xp-shadow) !important; margin-block:
 /* --------------------------------------------------------------- *
  * 8. Fake IE status bar along the bottom
  * --------------------------------------------------------------- */
-#browser {
+hbox#browser { /* PiP has a <browser id="browser"> of its own */
   position: relative !important;
   --xp-statusbar-h: 21px;
   padding-bottom: var(--xp-statusbar-h) !important;
   background: var(--xp-face) !important;
 }
-#browser::before,
-#browser::after {
+hbox#browser::before,
+hbox#browser::after {
   position: absolute;
   bottom: 0;
   height: 20px;
@@ -572,12 +572,12 @@ menuseparator { border-top: 1px solid var(--xp-shadow) !important; margin-block:
   box-sizing: border-box;
   pointer-events: none;
 }
-#browser::before {
+hbox#browser::before {
   content: "Done";
   inset-inline: 0 290px;
   padding-inline-start: 6px;
 }
-#browser::after {
+hbox#browser::after {
   content: "Internet";
   inset-inline-end: 0;
   width: 220px;
