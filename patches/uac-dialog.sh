@@ -250,6 +250,9 @@ reps.append(('''    _onSessionShowInfo(session, text) {
         if (/finger|fprint/i.test(text)) {
             this._fingerprintHint = text;
             this._passwordEntry.hint_text = text;
+            // A retry hides the box until PAM asks for a password, which
+            // only happens once the reader gives up - keep it in view.
+            this._passwordEntry.show();
             this._infoMessageLabel.hide();
             this._nullMessageLabel.show();
         } else {
