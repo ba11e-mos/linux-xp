@@ -1786,3 +1786,20 @@
 .menu-background {
   padding-top: 0px;
 }
+
+/* Window count on grouped taskbar buttons. Cinnamon makes the pill twice
+ * as wide as the label and pins the label 3px in, so the digit is only
+ * centred when it is about 6px wide - the panel's 12pt font pushed it to
+ * the top left. */
+.grouped-window-list-badge {
+  border-radius: 9999px;
+  background-color: #0A246A;
+}
+.grouped-window-list-number-label {
+  font-family: Tahoma, sans-serif;
+  font-size: 7pt;
+  font-style: normal;
+  font-weight: bold;
+  color: #FFFFFF;
+  z-index: 99;
+}
