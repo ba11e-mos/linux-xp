@@ -75,7 +75,15 @@ reps.append(('''    on_applet_removed_from_panel() {
             GLib.source_remove(this._xpChargeId);
             this._xpChargeId = 0;
         }
-        if (icon.indexOf("battery-") == 0 && icon.indexOf("missing") < 0 && typeof percentage == "number") {
+        // upower hands over a serialized GThemedIcon (". GThemedIcon
+        // battery-level-30-symbolic battery-good-symbolic ..."), not one name;
+        // its battery-level-NN also gives the charge when the caller has none.
+        if (typeof percentage != "number") {
+            let m = /battery-level-(\\d+)/.exec(icon);
+            if (m)
+                percentage = parseInt(m[1]);
+        }
+        if (/battery-/.test(icon) && !/missing/.test(icon) && typeof percentage == "number") {
             let i = Math.max(0, Math.min(XP_CHARGE_FRAMES.length - 1, Math.round(percentage / 20)));
             icon = XP_CHARGE_FRAMES[i];
         }
