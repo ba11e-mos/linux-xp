@@ -38,8 +38,8 @@ icons and the terminal.
    version they will not find their anchors and will refuse rather than
    corrupt the file.
 7. Only `gnome-terminal`, whichever desktop it runs on.
-8. Needs lightdm and `xss-lock`. It also switches off Cinnamon's own locker,
-   which is Cinnamon-specific.
+8. Needs lightdm. On Cinnamon it is Cinnamon's custom screen saver command,
+   so Settings > Screensaver sets the times; XFCE needs `xss-lock`.
 
 **Other distros.** Anything shipping Cinnamon should work: Fedora's Cinnamon
 spin, Debian, Arch, Ubuntu Cinnamon. Two caveats. The Cinnamon version has to
@@ -101,9 +101,16 @@ prompter, but Cinnamon registers its own `KeyringDialog` on the same DBus
 name, and that one is a St dialog carrying `.prompt-dialog` - so it can be
 patched exactly like the polkit prompt.
 
-**Two lockers stack.** `lock-on-suspend` makes cinnamon-screensaver lock on
-resume while `xss-lock` is already showing the greeter, so you get both
-screens. Component 55 turns Cinnamon's side off.
+**Cinnamon has a hook for its own screen saver.** `csd-power` runs Mint's
+saver (`cinnamon-screensaver-command -a`) once `org.cinnamon.desktop.session
+idle-delay` runs out, whatever `idle-activation-enabled` says, so turning
+Cinnamon's locker off and running `xss-lock` beside it never held: Mint's
+saver came first and the XP one never showed. With
+`org.cinnamon.desktop.screensaver custom-screensaver-command` set, csd runs
+that command instead - on idle (`LOCKED_BY_SESSION_IDLE=true`) and before
+suspend (with `XSS_SLEEP_LOCK_FD` to close once locked) - Super+L goes to it
+too, and cinnamon-screensaver refuses to start. Component 55 points it at
+`xp-saver-lock.py`.
 
 **cinnamon-settings-daemon zeroes `xset s`** whenever it decides it is
 managing idle itself, which kills the idle path without any error. Setting
