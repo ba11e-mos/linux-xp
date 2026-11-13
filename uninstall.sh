@@ -149,6 +149,7 @@ run sudo rm -f /etc/polkit-1/rules.d/50-linux-xp-flatpak.rules
 run gsettings reset org.cinnamon.settings-daemon.plugins.power lock-on-suspend
 run gsettings reset org.cinnamon.desktop.screensaver idle-activation-enabled
 run gsettings reset org.cinnamon.desktop.screensaver lock-enabled
+run gsettings reset org.cinnamon.desktop.session idle-delay
 run xset s default
 
 # --- login screen (component 57): back to Mint's greeter ---

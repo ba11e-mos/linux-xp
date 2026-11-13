@@ -29,6 +29,10 @@ if is_cinnamon; then
     gsettings set org.cinnamon.settings-daemon.plugins.power lock-on-suspend false 2>/dev/null || true
     gsettings set org.cinnamon.desktop.screensaver idle-activation-enabled false 2>/dev/null || true
     gsettings set org.cinnamon.desktop.screensaver lock-enabled false 2>/dev/null || true
+    # csd-power runs "cinnamon-screensaver-command -a" (Mint's screen saver)
+    # once this delay runs out, whatever idle-activation-enabled says, and
+    # zeroes the X screen saver timer while doing so. Never.
+    gsettings set org.cinnamon.desktop.session idle-delay 0 2>/dev/null || true
 elif is_xfce; then
     xfset xfce4-screensaver /saver/enabled bool false
     xfset xfce4-screensaver /lock/enabled bool false
