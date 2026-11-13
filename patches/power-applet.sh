@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
-# Animates the battery icon while charging: the panel icon steps through the
-# six charge levels (the same-size xp-charge-*-symbolic icons
-# 95-symbolic-icons.sh makes), empty to full, like a phone filling up.
+# Battery icon from the six XP cells (the same-size xp-charge-*-symbolic
+# icons 95-symbolic-icons.sh makes): while charging it steps through them,
+# empty to full, like a phone filling up; otherwise it shows the cell
+# nearest the charge. upower's own names are too coarse for that -
+# battery-good covers roughly 40-80%, so 43% looked almost full.
 #
 #   sudo bash power-applet.sh           apply
 #   sudo bash power-applet.sh --revert  undo
 #
 # Both places the applet sets its panel icon go through _xpSetIcon, which
-# starts the cycle for any upower icon name containing "-charging" and stops
-# it for everything else (discharging, "-charged", no battery).
+# animates for any upower icon name containing "-charging" and picks a cell
+# by percentage for the other battery-* names.
 set -euo pipefail
 
 A=/usr/share/cinnamon/applets/power@cinnamon.org
@@ -45,27 +47,39 @@ const XP_CHARGE_FRAMES = ["000", "020", "040", "060", "080", "100"].map(n => "xp
 # Both icon setters (single device and display device) share this line.
 s = s.replace('''                let gicon = Gio.icon_new_for_string(icon);
                 this._applet_icon.gicon = gicon;''',
-'''                this._xpSetIcon(icon);''')
+'''                this._xpSetIcon(icon, percentage);''')
 s = s.replace('''                                let gicon = Gio.icon_new_for_string(icon);
                                 this._applet_icon.gicon = gicon;''',
-'''                                this._xpSetIcon(icon);''')
+'''                                this._xpSetIcon(icon, this._proxy.Percentage);''')
 
 reps.append(('''    on_applet_removed_from_panel() {
 ''',
-'''    _xpSetIcon(icon) {
+'''    _xpSetIcon(icon, percentage) {
+        // The callers only come here when the icon name changes, and the
+        // name stays the same across a whole upower band. Leave a name that
+        // never matches, so every update comes back for the percentage.
+        this.panel_icon_name = null;
+        if (icon.indexOf("-charging") >= 0) {
+            if (!this._xpChargeId) {
+                this._xpFrame = 0;
+                this._xpChargeId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 600, () => {
+                    this._xpFrame = (this._xpFrame + 1) % XP_CHARGE_FRAMES.length;
+                    this._applet_icon.gicon = Gio.icon_new_for_string(XP_CHARGE_FRAMES[this._xpFrame]);
+                    return GLib.SOURCE_CONTINUE;
+                });
+            }
+            this._applet_icon.gicon = Gio.icon_new_for_string(XP_CHARGE_FRAMES[this._xpFrame]);
+            return;
+        }
         if (this._xpChargeId) {
             GLib.source_remove(this._xpChargeId);
             this._xpChargeId = 0;
         }
+        if (icon.indexOf("battery-") == 0 && icon.indexOf("missing") < 0 && typeof percentage == "number") {
+            let i = Math.max(0, Math.min(XP_CHARGE_FRAMES.length - 1, Math.round(percentage / 20)));
+            icon = XP_CHARGE_FRAMES[i];
+        }
         this._applet_icon.gicon = Gio.icon_new_for_string(icon);
-        if (icon.indexOf("-charging") < 0)
-            return;
-        let frame = 0;
-        this._xpChargeId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 600, () => {
-            frame = (frame + 1) % XP_CHARGE_FRAMES.length;
-            this._applet_icon.gicon = Gio.icon_new_for_string(XP_CHARGE_FRAMES[frame]);
-            return GLib.SOURCE_CONTINUE;
-        });
     }
 
     on_applet_removed_from_panel() {
@@ -75,7 +89,7 @@ reps.append(('''    on_applet_removed_from_panel() {
         }
 '''))
 
-if s.count("this._xpSetIcon(icon);") != 2:
+if s.count("this._xpSetIcon(icon, ") != 2:
     raise SystemExit("PATTERN NOT FOUND: icon setters (expected 2)")
 
 for old, new in reps:
