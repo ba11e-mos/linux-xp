@@ -94,12 +94,17 @@
   background-color: #ece9d8;
 }
 
+/* Plain dialogs (display change, confirm) put their title here, white on
+ * the beige strip. Draw it as the XP caption the UAC prompt carries. */
 .message-dialog-content .message-dialog-title {
   text-align: left;
   color: white;
-  font-weight: normal;
-  font-size: 10.5pt;
-  padding: 0px;
+  font-weight: bold;
+  font-size: 10pt;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.55);
+  border-image: url('xp-caption.png') 4;
+  height: 30px;
+  padding: 6px 8px 0px 8px;
 }
 
 /* The same caption strip the applet menus use, so the prompt matches the
@@ -1803,4 +1808,36 @@
   border-radius: 7px;
   padding: 1px 4px;
   z-index: 99;
+}
+
+/* Dialog buttons (display-change, confirm, run). The theme draws them with
+ * 10x23px PNG border-images, which turn into blurry blue bands once the UI
+ * is scaled. Same XP button in CSS: navy edge, white-to-beige face, blue
+ * inner ring when focused, orange when hovered. */
+.modal-dialog-button,
+.modal-dialog-button:focus {
+  border-image: none;
+  border: 1px solid #003C74;
+  border-radius: 3px;
+  background-gradient-direction: vertical;
+  background-gradient-start: #FFFFFF;
+  background-gradient-end: #E3E0D6;
+  color: #000000;
+  font-size: 9pt;
+  padding: 4px 24px;
+  box-shadow: none;
+}
+.modal-dialog-button:focus {
+  box-shadow: inset 0 0 0 2px #8CB4F2;
+}
+.modal-dialog-button:hover {
+  border-image: none;
+  box-shadow: inset 0 0 0 2px #F8B636;
+}
+.modal-dialog-button:active,
+.modal-dialog-button:checked {
+  border-image: none;
+  background-gradient-start: #E3E0D6;
+  background-gradient-end: #F4F3EE;
+  box-shadow: none;
 }
