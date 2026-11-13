@@ -375,6 +375,25 @@ reps.append(("""    _updateUser() {""",
 
     _updateUser() {"""))
 
+# A request polkit has already dropped (its caller gave up while the screen
+# was locked) fails every answer with "No session for cookie", and the
+# dialog retried forever while holding the modal grab - the desktop was
+# unusable until a reboot. Three failed answers in a row and it lets go.
+reps.append(("""            this._wasDismissed = false;
+
+            /* Try and authenticate again */
+            this.performAuthentication();""",
+"""            this._wasDismissed = false;
+
+            this._failures = (this._failures || 0) + 1;
+            if (this._failures >= 3) {
+                this._emitDone(true);
+                return;
+            }
+
+            /* Try and authenticate again */
+            this.performAuthentication();"""))
+
 for old, new in reps:
     if old not in s:
         raise SystemExit("PATTERN NOT FOUND:\n" + old[:160])
